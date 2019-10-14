@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --magenta: #C3004A;
+  --donker-grijs: #AAAAAA;
+  --licht-grijs: #C8C8C8;
+  --blauw: #00B3D5;
+  --groen: #A9B905;
+  --oranje: #F08800;
+  --beige: #F0EFE4;
+  --prim-lettertype: "Arial";
+}
