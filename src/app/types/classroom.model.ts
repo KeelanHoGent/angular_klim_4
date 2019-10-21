@@ -1,0 +1,50 @@
+import {Project} from "./project.model";
+
+export class Classroom {
+  private _id: number;
+  private _name: string;
+  private _schoolId: number;
+  private _projects: Project[] = [];
+
+  static fromJSON(json: any): Classroom {
+    const c = new Classroom();
+    c._id = json.classRoomId;
+    c._name = json.name;
+    c._schoolId = json.schoolId;
+    c._projects = json.projects.map(p => Project.fromJSON(p));
+    return c;
+  }
+
+
+  get id(): number {
+    return this._id;
+  }
+
+  set id(value: number) {
+    this._id = value;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  set name(value: string) {
+    this._name = value;
+  }
+
+  get schoolId(): number {
+    return this._schoolId;
+  }
+
+  set schoolId(value: number) {
+    this._schoolId = value;
+  }
+
+  get projects(): Project[] {
+    return this._projects;
+  }
+
+  set projects(value: Project[]) {
+    this._projects = value;
+  }
+}
