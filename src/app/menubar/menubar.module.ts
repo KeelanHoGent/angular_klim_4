@@ -4,6 +4,7 @@ import { MenubarContainerComponent } from './components/menubar-container/menuba
 import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -13,7 +14,8 @@ import {MatIconModule} from "@angular/material/icon";
     CommonModule,
     MatMenuModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   exports: [
     MenubarContainerComponent
