@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
 
+## Committing
+
+This repo uses commitizen to format commits. To use this plugin first add your files you want to commit with `git add`, then use `npm run commit` to start commitizen.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
