@@ -1,0 +1,80 @@
+.projecten-wrapper {
+  display: flex;
+  max-width: 1224px;
+  margin: auto;
+  padding: 20px;
+}
+
+/*Project list*/
+
+.projects-list-container {
+  display: flex;
+  flex-direction: column;
+  width: 24%;
+  margin-right: 1%;
+}
+
+.list-title {
+  background-color: var(--magenta);
+  padding: 10px 0;
+  text-align: center;
+  border-radius: 15px 15px 0 0;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.sublist {
+  display: flex;
+  border: 1px var(--licht-grijs) solid;
+  border-bottom: 0;
+  border-top: 0;
+}
+
+.sublist-item {
+  flex-grow: 1;
+  text-align: center;
+  padding: 5px 0;
+  color: var(--oranje);
+}
+
+.active-item {
+  background-color: var(--oranje);
+  color: white;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px var(--licht-grijs) solid;
+  border-top: 0;
+  padding: 5px 10px ;
+}
+
+mat-card {
+  margin-top: 10px;
+  width: calc(100% - 16px - 16px);
+}
+
+mat-card-title {
+  padding-bottom: 5px;
+  color: var(--blauw);
+  font-weight: bold;
+}
+
+mat-card:hover {
+  background-color: var(--licht-grijs);
+}
+
+/*Project details*/
+
+.project {
+  display: flex;
+  border: 1px black solid;
+  width: 75%;
+}
+
+
+
+
