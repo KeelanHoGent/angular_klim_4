@@ -1,0 +1,36 @@
+    <mat-card-title >Nieuw project</mat-card-title>
+      <mat-card-content class="container" >
+          <form class='container' [formGroup]="project" (ngSubmit)='onSubmit()'>
+              <mat-form-field>
+                  <input matInput aria-label="projectnaam" placeholder="Project naam" type="text" formControlName="projectName" #spy
+                      required />
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput aria-label="description" placeholder="Beschrijving" type="text"
+                      formControlName="description" required />
+              </mat-form-field>
+              <mat-form-field>
+                  <input matInput aria-label="projectCode" placeholder="Project code" type="text" formControlName="projectCode" required />
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required/>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput aria-label="budget" placeholder="Maximale budget" type="number" formControlName="budget" required />
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput aria-label="schoolyear" placeholder="Schooljaar" type="number" min="1900" max="2099" value="2019" formControlName="schoolYear" required/>
+              </mat-form-field>
+              <mat-dialog-actions class="buttonContainer">
+                <button class="button" (click)="close()" mat-raised-button>
+                    annuleer 
+                </button>
+
+              <button class="button" type="submit" mat-raised-button color='primary' [disabled]='!project.valid'>
+                  maak project
+              </button>
+            </mat-dialog-actions>
+          </form>
+      </mat-card-content>
+
+      REMOVE {{ project.value | json }}

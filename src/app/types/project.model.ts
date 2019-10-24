@@ -14,6 +14,7 @@ export class Project {
   private _products: Product[] = [];
   private _groups: Group[] = [];
 
+
   static fromJSON(json: any): Project {
     const p = new Project();
     p._id = json.projectId;
@@ -27,6 +28,19 @@ export class Project {
     //TODO: products list en groups
     return p;
   }
+
+  toJson(): any {
+    return {
+        projectId: this._id,
+        projectName: this._name,
+        projectDescr: this._descr,
+        projectCode: this._code,
+        projectImage: this._image,
+        projectBudget: this._budget,
+        eSchoolYear: this._schoolYear
+        //p._applicationDomain = ApplicationDomain.toJSON(json.applicationDomain); NOG TE DOEN
+    }
+}
 
   //GETTERS AND SETTERS
 
