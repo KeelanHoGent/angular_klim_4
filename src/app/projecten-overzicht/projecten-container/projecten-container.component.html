@@ -31,15 +31,50 @@
       </mat-card>
     </div>
   </div>
-  <div class="project">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et tellus sit amet nisl pellentesque congue. Duis sodales ut erat ut maximus. Curabitur eu lobortis ex. Aenean eget augue nunc. Mauris mollis efficitur sapien, vitae pharetra enim iaculis nec. Proin in urna iaculis, tristique nisi congue, tempor sem. Nunc lectus dolor, molestie sit amet felis ut, fermentum semper arcu. Proin ut ligula tempor, posuere quam at, pulvinar est.
-
-    Proin nec semper ipsum. Nunc nec mollis lectus, sed imperdiet ligula. Phasellus quis erat ac turpis pretium finibus. Integer viverra pellentesque mattis. Nunc imperdiet non dolor ut ultricies. Mauris non tellus vulputate, viverra dolor a, aliquam lorem. Duis id mi nec quam maximus ullamcorper.
-
-    Praesent ante nibh, luctus nec leo eu, posuere hendrerit odio. Pellentesque eros mauris, dapibus id finibus sed, dictum non neque. Mauris condimentum odio quis diam aliquam porttitor. Morbi maximus tincidunt nulla. Duis in elit diam. Nunc et auctor leo. Aenean sollicitudin metus vitae cursus faucibus. Donec quis hendrerit nulla, sit amet tincidunt dui. Nullam semper magna eget ex eleifend, vitae aliquet est elementum. Nunc magna dui, finibus non ultrices non, ornare sit amet erat. Aenean tempor tortor eu pellentesque viverra. Aliquam erat volutpat. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-
-    Fusce eros lectus, commodo eu varius sit amet, sodales at ipsum. Morbi laoreet vitae risus convallis dictum. Donec consequat, urna a tristique tempor, nulla libero varius nisl, id cursus odio magna vel felis. Pellentesque semper nunc mauris, vel dapibus quam fermentum sed. Nullam auctor lorem non egestas sollicitudin. Integer metus sem, cursus sit amet nulla a, hendrerit laoreet tortor. Maecenas cursus pharetra velit et tincidunt. Nunc pulvinar mattis sapien blandit sodales.
-
-    Vivamus non elementum ex, nec tincidunt nibh. Aliquam at vulputate nibh. Curabitur augue enim, venenatis sit amet purus nec, ullamcorper hendrerit elit. Ut id ipsum mauris. Integer aliquet tortor nisi. Maecenas at laoreet eros. Morbi lobortis tincidunt sem a efficitur. Donec id dapibus risus. Praesent erat ipsum, scelerisque ac dolor sollicitudin, laoreet lobortis sem. Aliquam rhoncus ex sit amet diam imperdiet, eu molestie elit pharetra. Proin lobortis odio ac libero gravida dictum. Morbi at lacus sed metus vehicula consectetur. Maecenas malesuada nulla fringilla consectetur finibus. Maecenas ac purus maximus, maximus lectus non, varius arcu.
+  <div class="project spinner" *ngIf="!currentProject">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div class="project" *ngIf="currentProject">
+    <div class="details">
+      <div class="details-item">
+        <img src="../../../assets/GO-logo-magenta.png">
+      </div>
+      <div class="details-item">
+        <h1>{{currentProject.name}}</h1>
+        <p>{{currentProject.descr}}</p>
+        <p>Budget: {{currentProject.budget}}</p>
+      </div>
+      <div class="details-item last">
+        <span class="status">Actief</span>
+      </div>
+    </div>
+    <div class="list-groups">
+      <table style="width: 100%">
+        <tr class="table-header">
+          <th> Groep </th>
+          <th> Overgebleven budget </th>
+        </tr>
+        <tr>
+          <td>Team Eddy</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>Team Jan</td>
+          <td>8</td>
+        </tr>
+        <tr>
+          <td>Team Foo</td>
+          <td>22</td>
+        </tr>
+        <tr>
+          <td>Team Bar</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>Team Baz</td>
+          <td>16</td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

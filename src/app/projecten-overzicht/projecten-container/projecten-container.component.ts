@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProjectService} from "../../services/project.service";
 import {Observable} from "rxjs";
 import {Project} from "../../types/project.model";
@@ -11,10 +11,13 @@ import {Project} from "../../types/project.model";
 export class ProjectenContainerComponent implements OnInit {
 
   private projects: Observable<Project[]>;
+  private currentProject: Project;
+  displayedColumns: string[] = ['name', 'budget'];
 
   constructor(private ps: ProjectService) { }
 
   ngOnInit() {
-    this.projects = this.ps.projects$;
+    this.projects = this.ps.getProjects$();
+    this.ps.getProject$(1).subscribe(p => this.currentProject = p) ;
   }
 }

@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { environment } from "../../environments/environment";
-import { Project } from "../types/project.model";
-import { map } from "rxjs/operators";
-import {Classroom} from "../types/classroom.model";
+import {Injectable} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
+import {Project} from "../types/project.model";
+import {map} from "rxjs/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -24,10 +23,16 @@ export class ProjectService {
     return this.http.get(`${environment.apiUrl}/ApplicationDomain`);
   }
 
-  get projects$(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${environment.apiUrl}/ClassRoom/withProjects/${this._classroomId}`).pipe(
-      map(x => Classroom.fromJSON(x).projects)
+  getProjects$(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${environment.apiUrl}/ClassRoom/projects/${this._classroomId}`).pipe(
+      map(x => x.map(p => Project.fromJSON(p)))
     );
+  }
+
+  getProject$(id: number) {
+    return this.http.get<Project>(`${environment.apiUrl}/Project/${this._classroomId}`).pipe(
+      map(x => Project.fromJSON(x))
+    )
   }
 
 }
