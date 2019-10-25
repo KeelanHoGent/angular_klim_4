@@ -52,7 +52,7 @@ export class AddProjectFormComponent  {
   }
 
   save() {
-    this.dialogRef.close(this.project.value);
+    this.dialogRef.close(this.project);
 }
 
 close() {

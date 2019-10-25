@@ -10,6 +10,7 @@ export class Project {
   private _image: string;
   private _budget: number;
   private _schoolYear: number;
+  private _applicationDomainId: number;
   private _applicationDomain: ApplicationDomain;
   private _products: Product[] = [];
   private _groups: Group[] = [];
@@ -37,8 +38,8 @@ export class Project {
         projectCode: this._code,
         projectImage: this._image,
         projectBudget: this._budget,
-        eSchoolYear: this._schoolYear
-        //p._applicationDomain = ApplicationDomain.toJSON(json.applicationDomain); NOG TE DOEN
+        eSchoolYear: this._schoolYear,
+        applicationDomainId: this._applicationDomainId
     }
 }
 
