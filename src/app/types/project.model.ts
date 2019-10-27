@@ -124,4 +124,12 @@ export class Project {
   set groups(value: Group[]) {
     this._groups = value;
   }
+
+  get applicationDomainId() : number {
+    return this._applicationDomainId;
+  }
+
+  set applicationDomainId(value: number){
+    this._applicationDomainId = value;
+  }
 }

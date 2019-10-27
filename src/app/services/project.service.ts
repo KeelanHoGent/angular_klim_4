@@ -4,6 +4,7 @@ import { environment } from "../../environments/environment";
 import { Project } from '../types/project.model';
 import { Observable, Subject, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { ApplicationDomain } from '../types/applicationDomain.model';
 
 
 @Injectable({
@@ -26,10 +27,24 @@ export class ProjectService {
     );
   }
 
+  getApplicationDomains$(): Observable<ApplicationDomain[]> {
+    return this.http.get(`${environment.apiUrl}/ApplicationDomain`).pipe(
+      catchError(error => {
+        this.loadingError$.next(error.statusText);
+        return of(null);
+      }),
+      map(
+        (list: any[]): ApplicationDomain[] => list.map(ApplicationDomain.fromJSON)
+      )
+    );
+  }
+  
+
   addNewProject(project: Project) {
     return this.http.post(`${environment.apiUrl}/Classroom/addProject/1/`,
     project.toJson());
   }
+
 
 
   

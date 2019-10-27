@@ -1,16 +1,84 @@
+.card {
+    width: 40%;
+    margin: 0 auto;
+    padding: 10px;
+    padding-top: 20px;
+}
+
+.titleBox {
+    border-bottom: 1px solid #e1e4e8;
+    margin-bottom: 20px;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     position: relative;
+    
 }
-
 
 .buttonContainer {
     width: 100%;
     display: block;
+    border-top:1px solid #e1e4e8 ;
+    padding-top: 20px;
 }
 
 .button {
     min-width: 120px;
+    margin-right: 20px ;
 }
 
+dl label {
+    padding-top: 10px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+}
+
+.formGroup > label {
+    font-weight: 500;
+    padding-bottom: 8px ;
+    font-size: 14px;
+}
+
+.formGroup > input, textarea {
+    border: none;
+    background-color: #fafbfc;
+    height: 30px;
+    width: 50%;
+    /* min-width: 200px; */
+    border: 1px solid #d1d5da;
+    font-size: 12px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 2px rgba(27,31,35,.075);
+    padding: 4px 8px;
+    outline: none;
+}
+
+textarea {
+    min-width: 97%;
+    max-width: 97%; 
+    height: 60px;
+}
+
+.formGroup > .smallInput {
+    max-width: 25%;
+}
+
+.formGroup > select {
+    max-width: 25%;
+    min-width: 150px;
+    height: 30px;
+    background-color: #fafbfc;
+    border-color: #d1d5da;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+::placeholder {
+    color:#adb2b9;
+}
