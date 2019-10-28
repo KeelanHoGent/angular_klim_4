@@ -15,7 +15,7 @@ export class Project {
   private _products: Product[] = [];
   private _groups: Group[] = [];
 
-
+  
   static fromJSON(json: any): Project {
     const p = new Project();
     p._id = json.projectId;
@@ -32,16 +32,21 @@ export class Project {
 
   toJson(): any {
     return {
-        projectId: this._id,
-        projectName: this._name,
-        projectDescr: this._descr,
-        projectCode: this._code,
-        projectImage: this._image,
-        projectBudget: this._budget,
-        eSchoolYear: this._schoolYear,
-        applicationDomainId: this._applicationDomainId
+      projectId: this._id,
+      projectName: this._name,
+      projectDescr: this._descr,
+      projectCode: this._code,
+      projectImage: this._image,
+      projectBudget: this._budget,
+      eSchoolYear: this._schoolYear,
+      applicationDomainId: this._applicationDomainId
     }
-}
+  }
+
+  addProductToProject(p: Product){
+    this.products.push(p);
+    console.log(p.name);
+  }
 
   //GETTERS AND SETTERS
 
@@ -125,11 +130,11 @@ export class Project {
     this._groups = value;
   }
 
-  get applicationDomainId() : number {
+  get applicationDomainId(): number {
     return this._applicationDomainId;
   }
 
-  set applicationDomainId(value: number){
+  set applicationDomainId(value: number) {
     this._applicationDomainId = value;
   }
 }

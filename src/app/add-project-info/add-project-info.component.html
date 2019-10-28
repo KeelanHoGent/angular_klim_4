@@ -1,0 +1,67 @@
+<div class="titleBox">
+    <mat-card-title>Maak een nieuw project</mat-card-title>
+    <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
+</div>
+<mat-card-content class="form">
+    <div class=formSectie>
+        <form class='container' [formGroup]="project" (ngSubmit)='onSubmit()'>
+            <div class="formGroup">
+                <label>Projectnaam</label>
+                <input aria-label="projectnaam" placeholder="Project naam" type="text" formControlName="projectName"
+                    #spy required />
+            </div>
+            <div class="formGroup">
+                <label>Beschrijving</label>
+                <textarea aria-label="description" type="text" formControlName="description" required></textarea>
+            </div>
+            <div class="formGroup">
+                <label>Afbeelding Url</label>
+                <input aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required />
+            </div>
+            <div class="naastElkaar">
+                <div class="formGroup">
+                    <label>Projectcode</label>
+                    <input class="smallInput" aria-label="projectCode" placeholder="Project code" type="text"
+                        formControlName="projectCode" required />
+                </div>
+                <div class="formGroup">
+                    <label>Budget</label>
+                    <input class="smallInput" aria-label="budget" placeholder="Maximale budget" type="number"
+                        formControlName="budget" required />
+                </div>
+                <div class="formGroup">
+                    <label>Schooljaar</label>
+                    <input class="smallInput" aria-label="schoolyear" placeholder="Schooljaar" type="number" min="1900"
+                        max="2099" value="2019" formControlName="schoolYear" required />
+                </div>
+            </div>
+            <div class="formGroup">
+                <label>Onderwerp</label>
+                <select formControlName="applicationDomain">
+                    <option value="">Kies het onderwerp</option>
+                    <option *ngFor="let domain of domains" [ngValue]="domain.id">
+                        {{domain.name}}
+                    </option>
+                </select>
+            </div>
+        </form>
+    </div>
+    <div class="formSectie">
+        <mat-card-subtitle>Voeg de gewenste producten aan het project toe</mat-card-subtitle>
+        <div class=producten>
+            <div *ngFor="let p of products">
+                <app-product [product]="p"></app-product>
+            </div>
+            <div><app-add-product (newProduct)="addNewProduct($event)"></app-add-product></div>
+        </div>
+    </div>
+    <mat-dialog-actions class="buttonContainer">
+        <button [routerLink]='[""]' class="button" mat-raised-button>
+            annuleer
+        </button>
+        <button class="button" type="submit" mat-raised-button color='primary' [disabled]='!project.valid'>
+            maak project
+        </button>
+    </mat-dialog-actions>
+</mat-card-content>
+REMOVE {{ project.value | json }}

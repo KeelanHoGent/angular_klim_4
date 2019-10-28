@@ -1,0 +1,30 @@
+<mat-card-title>Nieuw product</mat-card-title>
+<mat-card-content class="container">
+    <form class='container' [formGroup]="product">
+        <div class="formGroup">
+            <label>naam</label>
+            <input aria-label="name" placeholder="naam" type="text" formControlName="name" #spy required />
+        </div>
+        <div class="formGroup">
+            <label>Beschrijving</label>
+            <textarea aria-label="description" type="text" formControlName="description" required></textarea>
+        </div>
+        <div class="formGroup">
+            <label>Afbeelding Url</label>
+            <input aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required />
+        </div>
+        <div class="formGroup">
+            <label>Price</label>
+            <input aria-label="price" placeholder="Prijs" type="number" formControlName="price" required />
+        </div>
+
+        <mat-dialog-actions class="buttonContainer">
+            <button class="button" (click)="close()" mat-raised-button>
+                annuleer
+            </button>
+            <button class="button" (click)="save()" type="submit" mat-raised-button color='primary' >
+                Voeg product toe
+            </button>
+        </mat-dialog-actions>
+    </form>
+</mat-card-content>

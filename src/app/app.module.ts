@@ -21,6 +21,10 @@ import { MatInputModule,MatDialogModule, MatTableModule, MatPaginatorModule, Mat
 from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { AddProjectFormComponent } from './add-project-form/add-project-form.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { AddProjectInfoComponent } from './add-project-info/add-project-info.component';
+import { AddProductFormComponent } from './add-product-form/add-product-form.component';
+import { ProductComponent } from './product/product.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +32,10 @@ import { AddProjectFormComponent } from './add-project-form/add-project-form.com
     AddProjectComponent,
     ProjectComponent,
     AddProjectFormComponent,
+    AddProductComponent,
+    AddProjectInfoComponent,
+    AddProductFormComponent,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,6 +59,6 @@ import { AddProjectFormComponent } from './add-project-form/add-project-form.com
     TemplateService
   ],
   bootstrap: [AppComponent],
-  entryComponents: [AddProjectFormComponent]
+  entryComponents: [AddProductFormComponent]
 })
 export class AppModule { }
