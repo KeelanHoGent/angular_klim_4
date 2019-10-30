@@ -48,6 +48,11 @@ export class Project {
     console.log(p.name);
   }
 
+  removeProduct(p: Product){
+    let index = this.products.indexOf(p);
+    this.products.splice(index,1);
+  }
+
   //GETTERS AND SETTERS
 
   get id(): number {

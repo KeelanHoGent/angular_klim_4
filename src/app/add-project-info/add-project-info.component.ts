@@ -83,7 +83,7 @@ export class AddProjectInfoComponent implements OnInit {
 
   deleteProduct(p: Product): void {
     let index = this.products.indexOf(p);
-    console.log(p);
     this.products.splice(index,1);
+    this.newProject.removeProduct(p);
   }
 }
