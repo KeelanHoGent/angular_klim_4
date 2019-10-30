@@ -50,9 +50,11 @@
         <mat-card-subtitle>Voeg de gewenste producten aan het project toe</mat-card-subtitle>
         <div class=producten>
             <div *ngFor="let p of products">
-                <app-product [product]="p"></app-product>
+                <app-product (deletedProduct)="deleteProduct($event)" [product]="p"></app-product>
             </div>
-            <div><app-add-product (newProduct)="addNewProduct($event)"></app-add-product></div>
+            <div>
+                <app-add-product (newProduct)="addNewProductToProject($event)"></app-add-product>
+            </div>
         </div>
     </div>
     <mat-dialog-actions class="buttonContainer">

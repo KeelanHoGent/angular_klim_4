@@ -9,13 +9,12 @@ import { pipe } from 'rxjs';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent {
   @Output() public newProduct = new EventEmitter<Product>();
   public product: Product;
-  constructor(public dialog: MatDialog) { }
-  ngOnInit() {
-  }
 
+  constructor(public dialog: MatDialog) { }
+  
   addProductForm(): void {
     const config = new MatDialogConfig();
 

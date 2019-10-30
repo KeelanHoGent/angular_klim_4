@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Product } from '../types/product.model';
 
@@ -20,10 +20,10 @@ export class AddProductFormComponent  {
 
   ngOnInit() {
     this.product = this._fb.group({
-      name: [''],
-      image: [''],
-      description: [''],
-      price: ['']
+      name: ['', Validators.required],
+      image: ['', Validators.required],
+      description: ['', Validators.required],
+      price: ['', Validators.required]
     })
   }
 

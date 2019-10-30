@@ -22,7 +22,7 @@
             <button class="button" (click)="close()" mat-raised-button>
                 annuleer
             </button>
-            <button class="button" (click)="save()" type="submit" mat-raised-button color='primary' >
+            <button class="button" (click)="save()" type="submit" mat-raised-button color='primary' [disabled]='!product.valid' >
                 Voeg product toe
             </button>
         </mat-dialog-actions>

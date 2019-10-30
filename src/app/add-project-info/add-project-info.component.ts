@@ -16,10 +16,12 @@ export class AddProjectInfoComponent implements OnInit {
   private _domainApps: Observable<ApplicationDomain[]>;
   public domains: ApplicationDomain[];
   public products: Product[];
+  private newProject: Project;
 
   constructor(
     private _fb: FormBuilder,
-    private _projectDataService: ProjectService) {
+    private _projectDataService: ProjectService)
+     {
 
       this.products = new Array<Product>();
 
@@ -27,11 +29,16 @@ export class AddProjectInfoComponent implements OnInit {
       const p1 = new Product();
       const p2 = new Product();
       p1.name = "Hout";
-      p2.name = "Glas";
+      p1.description = "Heel millieuvriendelijk";
+      p1.price = 2;
+      p2.name = "Plastiek";
+      p2.description = "slecht voor het millieu";
+      p2.price = 6;
       this.products.push(p1);
       this.products.push(p2);
-      //
+      // 
 
+      this.newProject = new Project();
       this._domainApps = this._projectDataService.getApplicationDomains$();
       
   }
@@ -39,12 +46,12 @@ export class AddProjectInfoComponent implements OnInit {
   ngOnInit() {
     this.project = this._fb.group({
       projectName: ['', [Validators.required]],
-      description: [''],
-      projectCode: [''],
-      image: [''],
-      budget: [''],
-      schoolYear: [''],
-      applicationDomain: ['']
+      description: ['', Validators.required],
+      projectCode: ['', Validators.required],
+      image: ['', Validators.required],
+      budget: ['', Validators.required],
+      schoolYear: ['', Validators.required],
+      applicationDomain: ['', Validators.required]
     })
 
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
@@ -52,16 +59,15 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   onSubmit() {
-    const newProject = new Project();
-    newProject.name = this.project.value.projectName;
-    newProject.descr = this.project.value.description;
-    newProject.code = this.project.value.projectCode;
-    newProject.image = this.project.value.image;
-    newProject.budget = this.project.value.budget;
-    newProject.schoolYear = this.project.value.schoolYear;
-    newProject.applicationDomainId = this.project.value.applicationDomain;
+    this.newProject.name = this.project.value.projectName;
+    this.newProject.descr = this.project.value.description;
+    this.newProject.code = this.project.value.projectCode;
+    this.newProject.image = this.project.value.image;
+    this.newProject.budget = this.project.value.budget;
+    this.newProject.schoolYear = this.project.value.schoolYear;
+    this.newProject.applicationDomainId = this.project.value.applicationDomain;
 
-    this._projectDataService.addNewProject(newProject)
+    this._projectDataService.addNewProject(this.newProject)
       .subscribe();
   }
 
@@ -70,8 +76,14 @@ export class AddProjectInfoComponent implements OnInit {
     return this.project.get('applicationDomain');
   }
 
-  addNewProduct(product: Product) {
-    console.log(product);
+  addNewProductToProject(product: Product) {
     this.products.push(product);
+    this.newProject.addProductToProject(product);
+  }
+
+  deleteProduct(p: Product): void {
+    let index = this.products.indexOf(p);
+    console.log(p);
+    this.products.splice(index,1);
   }
 }

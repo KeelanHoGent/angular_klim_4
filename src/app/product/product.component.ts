@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from '../types/product.model';
 
 @Component({
@@ -8,9 +8,16 @@ import { Product } from '../types/product.model';
 })
 export class ProductComponent implements OnInit {
   @Input() public product: Product;
+  @Output() public deletedProduct = new EventEmitter<Product>();
   constructor() { }
 
   ngOnInit() {
+  }
+
+  deleteProduct(): boolean {
+    console.log(this.product);
+    this.deletedProduct.emit(this.product);
+    return false;
   }
 
 }
