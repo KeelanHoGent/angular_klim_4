@@ -1,5 +1,5 @@
-import {Pipe, PipeTransform} from "@angular/core";
-import {Project} from "../types/project.model";
+import { Pipe, PipeTransform } from "@angular/core";
+import { Project } from "../types/project.model";
 
 @Pipe({name:'activeFilter'})
 export class ActiveFilter implements PipeTransform{

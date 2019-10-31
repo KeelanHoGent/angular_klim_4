@@ -1,7 +1,6 @@
-import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
-import {ProjectService} from "../../services/project.service";
-import {Observable, pipe} from "rxjs";
-import {Project} from "../../types/project.model";
+import { Component, OnInit } from '@angular/core';
+import { ProjectService } from "../../services/project.service";
+import { Project } from "../../types/project.model";
 
 @Component({
   selector: 'app-projecten-container',

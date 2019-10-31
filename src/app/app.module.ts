@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectService } from "./services/project.service";
 import { TemplateService } from "./services/template.service";
 import { HttpClientModule } from "@angular/common/http";
-import {ProjectenOverzichtModule} from "./projecten-overzicht/projecten-overzicht.module";
+import { ProjectenOverzichtModule } from "./projecten-overzicht/projecten-overzicht.module";
 
 @NgModule({
   declarations: [

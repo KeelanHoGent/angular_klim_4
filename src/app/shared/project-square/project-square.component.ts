@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Project} from "../../types/project.model";
+import { Component, Input, OnInit } from '@angular/core';
+import { Project } from "../../types/project.model";
 
 @Component({
   selector: 'app-project-square',
