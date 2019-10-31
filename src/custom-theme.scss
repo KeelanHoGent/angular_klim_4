@@ -9,11 +9,82 @@
 // Be sure that you only ever include this mixin once!
 @include mat-core();
 
+/* For use in src/lib/core/theming/_palette.scss */
+$md-goprimary: (
+  50 : #f8e0e9,
+  100 : #edb3c9,
+  200 : #e180a5,
+  300 : #d54d80,
+  400 : #cc2665,
+  500 : #c3004a,
+  600 : #bd0043,
+  700 : #b5003a,
+  800 : #ae0032,
+  900 : #a10022,
+  A100 : #ffcbd2,
+  A200 : #ff98a7,
+  A400 : #ff657b,
+  A700 : #ff4c65,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+/* For use in src/lib/core/theming/_palette.scss */
+$md-gosecondary: (
+  50 : #e0f6fa,
+  100 : #b3e8f2,
+  200 : #80d9ea,
+  300 : #4dcae2,
+  400 : #26bedb,
+  500 : #00b3d5,
+  600 : #00acd0,
+  700 : #00a3ca,
+  800 : #009ac4,
+  900 : #008bba,
+  A100 : #e3f7ff,
+  A200 : #b0e8ff,
+  A400 : #7dd9ff,
+  A700 : #63d1ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+
+
+
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$klimaatmobiel-primary: mat-palette($mat-red);
-$klimaatmobiel-accent: mat-palette($mat-gray);
+$klimaatmobiel-primary: mat-palette($md-goprimary);
+$klimaatmobiel-accent: mat-palette($md-gosecondary);
 
 // The warn palette is optional (defaults to red).
 $klimaatmobiel-warn: mat-palette($mat-red);

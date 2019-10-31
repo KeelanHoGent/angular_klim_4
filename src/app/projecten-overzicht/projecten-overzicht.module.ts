@@ -5,6 +5,7 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { SharedModule } from "../shared/shared.module";
 import { ProjectSquareComponent } from "../shared/project-square/project-square.component";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -17,6 +18,7 @@ import { ProjectSquareComponent } from "../shared/project-square/project-square.
     MatCardModule,
     MatProgressSpinnerModule,
     SharedModule,
+    MatButtonModule,
   ],
   exports: [
     ProjectenContainerComponent

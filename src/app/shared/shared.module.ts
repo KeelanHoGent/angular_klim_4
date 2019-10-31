@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HorizontalListComponent } from './horizontal-list/horizontal-list.component';
 import { ProjectSquareComponent } from "./project-square/project-square.component";
 import { ActiveFilter, FinishedFilter } from "./filterProjects.pipe";
+import {MatCardModule} from "@angular/material/card";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -15,7 +17,9 @@ import { ActiveFilter, FinishedFilter } from "./filterProjects.pipe";
     FinishedFilter
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatCardModule,
+    MatButtonModule
   ],
   exports: [
     HorizontalListComponent,

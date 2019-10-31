@@ -1,0 +1,10 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+app-project-square:not(:nth-child(1)) {
+  margin-left: 20px;
+}
