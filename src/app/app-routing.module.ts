@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AddProjectFormComponent } from './add-project-form/add-project-form.component';
-import { AddProjectComponent } from './add-project/add-project.component';
+import { AddProjectFormComponent } from './new-project/components/add-project-form/add-project-form.component';
+import { AddProjectComponent } from './new-project/components/add-project/add-project.component';
 
 
 const routes: Routes = [

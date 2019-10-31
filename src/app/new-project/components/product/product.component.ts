@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Product } from '../types/product.model';
-import { MatDialogConfig, MatDialog } from '@angular/material';
+import { Input, Output, EventEmitter, Component } from '@angular/core';
+import { Product } from 'src/app/types/product.model';
+import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddProductFormComponent } from '../add-product-form/add-product-form.component';
 
 @Component({
@@ -8,13 +8,11 @@ import { AddProductFormComponent } from '../add-product-form/add-product-form.co
   templateUrl: './product.component.html',
   styleUrls: ['./product.component.css']
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent {
   @Input() public product: Product;
   @Output() public deletedProduct = new EventEmitter<Product>();
   constructor(public dialog: MatDialog) { }
 
-  ngOnInit() {
-  }
 
   deleteProduct(): boolean {
     this.deletedProduct.emit(this.product);

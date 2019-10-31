@@ -1,10 +1,10 @@
 import { Component, OnInit, Output } from '@angular/core';
-import { Project } from '../types/project.model';
+import { Project } from '../../../types/project.model';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { ProjectService } from '../services/project.service';
+import { ProjectService } from '../../../services/project.service';
 import { Observable } from 'rxjs';
-import { ApplicationDomain } from '../types/applicationDomain.model';
-import { Product } from '../types/product.model';
+import { ApplicationDomain } from '../../../types/applicationDomain.model';
+import { Product } from '../../../types/product.model';
 
 @Component({
   selector: 'app-add-project-info',

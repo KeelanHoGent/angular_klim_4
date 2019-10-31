@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { AddProductFormComponent } from '../add-product-form/add-product-form.component';
-import { Product } from '../types/product.model';
+import { Product } from '../../../types/product.model';
 import { pipe } from 'rxjs';
 
 @Component({
