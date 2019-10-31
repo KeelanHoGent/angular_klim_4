@@ -11,23 +11,25 @@ import { Product } from '../types/product.model';
 export class AddProductFormComponent  {
   public product: FormGroup;
   public newProduct: Product;
+  public isEdit: boolean;
   constructor(
      private _fb: FormBuilder, 
      public dialogRef: MatDialogRef<AddProductFormComponent>,
-     @Inject(MAT_DIALOG_DATA) private _data) {
-       
+     @Inject(MAT_DIALOG_DATA) public data) {
+       this.isEdit = data.soort;
      }
 
   ngOnInit() {
     this.product = this._fb.group({
-      name: ['', Validators.required],
-      image: ['', Validators.required],
-      description: ['', Validators.required],
-      price: ['', Validators.required]
+      name: [this.data.name ? this.data.name : '', Validators.required],
+      image: [this.data.image ? this.data.image : '', Validators.required],
+      description: [this.data.description ? this.data.description : '', Validators.required],
+      price: [this.data.price ? this.data.price : '', Validators.required]
     })
   }
 
   save() {
+    console.log(this.product.value);
     this.dialogRef.close(this.product.value);
 }
 

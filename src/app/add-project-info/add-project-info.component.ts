@@ -20,27 +20,26 @@ export class AddProjectInfoComponent implements OnInit {
 
   constructor(
     private _fb: FormBuilder,
-    private _projectDataService: ProjectService)
-     {
+    private _projectDataService: ProjectService) {
 
-      this.products = new Array<Product>();
+    this.products = new Array<Product>();
 
-      //volgende is gewoon voor iets te zien bij stylen
-      const p1 = new Product();
-      const p2 = new Product();
-      p1.name = "Hout";
-      p1.description = "Heel millieuvriendelijk";
-      p1.price = 2;
-      p2.name = "Plastiek";
-      p2.description = "slecht voor het millieu";
-      p2.price = 6;
-      this.products.push(p1);
-      this.products.push(p2);
-      // 
+    //volgende is gewoon voor iets te zien bij stylen
+    const p1 = new Product();
+    const p2 = new Product();
+    p1.name = "Hout";
+    p1.description = "Heel millieuvriendelijk";
+    p1.price = 2;
+    p2.name = "Plastiek";
+    p2.description = "slecht voor het millieu";
+    p2.price = 6;
+    this.products.push(p1);
+    this.products.push(p2);
+    // 
 
-      this.newProject = new Project();
-      this._domainApps = this._projectDataService.getApplicationDomains$();
-      
+    this.newProject = new Project();
+    this._domainApps = this._projectDataService.getApplicationDomains$();
+
   }
 
   ngOnInit() {
@@ -83,7 +82,8 @@ export class AddProjectInfoComponent implements OnInit {
 
   deleteProduct(p: Product): void {
     let index = this.products.indexOf(p);
-    this.products.splice(index,1);
+    this.products.splice(index, 1);
     this.newProject.removeProduct(p);
+
   }
 }

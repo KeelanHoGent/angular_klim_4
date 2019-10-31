@@ -1,8 +1,18 @@
-<mat-card-title>Nieuw product</mat-card-title>
+<mat-card-title *ngIf="isEdit; else newProduct">
+    Pas {{data.name | lowercase}} aan
+</mat-card-title>
+
+<ng-template #newProduct>
+    <mat-card-title>Nieuw product</mat-card-title>
+</ng-template>
+
+
+
+
 <mat-card-content class="container">
     <form class='container' [formGroup]="product">
         <div class="formGroup">
-            <label>naam</label>
+            <label>Productnaam</label>
             <input aria-label="name" placeholder="naam" type="text" formControlName="name" #spy required />
         </div>
         <div class="formGroup">
@@ -14,7 +24,7 @@
             <input aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required />
         </div>
         <div class="formGroup">
-            <label>Price</label>
+            <label>Prijs</label>
             <input aria-label="price" placeholder="Prijs" type="number" formControlName="price" required />
         </div>
 
@@ -22,9 +32,18 @@
             <button class="button" (click)="close()" mat-raised-button>
                 annuleer
             </button>
-            <button class="button" (click)="save()" type="submit" mat-raised-button color='primary' [disabled]='!product.valid' >
+
+            <button class="button" *ngIf="!isEdit; else newP" (click)="save()" type="submit" mat-raised-button
+                color='primary' [disabled]='!product.valid'>
                 Voeg product toe
             </button>
+            <ng-template #newP>
+                <button class="button" (click)="save()" type="submit" mat-raised-button color='primary'
+                    [disabled]='!product.valid'>
+                    Sla op
+                </button>
+            </ng-template>
+
         </mat-dialog-actions>
     </form>
 </mat-card-content>

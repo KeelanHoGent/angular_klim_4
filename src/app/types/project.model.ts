@@ -45,11 +45,13 @@ export class Project {
 
   addProductToProject(p: Product){
     this.products.push(p);
-    console.log(p.name);
+    console.log(this.products)
   }
 
   removeProduct(p: Product){
+    console.log(this.products)
     let index = this.products.indexOf(p);
+    
     this.products.splice(index,1);
   }
 

@@ -1,5 +1,5 @@
 <div class="titleBox">
-    <mat-card-title>Maak een nieuw project</mat-card-title>
+    <mat-card-title class="h"><mat-icon class="icon">post_add</mat-icon>Maak een nieuw project</mat-card-title>
     <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
 </div>
 <mat-card-content class="form">
@@ -57,6 +57,14 @@
             </div>
         </div>
     </div>
+    <div class="formSectie">
+            <mat-card-subtitle>Voeg de gewenste groepen aan het project toe</mat-card-subtitle>
+            <div class=producten>
+                <div>
+                    <app-add-product (newProduct)="addNewProductToProject($event)"></app-add-product>
+                </div>
+            </div>
+        </div>
     <mat-dialog-actions class="buttonContainer">
         <button [routerLink]='[""]' class="button" mat-raised-button>
             annuleer
