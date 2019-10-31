@@ -7,8 +7,6 @@ import { AddProjectComponent } from './new-project/components/add-project/add-pr
 const routes: Routes = [
   {path: 'add-project', component: AddProjectFormComponent},
   {path: '', component: AddProjectComponent}
-
-
 ];
 
 @NgModule({

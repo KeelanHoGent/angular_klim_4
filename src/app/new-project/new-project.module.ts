@@ -7,6 +7,12 @@ import { AddProductComponent } from './components/add-product/add-product.compon
 import { AddProjectInfoComponent } from './components/add-project-info/add-project-info.component';
 import { AddProductFormComponent } from './components/add-product-form/add-product-form.component';
 import { ProductComponent } from './components/product/product.component';
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from "@angular/material/card";
+import { ReactiveFormsModule } from "@angular/forms";
+import { MatDialogModule } from "@angular/material/dialog";
+import { RouterModule } from "@angular/router";
 
 
 @NgModule({
@@ -19,7 +25,13 @@ import { ProductComponent } from './components/product/product.component';
     ProductComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    MatDialogModule,
+    RouterModule
   ],
   entryComponents: [AddProductFormComponent]
 })
