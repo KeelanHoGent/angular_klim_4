@@ -8,16 +8,16 @@ import { Product } from '../../../types/product.model';
   templateUrl: './add-product-form.component.html',
   styleUrls: ['./add-product-form.component.css']
 })
-export class AddProductFormComponent  {
+export class AddProductFormComponent {
   public product: FormGroup;
   public newProduct: Product;
   public isEdit: boolean;
   constructor(
-     private _fb: FormBuilder, 
-     public dialogRef: MatDialogRef<AddProductFormComponent>,
-     @Inject(MAT_DIALOG_DATA) public data) {
-       this.isEdit = data.soort;
-     }
+    private _fb: FormBuilder,
+    public dialogRef: MatDialogRef<AddProductFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public data) {
+    this.isEdit = data.soort;
+  }
 
   ngOnInit() {
     this.product = this._fb.group({
@@ -28,13 +28,15 @@ export class AddProductFormComponent  {
     })
   }
 
-  save() {
-    console.log(this.product.value);
-    this.dialogRef.close(this.product.value);
-}
+  save(valid?: boolean) {
+    if (valid == true) {
+      console.log(this.product.value);
+      this.dialogRef.close(this.product.value);
+    }
+  }
 
   close() {
     this.dialogRef.close();
-}
+  }
 
 }

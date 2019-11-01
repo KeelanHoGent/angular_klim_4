@@ -5,15 +5,11 @@
 <ng-template #newProduct>
     <mat-card-title>Nieuw product</mat-card-title>
 </ng-template>
-
-
-
-
 <mat-card-content class="container">
     <form class='container' [formGroup]="product">
         <div class="formGroup">
             <label>Productnaam</label>
-            <input aria-label="name" placeholder="naam" type="text" formControlName="name" #spy required />
+            <input (keyup.enter)="save(product.valid)" aria-label="name" placeholder="naam" type="text" formControlName="name" #spy required />
         </div>
         <div class="formGroup">
             <label>Beschrijving</label>
@@ -21,24 +17,24 @@
         </div>
         <div class="formGroup">
             <label>Afbeelding Url</label>
-            <input aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required />
+            <input (keyup.enter)="save(product.valid)" aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required />
         </div>
         <div class="formGroup">
             <label>Prijs</label>
-            <input aria-label="price" placeholder="Prijs" type="number" formControlName="price" required />
+            <input (keyup.enter)="save(product.valid)" aria-label="price" placeholder="Prijs" type="number" formControlName="price" required />
         </div>
 
         <mat-dialog-actions class="buttonContainer">
-            <button class="button" (click)="close()" mat-raised-button>
+            <button type="button" class="button" (click)="close()" mat-raised-button>
                 annuleer
             </button>
 
-            <button class="button" *ngIf="!isEdit; else newP" (click)="save()" type="submit" mat-raised-button
-                color='primary' [disabled]='!product.valid'>
+            <button class="button" (keyup.enter)="save()" *ngIf="!isEdit; else newP" (click)="save()" type="submit" mat-raised-button
+                type="button" color='primary' [disabled]='!product.valid'>
                 Voeg product toe
             </button>
             <ng-template #newP>
-                <button class="button" (click)="save()" type="submit" mat-raised-button color='primary'
+                <button type="button" class="button" data-dismiss="modal" (keyup.enter)="save()" (click)="save()" type="submit" mat-raised-button color='primary'
                     [disabled]='!product.valid'>
                     Sla op
                 </button>
