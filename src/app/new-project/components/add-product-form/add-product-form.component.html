@@ -9,19 +9,72 @@
     <form class='container' [formGroup]="product">
         <div class="formGroup">
             <label>Productnaam</label>
-            <input (keyup.enter)="save(product.valid)" aria-label="name" placeholder="naam" type="text" formControlName="name" #spy required />
+            <input [ngClass]="{
+                'invalidInput': product.get('name')['errors']&& product.get('name').touched,
+                'validInput': !product.get('name')['errors'] && product.get('name').touched
+            }"
+            (keyup.enter)="save(product.valid)" 
+            aria-label="name" 
+            placeholder="naam" 
+            type="text" 
+            formControlName="name" 
+            #spy 
+            required />
+            
+            <p class="error" *ngIf="product.get('name')['errors'] && product.get('name').touched">
+                {{ getErrorMessage(product.get('name')['errors']) }}
+                <img src="{{error}}">
+            </p>
+            <div *ngIf="!product.get('name')['errors'] && product.get('name').touched">
+                <img class="correct" src="{{correct}}">
+            </div>
+            
         </div>
         <div class="formGroup">
             <label>Beschrijving</label>
-            <textarea aria-label="description" type="text" formControlName="description" required></textarea>
+            <textarea [ngClass]="{
+                'invalidInput': product.get('description')['errors']&& product.get('description').touched,
+                'validInput': !product.get('description')['errors'] && product.get('description').touched
+            }"
+             aria-label="description" type="text" formControlName="description" required></textarea>
+            <p class="error" *ngIf="product.get('description')['errors'] && product.get('description').touched">
+                {{ getErrorMessage(product.get('description')['errors']) }}
+                <img src="{{error}}">
+            </p>
+            <div *ngIf="!product.get('description')['errors'] && product.get('description').touched">
+                <img class="correct" src="{{correct}}">
+            </div>
+            
         </div>
         <div class="formGroup">
             <label>Afbeelding Url</label>
-            <input (keyup.enter)="save(product.valid)" aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required />
+            <input [ngClass]="{
+                'invalidInput': product.get('image')['errors']&& product.get('image').touched,
+                'validInput': !product.get('name')['image'] && product.get('image').touched
+            }" 
+            (keyup.enter)="save(product.valid)" aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required />
+            <p class="error" *ngIf="product.get('image')['errors'] && product.get('image').touched">
+                {{ getErrorMessage(product.get('image')['errors']) }}
+                <img src="{{error}}">
+            </p>
+            <div *ngIf="!product.get('image')['errors'] && product.get('image').touched">
+                <img class="correct" src="{{correct}}">
+            </div>
         </div>
         <div class="formGroup">
             <label>Prijs</label>
-            <input (keyup.enter)="save(product.valid)" aria-label="price" placeholder="Prijs" type="number" formControlName="price" required />
+            <input [ngClass]="{
+                'invalidInput': product.get('price')['errors']&& product.get('price').touched,
+                'validInput': !product.get('price')['errors'] && product.get('price').touched
+            }"
+            (keyup.enter)="save(product.valid)" aria-label="price" placeholder="Prijs" type="number" formControlName="price" required />
+            <p class="error" *ngIf="product.get('price')['errors'] && product.get('price').touched">
+                {{ getErrorMessage(product.get('price')['errors']) }}
+                <img src="{{error}}">
+            </p>
+            <div *ngIf="!product.get('price')['errors'] && product.get('price').touched">
+                <img class="correct" src="{{correct}}">
+            </div>
         </div>
 
         <mat-dialog-actions class="buttonContainer">
@@ -29,12 +82,12 @@
                 annuleer
             </button>
 
-            <button class="button" (keyup.enter)="save()" *ngIf="!isEdit; else newP" (click)="save()" type="submit" mat-raised-button
+            <button class="button" (keyup.enter)="save(product.valid)" *ngIf="!isEdit; else newP" (click)="save(product.valid)" type="submit" mat-raised-button
                 type="button" color='primary' [disabled]='!product.valid'>
                 Voeg product toe
             </button>
             <ng-template #newP>
-                <button type="button" class="button" data-dismiss="modal" (keyup.enter)="save()" (click)="save()" type="submit" mat-raised-button color='primary'
+                <button type="button" class="button" data-dismiss="modal" (keyup.enter)="save(product.valid)" (click)="save(product.valid)" type="submit" mat-raised-button color='primary'
                     [disabled]='!product.valid'>
                     Sla op
                 </button>

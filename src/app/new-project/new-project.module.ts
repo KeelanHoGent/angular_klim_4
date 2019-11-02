@@ -14,6 +14,10 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { RouterModule } from "@angular/router";
 
+import {MatFormFieldModule} from '@angular/material/form-field';
+
+import { InlineSVGModule } from 'ng-inline-svg';
+
 
 @NgModule({
   declarations: [
@@ -31,7 +35,9 @@ import { RouterModule } from "@angular/router";
     MatCardModule,
     ReactiveFormsModule,
     MatDialogModule,
-    RouterModule
+    RouterModule,
+    MatFormFieldModule,
+    InlineSVGModule
   ],
   entryComponents: [AddProductFormComponent]
 })

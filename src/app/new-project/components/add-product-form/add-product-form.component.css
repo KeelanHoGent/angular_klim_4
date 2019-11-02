@@ -23,10 +23,49 @@
     outline: none;
 }
 
+/* .formGroup >  input:invalid {
+    border: #F74040 1px solid;
+} */
+
+
+
+
 textarea {
     min-height: 50px;
 }
 
 .container {
     padding-top: 10px;
+}
+
+.error {
+    color: #F74040;
+    text-align: right;
+    padding-top: 4px;
+    position: relative;
+}
+
+.error > img {
+    position: absolute;
+    top: -27px;
+    right: 10px;
+}
+
+
+.formGroup > div {
+    position: relative;
+}
+
+.correct {
+    position: absolute;
+    top: -25px;
+    right: 10px;
+}
+
+.validInput {
+    border: #49C562 1px solid !important;
+}
+
+.invalidInput {
+    border: #F74040 1px solid !important ;
 }

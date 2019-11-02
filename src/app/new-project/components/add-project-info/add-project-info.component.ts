@@ -18,7 +18,12 @@ export class AddProjectInfoComponent implements OnInit {
   public products: Product[];
   private newProject: Project;
 
+
+  public error: String = "../../../../assets/images/error.svg";
+  public correct: String = "../../../../assets/images/correct.svg";
+
   constructor(
+
     private _fb: FormBuilder,
     private _projectDataService: ProjectService) {
 
@@ -44,9 +49,9 @@ export class AddProjectInfoComponent implements OnInit {
 
   ngOnInit() {
     this.project = this._fb.group({
-      projectName: ['', [Validators.required]],
+      name: ['', Validators.required],
       description: ['', Validators.required],
-      projectCode: ['', Validators.required],
+      code: ['', Validators.required],
       image: ['', Validators.required],
       budget: ['', Validators.required],
       schoolYear: ['', Validators.required],
@@ -58,9 +63,9 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   onSubmit() {
-    this.newProject.name = this.project.value.projectName;
+    this.newProject.name = this.project.value.name;
     this.newProject.descr = this.project.value.description;
-    this.newProject.code = this.project.value.projectCode;
+    this.newProject.code = this.project.value.code;
     this.newProject.image = this.project.value.image;
     this.newProject.budget = this.project.value.budget;
     this.newProject.schoolYear = this.project.value.schoolYear;
@@ -85,5 +90,11 @@ export class AddProjectInfoComponent implements OnInit {
     this.products.splice(index, 1);
     this.newProject.removeProduct(p);
 
+  }
+
+  getErrorMessage(errors: any) {
+    if (errors.required) {
+      return 'Dit veld is verplicht.';
+    }
   }
 }

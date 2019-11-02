@@ -1,22 +1,27 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { AddProductFormComponent } from '../add-product-form/add-product-form.component';
 import { Product } from '../../../types/product.model';
-import { pipe } from 'rxjs';
+
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
+
+
+
 export class AddProductComponent {
   @Output() public newProduct = new EventEmitter<Product>();
   public product: Product;
+  
 
   constructor(public dialog: MatDialog) { }
   
   addProductForm(): void {
     const config = new MatDialogConfig();
+    
 
     config.disableClose = true;
     config.width = "450px";
