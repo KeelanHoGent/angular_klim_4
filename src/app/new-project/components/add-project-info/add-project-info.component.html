@@ -126,7 +126,7 @@
         <button [routerLink]='[""]' class="button" mat-raised-button>
             annuleer
         </button>
-        <button class="button" type="submit" mat-raised-button color='primary' [disabled]='!project.valid'>
+        <button (click)="save()" class="button" type="submit" mat-raised-button color='primary' [disabled]='!project.valid'>
             maak project
         </button>
     </mat-dialog-actions>

@@ -41,7 +41,8 @@ export class ProjectService {
   
 
   addNewProject(project: Project) {
-    return this.http.post(`${environment.apiUrl}/Classroom/addProject/1/`,
+    console.log(project.toJson())
+    return this.http.post(`${environment.apiUrl}/ClassRoom/addProject/1`,
     project.toJson());
   }
 

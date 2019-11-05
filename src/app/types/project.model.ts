@@ -14,6 +14,8 @@ export class Project {
   private _applicationDomain: ApplicationDomain;
   private _products: Product[] = [];
   private _groups: Group[] = [];
+  private _classRoomId: number;
+  
 
   
   static fromJSON(json: any): Project {
@@ -26,6 +28,7 @@ export class Project {
     p._budget = json.projectBudget;
     p._schoolYear = json.eSchoolYear;
     p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+    p._classRoomId = json.classRoomId;
     //TODO: products list en groups
     return p;
   }
@@ -35,11 +38,14 @@ export class Project {
       projectId: this._id,
       projectName: this._name,
       projectDescr: this._descr,
-      projectCode: this._code,
       projectImage: this._image,
+      //projectCode: this._code,
       projectBudget: this._budget,
       eSchoolYear: this._schoolYear,
-      applicationDomainId: this._applicationDomainId
+      classRoomId: this._classRoomId,
+      applicationDomainId: this._applicationDomainId,
+      products: this._products.map(p => p.toJson()),
+      groups: null
     }
   }
 
@@ -143,5 +149,12 @@ export class Project {
 
   set applicationDomainId(value: number) {
     this._applicationDomainId = value;
+  }
+
+  public get classRoomId(): number {
+    return this._classRoomId;
+  }
+  public set classRoomId(value: number) {
+    this._classRoomId = value;
   }
 }

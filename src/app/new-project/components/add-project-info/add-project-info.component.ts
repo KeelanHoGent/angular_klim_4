@@ -62,7 +62,22 @@ export class AddProjectInfoComponent implements OnInit {
 
   }
 
-  onSubmit() {
+  // onSubmit() {
+  //   this.newProject.name = this.project.value.name;
+  //   this.newProject.descr = this.project.value.description;
+  //   this.newProject.code = this.project.value.code;
+  //   this.newProject.image = this.project.value.image;
+  //   this.newProject.budget = this.project.value.budget;
+  //   this.newProject.schoolYear = this.project.value.schoolYear;
+  //   this.newProject.applicationDomainId = this.project.value.applicationDomain;
+
+  //   console.log(this.newProject);
+
+  //   this._projectDataService.addNewProject(this.newProject)
+  //     .subscribe();
+  // }
+
+  save(){
     this.newProject.name = this.project.value.name;
     this.newProject.descr = this.project.value.description;
     this.newProject.code = this.project.value.code;
@@ -70,6 +85,8 @@ export class AddProjectInfoComponent implements OnInit {
     this.newProject.budget = this.project.value.budget;
     this.newProject.schoolYear = this.project.value.schoolYear;
     this.newProject.applicationDomainId = this.project.value.applicationDomain;
+
+    console.log(this.newProject);
 
     this._projectDataService.addNewProject(this.newProject)
       .subscribe();
@@ -81,6 +98,9 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   addNewProductToProject(product: Product) {
+    product.categoryId = 1;                           //TIJDELIJK!!!!
+
+    // product.projectId = this.newProject.id;
     this.products.push(product);
     this.newProject.addProductToProject(product);
   }

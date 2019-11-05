@@ -1,8 +1,23 @@
 export class Product {
+    private _id: number;
     private _price: number;
     private _name: string;
     private _description: string;
     private _image: string;
+    private _categoryId: number;
+    private _projectId: number;
+
+    toJson(): any {
+        return {
+            productId: this._id,
+            productName: this._name,
+            description: this._description,
+            productImage: this._image,
+            projectId: this._projectId,
+            price: this._price,
+            categoryId: this._categoryId
+        }
+    }
     
 
     get price(): number {
@@ -32,6 +47,14 @@ export class Product {
     }
     public set image(value: string) {
         this._image = value;
+    }
+
+    public set categoryId(value: number){
+        this._categoryId = value;
+    } 
+
+    public set projectId (value: number) {
+        this._projectId = value;
     }
 
 }
