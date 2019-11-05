@@ -1,6 +1,6 @@
-import { ApplicationDomain } from "./applicationDomain.model";
-import { Product } from "./product.model";
-import { Group } from "./group.model";
+import { ApplicationDomain } from './applicationDomain.model';
+import { Product } from './product.model';
+import { Group } from './group.model';
 
 export class Project {
   private _id: number;
@@ -24,11 +24,11 @@ export class Project {
     p._budget = json.projectBudget;
     p._schoolYear = json.eSchoolYear;
     p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
-    //TODO: products list en groups
+    // TODO: products list en groups
     return p;
   }
 
-  //GETTERS AND SETTERS
+  // GETTERS AND SETTERS
 
   get id(): number {
     return this._id;
