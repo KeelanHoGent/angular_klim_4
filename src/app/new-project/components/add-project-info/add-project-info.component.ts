@@ -5,6 +5,7 @@ import { ProjectService } from '../../../services/project.service';
 import { Observable } from 'rxjs';
 import { ApplicationDomain } from '../../../types/applicationDomain.model';
 import { Product } from '../../../types/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-project-info',
@@ -23,7 +24,7 @@ export class AddProjectInfoComponent implements OnInit {
   public correct: String = "../../../../assets/images/correct.svg";
 
   constructor(
-
+    private router: Router,
     private _fb: FormBuilder,
     private _projectDataService: ProjectService) {
 
@@ -86,10 +87,12 @@ export class AddProjectInfoComponent implements OnInit {
     this.newProject.schoolYear = this.project.value.schoolYear;
     this.newProject.applicationDomainId = this.project.value.applicationDomain;
 
-    console.log(this.newProject);
 
-    this._projectDataService.addNewProject(this.newProject)
+    this._projectDataService.addNewProject(this.newProject).pipe()
       .subscribe();
+
+    this.router.navigateByUrl("");
+      
   }
 
 
