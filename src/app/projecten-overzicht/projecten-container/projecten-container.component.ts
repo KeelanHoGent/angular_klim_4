@@ -9,7 +9,7 @@ import { Project } from "../../types/project.model";
 })
 export class ProjectenContainerComponent implements OnInit {
 
-  private projects: Project[] = [];
+  public projects: Project[] = [];
 
   constructor(private ps: ProjectService) { }
 

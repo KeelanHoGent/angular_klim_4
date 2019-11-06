@@ -39,6 +39,9 @@ import { InlineSVGModule } from 'ng-inline-svg';
     MatFormFieldModule,
     InlineSVGModule
   ],
-  entryComponents: [AddProductFormComponent]
+  entryComponents: [AddProductFormComponent],
+  exports: [
+    AddProjectComponent
+  ]
 })
 export class NewProjectModule { }

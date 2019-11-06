@@ -2,7 +2,7 @@
   <div class="list-wrapper">
     <div class="list-title">
       <h1>Lopende modules</h1>
-      <button mat-raised-button color="primary">Module toevoegen</button>
+      <app-add-project></app-add-project>
     </div>
     <app-horizontal-list [list]="projects | activeFilter"></app-horizontal-list>
   </div>
