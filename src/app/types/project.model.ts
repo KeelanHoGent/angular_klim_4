@@ -11,6 +11,7 @@ export class Project {
   private _budget: number;
   private _schoolYear: number;
   private _applicationDomainId: number;
+  private _closed: boolean = false;
   private _applicationDomain: ApplicationDomain;
   private _products: Product[] = [];
   private _groups: Group[] = [];
@@ -30,6 +31,18 @@ export class Project {
     p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
     p._classRoomId = json.classRoomId;
     //TODO: products list en groups
+  
+  //  p.id = json.projectId;
+  //  p.name = json.projectName;
+  //  p.descr = json.projectDescr;
+  //  p.code = json.projectCode;
+  //  p.image = json.projectImage;
+  //  p.budget = json.projectBudget;
+  //  p.schoolYear = json.eSchoolYear;
+  //  p.closed = !!json.closed;
+  //  p.applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+  // p._products = json.products.map(p => Product.fromJSON(p));
+  //  p._groups = json.groups.map(g => Group.fromJSON(g));
     return p;
   }
 
@@ -101,6 +114,14 @@ export class Project {
 
   set image(value: string) {
     this._image = value;
+  }
+
+  get closed(): boolean {
+    return this._closed;
+  }
+
+  set closed(value: boolean) {
+    this._closed = value;
   }
 
   get budget(): number {

@@ -1,35 +1,40 @@
 export class Group {
-    private _id: number;
-    private _name: string;
-    private _projectId: number;
-    private _groupCode: string;
-    
 
-    public get id(): number {
-        return this._id;
-    }
-    public set id(value: number) {
-        this._id = value;
-    }
+  private readonly _id: number;
+  private _name: string;
+  private _groupCode: string;
 
-    public get name(): string {
-        return this._name;
-    }
-    public set name(value: string) {
-        this._name = value;
-    }
+  constructor(id: number, name: string, code: string) {
+    this._id = id;
+    this._name = name;
+    this._groupCode = code;
+  }
 
-    public get groupCode(): string {
-        return this._groupCode;
-    }
-    public set groupCode(value: string) {
-        this._groupCode = value;
-    }
+  static fromJSON(json: any): Group {
+    return new Group(
+      json.groupId,
+      json.groupName,
+      json.uniqueGroupCode
+    );
+  }
 
-    public get projectId(): number {
-        return this._projectId;
-    }
-    public set projectId(value: number) {
-        this._projectId = value;
-    }
+  get id(): number {
+    return this._id;
+  }
+
+  get name(): string {
+    return this._name;
+  }
+
+  set name(value: string) {
+    this._name = value;
+  }
+
+  get groupCode(): string {
+    return this._groupCode;
+  }
+
+  set groupCode(value: string) {
+    this._groupCode = value;
+  }
 }

@@ -7,6 +7,7 @@ import { MenubarModule } from "./menubar/menubar.module";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TemplateService } from "./services/template.service";
 import { HttpClientModule } from "@angular/common/http";
+import { ProjectenOverzichtModule } from "./projecten-overzicht/projecten-overzicht.module";
 
 import { MatListModule, MatCardModule, MatIconModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -28,6 +29,7 @@ import { NewProjectModule } from './new-project/new-project.module';
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
+    ProjectenOverzichtModule,
     BrowserAnimationsModule,
     HttpClientModule,
     MatListModule,

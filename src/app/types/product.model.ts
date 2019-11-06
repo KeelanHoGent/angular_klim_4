@@ -57,4 +57,52 @@ export class Product {
         this._projectId = value;
     }
 
+  static fromJSON(p: any): Product {
+    const result = new Product();
+    result.productId = p.productId;
+    result.productName = p.productName;
+    result.description = p.description;
+    result.image = p.productImage;
+    result.project = p.projectId;
+    result.price = p.price;
+    result.category = p.categoryId;
+
+    return result;
+  }
+
+ 
+  get productName(): string {
+    return this._productName;
+  }
+
+  set productName(value: string) {
+    this._productName = value;
+  }
+
+  
+
+  get image(): string {
+    return this._image;
+  }
+
+  set image(value: string) {
+    this._image = value;
+  }
+
+  get project(): number {
+    return this._project;
+  }
+
+  set project(value: number) {
+    this._project = value;
+  }
+
+
+  get category(): number {
+    return this._category;
+  }
+
+  set category(value: number) {
+    this._category = value;
+  }
 }

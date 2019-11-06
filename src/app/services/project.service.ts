@@ -12,20 +12,26 @@ import { ApplicationDomain } from '../types/applicationDomain.model';
 })
 export class ProjectService {
   public loadingError$ = new Subject<string>();
-  constructor(private http: HttpClient) { }
+  private _classroomId: number;
+
+  constructor(private http: HttpClient) {
+    //Dit is om makkelijk te kunnen testen met de data die in de database zit als mockdata
+    //later kan dit veranderd worden naar de classroomId van de ingelogde gebruiker
+    this._classroomId = 1;
+  }
 
   // Example to use the environment apiUrl
-  get projects$(): Observable<Project[]> {
-    return this.http.get(`${environment.apiUrl}/Classroom/withProjects/1/`).pipe( //HARDCODED 
-      catchError(error => {
-        this.loadingError$.next(error.statusText);
-        return of(null);
-      }),
-      map(
-        (list: any[]): Project[] => list.map(Project.fromJSON)
-      )
-    );
-  }
+  //get projects$(): Observable<Project[]> {
+  //  return this.http.get(`${environment.apiUrl}/Classroom/withProjects/1/`).pipe( //HARDCODED 
+  //    catchError(error => {
+  //      this.loadingError$.next(error.statusText);
+  //      return of(null);
+  //    }),
+  //    map(
+  //      (list: any[]): Project[] => list.map(Project.fromJSON)
+  //    )
+  //  );
+  //}
 
   getApplicationDomains$(): Observable<ApplicationDomain[]> {
     return this.http.get(`${environment.apiUrl}/ApplicationDomain`).pipe(
@@ -46,8 +52,16 @@ export class ProjectService {
   }
 
 
+  getProjects$(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${environment.apiUrl}/ClassRoom/projects/${this._classroomId}`).pipe(
+      map(x => x.map(p => Project.fromJSON(p)))
+    );
+  }
 
-  
-
+  getProject$(id: number) {
+    return this.http.get<Project>(`${environment.apiUrl}/Project/${this._classroomId}`).pipe(
+      map(x => Project.fromJSON(x))
+    )
+  }
 
 }
