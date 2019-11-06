@@ -64,14 +64,20 @@ export class Project {
 
   addProductToProject(p: Product){
     this.products.push(p);
-    console.log(this.products)
   }
 
   removeProduct(p: Product){
-    console.log(this.products)
     let index = this.products.indexOf(p);
-    
     this.products.splice(index,1);
+  }
+
+  addGroupToProject(g: Group){
+    this.groups.push(g);
+  }
+
+  removeGroup(g: Group){
+    let index = this.groups.indexOf(g);
+    this.groups.splice(index,1);
   }
 
   //GETTERS AND SETTERS

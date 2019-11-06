@@ -1,0 +1,55 @@
+<mat-card-title *ngIf="isEdit; else newGroup">
+    Pas {{data.name | lowercase}} aan
+</mat-card-title>
+
+<ng-template #newGroup>
+    <mat-card-title>Nieuwe groep</mat-card-title>
+</ng-template>
+<mat-card-content class="container">
+    <form class='container' [formGroup]="group">
+        <div class="formGroup">
+            <label>Productnaam</label>
+            <input [ngClass]="{
+                'invalidInput': group.get('name')['errors']&& group.get('name').touched,
+                'validInput': !group.get('name')['errors'] && group.get('name').touched
+            }"
+            (keyup.enter)="save(group.valid)" 
+            aria-label="name" 
+            placeholder="naam" 
+            type="text" 
+            formControlName="name" 
+            #spy 
+            required />
+            
+            <p class="error" *ngIf="group.get('name')['errors'] && group.get('name').touched">
+                {{ getErrorMessage(group.get('name')['errors']) }}
+                <img src="{{error}}">
+            </p>
+            <div *ngIf="!group.get('name')['errors'] && group.get('name').touched">
+                <img class="correct" src="{{correct}}">
+            </div>
+            
+        </div>
+       
+        
+        
+
+        <mat-dialog-actions class="buttonContainer">
+            <button type="button" class="button" (click)="close()" mat-raised-button>
+                annuleer
+            </button>
+
+            <button class="button" (keyup.enter)="save(group.valid)" *ngIf="!isEdit; else newP" (click)="save(group.valid)" type="submit" mat-raised-button
+                type="button" color='primary' [disabled]='!group.valid'>
+                Voeg groep toe
+            </button>
+            <ng-template #newP>
+                <button type="button" class="button" data-dismiss="modal" (keyup.enter)="save(group.valid)" (click)="save(group.valid)" type="submit" mat-raised-button color='primary'
+                    [disabled]='!group.valid'>
+                    Sla op
+                </button>
+            </ng-template>
+
+        </mat-dialog-actions>
+    </form>
+</mat-card-content>

@@ -13,10 +13,14 @@ import { MatCardModule } from "@angular/material/card";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { RouterModule } from "@angular/router";
+import { AddGroupButtonComponent } from '../new-project/components/add-group-button/add-group-button.component';
+import { GroupFormComponent } from '../new-project/components/group-form/group-form.component';
+
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { InlineSVGModule } from 'ng-inline-svg';
+import { GroupComponent } from './components/group/group.component';
 
 
 @NgModule({
@@ -27,6 +31,9 @@ import { InlineSVGModule } from 'ng-inline-svg';
     AddProjectInfoComponent,
     AddProductFormComponent,
     ProductComponent,
+    AddGroupButtonComponent,
+    GroupFormComponent,
+    GroupComponent
   ],
   imports: [
     CommonModule,
@@ -39,6 +46,6 @@ import { InlineSVGModule } from 'ng-inline-svg';
     MatFormFieldModule,
     InlineSVGModule
   ],
-  entryComponents: [AddProductFormComponent]
+  entryComponents: [AddProductFormComponent, GroupFormComponent]
 })
 export class NewProjectModule { }
