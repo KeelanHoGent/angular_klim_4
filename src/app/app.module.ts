@@ -6,13 +6,29 @@ import { AppComponent } from './app.component';
 import { MenubarModule } from './menubar/menubar.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectService } from './services/project.service';
-import { TemplateService } from './services/project-template.service';
+import { ProjectTemplateService } from './services/project-template.service';
 import { HttpClientModule } from '@angular/common/http';
 import {ProjectenOverzichtModule} from './projecten-overzicht/projecten-overzicht.module';
+import { AddProjectTemplateComponent } from './project-templates/add-project-template/add-project-template.component';
+
+
+import { MatListModule, MatCardModule, MatIconModule } from '@angular/material';
+//import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { MatInputModule,MatDialogModule } from '@angular/material';
+import {MatButtonModule} from '@angular/material/button';
+import { ProjectenTemplateOverzichtComponent } from './project-templates/projecten-template-overzicht/projecten-template-overzicht.component';
+import { ProjectenTemplateDetailComponent } from './project-templates/projecten-template-detail/projecten-template-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
+    ProjectenTemplateOverzichtComponent,
+    AddProjectTemplateComponent,
+    ProjectenTemplateDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -20,11 +36,21 @@ import {ProjectenOverzichtModule} from './projecten-overzicht/projecten-overzich
     MenubarModule,
     ProjectenOverzichtModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatListModule,
+    MatCardModule,
+    MatIconModule,
+    //FlexLayoutModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
   ],
   providers: [
     ProjectService,
-    TemplateService
+    ProjectTemplateService
   ],
   bootstrap: [AppComponent]
 })

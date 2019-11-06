@@ -8,7 +8,7 @@ import { ProjectTemplate } from '../types/project-template-model';
 @Injectable({
   providedIn: 'root'
 })
-export class TemplateService {
+export class ProjectTemplateService {
   private _templateId: number;
   constructor(private http: HttpClient) {
     // Dit is om makkelijk te kunnen testen met de data die in de database zit als mockdata
@@ -16,9 +16,14 @@ export class TemplateService {
     this._templateId = 1;
 
   }
-  getProject$(id: number) {
+  getProjectTemplate$(id: number) {
     return this.http.get<ProjectTemplate>(`${environment.apiUrl}/ProjectTemplate/${this._templateId}`).pipe(
       map(x => ProjectTemplate.fromJSON(x))
+    );
+  }
+  getProjectTemplates$(): Observable<Project[]> {
+    return this.http.get<Project[]>(`${environment.apiUrl}/ClassRoom/projects/${this._templateId}`).pipe(
+      map(x => x.map(p => Project.fromJSON(p)))
     );
   }
 }
