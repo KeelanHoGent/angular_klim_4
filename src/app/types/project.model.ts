@@ -10,25 +10,68 @@ export class Project {
   private _image: string;
   private _budget: number;
   private _schoolYear: number;
+  private _applicationDomainId: number;
   private _closed: boolean = false;
   private _applicationDomain: ApplicationDomain;
   private _products: Product[] = [];
   private _groups: Group[] = [];
+  private _classRoomId: number;
+  
 
+  
   static fromJSON(json: any): Project {
     const p = new Project();
-    p.id = json.projectId;
-    p.name = json.projectName;
-    p.descr = json.projectDescr;
-    p.code = json.projectCode;
-    p.image = json.projectImage;
-    p.budget = json.projectBudget;
-    p.schoolYear = json.eSchoolYear;
-    p.closed = !!json.closed;
-    p.applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
-    p._products = json.products.map(p => Product.fromJSON(p));
-    p._groups = json.groups.map(g => Group.fromJSON(g));
+    p._id = json.projectId;
+    p._name = json.projectName;
+    p._descr = json.projectDescr;
+    p._code = json.projectCode;
+    p._image = json.projectImage;
+    p._budget = json.projectBudget;
+    p._schoolYear = json.eSchoolYear;
+    p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+    p._classRoomId = json.classRoomId;
+    //TODO: products list en groups
+  
+  //  p.id = json.projectId;
+  //  p.name = json.projectName;
+  //  p.descr = json.projectDescr;
+  //  p.code = json.projectCode;
+  //  p.image = json.projectImage;
+  //  p.budget = json.projectBudget;
+  //  p.schoolYear = json.eSchoolYear;
+  //  p.closed = !!json.closed;
+  //  p.applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+  // p._products = json.products.map(p => Product.fromJSON(p));
+  //  p._groups = json.groups.map(g => Group.fromJSON(g));
     return p;
+  }
+
+  toJson(): any {
+    return {
+      projectId: this._id,
+      projectName: this._name,
+      projectDescr: this._descr,
+      projectImage: this._image,
+      //projectCode: this._code,
+      projectBudget: this._budget,
+      eSchoolYear: this._schoolYear,
+      classRoomId: this._classRoomId,
+      applicationDomainId: this._applicationDomainId,
+      products: this._products.map(p => p.toJson()),
+      groups: null
+    }
+  }
+
+  addProductToProject(p: Product){
+    this.products.push(p);
+    console.log(this.products)
+  }
+
+  removeProduct(p: Product){
+    console.log(this.products)
+    let index = this.products.indexOf(p);
+    
+    this.products.splice(index,1);
   }
 
   //GETTERS AND SETTERS
@@ -119,5 +162,20 @@ export class Project {
 
   set groups(value: Group[]) {
     this._groups = value;
+  }
+
+  get applicationDomainId(): number {
+    return this._applicationDomainId;
+  }
+
+  set applicationDomainId(value: number) {
+    this._applicationDomainId = value;
+  }
+
+  public get classRoomId(): number {
+    return this._classRoomId;
+  }
+  public set classRoomId(value: number) {
+    this._classRoomId = value;
   }
 }

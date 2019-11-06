@@ -1,0 +1,52 @@
+.product{
+    display: flex;
+    flex-direction: column;
+    background: rgb(247, 247, 247);
+    padding: 15px;
+    /* align-content: center; */
+    align-items: center;
+    border-radius: 5px;
+    /* border: 1px solid rgb(118, 114, 110, 0.1);  */
+    border-top: 0.3rem solid var(--groen);
+    box-shadow: rgba(0, 0, 0, 0.1) 0 2px 7px ;
+    transition: ease 0.4s;
+    position: relative;
+}
+
+.product:hover {
+    transform: translateY(-10px);
+    cursor: pointer;
+}
+
+.product > * {
+    align-self: stretch;
+    margin: 3px;
+}
+
+
+
+.product > h4 {
+    font-weight: 500;
+    font-size: 16px;
+    padding-bottom: 10px;
+}
+
+.product > div:not(:first-child) {
+    padding-bottom: 15px;
+}
+
+div > p:nth-child(1) {
+    color: rgba(0,0,0,.54);
+    margin-bottom: 5px;
+}
+
+.deleteIcon {
+    display: block;
+    position: absolute;
+    top: -20px;
+    left: 90%;
+    /* border: red 1px solid; */
+    padding-bottom: 0px;
+    border-radius: 50%;
+    background: white;
+}

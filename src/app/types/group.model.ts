@@ -1,4 +1,5 @@
 export class Group {
+
   private readonly _id: number;
   private _name: string;
   private _groupCode: string;
