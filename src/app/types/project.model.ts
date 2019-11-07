@@ -16,9 +16,9 @@ export class Project {
   private _products: Product[] = [];
   private _groups: Group[] = [];
   private _classRoomId: number;
-  
 
-  
+
+
   static fromJSON(json: any): Project {
     const p = new Project();
     p._id = json.projectId;
@@ -30,19 +30,9 @@ export class Project {
     p._schoolYear = json.eSchoolYear;
     p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
     p._classRoomId = json.classRoomId;
-    //TODO: products list en groups
-  
-  //  p.id = json.projectId;
-  //  p.name = json.projectName;
-  //  p.descr = json.projectDescr;
-  //  p.code = json.projectCode;
-  //  p.image = json.projectImage;
-  //  p.budget = json.projectBudget;
-  //  p.schoolYear = json.eSchoolYear;
-  //  p.closed = !!json.closed;
-  //  p.applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
-  // p._products = json.products.map(p => Product.fromJSON(p));
-  //  p._groups = json.groups.map(g => Group.fromJSON(g));
+    p.closed = !!json.closed;
+    p._products = json.products.map(p => Product.fromJSON(p));
+    p._groups = json.groups.map(g => Group.fromJSON(g));
     return p;
   }
 
@@ -70,7 +60,7 @@ export class Project {
   removeProduct(p: Product){
     console.log(this.products)
     let index = this.products.indexOf(p);
-    
+
     this.products.splice(index,1);
   }
 
