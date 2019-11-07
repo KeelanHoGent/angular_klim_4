@@ -18,13 +18,33 @@ export class Product {
             categoryId: this._categoryId
         }
     }
-    
+
+    static fromJSON(p: any): Product {
+        const result = new Product();
+        result.id = p.productId;
+        result.name = p.productName;
+        result.description = p.description;
+        result.image = p.productImage;
+        result.projectId = p.projectId;
+        result.price = p.price;
+        result.categoryId = p.categoryId;
+
+        return result;
+    }
+
+    get id (): number {
+        return this._id;
+    }
+
+    set id(id: number) {
+        this._id = id;
+    }
 
     get price(): number {
         return this._price
     }
 
-    set price(price: number){
+    set price(price: number) {
         this._price = price;
     }
 
@@ -42,14 +62,32 @@ export class Product {
         this._description = value;
     }
 
-
-    public set categoryId(value: number){
+    public set categoryId(value: number) {
         this._categoryId = value;
-    } 
+    }
 
-    public set projectId (value: number) {
+    public set projectId(value: number) {
         this._projectId = value;
     }
+
+
+    get image(): string {
+        return this._image;
+    }
+
+    set image(value: string) {
+        this._image = value;
+    }
+
+    // public get image(): string {
+    //     return this._image;
+    // }
+    // public set image(value: string) {
+    //     this._image = value;
+    // }
+
+
+
 
   static fromJSON(p: any): Product {
     const result = new Product();
@@ -60,8 +98,6 @@ export class Product {
     result.projectId = p.projectId;
     result.price = p.price;
     result.categoryId = p.categoryId;
-
-    return result;
   }
 
   get id (): number {
@@ -79,16 +115,31 @@ export class Product {
   set productName(value: string) {
     this._name = value;
   }
+    //   get productName(): string {
+    //     return this._productName;
+    //   }
 
-  
-
-  get image(): string {
-    return this._image;
-  }
-
-  set image(value: string) {
-    this._image = value;
-  }
+    //   set productName(value: string) {
+    //     this._productName = value;
+    //   }
 
 
+
+
+    //   get project(): number {
+    //     return this._project;
+    //   }
+
+    //   set project(value: number) {
+    //     this._project = value;
+    //   }
+
+
+    //   get category(): number {
+    //     return this._category;
+    //   }
+
+    //   set category(value: number) {
+    //     this._category = value;
+    //   }
 }
