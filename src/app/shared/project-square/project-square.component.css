@@ -47,6 +47,7 @@ mat-card-footer {
 
 
 .project {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 200px;
@@ -73,7 +74,7 @@ mat-card-footer {
   transform: scale(1.05, 1.05);
   border-top: 0.4rem solid var(--magenta);
     cursor: pointer;
-    
+
 }
 
 .project > .naam {
@@ -89,5 +90,17 @@ mat-card-footer {
   font-weight: 400;
   font-family: 'Raleway', sans-serif;
   color: rgb(128,128,128)
+}
+
+.button-footer {
+  position: absolute;
+  bottom: 0;
+}
+
+.details-button {
+  width: 200px !important;
+  margin: auto;
+  position: absolute;
+  bottom: 10px;
 }
 
