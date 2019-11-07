@@ -51,6 +51,7 @@ export class Product {
     public get name(): string {
         return this._name;
     }
+  
     public set name(value: string) {
         this._name = value;
     }
@@ -58,6 +59,7 @@ export class Product {
     public get description(): string {
         return this._description;
     }
+  
     public set description(value: string) {
         this._description = value;
     }
@@ -70,7 +72,6 @@ export class Product {
         this._projectId = value;
     }
 
-
     get image(): string {
         return this._image;
     }
@@ -78,68 +79,4 @@ export class Product {
     set image(value: string) {
         this._image = value;
     }
-
-    // public get image(): string {
-    //     return this._image;
-    // }
-    // public set image(value: string) {
-    //     this._image = value;
-    // }
-
-
-
-
-  static fromJSON(p: any): Product {
-    const result = new Product();
-    result.id = p.productId;
-    result.productName = p.productName;
-    result.description = p.description;
-    result.image = p.productImage;
-    result.projectId = p.projectId;
-    result.price = p.price;
-    result.categoryId = p.categoryId;
-  }
-
-  get id (): number {
-      return this._id;
-  }
-
-  set id(value: number) {
-      this._id = value;
-  }
- 
-  get productName(): string {
-    return this._name;
-  }
-
-  set productName(value: string) {
-    this._name = value;
-  }
-    //   get productName(): string {
-    //     return this._productName;
-    //   }
-
-    //   set productName(value: string) {
-    //     this._productName = value;
-    //   }
-
-
-
-
-    //   get project(): number {
-    //     return this._project;
-    //   }
-
-    //   set project(value: number) {
-    //     this._project = value;
-    //   }
-
-
-    //   get category(): number {
-    //     return this._category;
-    //   }
-
-    //   set category(value: number) {
-    //     this._category = value;
-    //   }
 }
