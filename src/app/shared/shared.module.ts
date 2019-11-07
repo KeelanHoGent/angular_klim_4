@@ -5,6 +5,7 @@ import { ProjectSquareComponent } from "./project-square/project-square.componen
 import { ActiveFilter, FinishedFilter } from "./filterProjects.pipe";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { MatButtonModule } from "@angular/material/button";
   imports: [
     CommonModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   exports: [
     HorizontalListComponent,
