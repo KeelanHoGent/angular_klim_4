@@ -12,6 +12,12 @@ export class Group {
 
   }
 
+  toJson(): any {
+    return {
+      groupName: this._name
+    }
+  }
+
   get id(): number {
     return this._id;
   }

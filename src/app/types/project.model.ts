@@ -58,7 +58,7 @@ export class Project {
       classRoomId: this._classRoomId,
       applicationDomainId: this._applicationDomainId,
       products: this._products.map(p => p.toJson()),
-      groups: null
+      groups: this._groups.map(p=> p.toJson())
     }
   }
 

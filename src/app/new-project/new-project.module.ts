@@ -46,6 +46,7 @@ import { GroupComponent } from './components/group/group.component';
     MatFormFieldModule,
     InlineSVGModule
   ],
-  entryComponents: [AddProductFormComponent, GroupFormComponent]
+  entryComponents: [AddProductFormComponent, GroupFormComponent],
+  exports: [AddProjectComponent]
 })
 export class NewProjectModule { }

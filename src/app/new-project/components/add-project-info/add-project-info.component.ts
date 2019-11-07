@@ -94,7 +94,7 @@ export class AddProjectInfoComponent implements OnInit {
     this._projectDataService.addNewProject(this.newProject).pipe()
       .subscribe();
 
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl("/projecten");
       
   }
 
