@@ -4,18 +4,18 @@ export class Group {
   private _name: string;
   private _groupCode: string;
 
-  constructor(id: number, name: string, code: string) {
-    this._id = id;
-    this._name = name;
-    this._groupCode = code;
+  static fromJSON(json: any): Group {
+    const g = new Group();
+    g.name = json.groupName;
+
+    return g;
+
   }
 
-  static fromJSON(json: any): Group {
-    return new Group(
-      json.groupId,
-      json.groupName,
-      json.uniqueGroupCode
-    );
+  toJson(): any {
+    return {
+      groupName: this._name
+    }
   }
 
   get id(): number {

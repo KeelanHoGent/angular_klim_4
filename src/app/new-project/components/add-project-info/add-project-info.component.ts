@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { ApplicationDomain } from '../../../types/applicationDomain.model';
 import { Product } from '../../../types/product.model';
 import { Router } from '@angular/router';
+import { Group } from 'src/app/types/group.model';
 
 @Component({
   selector: 'app-add-project-info',
@@ -17,6 +18,7 @@ export class AddProjectInfoComponent implements OnInit {
   private _domainApps: Observable<ApplicationDomain[]>;
   public domains: ApplicationDomain[];
   public products: Product[];
+  public groups: Group[];
   private newProject: Project;
 
 
@@ -29,6 +31,7 @@ export class AddProjectInfoComponent implements OnInit {
     private _projectDataService: ProjectService) {
 
     this.products = new Array<Product>();
+    this.groups = new Array<Group>();
 
     //volgende is gewoon voor iets te zien bij stylen
     const p1 = new Product();
@@ -91,7 +94,7 @@ export class AddProjectInfoComponent implements OnInit {
     this._projectDataService.addNewProject(this.newProject).pipe()
       .subscribe();
 
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl("/projecten");
       
   }
 
@@ -112,7 +115,18 @@ export class AddProjectInfoComponent implements OnInit {
     let index = this.products.indexOf(p);
     this.products.splice(index, 1);
     this.newProject.removeProduct(p);
+  }
 
+  addNewGroupToProject(group: Group) {
+    this.groups.push(group);
+    this.newProject.addGroupToProject(group);
+  }
+
+  deleteGroup(g: Group): void {
+    
+    let index = this.groups.indexOf(g);
+    this.groups.splice(index, 1);
+    this.newProject.removeGroup(g);
   }
 
   getErrorMessage(errors: any) {

@@ -48,20 +48,26 @@ export class Project {
       classRoomId: this._classRoomId,
       applicationDomainId: this._applicationDomainId,
       products: this._products.map(p => p.toJson()),
-      groups: null
+      groups: this._groups.map(p=> p.toJson())
     }
   }
 
   addProductToProject(p: Product){
     this.products.push(p);
-    console.log(this.products)
   }
 
   removeProduct(p: Product){
-    console.log(this.products)
     let index = this.products.indexOf(p);
-
     this.products.splice(index,1);
+  }
+
+  addGroupToProject(g: Group){
+    this.groups.push(g);
+  }
+
+  removeGroup(g: Group){
+    let index = this.groups.indexOf(g);
+    this.groups.splice(index,1);
   }
 
   //GETTERS AND SETTERS

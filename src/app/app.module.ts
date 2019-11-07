@@ -23,7 +23,7 @@ import { NewProjectModule } from './new-project/new-project.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
