@@ -13,19 +13,20 @@ export class AddProjectTemplateComponent implements OnInit {
   public projectTemplate: FormGroup;
   public newProjectTemplate: ProjectTemplate;
   public isEdit: boolean;
+  constructor(){}/*
   constructor(
     private _fb: FormBuilder,
     public dialogRef: MatDialogRef<AddProjectTemplateComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
       this.isEdit = data.soort;
-  }
+  }*/
 
-  ngOnInit() {
+  ngOnInit() {/*
     this.projectTemplate = this._fb.group({
       name: [this.data.name ? this.data.name : '', Validators.required],
       image: [this.data.image ? this.data.image : '', Validators.required],
       description: [this.data.description ? this.data.description : '', Validators.required]
-    });
+    });1*/
   }
 
 }
