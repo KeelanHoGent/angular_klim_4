@@ -19,6 +19,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { ProjectService } from "./services/project.service";
 import { NewProjectModule } from './new-project/new-project.module';
+import { ProductentemplateOverzichtModule } from './productentemplate-overzicht/productentemplate-overzicht.module';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { NewProjectModule } from './new-project/new-project.module';
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    NewProjectModule
+    NewProjectModule,
+    ProductentemplateOverzichtModule
   ],
   providers: [
     ProjectService,

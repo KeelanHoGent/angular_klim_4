@@ -1,1 +1,5 @@
-<p>product-list works!</p>
+<div class=producten>
+    <div *ngFor="let p of productTemplates">
+        <app-product-template [product]="p"></app-product-template>
+    </div>
+
