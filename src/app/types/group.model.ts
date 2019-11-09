@@ -1,14 +1,21 @@
 export class Group {
+
   private readonly _id: number;
   private _name: string;
-
-  constructor(id: number, name: string) {
-    this._id = id;
-    this._name = name;
-  }
+  private _groupCode: string;
 
   static fromJSON(json: any): Group {
-    return new Group(json.groupId, json.groupName);
+    const g = new Group();
+    g.name = json.groupName;
+
+    return g;
+
+  }
+
+  toJson(): any {
+    return {
+      groupName: this._name
+    }
   }
 
   get id(): number {
@@ -21,5 +28,13 @@ export class Group {
 
   set name(value: string) {
     this._name = value;
+  }
+
+  get groupCode(): string {
+    return this._groupCode;
+  }
+
+  set groupCode(value: string) {
+    this._groupCode = value;
   }
 }
