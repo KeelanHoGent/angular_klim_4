@@ -89,11 +89,14 @@ export class AddProjectInfoComponent implements OnInit {
     this.newProject.schoolYear = this.project.value.schoolYear;
     this.newProject.applicationDomainId = this.project.value.applicationDomain;
 
+    console.log(this.newProject);
+    this._projectDataService.addNewProject(this.newProject)
+      .subscribe(res => {
+        this.router.navigateByUrl("/projecten");
 
-    this._projectDataService.addNewProject(this.newProject).pipe()
-      .subscribe();
+      });
 
-    this.router.navigateByUrl("/projecten");
+   
       
   }
 

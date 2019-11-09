@@ -19,7 +19,7 @@ export class Group {
   toJson(): any {
     return {
       groupName: this._name,
-      products: this._pupils.map(p => p.toJson())
+      pupils: this._pupils.map((p : Pupil) => p.toJson())
     }
   }
 

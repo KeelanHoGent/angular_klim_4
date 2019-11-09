@@ -38,14 +38,9 @@ export class GroupFormComponent implements OnInit {
     console.log(valid);
     if (valid == true) {
 
-      var group = new Group();
-      group.name = this.group.value.name
-      this.group.value.pupils.forEach(element => {
-        group.pupils.push(new Pupil(element.firstName, ""))
-      });
+     
       
-      console.log(group)
-      console.log(this.group.value);
+
       this.dialogRef.close(this.group.value);
     }
   }

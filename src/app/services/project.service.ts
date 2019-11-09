@@ -46,9 +46,9 @@ export class ProjectService {
   }
 
 
-  addNewProject(project: Project) {
+  addNewProject(project: Project) : Observable<Project> {
     return this.http.post(`${environment.apiUrl}/ClassRoom/addProject/1`,
-    project.toJson());
+    project.toJson()).pipe(map(Project.fromJSON));
   }
 
 
