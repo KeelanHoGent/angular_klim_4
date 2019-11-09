@@ -22,7 +22,7 @@ export class ProjectService {
 
   // Example to use the environment apiUrl
   //get projects$(): Observable<Project[]> {
-  //  return this.http.get(`${environment.apiUrl}/Classroom/withProjects/1/`).pipe( //HARDCODED 
+  //  return this.http.get(`${environment.apiUrl}/Classroom/withProjects/1/`).pipe( //HARDCODED
   //    catchError(error => {
   //      this.loadingError$.next(error.statusText);
   //      return of(null);
@@ -44,7 +44,7 @@ export class ProjectService {
       )
     );
   }
-  
+
 
   addNewProject(project: Project) {
     return this.http.post(`${environment.apiUrl}/ClassRoom/addProject/1`,
@@ -58,7 +58,7 @@ export class ProjectService {
     );
   }
 
-  getProject$(id: number) {
+  getProjectById$(id: number) {
     return this.http.get<Project>(`${environment.apiUrl}/Project/${this._classroomId}`).pipe(
       map(x => Project.fromJSON(x))
     )
