@@ -86,7 +86,6 @@ export class AddProjectInfoComponent implements OnInit {
     this.newProject.descr = this.project.value.description;
     this.newProject.code = this.project.value.code;
     this.newProject.image = this.project.value.image;
-    this.newProject.budget = this.project.value.budget;
     this.newProject.schoolYear = this.project.value.schoolYear;
     this.newProject.applicationDomainId = this.project.value.applicationDomain;
 
@@ -118,6 +117,7 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   addNewGroupToProject(group: Group) {
+    console.log(group)
     this.groups.push(group);
     this.newProject.addGroupToProject(group);
   }

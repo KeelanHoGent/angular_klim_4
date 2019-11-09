@@ -1,12 +1,16 @@
+import { Pupil } from './pupil.model';
+
 export class Group {
 
   private readonly _id: number;
   private _name: string;
-  private _groupCode: string;
+  private _pupils: Pupil[] = [];
+  
 
   static fromJSON(json: any): Group {
     const g = new Group();
     g.name = json.groupName;
+    g._pupils = json.pupils.map(p => Pupil.fromJSON(p));
 
     return g;
 
@@ -14,9 +18,32 @@ export class Group {
 
   toJson(): any {
     return {
-      groupName: this._name
+      groupName: this._name,
+      products: this._pupils.map(p => p.toJson())
     }
   }
+
+
+
+    /**
+     * Getter pupils
+     * @return {Pupil[] }
+     */
+	public get pupils(): Pupil[]  {
+		return this._pupils;
+	}
+
+  
+    /**
+     * Setter pupils
+     * @param {Pupil[] } value
+     */
+	public set pupils(value: Pupil[] ) {
+		this._pupils = value;
+	}
+  
+
+
 
   get id(): number {
     return this._id;
@@ -30,11 +57,4 @@ export class Group {
     this._name = value;
   }
 
-  get groupCode(): string {
-    return this._groupCode;
-  }
-
-  set groupCode(value: string) {
-    this._groupCode = value;
-  }
 }
