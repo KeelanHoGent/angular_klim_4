@@ -35,12 +35,14 @@
                     </div>
             </div>
 
+            <button class="addButton" mat-raised-button (click)="addPupil()" type="button" color="default" rounded="true">
+                    <mat-icon class="icon">add</mat-icon>
+                </button>
+        
+
         </div>
 
-        <button class="addButton" mat-raised-button (click)="addPupil()" type="button" color="default" rounded="true">
-            <mat-icon class="icon">add</mat-icon>
-        </button>
-
+       
 
         <mat-dialog-actions class="buttonContainer">
             <button type="button" class="button" (click)="close()" mat-raised-button>

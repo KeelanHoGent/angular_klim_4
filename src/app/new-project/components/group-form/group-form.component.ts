@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { Group } from 'src/app/types/group.model';
 import { Pupil } from 'src/app/types/pupil.model';
 
@@ -29,17 +29,25 @@ export class GroupFormComponent implements OnInit {
   ngOnInit() {
     this.group = this._fb.group({
       name: [this.data.name ? this.data.name : '', Validators.required],
-      pupils: this._fb.array([ this.createPupil()])
+      pupils: this._fb.array([   
 
+      ])
     });
+
+    if(!(this.data.pupils === undefined)){
+      const control = <FormArray>this.group.controls['pupils'];
+      this.data.pupils.forEach((element : Pupil) => {
+        control.push(this.createPupil(element))
+      });
+    }
+   
+
+
   }
 
   save(valid?: boolean) {
     console.log(valid);
     if (valid == true) {
-
-     
-      
 
       this.dialogRef.close(this.group.value);
     }
@@ -57,13 +65,13 @@ export class GroupFormComponent implements OnInit {
 
   addPupil(): void {
     this.pupils = this.group.get('pupils') as FormArray;
-    this.pupils.push(this.createPupil());
+    this.pupils.push(this.createPupil(new Pupil("","")));
   }
 
 
-  createPupil(): FormGroup {
+  createPupil(p : Pupil): FormGroup {
     return this._fb.group({
-      firstName: '',
+      firstName: p.firstName,
     });
   }
 
