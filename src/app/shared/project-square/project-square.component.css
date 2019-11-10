@@ -1,0 +1,44 @@
+mat-card {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  height: calc(100% - 30px);
+  border-color: var(--magenta);
+  max-height: 200px;
+}
+
+mat-card-header {
+  display: flex;
+  flex-direction: row;
+  flex-shrink: 0;
+}
+
+mat-card-content {
+  color: var(--donker-grijs);
+  flex-grow: 1;
+  overflow: auto;
+}
+
+/*code snippit gevonden op internet voor custom scrollbalk*/
+.scrollbar::-webkit-scrollbar
+{
+  width: 12px;
+  background-color: #F5F5F5;
+}
+
+.scrollbar::-webkit-scrollbar-thumb
+{
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #555;
+}
+
+button {
+  color: white !important;
+}
+
+mat-card-footer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1px;
+}

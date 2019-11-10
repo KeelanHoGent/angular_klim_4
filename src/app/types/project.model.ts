@@ -10,21 +10,24 @@ export class Project {
   private _image: string;
   private _budget: number;
   private _schoolYear: number;
+  private _closed: boolean = false;
   private _applicationDomain: ApplicationDomain;
   private _products: Product[] = [];
   private _groups: Group[] = [];
 
   static fromJSON(json: any): Project {
     const p = new Project();
-    p._id = json.projectId;
-    p._name = json.projectName;
-    p._descr = json.projectDescr;
-    p._code = json.projectCode;
-    p._image = json.projectImage;
-    p._budget = json.projectBudget;
-    p._schoolYear = json.eSchoolYear;
-    p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
-    // TODO: products list en groups
+    p.id = json.projectId;
+    p.name = json.projectName;
+    p.descr = json.projectDescr;
+    p.code = json.projectCode;
+    p.image = json.projectImage;
+    p.budget = json.projectBudget;
+    p.schoolYear = json.eSchoolYear;
+    p.closed = !!json.closed;
+    p.applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+    p._products = json.products.map(p => Product.fromJSON(p));
+    p._groups = json.groups.map(g => Group.fromJSON(g));
     return p;
   }
 
@@ -68,6 +71,14 @@ export class Project {
 
   set image(value: string) {
     this._image = value;
+  }
+
+  get closed(): boolean {
+    return this._closed;
+  }
+
+  set closed(value: boolean) {
+    this._closed = value;
   }
 
   get budget(): number {

@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MenubarModule } from './menubar/menubar.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { ProjectService } from './services/project.service';
 import { ProjectTemplateService } from './services/project-template.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +22,7 @@ import { MatInputModule,MatDialogModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { ProjectenTemplateOverzichtComponent } from './project-templates/projecten-template-overzicht/projecten-template-overzicht.component';
 import { ProjectenTemplateDetailComponent } from './project-templates/projecten-template-detail/projecten-template-detail.component';
+
 
 
 @NgModule({
