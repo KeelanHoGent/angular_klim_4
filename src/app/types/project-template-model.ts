@@ -3,27 +3,25 @@ import { ProductTemplate } from './product-template-model';
 
 export class ProjectTemplate {
     _id: number;
-    _name: string;
-    _descr: string;
-    _image: string;
+    
     /*private _applicationDomain: ApplicationDomain;
     private _productsTemplates: ProductTemplate[] = [];
 */
 
+    constructor(private _name: string, private _descr: string, private _image: string){
+
+    }
 
     static fromJSON(json: any): ProjectTemplate {
-        const p = new ProjectTemplate();
+        const p = new ProjectTemplate(json.projectName, json.projectDescr, json.projectImage);
         p._id = json.projectId;
-        p._name = json.projectName;
-        p._descr = json.projectDescr;
-        p._image = json.projectImage;
+        
         //p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
         // TODO: products list en groups
         return p;
 
     }
-    // GETTERS AND SETTERS
-/*
+    
     public get id(): number {
         return this._id;
     }
@@ -48,6 +46,7 @@ export class ProjectTemplate {
     public set image(value: string) {
         this._image = value;
     }
+    /*
     public get applicationDomain(): ApplicationDomain {
         return this._applicationDomain;
     }

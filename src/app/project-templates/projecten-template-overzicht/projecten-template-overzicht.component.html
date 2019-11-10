@@ -3,11 +3,11 @@
 <div class="parent">
     <mat-card *ngFor="let template of templates" class="lijstitem">
         <mat-card-header>
-            <mat-card-title>{{template._name}}</mat-card-title>
+            <mat-card-title>{{template.name}}</mat-card-title>
         </mat-card-header>
         <img mat-card-image src="http://www.ifabpartners.com/wp-content/uploads/2015/12/IFAB_services_integrated_project_MAIN1.jpg" alt="project" sizes="">
         <mat-card-content>
-            <p>{{template._descr}}</p>
+            <p>{{template.descr}}</p>
         </mat-card-content>
         <mat-card-actions>
                 <button mat-button (click)="onSelect(template)">Details</button>
@@ -22,11 +22,11 @@
             
             <div class="v-row para">
                 <div>
-                    <h4 class="header4">{{currentProjectTemplate._name}}</h4>
+                    <h4 class="header4">{{currentProjectTemplate.name}}</h4>
                     
                 </div>
                 <div>
-                    <p class="mara">{{currentProjectTemplate._descr}}</p>
+                    <p class="mara">{{currentProjectTemplate.descr}}</p>
                 </div>
                 <button mat-raised-button color="basic" >Start Project</button>
             </div>

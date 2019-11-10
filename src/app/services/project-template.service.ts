@@ -26,4 +26,7 @@ export class ProjectTemplateService {
       map(x => x.map(p => Project.fromJSON(p)))
     );
   }
+  addNewProjecttemplate(projecttemplate: ProjectTemplate) {
+    throw new Error("Method not implemented.");
+  }
 }

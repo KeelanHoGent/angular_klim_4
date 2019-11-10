@@ -1,1 +1,64 @@
-<p>het werkt</p>
+<mat-card>
+    <mat-card-title>Standaardproject toevoegen</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="projecttemplate" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+          <input
+            matInput
+            aria-label="Naam"
+            placeholder="Naam van het project"
+            type="text"
+            formControlName="name"
+            required
+          />
+          <mat-error
+            *ngIf="projecttemplate.get('name').errors && projecttemplate.get('name').touched"
+          >
+            {{ getErrorMessage(projecttemplate.get('projectname').errors) }}
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input
+              matInput
+              aria-label="Beschrijving"
+              placeholder="Beschrijving van het project"
+              type="text"
+              formControlName="descr"
+              required
+            />
+            <mat-error
+              *ngIf="projecttemplate.get('descr').errors && projecttemplate.get('descr').touched"
+            >
+              {{ getErrorMessage(projecttemplate.get('descr').errors) }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              matInput
+              aria-label="Afbeelding"
+              placeholder="Link naar de afbeelding"
+              type="text"
+              formControlName="image"
+              required
+            />
+            <mat-error
+              *ngIf="projecttemplate.get('image').errors && projecttemplate.get('image').touched"
+            >
+              {{ getErrorMessage(projecttemplate.get('image').errors) }}
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Toepassingsgebied</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let domein of domeins" [value]="domein.value">
+                {{domein.viewValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        
+        <button type="submit" mat-raised-button [disabled]="!projecttemplate.valid">
+          Toevoegen
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
