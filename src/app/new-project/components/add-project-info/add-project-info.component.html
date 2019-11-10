@@ -56,20 +56,7 @@
                 </div>
             </div>
             <div class="naastElkaar">
-                <div class="formGroup">
-                    <label>Projectcode</label>
-                    <input [ngClass]="{
-                        'invalidInput': project.get('code')['errors']&& project.get('code').touched,
-                        'validInput': !project.get('code')['errors'] && project.get('code').touched }"
-                        class="smallInput" aria-label="projectCode" placeholder="Project code" type="text"
-                        formControlName="code" required />
-                    <p class="error" *ngIf="project.get('code')['errors'] && project.get('code').touched">
-                        {{ getErrorMessage(project.get('code')['errors']) }}
-                        <img src="{{error}}">
-                    </p>
-                    <img *ngIf="!project.get('code')['errors'] && project.get('code').touched" class="correct"
-                        src="{{correct}}">
-                </div>
+            
                 <div class="formGroup">
                     <label>Budget</label>
                     <input [ngClass]="{
@@ -124,6 +111,7 @@
     </div>
     <div class="formSectie">
         <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">groepen</span> aan het project toe
+
         </mat-card-subtitle>
         <div class=producten>
             <div *ngFor="let g of groups">
@@ -132,6 +120,7 @@
             <div>
                 <app-add-group-button (newGroup)="addNewGroupToProject($event)"></app-add-group-button>
             </div>
+
         </div>
     </div>
     <mat-dialog-actions class="buttonContainer">
@@ -139,7 +128,7 @@
             annuleer
         </button>
         <button (click)="save()" class="button" type="submit" mat-raised-button color='primary'
-            [disabled]='!project.valid'>
+            ><!--[disabled]='!project.valid'-->
             maak project
         </button>
     </mat-dialog-actions>

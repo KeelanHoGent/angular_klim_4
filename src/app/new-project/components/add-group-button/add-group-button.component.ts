@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Group } from 'src/app/types/group.model';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { GroupFormComponent } from '../group-form/group-form.component';
+import { Pupil } from 'src/app/types/pupil.model';
 
 @Component({
   selector: 'app-add-group-button',
@@ -40,8 +41,13 @@ export class AddGroupButtonComponent {
   }
 
   addGroup(data: any): boolean {
-    const group = new Group();
-    group.name = data.name;
+
+    var group = new Group();
+    group.name = data.name
+    data.pupils.forEach(element => {
+      group.pupils.push(new Pupil(element.firstName, ""))
+    });
+
     this.newGroup.emit(group);
     return false;
   }

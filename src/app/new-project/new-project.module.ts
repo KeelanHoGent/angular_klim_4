@@ -10,7 +10,7 @@ import { ProductComponent } from './components/product/product.component';
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { RouterModule } from "@angular/router";
 import { AddGroupButtonComponent } from '../new-project/components/add-group-button/add-group-button.component';
@@ -33,7 +33,8 @@ import { GroupComponent } from './components/group/group.component';
     ProductComponent,
     AddGroupButtonComponent,
     GroupFormComponent,
-    GroupComponent
+    GroupComponent,
+    
   ],
   imports: [
     CommonModule,

@@ -27,7 +27,8 @@ export class GroupComponent {
     config.autoFocus = true;
     config.data = {
       soort: true,
-      name: g.name
+      name: g.name,
+      pupils: g.pupils
     }
 
     const dialogRef = this.dialog.open(GroupFormComponent, config);
@@ -43,5 +44,6 @@ export class GroupComponent {
 
   updateGroup(data: any){
     this.group.name = data.name;
+    this.group.pupils = data.pupils;
   }
 }

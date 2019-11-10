@@ -24,11 +24,11 @@ label {
     margin-bottom: 20px;
 } 
 
-.naastElkaar {
+/*.naastElkaar {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-}
+}*/
 
 .naastElkaar > div {
     flex-grow: 1;

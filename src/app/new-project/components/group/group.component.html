@@ -3,4 +3,10 @@
         <mat-icon (click)="deleteGroup()">clear</mat-icon>
     </div>
     <h4>{{group.name}}</h4>
+    <div>
+        <p>leerlingen:</p>
+        <p *ngFor="let p of group.pupils">
+            {{p.firstName}}
+        </p>
+    </div>
 </div>

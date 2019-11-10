@@ -12,15 +12,9 @@
             <input [ngClass]="{
                 'invalidInput': group.get('name')['errors']&& group.get('name').touched,
                 'validInput': !group.get('name')['errors'] && group.get('name').touched
-            }"
-            (keyup.enter)="save(group.valid)" 
-            aria-label="name" 
-            placeholder="naam" 
-            type="text" 
-            formControlName="name" 
-            #spy 
-            required />
-            
+            }" (keyup.enter)="save(group.valid)" aria-label="name" placeholder="naam" type="text"
+                formControlName="name" #spy required />
+
             <p class="error" *ngIf="group.get('name')['errors'] && group.get('name').touched">
                 {{ getErrorMessage(group.get('name')['errors']) }}
                 <img src="{{error}}">
@@ -28,23 +22,42 @@
             <div *ngIf="!group.get('name')['errors'] && group.get('name').touched">
                 <img class="correct" src="{{correct}}">
             </div>
-            
+
         </div>
+
+        <div class="formGroup">
+
+            <label>Leerlingen</label>
+
+            <div formArrayName="pupils" *ngFor="let pupil of group.get('pupils').controls; let i = index;">
+                    <div [formGroupName]="i">
+                            <input class="pupilNameInput" formControlName="firstName"  type="text" placeholder="Naam">
+                    </div>
+            </div>
+
+            <button class="addButton" mat-raised-button (click)="addPupil()" type="button" color="default" rounded="true">
+                    <mat-icon class="icon">add</mat-icon>
+                </button>
+        
+
+        </div>
+
        
-        
-        
 
         <mat-dialog-actions class="buttonContainer">
             <button type="button" class="button" (click)="close()" mat-raised-button>
                 annuleer
             </button>
 
-            <button class="button" (keyup.enter)="save(group.valid)" *ngIf="!isEdit; else newP" (click)="save(group.valid)" type="submit" mat-raised-button
-                type="button" color='primary' [disabled]='!group.valid'>
+            <button class="button" (keyup.enter)="save(group.valid)" *ngIf="!isEdit; else newP"
+                (click)="save(group.valid)" type="submit" mat-raised-button type="button" color='primary'
+                [disabled]='!group.valid'>
                 Voeg groep toe
             </button>
+
             <ng-template #newP>
-                <button type="button" class="button" data-dismiss="modal" (keyup.enter)="save(group.valid)" (click)="save(group.valid)" type="submit" mat-raised-button color='primary'
+                <button type="button" class="button" data-dismiss="modal" (keyup.enter)="save(group.valid)"
+                    (click)="save(group.valid)" type="submit" mat-raised-button color='primary'
                     [disabled]='!group.valid'>
                     Sla op
                 </button>

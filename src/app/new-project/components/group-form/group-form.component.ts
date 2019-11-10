@@ -1,7 +1,8 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { Group } from 'src/app/types/group.model';
+import { Pupil } from 'src/app/types/pupil.model';
 
 @Component({
   selector: 'app-group-form',
@@ -14,6 +15,9 @@ export class GroupFormComponent implements OnInit {
   public isEdit: boolean;
   public group: FormGroup;
   public newGroup: Group;
+
+
+  pupils: FormArray;
   
 
   constructor(private _fb: FormBuilder,
@@ -24,14 +28,27 @@ export class GroupFormComponent implements OnInit {
 
   ngOnInit() {
     this.group = this._fb.group({
-      name: [this.data.name ? this.data.name : '', Validators.required]
+      name: [this.data.name ? this.data.name : '', Validators.required],
+      pupils: this._fb.array([   
+
+      ])
     });
+
+    if(!(this.data.pupils === undefined)){
+      const control = <FormArray>this.group.controls['pupils'];
+      this.data.pupils.forEach((element : Pupil) => {
+        control.push(this.createPupil(element))
+      });
+    }
+   
+
+
   }
 
   save(valid?: boolean) {
     console.log(valid);
     if (valid == true) {
-      console.log(this.group.value);
+
       this.dialogRef.close(this.group.value);
     }
   }
@@ -45,4 +62,18 @@ export class GroupFormComponent implements OnInit {
       return 'Dit veld is verplicht.';
     }
   }
+
+  addPupil(): void {
+    this.pupils = this.group.get('pupils') as FormArray;
+    this.pupils.push(this.createPupil(new Pupil("","")));
+  }
+
+
+  createPupil(p : Pupil): FormGroup {
+    return this._fb.group({
+      firstName: p.firstName,
+    });
+  }
+
+ 
 }
