@@ -6,7 +6,6 @@ export class Project {
   private _id: number;
   private _name: string;
   private _descr: string;
-  private _code: string;
   private _image: string;
   private _budget: number;
   private _schoolYear: number;
@@ -24,7 +23,6 @@ export class Project {
     p._id = json.projectId;
     p._name = json.projectName;
     p._descr = json.projectDescr;
-    p._code = json.projectCode;
     p._image = json.projectImage;
     p._budget = json.projectBudget;
     p._schoolYear = json.eSchoolYear;
@@ -42,7 +40,6 @@ export class Project {
       projectName: this._name,
       projectDescr: this._descr,
       projectImage: this._image,
-      //projectCode: this._code,
       projectBudget: this._budget,
       eSchoolYear: this._schoolYear,
       classRoomId: this._classRoomId,
@@ -96,13 +93,7 @@ export class Project {
     this._descr = value;
   }
 
-  get code(): string {
-    return this._code;
-  }
 
-  set code(value: string) {
-    this._code = value;
-  }
 
   get image(): string {
     return this._image;

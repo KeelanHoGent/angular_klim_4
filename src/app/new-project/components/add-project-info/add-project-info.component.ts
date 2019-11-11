@@ -55,7 +55,6 @@ export class AddProjectInfoComponent implements OnInit {
     this.project = this._fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      code: ['', Validators.required],
       image: ['', Validators.required],
       budget: ['', Validators.required],
       schoolYear: ['', Validators.required],
@@ -69,7 +68,6 @@ export class AddProjectInfoComponent implements OnInit {
   // onSubmit() {
   //   this.newProject.name = this.project.value.name;
   //   this.newProject.descr = this.project.value.description;
-  //   this.newProject.code = this.project.value.code;
   //   this.newProject.image = this.project.value.image;
   //   this.newProject.budget = this.project.value.budget;
   //   this.newProject.schoolYear = this.project.value.schoolYear;
@@ -84,7 +82,6 @@ export class AddProjectInfoComponent implements OnInit {
   save(){
     this.newProject.name = this.project.value.name;
     this.newProject.descr = this.project.value.description;
-    this.newProject.code = this.project.value.code;
     this.newProject.image = this.project.value.image;
     this.newProject.schoolYear = this.project.value.schoolYear;
     this.newProject.applicationDomainId = this.project.value.applicationDomain;
