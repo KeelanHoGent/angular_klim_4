@@ -40,8 +40,4 @@ export class ProjectProgressContainerComponent implements OnInit {
     console.log(group)
   }
 
-  test(){
-    this.project.changeShowClickedAllGroupsFalse();
-  }
-
 }

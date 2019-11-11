@@ -38,9 +38,12 @@
     <div class="list-wrapper">
       <div class="list-title-smaller">
         <h1>Evaluaties</h1>
+        <button mat-raised-button type="button" color="default" rounded="true" data-toggle="modal">
+          <mat-icon class="icon">add</mat-icon>Nieuwe evaluatie
+      </button>
+      
       </div>
       <app-group-details-container [group]="selectedGroup"></app-group-details-container>
 </div>  
 </div>
 
-<button (click)="test()"></button>
