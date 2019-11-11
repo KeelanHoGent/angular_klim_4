@@ -21,7 +21,7 @@ export class ProjectProgressContainerComponent implements OnInit {
     this.ps.getProjectByIdForProgress$(1).subscribe(p => {
       this.project = p
       if(this.project.groups.length > 0){
-        this.selectedGroup = this.project.groups[0];
+        this.project.groups[0].showClicked = true;
       }
     })
   }
@@ -34,8 +34,14 @@ export class ProjectProgressContainerComponent implements OnInit {
   }
 
   detailsGroup(group: Group){
+    this.project.changeShowClickedAllGroupsFalse();
+    group.showClicked = true;
     this.selectedGroup = group;
     console.log(group)
+  }
+
+  test(){
+    this.project.changeShowClickedAllGroupsFalse();
   }
 
 }

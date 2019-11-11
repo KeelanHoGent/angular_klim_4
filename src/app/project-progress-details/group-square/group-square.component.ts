@@ -8,6 +8,7 @@ import { Group } from 'src/app/types/group.model';
 })
 export class GroupSquareComponent implements OnInit {
 
+  
   @Input() group: Group;
   @Output() public clickGroup = new EventEmitter<Group>();
 

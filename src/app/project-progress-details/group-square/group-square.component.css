@@ -28,6 +28,20 @@
   
   }
 
+  .showSelected {
+    transform: scale(1.05, 1.05);
+    border-top: 0.4rem solid var(--magenta);
+      cursor: pointer;
+  
+  }
+
+  .done{
+    color:green;
+  }
+  .error{
+    color: darkred;
+  }
+
 
 
   
@@ -57,6 +71,17 @@
     position: absolute;
     bottom: 10px;
   }
+
+  .lock-button {
+    width: 200px !important;
+    margin: auto;
+    position: absolute;
+    margin-top:40px;
+    bottom: 60px;
+  }
+
+
+
 
 
   .naamScore {

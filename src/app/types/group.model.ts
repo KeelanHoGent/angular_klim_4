@@ -7,6 +7,10 @@ export class Group {
   private _name: string;
   private _pupils: Pupil[] = [];
   private _order: Order;
+
+  private _projectBudget: number;
+
+  public showClicked: Boolean;
   
 
   static fromJSON(json: any): Group {
@@ -19,6 +23,18 @@ export class Group {
     return g;
 
   }
+  static fromJSONBudget(json: any, budget: number): Group {
+    const g = new Group();
+    g.id = json.groupId
+    g.name = json.groupName;
+    g._pupils = json.pupils.map(p => Pupil.fromJSON(p));
+    g._order = Order.fromJSON(json.order)
+    g._projectBudget = budget
+
+    return g;
+
+  }
+
 
   toJson(): any {
     return {
@@ -27,6 +43,28 @@ export class Group {
     }
   }
 
+
+  public overBudget(budget: number) : boolean {
+    return this._order.totalOrderPrice > budget
+  }
+
+  
+
+    /**
+     * Getter projectBudget
+     * @return {number}
+     */
+	public get projectBudget(): number {
+		return this._projectBudget;
+	}
+
+    /**
+     * Setter projectBudget
+     * @param {number} value
+     */
+	public set projectBudget(value: number) {
+		this._projectBudget = value;
+	}
 
 
     /**

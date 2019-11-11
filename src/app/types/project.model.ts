@@ -30,7 +30,7 @@ export class Project {
     p._classRoomId = json.classRoomId;
     p.closed = !!json.closed;
     p._products = json.products.map(p => Product.fromJSON(p));
-    p._groups = json.groups.map(g => Group.fromJSON(g));
+    p._groups = json.groups.map(g => Group.fromJSONBudget(g, json.projectBudget));
     return p;
   }
 
@@ -48,6 +48,14 @@ export class Project {
       groups: this._groups.map(p=> p.toJson())
     }
   }
+
+
+  changeShowClickedAllGroupsFalse(){
+    this.groups.forEach(element => {
+      element.showClicked = false;
+    });
+  }
+  
 
   addProductToProject(p: Product){
     this.products.push(p);
