@@ -10,10 +10,12 @@
             placeholder="Naam van het project"
             type="text"
             formControlName="name"
+            data-cy="newprojecttemplatename"
             required
           />
           <mat-error
             *ngIf="projecttemplate.get('name')?.errors && projecttemplate.get('name')?.touched"
+            data-cy="newprojecttemplatenameerror"
           >
             {{ getErrorMessage(projecttemplate.get('name').errors) }}
           </mat-error>
@@ -25,10 +27,12 @@
               placeholder="Beschrijving van het project"
               type="text"
               formControlName="descr"
+              data-cy="newprojecttemplatedescription"
               required
             />
             <mat-error
               *ngIf="projecttemplate.get('descr')?.errors && projecttemplate.get('descr')?.touched"
+              data-cy="newprojecttemplatedescriptionerror"
             >
               {{ getErrorMessage(projecttemplate.get('descr').errors) }}
             </mat-error>
@@ -41,10 +45,12 @@
               type="text"
               formControlName="image"
               required
+              data-cy="newprojecttemplateimage"
               #foto
             />
             <mat-error
               *ngIf="projecttemplate.get('image')?.errors && projecttemplate.get('image')?.touched"
+              data-cy="newprojecttemplateimageerror"
             >
               {{ getErrorMessage(projecttemplate.get('image').errors) }}
             </mat-error>
@@ -64,7 +70,7 @@
             </mat-error>
           </mat-form-field>
         
-        <button type="submit" mat-raised-button [disabled]="!projecttemplate.valid">
+        <button type="submit" mat-raised-button [disabled]="!projecttemplate.valid" data-cy="newprojecttemplatesubmit">
           Toevoegen
         </button>
         </div>
