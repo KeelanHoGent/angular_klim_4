@@ -18,7 +18,7 @@ import { MatListModule, MatCardModule, MatIconModule } from '@angular/material';
 import { MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule,MatDialogModule } from '@angular/material';
+import { MatInputModule,MatDialogModule, MatSelectModule } from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import { ProjectenTemplateOverzichtComponent } from './project-templates/projecten-template-overzicht/projecten-template-overzicht.component';
 import { ProjectenTemplateDetailComponent } from './project-templates/projecten-template-detail/projecten-template-detail.component';
@@ -42,6 +42,7 @@ import { ProjectenTemplateDetailComponent } from './project-templates/projecten-
     MatListModule,
     MatCardModule,
     MatIconModule,
+    MatSelectModule,
     //FlexLayoutModule,
     MatFormFieldModule,
     MatDialogModule,

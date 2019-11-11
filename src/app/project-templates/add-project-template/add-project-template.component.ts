@@ -3,11 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProjectTemplate } from '../../types/project-template-model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ProjectTemplateService } from 'src/app/services/project-template.service';
+import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 
-export interface ApplicationDomain {
-  value: string;
-  viewValue: string;
-}
+
 
 @Component({
   selector: 'app-add-project-template',
@@ -17,14 +15,9 @@ export interface ApplicationDomain {
 
 export class AddProjectTemplateComponent implements OnInit {
 
-  public projectTemplate: FormGroup;
-  public newProjectTemplate: ProjectTemplate;
+  public projecttemplate: FormGroup;
   public isEdit: boolean;
-  domeins: ApplicationDomain[] = [
-    {value: 'Aarde', viewValue: 'Aarde'},
-    {value: 'Plastiek', viewValue: 'Plastiek'},
-    {value: 'MEtaal', viewValue: 'Metaal'}
-  ];
+  domeins: ApplicationDomain[];
   constructor(private _fb: FormBuilder, private _projecttemplateDataService: ProjectTemplateService){
     
   }/*
@@ -37,18 +30,30 @@ export class AddProjectTemplateComponent implements OnInit {
 
   ngOnInit() {
 
-    this.projectTemplate = this._fb.group({
-      name: ['', Validators.required],
+    this.projecttemplate = this._fb.group({
+      name: ['', [Validators.required, Validators.minLength(6)]],
       image: [ '', Validators.required],
-      descr: [ '', Validators.required]
+      descr: [ '', [Validators.required, Validators.minLength(6)]]
     });
   }
   onSubmit() {
     this._projecttemplateDataService.addNewProjecttemplate(new ProjectTemplate(
-      this.projectTemplate.value.name,
-      this.projectTemplate.value.descr,
-      this.projectTemplate.value.image)
+      this.projecttemplate.value.name,
+      this.projecttemplate.value.descr,
+      this.projecttemplate.value.image)
       );
+  }
+  getErrorMessage(errors: any) {
+    if (!errors) {
+      return null;
+    }
+    if (errors.required) {
+      return 'is verplicht';
+    } else if (errors.minlength) {
+      return `moet minstens ${
+        errors.minlength.requiredLength
+      } karakters bevatten (heeft ${errors.minlength.actualLength})`;
+    }
   }
 
 }

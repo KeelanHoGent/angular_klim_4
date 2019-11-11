@@ -2,6 +2,7 @@
     <mat-card-title>Standaardproject toevoegen</mat-card-title>
     <mat-card-content>
       <form [formGroup]="projecttemplate" (ngSubmit)="onSubmit()">
+          <div class="vertical">
         <mat-form-field>
           <input
             matInput
@@ -12,9 +13,9 @@
             required
           />
           <mat-error
-            *ngIf="projecttemplate.get('name').errors && projecttemplate.get('name').touched"
+            *ngIf="projecttemplate.get('name')?.errors && projecttemplate.get('name')?.touched"
           >
-            {{ getErrorMessage(projecttemplate.get('projectname').errors) }}
+            {{ getErrorMessage(projecttemplate.get('name').errors) }}
           </mat-error>
         </mat-form-field>
         <mat-form-field>
@@ -27,7 +28,7 @@
               required
             />
             <mat-error
-              *ngIf="projecttemplate.get('descr').errors && projecttemplate.get('descr').touched"
+              *ngIf="projecttemplate.get('descr')?.errors && projecttemplate.get('descr')?.touched"
             >
               {{ getErrorMessage(projecttemplate.get('descr').errors) }}
             </mat-error>
@@ -40,13 +41,15 @@
               type="text"
               formControlName="image"
               required
+              #foto
             />
             <mat-error
-              *ngIf="projecttemplate.get('image').errors && projecttemplate.get('image').touched"
+              *ngIf="projecttemplate.get('image')?.errors && projecttemplate.get('image')?.touched"
             >
               {{ getErrorMessage(projecttemplate.get('image').errors) }}
             </mat-error>
           </mat-form-field>
+          <img *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}">
           <mat-form-field appearance="outline">
             <mat-label>Toepassingsgebied</mat-label>
             <mat-select>
@@ -54,11 +57,17 @@
                 {{domein.viewValue}}
               </mat-option>
             </mat-select>
+            <mat-error
+              *ngIf="projecttemplate.get('image')?.errors && projecttemplate.get('image')?.touched"
+            >
+              {{ getErrorMessage(projecttemplate.get('image').errors) }}
+            </mat-error>
           </mat-form-field>
         
         <button type="submit" mat-raised-button [disabled]="!projecttemplate.valid">
           Toevoegen
         </button>
+        </div>
       </form>
     </mat-card-content>
   </mat-card>
