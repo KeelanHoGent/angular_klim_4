@@ -65,6 +65,12 @@ export class ProjectService {
     )
   }
 
+  getProjectByIdForProgress$(id: number) : Observable<Project>{
+    return this.http.get<Project>(`${environment.apiUrl}/project/progress/${id}`).pipe(
+      map(x => Project.fromJSON(x))
+    )
+  }
+
 
 
   getProjectGroupsById(id: number): Observable<Group[]> {
