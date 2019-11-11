@@ -1,16 +1,19 @@
 import { Pupil } from './pupil.model';
+import { Order } from './order.model';
 
 export class Group {
 
   private readonly _id: number;
   private _name: string;
   private _pupils: Pupil[] = [];
+  private _order: Order
   
 
   static fromJSON(json: any): Group {
     const g = new Group();
     g.name = json.groupName;
     g._pupils = json.pupils.map(p => Pupil.fromJSON(p));
+    g._order = Order.fromJSON(json.order)
 
     return g;
 
