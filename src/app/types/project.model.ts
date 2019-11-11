@@ -1,6 +1,7 @@
 import { ApplicationDomain } from "./applicationDomain.model";
 import { Product } from "./product.model";
 import { Group } from "./group.model";
+import { EvaluationCriterea } from './evaluationCriterea.model';
 
 export class Project {
   private _id: number;
@@ -14,6 +15,7 @@ export class Project {
   private _applicationDomain: ApplicationDomain;
   private _products: Product[] = [];
   private _groups: Group[] = [];
+  private _evaluationCritereas : EvaluationCriterea[] = [];
   private _classRoomId: number;
 
 
@@ -31,6 +33,7 @@ export class Project {
     p.closed = !!json.closed;
     p._products = json.products.map(p => Product.fromJSON(p));
     p._groups = json.groups.map(g => Group.fromJSONBudget(g, json.projectBudget));
+    p._evaluationCritereas = json.evaluationCritereas.map(p => EvaluationCriterea.fromJSON(p));
     return p;
   }
 
@@ -45,7 +48,8 @@ export class Project {
       classRoomId: this._classRoomId,
       applicationDomainId: this._applicationDomainId,
       products: this._products.map(p => p.toJson()),
-      groups: this._groups.map(p=> p.toJson())
+      groups: this._groups.map(p=> p.toJson()),
+      evaluationCritereas: this._evaluationCritereas.map(p=> p.toJson())
     }
   }
 
@@ -76,6 +80,15 @@ export class Project {
   }
 
   //GETTERS AND SETTERS
+
+  
+  get evaluationCritereas(): EvaluationCriterea[] {
+    return this._evaluationCritereas;
+  }
+
+  set evaluationCritereas(value: EvaluationCriterea[]) {
+    this._evaluationCritereas = value;
+  }
 
   get id(): number {
     return this._id;

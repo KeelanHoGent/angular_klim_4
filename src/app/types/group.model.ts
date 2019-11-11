@@ -1,11 +1,13 @@
 import { Pupil } from './pupil.model';
 import { Order } from './order.model';
+import { Evaluation } from './evaluation.model';
 
 export class Group {
 
   private _id: number = 0;
   private _name: string;
   private _pupils: Pupil[] = [];
+  private _evaluations : Evaluation[] = [];
   private _order: Order;
 
   private _projectBudget: number;
@@ -19,6 +21,7 @@ export class Group {
     g.name = json.groupName;
     g._pupils = json.pupils.map(p => Pupil.fromJSON(p));
     g._order = Order.fromJSON(json.order)
+    g._evaluations = json.evaluations.map(p => Evaluation.fromJSON(p));
 
     return g;
 
@@ -28,6 +31,7 @@ export class Group {
     g.id = json.groupId
     g.name = json.groupName;
     g._pupils = json.pupils.map(p => Pupil.fromJSON(p));
+    g._evaluations = json.evaluations.map(p => Evaluation.fromJSON(p));
     g._order = Order.fromJSON(json.order)
     g._projectBudget = budget
 
