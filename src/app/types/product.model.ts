@@ -1,78 +1,82 @@
 export class Product {
-  private _productId: number;
-  private _productName: string;
-  private _description: string;
-  private _image: string;
-  private _project: number;
-  private _price: number;
-  private _category: number;
+    private _id: number;
+    private _price: number;
+    private _name: string;
+    private _description: string;
+    private _image: string;
+    private _categoryId: number;
+    private _projectId: number;
 
-  static fromJSON(p: any): Product {
-    const result = new Product();
-    result.productId = p.productId;
-    result.productName = p.productName;
-    result.description = p.description;
-    result.image = p.productImage;
-    result.project = p.projectId;
-    result.price = p.price;
-    result.category = p.categoryId;
+    toJson(): any {
+        return {
+            productId: this._id,
+            productName: this._name,
+            description: this._description,
+            productImage: this._image,
+            projectId: this._projectId,
+            price: this._price,
+            categoryId: this._categoryId
+        }
+    }
 
-    return result;
-  }
+    static fromJSON(p: any): Product {
+        const result = new Product();
+        result.id = p.productId;
+        result.name = p.productName;
+        result.description = p.description;
+        result.image = p.productImage;
+        result.projectId = p.projectId;
+        result.price = p.price;
+        result.categoryId = p.categoryId;
 
-  get productId(): number {
-    return this._productId;
-  }
+        return result;
+    }
 
-  set productId(value: number) {
-    this._productId = value;
-  }
+    get id (): number {
+        return this._id;
+    }
 
-  get productName(): string {
-    return this._productName;
-  }
+    set id(id: number) {
+        this._id = id;
+    }
 
-  set productName(value: string) {
-    this._productName = value;
-  }
+    get price(): number {
+        return this._price
+    }
 
-  get description(): string {
-    return this._description;
-  }
+    set price(price: number) {
+        this._price = price;
+    }
 
-  set description(value: string) {
-    this._description = value;
-  }
+    public get name(): string {
+        return this._name;
+    }
+  
+    public set name(value: string) {
+        this._name = value;
+    }
 
-  get image(): string {
-    return this._image;
-  }
+    public get description(): string {
+        return this._description;
+    }
+  
+    public set description(value: string) {
+        this._description = value;
+    }
 
-  set image(value: string) {
-    this._image = value;
-  }
+    public set categoryId(value: number) {
+        this._categoryId = value;
+    }
 
-  get project(): number {
-    return this._project;
-  }
+    public set projectId(value: number) {
+        this._projectId = value;
+    }
 
-  set project(value: number) {
-    this._project = value;
-  }
+    get image(): string {
+        return this._image;
+    }
 
-  get price(): number {
-    return this._price;
-  }
-
-  set price(value: number) {
-    this._price = value;
-  }
-
-  get category(): number {
-    return this._category;
-  }
-
-  set category(value: number) {
-    this._category = value;
-  }
+    set image(value: string) {
+        this._image = value;
+    }
 }

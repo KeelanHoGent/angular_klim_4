@@ -1,4 +1,4 @@
-<mat-card color="primary">
+<!-- <mat-card color="primary">
   <mat-card-title>
     {{project.name}}
   </mat-card-title>
@@ -10,5 +10,11 @@
       Details
     </button>
   </mat-card-footer>
-</mat-card>
+</mat-card> -->
+
+<div class="project">
+    <p class="naam">{{project.name}}</p>
+    <p class="desc">{{project.descr | slice:0:75}} ...</p>
+    <button mat-raised-button class="details-button">Details</button>
+</div>
 

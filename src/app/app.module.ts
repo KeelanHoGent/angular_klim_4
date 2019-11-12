@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ProjectService } from './services/project.service';
 import { ProjectTemplateService } from './services/project-template.service';
 import { HttpClientModule } from '@angular/common/http';
-import {ProjectenOverzichtModule} from './projecten-overzicht/projecten-overzicht.module';
+import { ProjectenOverzichtModule } from './projecten-overzicht/projecten-overzicht.module';
 import { AddProjectTemplateComponent } from './project-templates/add-project-template/add-project-template.component';
 
 
@@ -19,10 +19,14 @@ import { MatFormFieldModule} from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule,MatDialogModule, MatSelectModule } from '@angular/material';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { ProjectenTemplateOverzichtComponent } from './project-templates/projecten-template-overzicht/projecten-template-overzicht.component';
 import { ProjectenTemplateDetailComponent } from './project-templates/projecten-template-detail/projecten-template-detail.component';
 
+
+
+import { ProjectService } from "./services/project.service";
+import { NewProjectModule } from './new-project/new-project.module';
 
 
 @NgModule({
@@ -43,13 +47,14 @@ import { ProjectenTemplateDetailComponent } from './project-templates/projecten-
     MatCardModule,
     MatIconModule,
     MatSelectModule,
-    //FlexLayoutModule,
+    FlexLayoutModule,
     MatFormFieldModule,
     MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
     MatInputModule,
     MatButtonModule,
+    NewProjectModule
   ],
   providers: [
     ProjectService,
