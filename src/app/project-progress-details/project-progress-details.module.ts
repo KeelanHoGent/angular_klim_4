@@ -12,30 +12,22 @@ import { GroupDetailsContainerComponent } from './group-details-container/group-
 import { HorizontalListOrderItemsComponent } from './horizontal-list-order-items/horizontal-list-order-items.component';
 import { OrderItemSquareComponent } from './order-item-square/order-item-square.component';
 import { MatListModule , MatIconModule } from '@angular/material';
-import { GroupEvaluationsControllerComponent } from './group-evaluations-controller/group-evaluations-controller.component';
 import { HorizontalListEvaluationsComponent } from './horizontal-list-evaluations/horizontal-list-evaluations.component';
 import { EvaluationSquareComponent } from './evaluation-square/evaluation-square.component';
+import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
+
 
 @NgModule({
   declarations: [
-    
   ProjectProgressContainerComponent,
-    
   HorizontalListGroupsComponent,
-    
   GroupSquareComponent,
-    
   GroupDetailsContainerComponent,
-    
-  HorizontalListOrderItemsComponent,
-    
-  OrderItemSquareComponent,
-    
-  GroupEvaluationsControllerComponent,
-    
+  HorizontalListOrderItemsComponent,  
+  OrderItemSquareComponent, 
   HorizontalListEvaluationsComponent,
-    
-  EvaluationSquareComponent],
+  EvaluationSquareComponent,
+  EvaluationFormComponent],
   imports: [
     CommonModule,
     MatCardModule,

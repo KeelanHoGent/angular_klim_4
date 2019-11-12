@@ -140,4 +140,21 @@ export class Group {
 	}
 
 
+    /**
+     * Getter evaluations
+     * @return {Evaluation[] }
+     */
+	public get evaluations(): Evaluation[]  {
+		return this._evaluations;
+	}
+
+    /**
+     * Setter evaluations
+     * @param {Evaluation[] } value
+     */
+	public set evaluations(value: Evaluation[] ) {
+		this._evaluations = value;
+	}
+
+
 }

@@ -1,7 +1,7 @@
 <div class="projecten-wrapper" *ngIf="project !== undefined" >
     <div class="list-title">
         <h1>{{project.name}}</h1>
-        <h1>max-score: {{project.budget}}</h1>
+        <h1>max-budget: {{project.budget}}</h1>
       </div>
 
 </div>
@@ -23,7 +23,7 @@
     <div class="list-wrapper">
       <div class="list-title-smaller">
         <h1>Bestellingsoverzicht - {{selectedGroup.name}}</h1>
-        <h1>Score: {{selectedGroup.order.totalOrderPrice}}
+        <h1>Budget: {{selectedGroup.order.totalOrderPrice}}
 
             <mat-icon *ngIf="!selectedGroup.overBudget()" class="done">done</mat-icon>   
             <mat-icon *ngIf="selectedGroup.overBudget()" class="error">error_outline</mat-icon>  
@@ -43,7 +43,7 @@
       </button>
       
       </div>
-      <app-group-details-container [group]="selectedGroup"></app-group-details-container>
+      <app-horizontal-list-evaluations (clickEvaluation)="detailsEvaluation($event)" [list]="selectedGroup.evaluations"></app-horizontal-list-evaluations>
 </div>  
-</div>
 
+</div>

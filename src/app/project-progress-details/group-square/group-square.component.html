@@ -1,9 +1,9 @@
-<div *ngIf="group.order !== undefined">
+
 
         <!--[ngClass]="group.id === selectedGroupId ? 'groupSelected' : '' "-->
-        <div class="project" [ngClass]="group.showClicked ? 'showSelected' : '' ">
+        <div class="project" [ngClass]="group.showClicked ? 'showSelected' : '' " (click)="detailsGroup()">
                 <p class="naam">{{group.name}}</p>
-                <p class="naamScore">score: {{group.order.totalOrderPrice}}  
+                <p class="naamBudget">budget: {{group.order.totalOrderPrice}}  
 
                         <mat-icon *ngIf="!group.overBudget()" class="done">done</mat-icon>   
                         <mat-icon *ngIf="group.overBudget()" class="error">error_outline</mat-icon>   
@@ -17,6 +17,4 @@
                         </p>
                 </div>
    
-                <button mat-raised-button class="details-button" (click)="detailsGroup()">Details</button>
         </div>
-</div>

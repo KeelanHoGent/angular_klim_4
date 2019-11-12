@@ -43,7 +43,7 @@
   }
   
   .desc{
-    margin-top: 0px;
+    margin-top: 3px;
     font-weight: 400;
     font-family: 'Raleway', sans-serif;
     color: rgb(128,128,128)
@@ -62,7 +62,7 @@
   }
 
 
-  .naamScore {
+  .naamBudget {
     font-size: 18px;
     font-family: 'Raleway', sans-serif;
     font-weight: 500;

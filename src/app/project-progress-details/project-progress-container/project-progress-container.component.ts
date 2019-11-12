@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Group } from 'src/app/types/group.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { Project } from 'src/app/types/project.model';
+import { Evaluation } from 'src/app/types/evaluation.model';
 
 @Component({
   selector: 'app-project-progress-container',
@@ -40,6 +41,11 @@ export class ProjectProgressContainerComponent implements OnInit {
     group.showClicked = true;
     this.selectedGroup = group;
     console.log(group)
+  }
+
+  detailsEvaluation(ev: Evaluation){
+ 
+    console.log(ev)
   }
 
 }
