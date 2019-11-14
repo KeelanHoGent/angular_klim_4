@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Evaluation } from 'src/app/types/evaluation.model';
 import { EvaluationFormComponent } from '../evaluation-form/evaluation-form.component';
 import { MatDialogConfig, MatDialog } from '@angular/material';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-evaluation-square',
@@ -12,8 +13,14 @@ export class EvaluationSquareComponent {
 
   @Input() evaluation: Evaluation;
   @Output() public clickEvaluation = new EventEmitter<Evaluation>();
+  @Output() public deletedEvaluation = new EventEmitter<Evaluation>();
 
   constructor(public dialog: MatDialog) { }
+
+  deleteEvaluation(): boolean {
+    this.deletedEvaluation.emit(this.evaluation);
+    return false;
+  }
 
   editEvaluationForm(p: Evaluation): void {
     const config = new MatDialogConfig();
@@ -34,9 +41,13 @@ export class EvaluationSquareComponent {
 
     dialogRef.afterClosed().subscribe(
       data => {
-        if(data){
+        if(isNumber(data)){
+          this.deleteEvaluation();
+        } else if(data){
+          
           this.updateEc(data);
         }
+
       }
     );
   }

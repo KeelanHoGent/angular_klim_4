@@ -22,7 +22,6 @@ export class ProjectProgressContainerComponent implements OnInit {
   ngOnInit() {
     this.ps.getProjectByIdForProgress$(1).subscribe(p => {
       this.project = p
-      console.log(this.project );
       if(this.project.groups.length > 0){
         this.selectedGroup = this.project.groups[0];
         this.project.groups[0].showClicked = true;
@@ -56,5 +55,13 @@ export class ProjectProgressContainerComponent implements OnInit {
   this.gs.editEvaluation(this.selectedGroup.id, e.evaluationId, e).subscribe((ev : Evaluation) => {
       this.selectedGroup.setEvaluationAfterEdit(ev);
     }) 
+  }
+
+  deleteEvaluation(e: Evaluation){ // only availiable for extra evaluations
+    this.gs.deleteEvaluation(this.selectedGroup.id, e.evaluationId).subscribe(g => {
+      console.log(g);
+      this.selectedGroup.removeEvaluationById(g.evaluationId);
+    });
+
   }
 }

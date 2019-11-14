@@ -25,9 +25,15 @@ export class GroupService {
     obj.toJson()).pipe(map(Evaluation.fromJSON));
   }
 
-  editEvaluation(groupId:number, evaluationId: number, obj: Evaluation) : Observable<Evaluation> {
+  editEvaluation(groupId: number, evaluationId: number, obj: Evaluation) : Observable<Evaluation> {
     return this.http.put(`${environment.apiUrl}/group/editEvaluation/${groupId}/${evaluationId}`,
     obj.toJson()).pipe(map(Evaluation.fromJSON));
+  }
+
+  deleteEvaluation(groupId: number, evaluationId: number,) : Observable<Evaluation>{
+    return this.http
+    .delete(`${environment.apiUrl}/group/deleteEvaluation/${groupId}/${evaluationId}`)
+    .pipe(map(Evaluation.fromJSON));
   }
 
 }

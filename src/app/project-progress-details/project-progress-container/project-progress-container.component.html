@@ -40,7 +40,7 @@
         <h1>Evaluaties</h1>
         <app-button-add-evaluation (newEvaluation)="addNewEvaluationToProject($event)"></app-button-add-evaluation>
       </div>
-      <app-horizontal-list-evaluations (clickEvaluation)="detailsEvaluation($event)" [list]="selectedGroup.evaluations"></app-horizontal-list-evaluations>
+      <app-horizontal-list-evaluations (deletedEvaluation)="deleteEvaluation($event)" (clickEvaluation)="detailsEvaluation($event)" [list]="selectedGroup.evaluations"></app-horizontal-list-evaluations>
 </div>  
 
 </div>

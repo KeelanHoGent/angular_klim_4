@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-evaluation-form',
@@ -14,7 +15,7 @@ export class EvaluationFormComponent implements OnInit {
 
   constructor(private _fb: FormBuilder,
     public dialogRef: MatDialogRef<EvaluationFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {
+    @Inject(MAT_DIALOG_DATA) public data, private gs: GroupService) {
       this.isEdit = data.soort;
   }
 
@@ -40,6 +41,10 @@ export class EvaluationFormComponent implements OnInit {
     if (errors.required) {
       return 'Dit veld is verplicht.';
     }
+  }
+
+  delete(){
+    this.dialogRef.close(0); // give number
   }
 
 }

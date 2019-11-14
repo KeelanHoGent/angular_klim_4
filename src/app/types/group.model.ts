@@ -67,6 +67,12 @@ export class Group {
      evFound.descriptionPrivate = ev.descriptionPrivate;
   }
 
+  public removeEvaluationById(id : number){
+    var index = this.evaluations.indexOf(this.evaluations.find(g => g.evaluationId == id));
+    this.evaluations.splice(index, 1);
+    
+  }
+
   
 
     /**

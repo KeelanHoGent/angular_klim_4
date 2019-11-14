@@ -94,6 +94,11 @@
                 </button>
             </ng-template>
 
+
+            <button *ngIf="data.extra && isEdit" type="button" class="button" (click)="delete()" mat-raised-button>
+                    Verwijder
+            </button>
+
         </mat-dialog-actions>
     </form>
 </mat-card-content>
