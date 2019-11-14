@@ -19,7 +19,7 @@ export class ProjectProgressContainerComponent implements OnInit {
   constructor(private ps: ProjectService) { }
 
   ngOnInit() {
-    this.ps.getProjectByIdForProgress$(1).subscribe(p => {
+    this.ps.getProjectByIdForProgress$(5).subscribe(p => {
       this.project = p
       console.log(this.project );
       if(this.project.groups.length > 0){

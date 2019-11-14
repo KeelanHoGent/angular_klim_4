@@ -15,6 +15,7 @@ import { MatListModule , MatIconModule } from '@angular/material';
 import { HorizontalListEvaluationsComponent } from './horizontal-list-evaluations/horizontal-list-evaluations.component';
 import { EvaluationSquareComponent } from './evaluation-square/evaluation-square.component';
 import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
+import { ButtonAddEvaluationComponent } from './button-add-evaluation/button-add-evaluation.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { EvaluationFormComponent } from './evaluation-form/evaluation-form.compo
   OrderItemSquareComponent, 
   HorizontalListEvaluationsComponent,
   EvaluationSquareComponent,
-  EvaluationFormComponent],
+  EvaluationFormComponent,
+  ButtonAddEvaluationComponent],
   imports: [
     CommonModule,
     MatCardModule,
