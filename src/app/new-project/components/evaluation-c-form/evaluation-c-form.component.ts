@@ -26,7 +26,7 @@ export class EvaluationCFormComponent implements OnInit {
   }
 
   save(valid?: boolean) {
-    if (valid == true) {
+    if (valid) {
       this.dialogRef.close(this.form.value);
     }
   }

@@ -44,7 +44,7 @@ export class AddProductFormComponent {
   }
 
   save(valid?: boolean) {
-    if (valid == true) {
+    if (valid) {
       this.dialogRef.close(this.product.value);
     }
   }
