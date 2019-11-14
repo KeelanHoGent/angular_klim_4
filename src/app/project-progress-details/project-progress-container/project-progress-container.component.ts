@@ -31,11 +31,11 @@ export class ProjectProgressContainerComponent implements OnInit {
   }
 
 
-  refreshGroups(){
+  /*refreshGroups(){
     this.ps.getProjectGroupsById(2).subscribe(ps => {    
       this.project.groups = ps
     });
-  }
+  }*/
 
   detailsGroup(group: Group){
     this.project.changeShowClickedAllGroupsFalse();
@@ -45,28 +45,16 @@ export class ProjectProgressContainerComponent implements OnInit {
 
 
   addNewEvaluationToProject(g: Evaluation) {
-    //this.evaluationCs.push(g);
-    //this.newProject.addEvaluationCToProject(g);
-
-    
     this.gs.addNewEvaluation(this.selectedGroup.id, g).subscribe(ev => {
-      console.log("eval added")
-      console.log(ev)
       this.selectedGroup.addEvaluation(ev);
     }) 
-
-    //api request
   }
 
   detailsEvaluation(e : Evaluation){ // edited an evaluation
 
 
   this.gs.editEvaluation(this.selectedGroup.id, e.evaluationId, e).subscribe((ev : Evaluation) => {
-      this.selectedGroup.getEvaluationById(ev.evaluationId).title = ev.title;
-      this.selectedGroup.getEvaluationById(ev.evaluationId).descriptionPrivate = ev.descriptionPrivate;
-      this.selectedGroup.getEvaluationById(ev.evaluationId).descriptionPupil = ev.descriptionPupil;
-
-      console.log(ev);
+      this.selectedGroup.setEvaluationAfterEdit(ev);
     }) 
   }
 }

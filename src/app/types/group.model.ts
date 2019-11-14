@@ -59,6 +59,14 @@ export class Group {
   public getEvaluationById(id: number) : Evaluation {
     return this.evaluations.find(g => g.evaluationId == id);
   }
+
+  public  setEvaluationAfterEdit(ev : Evaluation)  {
+     var evFound = this.evaluations.find(g => g.evaluationId == ev.evaluationId);
+     evFound.title = ev.title;
+     evFound.descriptionPupil = ev.descriptionPupil;
+     evFound.descriptionPrivate = ev.descriptionPrivate;
+  }
+
   
 
     /**
