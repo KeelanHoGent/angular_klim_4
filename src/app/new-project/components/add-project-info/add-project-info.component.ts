@@ -33,18 +33,6 @@ export class AddProjectInfoComponent implements OnInit {
     this.products = new Array<Product>();
     this.groups = new Array<Group>();
 
-    //volgende is gewoon voor iets te zien bij stylen
-    const p1 = new Product();
-    const p2 = new Product();
-    p1.name = "Hout";
-    p1.description = "Heel millieuvriendelijk";
-    p1.price = 2;
-    p2.name = "Plastiek";
-    p2.description = "slecht voor het millieu";
-    p2.price = 6;
-    this.products.push(p1);
-    this.products.push(p2);
-    // 
 
     this.newProject = new Project();
     this._domainApps = this._projectDataService.getApplicationDomains$();

@@ -19,6 +19,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 import { ProjectService } from "./services/project.service";
 import { NewProjectModule } from './new-project/new-project.module';
+import { EditProjectModule } from "./edit-project/edit-project.module";
 
 
 @NgModule({
@@ -42,12 +43,14 @@ import { NewProjectModule } from './new-project/new-project.module';
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    NewProjectModule
+    NewProjectModule,
+    EditProjectModule
   ],
   providers: [
     ProjectService,
     TemplateService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [EditProjectModule]
 })
 export class AppModule { }

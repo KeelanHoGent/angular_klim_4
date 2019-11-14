@@ -58,10 +58,11 @@ export class ProjectService {
     );
   }
 
-  getProjectById$(id: number) {
-    return this.http.get<Project>(`${environment.apiUrl}/Project/${this._classroomId}`).pipe(
+  getProjectById$(id: number){
+    return this.http.get<Project>(`${environment.apiUrl}/Project/${id}/`).pipe(
       map(x => Project.fromJSON(x))
     )
   }
+
 
 }
