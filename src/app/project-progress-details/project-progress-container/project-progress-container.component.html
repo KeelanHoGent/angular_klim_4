@@ -1,0 +1,49 @@
+<div class="projecten-wrapper" *ngIf="project !== undefined" >
+    <div class="list-title">
+        <h1>{{project.name}}</h1>
+        <h1>max-budget: {{project.budget}}</h1>
+      </div>
+
+</div>
+
+<div class="projecten-wrapper" *ngIf="project !== undefined">
+        <div class="list-wrapper">
+            <div class="list-title">
+                <button mat-raised-button type="button" color="default" rounded="true" >
+                  <mat-icon class="icon">lock</mat-icon> Vergrendel groepen
+              </button>
+              
+              </div>
+          <app-horizontal-list-groups (clickGroup)="detailsGroup($event)" [list]="project.groups"></app-horizontal-list-groups>
+    </div>  
+</div>
+
+
+<div class="projecten-wrapper" *ngIf="project !== undefined && selectedGroup !== undefined">
+    <div class="list-wrapper">
+      <div class="list-title-smaller">
+        <h1>Bestellingsoverzicht - {{selectedGroup.name}}</h1>
+        <h1>Budget: {{selectedGroup.order.totalOrderPrice}}
+
+            <mat-icon *ngIf="!selectedGroup.overBudget()" class="done">done</mat-icon>   
+            <mat-icon *ngIf="selectedGroup.overBudget()" class="error">error_outline</mat-icon>  
+        </h1>
+        
+      </div>
+      <app-group-details-container [group]="selectedGroup"></app-group-details-container>
+  </div>  
+</div>
+
+<div class="projecten-wrapper" *ngIf="project !== undefined && selectedGroup !== undefined">
+    <div class="list-wrapper">
+      <div class="list-title-smaller">
+        <h1>Evaluaties</h1>
+        <button mat-raised-button type="button" color="default" rounded="true" data-toggle="modal">
+          <mat-icon class="icon">add</mat-icon>Nieuwe evaluatie
+      </button>
+      
+      </div>
+      <app-horizontal-list-evaluations (clickEvaluation)="detailsEvaluation($event)" [list]="selectedGroup.evaluations"></app-horizontal-list-evaluations>
+</div>  
+
+</div>
