@@ -17,7 +17,6 @@ export class EvaluationSquareComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.evaluation);
   }
 
 

@@ -46,7 +46,6 @@ export class GroupFormComponent implements OnInit {
   }
 
   save(valid?: boolean) {
-    console.log(valid);
     if (valid == true) {
 
       this.dialogRef.close(this.group.value);

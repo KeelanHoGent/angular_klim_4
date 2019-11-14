@@ -90,7 +90,6 @@ export class AddProjectInfoComponent implements OnInit {
     this.newProject.schoolYear = this.project.value.schoolYear;
     this.newProject.applicationDomainId = this.project.value.applicationDomain;
 
-    console.log(this.newProject);
     this._projectDataService.addNewProject(this.newProject)
       .subscribe(res => {
         this.router.navigateByUrl("/projecten");
@@ -121,7 +120,6 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   addNewGroupToProject(group: Group) {
-    console.log(group)
     this.groups.push(group);
     this.newProject.addGroupToProject(group);
   }

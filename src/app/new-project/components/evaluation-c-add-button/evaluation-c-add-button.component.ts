@@ -34,7 +34,6 @@ export class EvaluationCAddButtonComponent  {
       image: ""*/
     }
 
-    console.log("open");
     const dialogRef = this.dialog.open(EvaluationCFormComponent, config);
 
     this.evaluationC = new EvaluationCriterea();
