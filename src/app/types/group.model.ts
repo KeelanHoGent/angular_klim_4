@@ -52,6 +52,13 @@ export class Group {
     return this._order.totalOrderPrice > budget
   }
 
+  public addEvaluation(e : Evaluation){
+    this._evaluations.push(e);
+  }
+
+  public getEvaluationById(id: number) : Evaluation {
+    return this.evaluations.find(g => g.evaluationId == id);
+  }
   
 
     /**

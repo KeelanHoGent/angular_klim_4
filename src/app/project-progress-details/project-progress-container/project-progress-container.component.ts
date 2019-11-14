@@ -3,6 +3,7 @@ import { Group } from 'src/app/types/group.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { Project } from 'src/app/types/project.model';
 import { Evaluation } from 'src/app/types/evaluation.model';
+import { GroupService } from 'src/app/services/group.service';
 
 @Component({
   selector: 'app-project-progress-container',
@@ -16,10 +17,10 @@ export class ProjectProgressContainerComponent implements OnInit {
  
   selectedGroup : Group;
 
-  constructor(private ps: ProjectService) { }
+  constructor(private ps: ProjectService, private gs: GroupService) { }
 
   ngOnInit() {
-    this.ps.getProjectByIdForProgress$(5).subscribe(p => {
+    this.ps.getProjectByIdForProgress$(1).subscribe(p => {
       this.project = p
       console.log(this.project );
       if(this.project.groups.length > 0){
@@ -42,8 +43,30 @@ export class ProjectProgressContainerComponent implements OnInit {
     this.selectedGroup = group;
   }
 
-  detailsEvaluation(ev: Evaluation){
- 
+
+  addNewEvaluationToProject(g: Evaluation) {
+    //this.evaluationCs.push(g);
+    //this.newProject.addEvaluationCToProject(g);
+
+    
+    this.gs.addNewEvaluation(this.selectedGroup.id, g).subscribe(ev => {
+      console.log("eval added")
+      console.log(ev)
+      this.selectedGroup.addEvaluation(ev);
+    }) 
+
+    //api request
   }
 
+  detailsEvaluation(e : Evaluation){ // edited an evaluation
+
+
+  this.gs.editEvaluation(this.selectedGroup.id, e.evaluationId, e).subscribe((ev : Evaluation) => {
+      this.selectedGroup.getEvaluationById(ev.evaluationId).title = ev.title;
+      this.selectedGroup.getEvaluationById(ev.evaluationId).descriptionPrivate = ev.descriptionPrivate;
+      this.selectedGroup.getEvaluationById(ev.evaluationId).descriptionPupil = ev.descriptionPupil;
+
+      console.log(ev);
+    }) 
+  }
 }

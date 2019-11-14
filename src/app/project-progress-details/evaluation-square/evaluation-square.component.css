@@ -2,9 +2,9 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    width: 350px;
-    max-width: 350px;
-    min-width: 350px;
+    width: 450px;
+    max-width: 450px;
+    min-width: 450px;
     height: 150px;
     max-height: 150px;
     min-height: 150px;
