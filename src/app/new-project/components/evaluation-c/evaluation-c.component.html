@@ -1,14 +1,6 @@
-<div (click)="editProductForm(product)" class=product>
+<div (click)="editEvaluationCForm(evaluationC)" class=product>
         <div class=deleteIcon>
-            <mat-icon (click)="deleteProduct()">clear</mat-icon>
+            <mat-icon (click)="deleteEvaluationC()">clear</mat-icon>
         </div>
-        <h4>{{product.name}}</h4>
-        <div>
-            <p>Beschrijving:</p>
-            <p>{{product.description}}</p>
-        </div>
-        <div>
-            <p>Prijs:</p>
-            <p>{{product.price}} muntjes</p>
-        </div>
+        <h4>{{evaluationC.title}}</h4>
     </div>

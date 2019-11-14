@@ -79,6 +79,17 @@ export class Project {
     this.groups.splice(index,1);
   }
 
+
+  addEvaluationCToProject(p: EvaluationCriterea){
+    this.evaluationCritereas.push(p);
+  }
+
+  removeEvaluationC(p: EvaluationCriterea){
+    let index = this.evaluationCritereas.indexOf(p);
+    this.evaluationCritereas.splice(index,1);
+  }
+
+
   //GETTERS AND SETTERS
 
   

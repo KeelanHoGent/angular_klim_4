@@ -39,7 +39,7 @@ import { EvaluationCAddButtonComponent } from './components/evaluation-c-add-but
     GroupComponent,
     EvaluationCComponent,
     EvaluationCFormComponent,
-    EvaluationCAddButtonComponent,
+    EvaluationCAddButtonComponent
     
   ],
   imports: [
@@ -53,7 +53,7 @@ import { EvaluationCAddButtonComponent } from './components/evaluation-c-add-but
     MatFormFieldModule,
     InlineSVGModule
   ],
-  entryComponents: [AddProductFormComponent, GroupFormComponent],
+  entryComponents: [AddProductFormComponent, GroupFormComponent, EvaluationCFormComponent],
   exports: [AddProjectComponent]
 })
 export class NewProjectModule { }

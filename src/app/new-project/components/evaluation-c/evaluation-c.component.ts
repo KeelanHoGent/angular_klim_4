@@ -2,6 +2,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/types/product.model';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { AddProductFormComponent } from '../add-product-form/add-product-form.component';
+import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
+import { EvaluationFormComponent } from 'src/app/project-progress-details/evaluation-form/evaluation-form.component';
+import { EvaluationCFormComponent } from '../evaluation-c-form/evaluation-c-form.component';
 
 @Component({
   selector: 'app-evaluation-c',
@@ -9,17 +12,17 @@ import { AddProductFormComponent } from '../add-product-form/add-product-form.co
   styleUrls: ['./evaluation-c.component.css']
 })
 export class EvaluationCComponent {
-  @Input() public product: Product;
-  @Output() public deletedProduct = new EventEmitter<Product>();
+  @Input() public evaluationC: EvaluationCriterea;
+  @Output() public deletedEvaluationC = new EventEmitter<EvaluationCriterea>();
   constructor(public dialog: MatDialog) { }
 
 
-  deleteProduct(): boolean {
-    this.deletedProduct.emit(this.product);
+  deleteEvaluationC(): boolean {
+    this.deletedEvaluationC.emit(this.evaluationC);
     return false;
   }
 
-  editProductForm(p: Product): void {
+  editEvaluationCForm(p: EvaluationCriterea): void {
     const config = new MatDialogConfig();
 
     config.disableClose = true;
@@ -27,29 +30,24 @@ export class EvaluationCComponent {
     config.autoFocus = true;
     config.data = {
       soort: true,
-      name: p.name,
-      price: p.price,
-      description: p.description,
-      image: p.image
+      title: p.title
     }
 
 
-    const dialogRef = this.dialog.open(AddProductFormComponent, config);
+    const dialogRef = this.dialog.open(EvaluationCFormComponent, config);
 
     dialogRef.afterClosed().subscribe(
       data => {
         if(data){
-          this.updateProduct(data);
+          this.updateEc(data);
         }
       }
     );
   }
 
-  updateProduct(data: any){
-    this.product.name = data.name;
-    this.product.description = data.description;
-    this.product.image = data.image;
-    this.product.price = data.price;
+  updateEc(data: any){
+    this.evaluationC.title = data.title;
+  
   }
 
 }
