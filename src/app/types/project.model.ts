@@ -28,7 +28,11 @@ export class Project {
     p._image = json.projectImage;
     p._budget = json.projectBudget;
     p._schoolYear = json.eSchoolYear;
-    p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+
+    if(json.applicationDomain !== null){
+      p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+    }
+    
     p._classRoomId = json.classRoomId;
     p.closed = !!json.closed;
     p._products = json.products.map(p => Product.fromJSON(p));

@@ -21,6 +21,7 @@ export class ProjectProgressContainerComponent implements OnInit {
   ngOnInit() {
     this.ps.getProjectByIdForProgress$(1).subscribe(p => {
       this.project = p
+      console.log(this.project );
       if(this.project.groups.length > 0){
         this.selectedGroup = this.project.groups[0];
         this.project.groups[0].showClicked = true;
