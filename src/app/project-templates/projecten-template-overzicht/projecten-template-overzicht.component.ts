@@ -11,13 +11,13 @@ import { ProjectTemplateService } from '../../services/project-template.service'
 export class ProjectenTemplateOverzichtComponent implements OnInit {
 
   public templates: ProjectTemplate[] = [
-    new ProjectTemplate('project met vuur', 'Een project met vuurproefjes', 'test'),
-    new ProjectTemplate('project met water', 'Een project met een waterrad', 'test'),
-    new ProjectTemplate('project met aarde', 'Een project met soorten gesteentes', 'test'),
-    new ProjectTemplate('project met plastiek', 'Een project met plastiek speelgoed', 'test'),
-    new ProjectTemplate( 'project met zeep', 'Een project met groene zeep',  'test'),
-    new ProjectTemplate( 'project met olie', 'Een project met verschillende soorten olie', 'test'),
-    new ProjectTemplate('project met karton', 'Een project over het gebruik van karton', 'test')
+    new ProjectTemplate('project met vuur', 'Een project met vuurproefjes', 'test', true, 1),
+    new ProjectTemplate('project met water', 'Een project met een waterrad', 'test', true, 1),
+    new ProjectTemplate('project met aarde', 'Een project met soorten gesteentes', 'test', true, 1),
+    new ProjectTemplate('project met plastiek', 'Een project met plastiek speelgoed', 'test', true, 1),
+    new ProjectTemplate( 'project met zeep', 'Een project met groene zeep',  'test', true, 1),
+    new ProjectTemplate( 'project met olie', 'Een project met verschillende soorten olie', 'test', true, 1),
+    new ProjectTemplate('project met karton', 'Een project over het gebruik van karton', 'test', true, 1)
   ];
   private projects: Observable<ProjectTemplate[]>;
   private currentProjectTemplate: ProjectTemplate;

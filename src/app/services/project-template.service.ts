@@ -21,9 +21,9 @@ export class ProjectTemplateService {
       map(x => ProjectTemplate.fromJSON(x))
     );
   }
-  getProjectTemplates$(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${environment.apiUrl}/ClassRoom/projects/${this._templateId}`).pipe(
-      map(x => x.map(p => Project.fromJSON(p)))
+  getProjectTemplates$(): Observable<ProjectTemplate[]> {
+    return this.http.get<ProjectTemplate[]>(`${environment.apiUrl}/ClassRoom/projects/${this._templateId}`).pipe(
+      map(x => x.map(p => ProjectTemplate.fromJSON(p)))
     );
   }
   addNewProjecttemplate(projecttemplate: ProjectTemplate) {

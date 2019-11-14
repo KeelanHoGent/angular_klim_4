@@ -36,11 +36,14 @@ export class AddProjectTemplateComponent implements OnInit {
       descr: [ '', [Validators.required, Validators.minLength(6)]]
     });
   }
+  // TODO applicationid en addedbygo nog fixes
   onSubmit() {
     this._projecttemplateDataService.addNewProjecttemplate(new ProjectTemplate(
       this.projecttemplate.value.name,
       this.projecttemplate.value.descr,
-      this.projecttemplate.value.image)
+      this.projecttemplate.value.image,
+      true,
+      1)
       );
   }
   getErrorMessage(errors: any) {

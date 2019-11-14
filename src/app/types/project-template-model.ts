@@ -1,32 +1,29 @@
-import { ApplicationDomain } from './applicationDomain.model';
 import { ProductTemplate } from './product-template-model';
 
 export class ProjectTemplate {
-    _id: number;
-    
-    /*private _applicationDomain: ApplicationDomain;
-    private _productsTemplates: ProductTemplate[] = [];
-*/
+    private _projectTemplateId: number;
+    private _productTemplates: ProductTemplate[];
 
-    constructor(private _name: string, private _descr: string, private _image: string){
+
+    constructor(private _name: string, private _descr: string, private _image: string, private _addedByGO: boolean,
+                private _applicationDomainId: number) {
 
     }
 
     static fromJSON(json: any): ProjectTemplate {
-        const p = new ProjectTemplate(json.projectName, json.projectDescr, json.projectImage);
-        p._id = json.projectId;
-        
-        //p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
-        // TODO: products list en groups
+        const p = new ProjectTemplate(json.projectName, json.projectDescr, json.projectImage, json.addedByGO, json.applicationDomainId);
+        p._productTemplates = json.producttemplatess.map(t => ProductTemplate.fromJSON(t));
+        p._projectTemplateId = json.projectId;
+
         return p;
 
     }
-    
-    public get id(): number {
-        return this._id;
+
+    public get projectTemplateId(): number {
+        return this._projectTemplateId;
     }
-    public set id(value: number) {
-        this._id = value;
+    public set projectTemplateId(value: number) {
+        this._projectTemplateId = value;
     }
     public get name(): string {
         return this._name;
@@ -46,17 +43,17 @@ export class ProjectTemplate {
     public set image(value: string) {
         this._image = value;
     }
-    /*
-    public get applicationDomain(): ApplicationDomain {
-        return this._applicationDomain;
+
+    public get applicationDomainId(): number {
+        return this._applicationDomainId;
     }
-    public set applicationDomain(value: ApplicationDomain) {
-        this._applicationDomain = value;
+    public set applicationDomainId(value: number) {
+        this._applicationDomainId = value;
     }
-    public get productsTemplates(): ProductTemplate[] {
-        return this._productsTemplates;
+    public get productTemplates(): ProductTemplate[] {
+        return this._productTemplates;
     }
-    public set productsTemplates(value: ProductTemplate[]) {
-        this._productsTemplates = value;
-    }*/
+    public set productTemplates(value: ProductTemplate[]) {
+        this._productTemplates = value;
+    }
 }
