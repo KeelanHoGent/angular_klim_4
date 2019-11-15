@@ -3,8 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { AddProjectFormComponent } from './new-project/components/add-project-form/add-project-form.component';
 import { AddProjectComponent } from './new-project/components/add-project/add-project.component';
 import { ProjectenContainerComponent } from "./projecten-overzicht/projecten-container/projecten-container.component";
+
 import { AddProjectTemplateComponent } from './project-templates/add-project-template/add-project-template.component';
 import { ProjectenTemplateOverzichtComponent } from './project-templates/projecten-template-overzicht/projecten-template-overzicht.component';
+
+import { ProjectProgressContainerComponent } from './project-progress-details/project-progress-container/project-progress-container.component';
+
 
 
 const routes: Routes = [
@@ -18,7 +22,11 @@ const routes: Routes = [
   {
     path: 'projecttemplates',
     component: ProjectenTemplateOverzichtComponent
-  }
+  },
+
+  {path: 'project-progress', component: ProjectProgressContainerComponent}
+
+
 ];
 
 @NgModule({

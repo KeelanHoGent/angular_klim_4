@@ -1,0 +1,20 @@
+
+
+        <!--[ngClass]="group.id === selectedGroupId ? 'groupSelected' : '' "-->
+        <div class="project" [ngClass]="group.showClicked ? 'showSelected' : '' " (click)="detailsGroup()">
+                <p class="naam">{{group.name}}</p>
+                <p class="naamBudget">budget: {{group.order.totalOrderPrice}}  
+
+                        <mat-icon *ngIf="!group.overBudget()" class="done">done</mat-icon>   
+                        <mat-icon *ngIf="group.overBudget()" class="error">error_outline</mat-icon>   
+                </p> 
+
+                <div *ngIf="group.pupils.length > 0">
+                        <h2>Leerlingen</h2>
+
+                        <p class="desc" *ngFor="let item of group.pupils">
+                                {{item.firstName}}
+                        </p>
+                </div>
+   
+        </div>
