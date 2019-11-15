@@ -20,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { ProjectService } from "./services/project.service";
 import { NewProjectModule } from './new-project/new-project.module';
 import { ProjectProgressDetailsModule } from './project-progress-details/project-progress-details.module';
+import { GroupService } from './services/group.service';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import { ProjectProgressDetailsModule } from './project-progress-details/project
   ],
   providers: [
     ProjectService,
-    TemplateService
+    TemplateService,
+    GroupService
   ],
   bootstrap: [AppComponent]
 })

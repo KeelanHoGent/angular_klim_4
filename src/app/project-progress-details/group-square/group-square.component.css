@@ -1,4 +1,4 @@
-.project {
+.group {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
   }
   
   
-  .project:hover {
+  .group:hover {
     transform: scale(1.05, 1.05);
     border-top: 0.4rem solid var(--magenta);
       cursor: pointer;
@@ -45,7 +45,7 @@
 
 
   
-  .project > .naam {
+  .group > .naam {
     font-size: 25px;
     margin-bottom: 10px;
     font-family: 'Raleway', sans-serif;
