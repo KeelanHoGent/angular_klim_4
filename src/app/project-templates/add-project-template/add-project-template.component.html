@@ -57,12 +57,13 @@
           </mat-form-field>
           <img *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}">
           <mat-form-field appearance="outline">
-            <mat-label>Toepassingsgebied</mat-label>
+            <mat-label>Onderwerp</mat-label>
             <mat-select>
-              <mat-option *ngFor="let domein of domeins" [value]="domein.value">
-                {{domein.viewValue}}
+              <mat-option *ngFor="let domein of domains" [value]="domein.id">
+                {{domein.name}}
               </mat-option>
             </mat-select>
+            
             <mat-error
               *ngIf="projecttemplate.get('image')?.errors && projecttemplate.get('image')?.touched"
             >

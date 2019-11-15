@@ -4,6 +4,8 @@ import { ProjectTemplate } from '../../types/project-template-model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ProjectTemplateService } from 'src/app/services/project-template.service';
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
+import { ProjectService } from 'src/app/services/project.service';
+import { Observable } from 'rxjs';
 
 
 
@@ -17,19 +19,16 @@ export class AddProjectTemplateComponent implements OnInit {
 
   public projecttemplate: FormGroup;
   public isEdit: boolean;
-  domeins: ApplicationDomain[];
-  constructor(private _fb: FormBuilder, private _projecttemplateDataService: ProjectTemplateService){
-    
-  }/*
-  constructor(
-    ,
-    public dialogRef: MatDialogRef<AddProjectTemplateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data) {
-      this.isEdit = data.soort;
-  }*/
+  private _domainApps: Observable<ApplicationDomain[]>;
+  domains: ApplicationDomain[];
+  constructor(private _fb: FormBuilder,
+              private _projecttemplateDataService: ProjectTemplateService,
+              private _projectDataService: ProjectService){
+    this._domainApps = this._projectDataService.getApplicationDomains$();
+  }
 
   ngOnInit() {
-
+    this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
     this.projecttemplate = this._fb.group({
       name: ['', [Validators.required, Validators.minLength(6)]],
       image: [ '', Validators.required],
