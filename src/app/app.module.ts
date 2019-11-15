@@ -24,6 +24,7 @@ import { ProjectenTemplateOverzichtComponent } from './project-templates/project
 import { ProjectenTemplateDetailComponent } from './project-templates/projecten-template-detail/projecten-template-detail.component';
 
 import { NewProjectModule } from './new-project/new-project.module';
+import { ProjectProgressDetailsModule } from './project-progress-details/project-progress-details.module';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { NewProjectModule } from './new-project/new-project.module';
     MenubarModule,
     ProjectenOverzichtModule,
     BrowserAnimationsModule,
+    ProjectProgressDetailsModule,
     HttpClientModule,
     MatListModule,
     MatCardModule,

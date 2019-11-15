@@ -1,12 +1,12 @@
 import { ApplicationDomain } from "./applicationDomain.model";
 import { Product } from "./product.model";
 import { Group } from "./group.model";
+import { EvaluationCriterea } from './evaluationCriterea.model';
 
 export class Project {
   private _id: number;
   private _name: string;
   private _descr: string;
-  private _code: string;
   private _image: string;
   private _budget: number;
   private _schoolYear: number;
@@ -15,6 +15,7 @@ export class Project {
   private _applicationDomain: ApplicationDomain;
   private _products: Product[] = [];
   private _groups: Group[] = [];
+  private _evaluationCritereas : EvaluationCriterea[] = [];
   private _classRoomId: number;
 
   static fromJSON(json: any): Project {
@@ -22,15 +23,19 @@ export class Project {
     p._id = json.projectId;
     p._name = json.projectName;
     p._descr = json.projectDescr;
-    p._code = json.projectCode;
     p._image = json.projectImage;
     p._budget = json.projectBudget;
     p._schoolYear = json.eSchoolYear;
-    p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+
+    if(json.applicationDomain !== null){
+      p._applicationDomain = ApplicationDomain.fromJSON(json.applicationDomain);
+    }
+    
     p._classRoomId = json.classRoomId;
     p._closed = !!json.closed;
     p._products = json.products.map(p => Product.fromJSON(p));
-    p._groups = json.groups.map(g => Group.fromJSON(g));
+    p._groups = json.groups.map(g => Group.fromJSONBudget(g, json.projectBudget));
+    p._evaluationCritereas = json.evaluationCritereas.map(p => EvaluationCriterea.fromJSON(p));
     return p;
   }
 
@@ -40,15 +45,23 @@ export class Project {
       projectName: this._name,
       projectDescr: this._descr,
       projectImage: this._image,
-      //projectCode: this._code,
       projectBudget: this._budget,
       eSchoolYear: this._schoolYear,
       classRoomId: this._classRoomId,
       applicationDomainId: this._applicationDomainId,
       products: this._products.map(p => p.toJson()),
-      groups: this._groups.map(p=> p.toJson())
+      groups: this._groups.map(p=> p.toJson()),
+      evaluationCritereas: this._evaluationCritereas.map(p=> p.toJson())
     }
   }
+
+
+  changeShowClickedAllGroupsFalse(){
+    this.groups.forEach(element => {
+      element.showClicked = false;
+    });
+  }
+  
 
   addProductToProject(p: Product){
     this.products.push(p);
@@ -68,7 +81,27 @@ export class Project {
     this.groups.splice(index,1);
   }
 
+
+  addEvaluationCToProject(p: EvaluationCriterea){
+    this.evaluationCritereas.push(p);
+  }
+
+  removeEvaluationC(p: EvaluationCriterea){
+    let index = this.evaluationCritereas.indexOf(p);
+    this.evaluationCritereas.splice(index,1);
+  }
+
+
   //GETTERS AND SETTERS
+
+  
+  get evaluationCritereas(): EvaluationCriterea[] {
+    return this._evaluationCritereas;
+  }
+
+  set evaluationCritereas(value: EvaluationCriterea[]) {
+    this._evaluationCritereas = value;
+  }
 
   get id(): number {
     return this._id;
@@ -94,13 +127,7 @@ export class Project {
     this._descr = value;
   }
 
-  get code(): string {
-    return this._code;
-  }
 
-  set code(value: string) {
-    this._code = value;
-  }
 
   get image(): string {
     return this._image;
