@@ -35,11 +35,11 @@
 
         <div class="formGroup">
             <label>Leerling</label>
-            <input [ngClass]="{
+            <textarea [ngClass]="{
                 'invalidInput': form.get('descriptionPupil')['errors']&& form.get('descriptionPupil').touched,
                 'validInput': !form.get('descriptionPupil')['errors'] && form.get('descriptionPupil').touched
             }" (keyup.enter)="save(form.valid)" aria-label="Criteria" placeholder="Evaluatie voor de leerling" type="text"
-                formControlName="descriptionPupil" #spy required />
+                formControlName="descriptionPupil" #spy required ></textarea>
 
             <p class="error" *ngIf="form.get('descriptionPupil')['errors'] && form.get('descriptionPupil').touched">
                 {{ getErrorMessage(form.get('descriptionPupil')['errors']) }}
@@ -56,11 +56,13 @@
 
         <div class="formGroup">
             <label>Leerkracht</label>
-            <input [ngClass]="{
+            <textarea [ngClass]="{
                 'invalidInput': form.get('descriptionPrivate')['errors']&& form.get('descriptionPrivate').touched,
                 'validInput': !form.get('descriptionPrivate')['errors'] && form.get('descriptionPrivate').touched
             }" (keyup.enter)="save(form.valid)" aria-label="Criteria" placeholder="Evaluatie voor de leerkracht" type="text"
-                formControlName="descriptionPrivate" #spy required />
+                formControlName="descriptionPrivate" #spy required >
+            
+            </textarea>
 
             <p class="error" *ngIf="form.get('descriptionPrivate')['errors'] && form.get('descriptionPrivate').touched">
                 {{ getErrorMessage(form.get('descriptionPrivate')['errors']) }}
