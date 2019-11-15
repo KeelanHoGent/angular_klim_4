@@ -58,7 +58,7 @@
           <img *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}">
           <mat-form-field appearance="outline">
             <mat-label>Onderwerp</mat-label>
-            <mat-select>
+            <mat-select formControlName="applicationDomain">
               <mat-option *ngFor="let domein of domains" [value]="domein.id">
                 {{domein.name}}
               </mat-option>

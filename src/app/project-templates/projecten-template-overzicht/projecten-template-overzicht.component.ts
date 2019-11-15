@@ -10,23 +10,17 @@ import { ProjectTemplateService } from '../../services/project-template.service'
 })
 export class ProjectenTemplateOverzichtComponent implements OnInit {
 
-  public templates: ProjectTemplate[] = [
-    new ProjectTemplate('project met vuur', 'Een project met vuurproefjes', 'test', true, 1),
-    new ProjectTemplate('project met water', 'Een project met een waterrad', 'test', true, 1),
-    new ProjectTemplate('project met aarde', 'Een project met soorten gesteentes', 'test', true, 1),
-    new ProjectTemplate('project met plastiek', 'Een project met plastiek speelgoed', 'test', true, 1),
-    new ProjectTemplate( 'project met zeep', 'Een project met groene zeep',  'test', true, 1),
-    new ProjectTemplate( 'project met olie', 'Een project met verschillende soorten olie', 'test', true, 1),
-    new ProjectTemplate('project met karton', 'Een project over het gebruik van karton', 'test', true, 1)
-  ];
+  public templates: ProjectTemplate[];
   private projects: Observable<ProjectTemplate[]>;
   private currentProjectTemplate: ProjectTemplate;
   selectedProjectTemplate: ProjectTemplate;
-
-  constructor() { }
+  public loader = true;
+  constructor(private _projecttemplateDataService: ProjectTemplateService) {
+    this.projects = this._projecttemplateDataService.getProjectTemplates$();
+   }
 
 ngOnInit() {
-
+  this._projecttemplateDataService.getProjectTemplates$().subscribe(t => this.templates = t);
   }
   onSelect(projectTemplate: ProjectTemplate): void {
     this.currentProjectTemplate = projectTemplate;

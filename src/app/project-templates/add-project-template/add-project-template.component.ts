@@ -32,7 +32,8 @@ export class AddProjectTemplateComponent implements OnInit {
     this.projecttemplate = this._fb.group({
       name: ['', [Validators.required, Validators.minLength(6)]],
       image: [ '', Validators.required],
-      descr: [ '', [Validators.required, Validators.minLength(6)]]
+      descr: [ '', [Validators.required, Validators.minLength(6)]],
+      applicationDomain: ['', Validators.required]
     });
   }
   // TODO applicationid en addedbygo nog fixes
@@ -42,7 +43,7 @@ export class AddProjectTemplateComponent implements OnInit {
       this.projecttemplate.value.descr,
       this.projecttemplate.value.image,
       true,
-      1)
+      this.projecttemplate.value.applicationDomain)
       );
   }
   getErrorMessage(errors: any) {

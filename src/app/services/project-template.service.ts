@@ -3,7 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {Project} from '../types/project.model';
-import {map} from 'rxjs/operators';
+import {map, filter} from 'rxjs/operators';
 import { ProjectTemplate } from '../types/project-template-model';
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class ProjectTemplateService {
     );
   }
   getProjectTemplates$(): Observable<ProjectTemplate[]> {
-    return this.http.get<ProjectTemplate[]>(`${environment.apiUrl}/ClassRoom/projects/${this._templateId}`).pipe(
+    return this.http.get<ProjectTemplate[]>(`${environment.apiUrl}/ProjectTemplate/projecttemplates/${this._templateId}`).pipe(
       map(x => x.map(p => ProjectTemplate.fromJSON(p)))
     );
   }
