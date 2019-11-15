@@ -99,3 +99,29 @@ textarea {
     outline: none;
 }
 
+
+
+
+.iconTrash{
+    color: var(--magenta);
+    font-size: 35px;
+    position: relative;
+    float: right;
+    cursor: pointer;
+  
+
+}
+
+.wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+.first {
+    width: 90%;
+    float:left; 
+
+}
+.second {
+  
+    float: left; 
+}
