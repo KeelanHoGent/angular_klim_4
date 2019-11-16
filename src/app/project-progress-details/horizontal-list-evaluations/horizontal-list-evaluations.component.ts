@@ -11,6 +11,7 @@ export class HorizontalListEvaluationsComponent implements OnInit {
   @Input() list: Evaluation[];
   @Input() ListTitle: string;
   @Output() public clickEvaluation = new EventEmitter<Evaluation>();
+  @Output() public deletedEvaluation = new EventEmitter<Evaluation>();
 
   constructor() { }
 
@@ -21,5 +22,14 @@ export class HorizontalListEvaluationsComponent implements OnInit {
   detailsEvaluation(evaluation: Evaluation){
     this.clickEvaluation.emit(evaluation);
   }
+
+
+  deleteEvaluation(evaluation: Evaluation){
+    this.deletedEvaluation.emit(evaluation)
+  }
+
+
+
+
 
 }

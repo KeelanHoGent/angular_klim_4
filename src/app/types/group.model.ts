@@ -52,6 +52,27 @@ export class Group {
     return this._order.totalOrderPrice > budget
   }
 
+  public addEvaluation(e : Evaluation){
+    this._evaluations.push(e);
+  }
+
+  public getEvaluationById(id: number) : Evaluation {
+    return this.evaluations.find(g => g.evaluationId == id);
+  }
+
+  public  setEvaluationAfterEdit(ev : Evaluation)  {
+     var evFound = this.evaluations.find(g => g.evaluationId == ev.evaluationId);
+     evFound.title = ev.title;
+     evFound.descriptionPupil = ev.descriptionPupil;
+     evFound.descriptionPrivate = ev.descriptionPrivate;
+  }
+
+  public removeEvaluationById(id : number){
+    var index = this.evaluations.indexOf(this.evaluations.find(g => g.evaluationId == id));
+    this.evaluations.splice(index, 1);
+    
+  }
+
   
 
     /**

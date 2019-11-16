@@ -3,7 +3,6 @@ export class EvaluationCriterea{
     private _title : number;
 
 
-
     static fromJSON(json: any): EvaluationCriterea {
         const g = new EvaluationCriterea();
         g._evaluationCritereaId = json.evaluationCritereaId; 
@@ -16,7 +15,7 @@ export class EvaluationCriterea{
       toJson(): any {
         return {
           evaluationCritereaId: this._evaluationCritereaId,
-          title: this._title
+          title: this._title,
         }
       }
     
@@ -54,6 +53,8 @@ export class EvaluationCriterea{
 	public set title(value: number) {
 		this._title = value;
 	}
+
+
 
 
 

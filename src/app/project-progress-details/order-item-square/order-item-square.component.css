@@ -1,4 +1,4 @@
-.project {
+.orderitem {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -34,7 +34,7 @@
 
 
   
-  .project > .naam {
+  .orderitem > .naam {
     font-size: 25px;
     margin-bottom: 10px;
     font-family: 'Raleway', sans-serif;
