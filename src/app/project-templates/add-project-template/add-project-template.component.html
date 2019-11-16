@@ -1,5 +1,5 @@
 <mat-card>
-    <mat-card-title>Standaardproject toevoegen</mat-card-title>
+    <mat-card-title>Projectenconcept toevoegen</mat-card-title>
     <mat-card-content>
       <form [formGroup]="projecttemplate" (ngSubmit)="onSubmit()">
           <div class="vertical">
@@ -44,8 +44,8 @@
               placeholder="Link naar de afbeelding"
               type="text"
               formControlName="image"
-              required
               data-cy="newprojecttemplateimage"
+              required
               #foto
             />
             <mat-error
@@ -55,10 +55,12 @@
               {{ getErrorMessage(projecttemplate.get('image').errors) }}
             </mat-error>
           </mat-form-field>
-          <img *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}">
-          <mat-form-field appearance="outline">
+          
+
+
+          <mat-form-field>
             <mat-label>Onderwerp</mat-label>
-            <mat-select formControlName="applicationDomain">
+            <mat-select formControlName="applicationDomain" required>
               <mat-option *ngFor="let domein of domains" [value]="domein.id">
                 {{domein.name}}
               </mat-option>
@@ -71,10 +73,24 @@
             </mat-error>
           </mat-form-field>
         
+          <mat-form-field>
+            <mat-label>Productconcepten</mat-label>
+            <mat-select formControlName="productTemplates" multiple required>
+              <mat-option >-- None --</mat-option>
+              <mat-option  *ngFor="let group of productTemplates" [value]="group">
+                  {{group.productName}}
+                </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+
+
         <button type="submit" mat-raised-button [disabled]="!projecttemplate.valid" data-cy="newprojecttemplatesubmit">
           Toevoegen
         </button>
         </div>
       </form>
+      
+      <img *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}">
     </mat-card-content>
   </mat-card>

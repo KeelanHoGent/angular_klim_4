@@ -2,58 +2,75 @@ import { ProductTemplate } from './product-template-model';
 
 export class ProjectTemplate {
     private _projectTemplateId: number;
-    private _productTemplates: ProductTemplate[];
+    private _productTemplates: ProductTemplate[] = [];
+    private _name: string;
+    private _descr: string;
+    private _image: string;
+    private _addedByGO: boolean;
+    private _applicationDomainId: number;
 
 
-    constructor(private _name: string, private _descr: string, private _image: string, private _addedByGO: boolean,
-                private _applicationDomainId: number) {
+    constructor() {
 
     }
 
     static fromJSON(json: any): ProjectTemplate {
-        const p = new ProjectTemplate(json.projectName, json.projectDescr, json.projectImage, json.addedByGO, json.applicationDomainId);
-        p._productTemplates = json.producttemplatess.map(t => ProductTemplate.fromJSON(t));
+        const p = new ProjectTemplate();
+        p._name = json.projectName;
+        p._descr = json.projectDescr;
+        p._image = json.projectImage;
+        p._addedByGO = json.addedByGO;
+        p._applicationDomainId = json.applicationDomainId;
+        p._productTemplates = json.productTemplates.map(t => ProductTemplate.fromJSON(t));
         p._projectTemplateId = json.projectId;
 
         return p;
-
     }
-
-    public get projectTemplateId(): number {
+    toJson(): any {
+        return {
+          projectId: this._projectTemplateId,
+          projectName: this._name,
+          projectDescr: this._descr,
+          projectImage: this._image,
+          applicationDomainId: this._applicationDomainId,
+          products: this._productTemplates.map(p => p.toJson())
+        };
+      }
+    get projectTemplateId(): number {
         return this._projectTemplateId;
     }
-    public set projectTemplateId(value: number) {
+    set projectTemplateId(value: number) {
         this._projectTemplateId = value;
     }
-    public get name(): string {
+    get name(): string {
         return this._name;
     }
-    public set name(value: string) {
+    set name(value: string) {
         this._name = value;
     }
-    public get descr(): string {
+    get descr(): string {
         return this._descr;
     }
-    public set descr(value: string) {
+    set descr(value: string) {
         this._descr = value;
     }
-    public get image(): string {
+    get image(): string {
         return this._image;
     }
-    public set image(value: string) {
+    set image(value: string) {
         this._image = value;
     }
 
-    public get applicationDomainId(): number {
+    get applicationDomainId(): number {
         return this._applicationDomainId;
     }
-    public set applicationDomainId(value: number) {
+    set applicationDomainId(value: number) {
         this._applicationDomainId = value;
     }
-    public get productTemplates(): ProductTemplate[] {
+    get productTemplates(): ProductTemplate[] {
         return this._productTemplates;
     }
-    public set productTemplates(value: ProductTemplate[]) {
+    set productTemplates(value: ProductTemplate[]) {
         this._productTemplates = value;
     }
 }

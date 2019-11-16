@@ -6,6 +6,7 @@ import { ProjectTemplateService } from 'src/app/services/project-template.servic
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { Observable } from 'rxjs';
+import { ProductTemplate } from 'src/app/types/product-template-model';
 
 
 
@@ -21,30 +22,34 @@ export class AddProjectTemplateComponent implements OnInit {
   public isEdit: boolean;
   private _domainApps: Observable<ApplicationDomain[]>;
   domains: ApplicationDomain[];
+  productTemplates: ProductTemplate[];
   constructor(private _fb: FormBuilder,
               private _projecttemplateDataService: ProjectTemplateService,
-              private _projectDataService: ProjectService){
+              private _projectDataService: ProjectService) {
     this._domainApps = this._projectDataService.getApplicationDomains$();
+   
   }
 
   ngOnInit() {
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
+    this._projecttemplateDataService.getProductTemplates$().subscribe(pt => this.productTemplates = pt);
     this.projecttemplate = this._fb.group({
       name: ['', [Validators.required, Validators.minLength(6)]],
       image: [ '', Validators.required],
       descr: [ '', [Validators.required, Validators.minLength(6)]],
-      applicationDomain: ['', Validators.required]
+      applicationDomain: ['', Validators.required],
+      productTemplates: ['', Validators.required]
     });
   }
   // TODO applicationid en addedbygo nog fixes
   onSubmit() {
-    this._projecttemplateDataService.addNewProjecttemplate(new ProjectTemplate(
-      this.projecttemplate.value.name,
-      this.projecttemplate.value.descr,
-      this.projecttemplate.value.image,
-      true,
-      this.projecttemplate.value.applicationDomain)
-      );
+    const p = new ProjectTemplate();
+    p.name = this.projecttemplate.value.name;
+    p.descr = this.projecttemplate.value.descr;
+    p.image = this.projecttemplate.value.image;
+    this.productTemplates.map(v => p.productTemplates.push(v)) ;
+    p.applicationDomainId = this.projecttemplate.value.applicationDomain;
+    this._projecttemplateDataService.addNewProjecttemplate(p);
   }
   getErrorMessage(errors: any) {
     if (!errors) {

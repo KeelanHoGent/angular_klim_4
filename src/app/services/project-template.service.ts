@@ -5,6 +5,7 @@ import {environment} from '../../environments/environment';
 import {Project} from '../types/project.model';
 import {map, filter} from 'rxjs/operators';
 import { ProjectTemplate } from '../types/project-template-model';
+import { ProductTemplate } from '../types/product-template-model';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,12 +22,21 @@ export class ProjectTemplateService {
       map(x => ProjectTemplate.fromJSON(x))
     );
   }
+  addNewProjecttemplate(projecttemplate: ProjectTemplate): Observable<Project> {
+    return this.http.post(`${environment.apiUrl}/ClassRoom/addProjectTemplate/1`,
+    projecttemplate.toJson()).pipe(map(Project.fromJSON));
+  }
+
+
   getProjectTemplates$(): Observable<ProjectTemplate[]> {
     return this.http.get<ProjectTemplate[]>(`${environment.apiUrl}/ProjectTemplate/projecttemplates/${this._templateId}`).pipe(
-      map(x => x.map(p => ProjectTemplate.fromJSON(p)))
+      map((list: any[]): ProjectTemplate[] => list.map(ProjectTemplate.fromJSON))
     );
   }
-  addNewProjecttemplate(projecttemplate: ProjectTemplate) {
-    throw new Error("Method not implemented.");
+  getProductTemplates$(): Observable<ProductTemplate[]> {
+    return this.http.get<ProductTemplate[]>(`${environment.apiUrl}/ProductTemplate/getAllProductTemplatesForSchool/${this._templateId}`)
+    .pipe(
+      map((list: any[]): ProductTemplate[] => list.map(ProductTemplate.fromJSON))
+    );
   }
 }

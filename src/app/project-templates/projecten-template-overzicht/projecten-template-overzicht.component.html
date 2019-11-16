@@ -28,7 +28,7 @@
                 <div>
                     <p class="mara">{{currentProjectTemplate.descr}}</p>
                 </div>
-                <button mat-raised-button color="basic" >Start Project</button>
+                
             </div>
             <div>
                 <mat-card>
@@ -37,6 +37,19 @@
             </div>
             
         </div>
+        <div>
+            <mat-card *ngFor="let producttemplate of productTemplates">
+                <mat-card-header>
+                    <mat-card-title >{{producttemplate.productName}}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image src="http://www.ifabpartners.com/wp-content/uploads/2015/12/IFAB_services_integrated_project_MAIN1.jpg" alt="project" sizes="">
+                <mat-card-content>
+                    <p>{{producttemplate.description}}</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+
+        <button mat-raised-button color="basic" >Start Project</button>
         
     </div>
     
