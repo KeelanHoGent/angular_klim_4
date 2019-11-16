@@ -25,6 +25,7 @@ import { ProjectenTemplateDetailComponent } from './project-templates/projecten-
 
 import { NewProjectModule } from './new-project/new-project.module';
 import { ProjectProgressDetailsModule } from './project-progress-details/project-progress-details.module';
+import { GroupService } from './services/group.service';
 
 
 @NgModule({
@@ -57,7 +58,9 @@ import { ProjectProgressDetailsModule } from './project-progress-details/project
   ],
   providers: [
     ProjectService,
-    ProjectTemplateService
+    ProjectTemplateService,
+    TemplateService,
+    GroupService
   ],
   bootstrap: [AppComponent]
 })

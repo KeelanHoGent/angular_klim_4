@@ -3,7 +3,7 @@ export class Evaluation {
 
     private _descriptionPrivate : number;
     private _descriptionPupil : number;
-    private _extra : number;
+    private _extra : boolean;
 
     private _evaluationCritereaId : number;
     private _title : string;
@@ -29,7 +29,8 @@ export class Evaluation {
         evaluationCritereaId : this._evaluationCritereaId,
         descriptionPrivate: this._descriptionPrivate,
         descriptionPupil: this._descriptionPupil,
-        extra: this._extra
+        extra: this._extra,
+        title: this._title
         }
       }
 
@@ -80,9 +81,9 @@ export class Evaluation {
 
     /**
      * Getter extra
-     * @return {number}
+     * @return {boolean}
      */
-	public get extra(): number {
+	public get extra(): boolean {
 		return this._extra;
 	}
 
@@ -112,9 +113,9 @@ export class Evaluation {
 
     /**
      * Setter extra
-     * @param {number} value
+     * @param {boolean} value
      */
-	public set extra(value: number) {
+	public set extra(value: boolean) {
 		this._extra = value;
 	}
 

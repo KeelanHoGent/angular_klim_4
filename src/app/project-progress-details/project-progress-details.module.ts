@@ -11,11 +11,12 @@ import { GroupSquareComponent } from './group-square/group-square.component';
 import { GroupDetailsContainerComponent } from './group-details-container/group-details-container.component';
 import { HorizontalListOrderItemsComponent } from './horizontal-list-order-items/horizontal-list-order-items.component';
 import { OrderItemSquareComponent } from './order-item-square/order-item-square.component';
-import { MatListModule , MatIconModule } from '@angular/material';
+import { MatListModule , MatIconModule, MatFormFieldModule, MatDialogModule } from '@angular/material';
 import { HorizontalListEvaluationsComponent } from './horizontal-list-evaluations/horizontal-list-evaluations.component';
 import { EvaluationSquareComponent } from './evaluation-square/evaluation-square.component';
 import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
-
+import { ButtonAddEvaluationComponent } from './button-add-evaluation/button-add-evaluation.component';
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,18 +28,21 @@ import { EvaluationFormComponent } from './evaluation-form/evaluation-form.compo
   OrderItemSquareComponent, 
   HorizontalListEvaluationsComponent,
   EvaluationSquareComponent,
-  EvaluationFormComponent],
+  EvaluationFormComponent,
+  ButtonAddEvaluationComponent],
   imports: [
     CommonModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatButtonModule,
-    MatCardModule,
     MatIconModule,
     SharedModule,
+    NewProjectModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
     MatButtonModule,
-    NewProjectModule
+    MatDialogModule
   ],
+  entryComponents: [EvaluationFormComponent],
   exports: [
     
   ]

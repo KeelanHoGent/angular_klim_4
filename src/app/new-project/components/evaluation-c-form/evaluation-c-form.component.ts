@@ -14,7 +14,7 @@ export class EvaluationCFormComponent implements OnInit {
   public isEdit: boolean;
 
   constructor(private _fb: FormBuilder,
-    public dialogRef: MatDialogRef<GroupFormComponent>,
+    public dialogRef: MatDialogRef<EvaluationCFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
       this.isEdit = data.soort;
   }
