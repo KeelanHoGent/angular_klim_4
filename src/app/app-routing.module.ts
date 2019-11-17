@@ -7,6 +7,7 @@ import { EditpageComponent } from "./edit-project/editpage/editpage.component";
 
 const routes: Routes = [
   {path: 'add-project', component: AddProjectFormComponent},
+  {path: 'add-project/:id', component: AddProjectFormComponent},
   {path: '', component: AddProjectComponent},
   {path: 'projecten', component: ProjectenContainerComponent},
   {path: 'editProject/:id', component: EditpageComponent},

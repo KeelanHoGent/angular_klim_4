@@ -64,5 +64,11 @@ export class ProjectService {
     )
   }
 
+  updateProject(id: number, project: Project): Observable<Project>{
+    console.log(project);
+    return this.http.put<Project>(`${environment.apiUrl}/Project/${id}/`,
+    project.toJson()).pipe(map(Project.fromJSON));
+  }
+
 
 }

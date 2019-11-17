@@ -1,3 +1,16 @@
-<div *ngIf="project$ | async as project">
-    hello from project met id {{project.id}}
+<div class="pagina">
+    <!-- <div *ngIf="project$ | async as project"> -->
+    <div>
+        <div> Title: {{project.name}} </div>
+        <div> Beschrijving: {{project.descr}} </div>
+        <div> Afbeelding: {{project.image}} </div>
+        <div> Budget: {{project.budget}} </div>
+        <div> Domein: {{project.applicationDomain.name}}</div>
+        <div> Producten: <span *ngFor="let p of products">
+                {{p.name}}
+            </span> </div>
+        <div> Groups: <span *ngFor="let g of groups">
+            {{g.name}}
+        </span> </div>
+    </div>
 </div>

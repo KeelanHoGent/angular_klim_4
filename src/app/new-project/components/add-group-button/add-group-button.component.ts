@@ -41,7 +41,6 @@ export class AddGroupButtonComponent {
   }
 
   addGroup(data: any): boolean {
-
     var group = new Group();
     group.name = data.name
     data.pupils.forEach(element => {

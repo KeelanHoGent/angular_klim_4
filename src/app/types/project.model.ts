@@ -42,7 +42,6 @@ export class Project {
       projectName: this._name,
       projectDescr: this._descr,
       projectImage: this._image,
-      //projectCode: this._code,
       projectBudget: this._budget,
       eSchoolYear: this._schoolYear,
       classRoomId: this._classRoomId,

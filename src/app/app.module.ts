@@ -50,7 +50,6 @@ import { EditProjectModule } from "./edit-project/edit-project.module";
     ProjectService,
     TemplateService
   ],
-  bootstrap: [AppComponent],
-  exports: [EditProjectModule]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
