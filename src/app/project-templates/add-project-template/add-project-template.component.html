@@ -76,7 +76,6 @@
           <mat-form-field>
             <mat-label>Productconcepten</mat-label>
             <mat-select formControlName="productTemplates" multiple required>
-              <mat-option >-- None --</mat-option>
               <mat-option  *ngFor="let group of productTemplates" [value]="group">
                   {{group.productName}}
                 </mat-option>
@@ -91,6 +90,17 @@
         </div>
       </form>
       
-      <img *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}">
+      <img class="projectfoto" *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}">
     </mat-card-content>
   </mat-card>
+<div class="parent">
+    <mat-card *ngFor="let producttemplate of geselecteerdeProductTemplates"  class="lijstitem">
+        <mat-card-header>
+            <mat-card-title >{{producttemplate.productName}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image class="productfoto" src="{{producttemplate.image}}" alt="project" sizes="">
+        <mat-card-content>
+            <p>{{producttemplate.description}}</p>
+        </mat-card-content>
+    </mat-card>
+</div>

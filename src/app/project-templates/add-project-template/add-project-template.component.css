@@ -7,3 +7,29 @@
 .vertical > *{
     margin-bottom: 1em;
 }
+.lijstitem{
+    max-width: 250px;
+    margin: 3em;
+    flex: 0 0 auto;
+    
+    
+}
+.productfoto {
+    width: 200px !important;
+    height: 200px !important;
+}
+.projectfoto {
+    max-width: 500px !important;
+    max-height: 500px !important;
+}
+.parent {
+    display: flex;
+    flex-wrap: nowrap; 
+    overflow: auto;
+}
+.container{
+    display: flex;
+    margin: auto 0;
+    justify-content: center;
+      
+}

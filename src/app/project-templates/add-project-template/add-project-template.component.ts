@@ -23,16 +23,18 @@ export class AddProjectTemplateComponent implements OnInit {
   private _domainApps: Observable<ApplicationDomain[]>;
   domains: ApplicationDomain[];
   productTemplates: ProductTemplate[];
+  geselecteerdeProductTemplates: ProductTemplate[];
   constructor(private _fb: FormBuilder,
               private _projecttemplateDataService: ProjectTemplateService,
               private _projectDataService: ProjectService) {
     this._domainApps = this._projectDataService.getApplicationDomains$();
-   
+
   }
 
   ngOnInit() {
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
     this._projecttemplateDataService.getProductTemplates$().subscribe(pt => this.productTemplates = pt);
+
     this.projecttemplate = this._fb.group({
       name: ['', [Validators.required, Validators.minLength(6)]],
       image: [ '', Validators.required],
@@ -40,6 +42,7 @@ export class AddProjectTemplateComponent implements OnInit {
       applicationDomain: ['', Validators.required],
       productTemplates: ['', Validators.required]
     });
+    this.projecttemplate.get('productTemplates').valueChanges.subscribe(pt => this.geselecteerdeProductTemplates = pt);
   }
   // TODO applicationid en addedbygo nog fixes
   onSubmit() {
