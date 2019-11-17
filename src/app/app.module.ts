@@ -20,6 +20,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { ProjectService } from "./services/project.service";
 import { NewProjectModule } from './new-project/new-project.module';
 import { EditProjectModule } from "./edit-project/edit-project.module";
+import { ProjectProgressDetailsModule } from './project-progress-details/project-progress-details.module';
+import { GroupService } from './services/group.service';
 
 
 @NgModule({
@@ -32,6 +34,7 @@ import { EditProjectModule } from "./edit-project/edit-project.module";
     MenubarModule,
     ProjectenOverzichtModule,
     BrowserAnimationsModule,
+    ProjectProgressDetailsModule,
     HttpClientModule,
     MatListModule,
     MatCardModule,
@@ -48,7 +51,8 @@ import { EditProjectModule } from "./edit-project/edit-project.module";
   ],
   providers: [
     ProjectService,
-    TemplateService
+    TemplateService,
+    GroupService
   ],
   bootstrap: [AppComponent]
 })

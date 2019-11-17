@@ -131,6 +131,18 @@
 
         </div>
     </div>
+    <div class="formSectie">
+        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">evaluatie criterea</span> toe
+        </mat-card-subtitle>
+        <div class=producten>
+            <div *ngFor="let p of evaluationCs">
+                <app-evaluation-c (deletedEvaluationC)="deleteEvaluationC($event)" [evaluationC]="p"></app-evaluation-c>
+            </div>
+            <div>
+                <app-evaluation-c-add-button (newEvaluationC)="addNewEvaluationCToProject($event)"></app-evaluation-c-add-button>
+            </div>
+        </div>
+    </div>
     <mat-dialog-actions class="buttonContainer">
         <button routerLink="/projecten" class="button" mat-raised-button>
             annuleer

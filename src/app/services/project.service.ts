@@ -5,6 +5,7 @@ import { Project } from '../types/project.model';
 import { Observable, Subject, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ApplicationDomain } from '../types/applicationDomain.model';
+import { Group } from '../types/group.model';
 
 
 @Injectable({
@@ -58,8 +59,8 @@ export class ProjectService {
     );
   }
 
-  getProjectById$(id: number){
-    return this.http.get<Project>(`${environment.apiUrl}/Project/${id}/`).pipe(
+  getProjectById$(id: number) : Observable<Project>{
+    return this.http.get<Project>(`${environment.apiUrl}/Project/${id}`).pipe(
       map(x => Project.fromJSON(x))
     )
   }
@@ -70,5 +71,19 @@ export class ProjectService {
     project.toJson()).pipe(map(Project.fromJSON));
   }
 
+
+  getProjectByIdForProgress$(id: number) : Observable<Project>{
+    return this.http.get<Project>(`${environment.apiUrl}/project/progress/${id}`).pipe(
+      map(x => Project.fromJSON(x))
+    )
+  }
+
+
+
+  getProjectGroupsById(id: number): Observable<Group[]> {
+    return this.http.get<Project[]>(`${environment.apiUrl}/project/groups/${id}`).pipe(
+      map(x => x.map(p => Group.fromJSON(p)))
+    );
+  }
 
 }

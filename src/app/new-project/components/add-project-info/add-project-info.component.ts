@@ -8,6 +8,7 @@ import { Product } from '../../../types/product.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Group } from 'src/app/types/group.model';
 import { switchMap } from 'rxjs/operators';
+import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
 
 @Component({
   selector: 'app-add-project-info',
@@ -23,6 +24,8 @@ export class AddProjectInfoComponent implements OnInit {
   public groups: Group[];
   public newProject: Project;
   public isEdit: boolean;
+  public evaluationCs : EvaluationCriterea[];
+  
 
 
   public error: String = "../../../../assets/images/error.svg";
@@ -78,7 +81,6 @@ export class AddProjectInfoComponent implements OnInit {
     this.projectFg = this._fb.group({
       name: [isEdit ? this.newProject.name : '', Validators.required],
       description: [isEdit ? this.newProject.descr : '', Validators.required],
-      code: [isEdit ? this.newProject.code : '', Validators.required],
       image: [isEdit ? this.newProject.image : '', Validators.required],
       budget: [isEdit ? this.newProject.budget : '', Validators.required],
       schoolYear: [isEdit ? this.newProject.schoolYear : '', Validators.required],
@@ -95,7 +97,6 @@ export class AddProjectInfoComponent implements OnInit {
     if (!this.isEdit) {
       this.newProject.name = this.projectFg.value.name;
       this.newProject.descr = this.projectFg.value.description;
-      this.newProject.code = this.projectFg.value.code;
       this.newProject.image = this.projectFg.value.image;
       this.newProject.schoolYear = this.projectFg.value.schoolYear;
       this.newProject.applicationDomainId = this.projectFg.value.applicationDomain;
@@ -132,6 +133,17 @@ export class AddProjectInfoComponent implements OnInit {
   deleteGroup(g: Group): void {
     this.newProject.removeGroup(g);
     this.groups = this.newProject.groups;
+  }
+
+  addNewEvaluationCToProject(g: EvaluationCriterea) {
+    this.evaluationCs.push(g);
+    this.newProject.addEvaluationCToProject(g);
+  }
+
+  deleteEvaluationC(g: EvaluationCriterea): void {
+    let index = this.evaluationCs.indexOf(g);
+    this.evaluationCs.splice(index, 1);
+    this.newProject.removeEvaluationC(g);
   }
 
   getErrorMessage(errors: any) {

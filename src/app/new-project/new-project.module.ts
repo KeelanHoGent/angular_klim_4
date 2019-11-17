@@ -21,6 +21,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { InlineSVGModule } from 'ng-inline-svg';
 import { GroupComponent } from './components/group/group.component';
+import { EvaluationCComponent } from './components/evaluation-c/evaluation-c.component';
+import { EvaluationCFormComponent } from './components/evaluation-c-form/evaluation-c-form.component';
+import { EvaluationCAddButtonComponent } from './components/evaluation-c-add-button/evaluation-c-add-button.component';
 
 
 @NgModule({
@@ -34,6 +37,9 @@ import { GroupComponent } from './components/group/group.component';
     AddGroupButtonComponent,
     GroupFormComponent,
     GroupComponent,
+    EvaluationCComponent,
+    EvaluationCFormComponent,
+    EvaluationCAddButtonComponent
     
   ],
   imports: [
@@ -47,7 +53,7 @@ import { GroupComponent } from './components/group/group.component';
     MatFormFieldModule,
     InlineSVGModule
   ],
-  entryComponents: [AddProductFormComponent, GroupFormComponent],
+  entryComponents: [AddProductFormComponent, GroupFormComponent, EvaluationCFormComponent],
   exports: [AddProjectComponent]
 })
 export class NewProjectModule { }

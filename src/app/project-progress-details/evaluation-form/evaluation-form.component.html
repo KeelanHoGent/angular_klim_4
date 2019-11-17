@@ -1,0 +1,113 @@
+<mat-card-title *ngIf="isEdit; else newGroup">
+    Evaluatie aanpassen
+</mat-card-title>
+<ng-template #newGroup>
+    <mat-card-title>Nieuwe evaluatie</mat-card-title>
+</ng-template>
+
+
+
+<mat-card-content class="container">
+    <form class='container' [formGroup]="form">
+
+        <div class="formGroup">
+            <label>Beschrijving van de evaluatie</label>
+
+
+            <input [ngClass]="{
+                        'invalidInput': form.get('title')['errors']&& form.get('title').touched,
+                        'validInput': !form.get('title')['errors'] && form.get('title').touched
+                    }" (keyup.enter)="save(form.valid)" aria-label="Criteria" placeholder="Criteria" type="text"
+                formControlName="title" #spy required />
+
+
+
+
+            <p class="error" *ngIf="form.get('title')['errors'] && form.get('title').touched">
+                {{ getErrorMessage(form.get('title')['errors']) }}
+                <img src="{{error}}">
+            </p>
+            <div *ngIf="!form.get('title')['errors'] && form.get('title').touched">
+                <img class="correct" src="{{correct}}">
+            </div>
+
+        </div>
+
+
+
+        <div class="formGroup">
+            <label>Voor de leerlingen</label>
+            <textarea [ngClass]="{
+                'invalidInput': form.get('descriptionPupil')['errors']&& form.get('descriptionPupil').touched,
+                'validInput': !form.get('descriptionPupil')['errors'] && form.get('descriptionPupil').touched
+            }" (keyup.enter)="save(form.valid)" aria-label="Criteria" placeholder="Evaluatie voor de leerling"
+                type="text" formControlName="descriptionPupil" #spy required></textarea>
+
+            <p class="error" *ngIf="form.get('descriptionPupil')['errors'] && form.get('descriptionPupil').touched">
+                {{ getErrorMessage(form.get('descriptionPupil')['errors']) }}
+                <img src="{{error}}">
+            </p>
+            <div *ngIf="!form.get('descriptionPupil')['errors'] && form.get('descriptionPupil').touched">
+                <img class="correct" src="{{correct}}">
+            </div>
+
+        </div>
+
+
+
+
+        <div class="formGroup">
+            <label>Voor de leerkracht</label>
+            <textarea [ngClass]="{
+                'invalidInput': form.get('descriptionPrivate')['errors']&& form.get('descriptionPrivate').touched,
+                'validInput': !form.get('descriptionPrivate')['errors'] && form.get('descriptionPrivate').touched
+            }" (keyup.enter)="save(form.valid)" aria-label="Criteria" placeholder="Evaluatie voor de leerkracht"
+                type="text" formControlName="descriptionPrivate" #spy required>
+
+            </textarea>
+
+            <p class="error" *ngIf="form.get('descriptionPrivate')['errors'] && form.get('descriptionPrivate').touched">
+                {{ getErrorMessage(form.get('descriptionPrivate')['errors']) }}
+                <img src="{{error}}">
+            </p>
+            <div *ngIf="!form.get('descriptionPrivate')['errors'] && form.get('descriptionPrivate').touched">
+                <img class="correct" src="{{correct}}">
+            </div>
+
+        </div>
+
+
+
+
+        <mat-dialog-actions class="buttonContainer">
+
+            <div class="wrapper">
+                <div class="first">
+
+                    <button type="button" class="button" (click)="close()" mat-raised-button>
+                        annuleer
+                    </button>
+
+                    <button class="button" (keyup.enter)="save(form.valid)" *ngIf="!isEdit; else newP"
+                        (click)="save(form.valid)" type="submit" mat-raised-button type="button" color='primary'
+                        [disabled]='!form.valid'>
+                        Voeg evaluatie toe
+                    </button>
+
+                    <ng-template #newP>
+                        <button type="button" class="button" data-dismiss="modal" (keyup.enter)="save(form.valid)"
+                            (click)="save(form.valid)" type="submit" mat-raised-button color='primary'
+                            [disabled]='!form.valid'>
+                            Sla op
+                        </button>
+                    </ng-template>
+                </div>
+
+                <div class="second">
+                    <mat-icon (click)="delete()" class="iconTrash" *ngIf="data.extra && isEdit">delete</mat-icon>
+                </div>
+
+            </div>
+        </mat-dialog-actions>
+    </form>
+</mat-card-content>
