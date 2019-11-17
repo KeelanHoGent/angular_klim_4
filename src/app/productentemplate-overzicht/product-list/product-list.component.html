@@ -1,5 +1,15 @@
-<div class=producten>
-    <div *ngFor="let p of productTemplates">
-        <app-product-template [product]="p"></app-product-template>
-    </div>
+<div class="body-wrapper">
+  <div class="list-title">
+    <h1>Lopende modules</h1>
 
+    <button routerLink="/add-product-template" mat-raised-button type="button" color="default" rounded="true"
+      data-toggle="modal">
+      <mat-icon class="icon">add</mat-icon>Nieuw product template
+    </button>
+  </div>
+  <div class=producten>
+    <div *ngFor="let p of productTemplates">
+      <app-product-template [product]="p"></app-product-template>
+    </div>
+  </div>
+</div>
