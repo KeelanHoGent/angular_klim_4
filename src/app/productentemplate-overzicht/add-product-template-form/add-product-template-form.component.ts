@@ -4,6 +4,16 @@ import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms'
 import { TemplateService } from 'src/app/services/template.service';
 import { Variation } from 'src/app/types/variation.model';
 
+function validateVariations(control: FormGroup): {[key: string]: any}{
+
+  const genVar = control.get('genVar');
+  const vars = control.get('variations');
+  if(genVar.value.length < 2  && vars.value.length < 2) {
+  return {required: true};
+  }
+  return null;
+}
+
 @Component({
   selector: 'app-add-product-template-form',
   templateUrl: './add-product-template-form.component.html',
@@ -18,7 +28,7 @@ export class AddProductTemplateFormComponent implements OnInit {
     {name: 'Karton', description: 'niet onder water steken'},
     {name: 'Andere', description: 'hier komt nog de mogelijkheid om een eigen categorie toe te voegen'}];
   public variations =  new Array<Variation>();
-  variationsCheck = new FormControl(false);
+   variationsCheck = new FormControl(false);
     public readonly graden = ['eerste', 'tweede', 'derde'];
 
   constructor(
@@ -39,10 +49,11 @@ export class AddProductTemplateFormComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(2)]],
       image: ['', [Validators.required, Validators.minLength(2)]],
       categories: ['', [Validators.required]],
-      score: ['', [Validators.required], Validators.max(5)],
+      score: ['', [Validators.required]],
+      variationsCheck: [''],
       genVar: [''],
       variations: ['']
-    })
+    }, {validators: validateVariations})
   }
 
   getErrorMessage(errors: any) {
@@ -52,6 +63,7 @@ export class AddProductTemplateFormComponent implements OnInit {
     if(errors.max) {
       return 'Score mag maar max 5 zijn'
     }
-  }
+  }  
 
+  
 }
