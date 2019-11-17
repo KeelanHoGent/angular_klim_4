@@ -13,9 +13,9 @@ export class TemplateService {
     
   }
 
-  // getProductTemplates$() {
-  //   return this.http.get<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/getAllProductTemplatesForSchool`)
-  //   .pipe(map(pt => ProductTemplate.fromJSON(pt)))
-  // }
+  getProductTemplates$() {
+    // return this.http.get<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/getAllProductTemplatesForSchool`)
+    // .pipe(map(pt => ProductTemplate.fromJSON(pt)))
+  }
 
 }

@@ -1,9 +1,12 @@
+import { Variation } from './variation.model';
+
 export class ProductTemplate {
     private _id: number;
     private _name: string;
     private _description: string;
     private _image: string;
     private _categoryTemplateId: number;
+    private _variations = new Array<Variation>();
 
     toJson(): any {
         return {
@@ -11,7 +14,8 @@ export class ProductTemplate {
             productName: this._name,
             description: this._description,
             productImage: this._image,
-            categoryTemplateId: this._categoryTemplateId
+            categoryTemplateId: this._categoryTemplateId,
+            variations: this.variations.map(va => va.toJson())
         }
     }
 
@@ -22,7 +26,8 @@ export class ProductTemplate {
         result.description = p.description;
         result.image = p.productImage;
         result.categoryTemplateId = p.categoryTemplateId;
-
+        p.variations.map(Variation.fromJSON);
+        
         return result;
     }
 
@@ -62,5 +67,13 @@ export class ProductTemplate {
 
     set image(value: string) {
         this._image = value;
+    }
+
+    get variations(): Variation[] {
+        return this._variations;
+    }
+
+    set variations(v: Variation[]){
+        this._variations = v;
     }
 }

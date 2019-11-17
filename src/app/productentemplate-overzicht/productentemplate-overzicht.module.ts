@@ -4,9 +4,8 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductTemplateComponent } from './product-template/product-template.component';
 import { AddProductTemplateFormComponent } from './add-product-template-form/add-product-template-form.component';
 import { RouterModule } from '@angular/router';
-import { MatFormFieldModule, MatCardModule, MatButtonModule, MatIconModule } from '@angular/material';
+import { MatFormFieldModule, MatCardModule, MatButtonModule, MatIconModule, MatOptionModule, MatSelectModule, MatTooltipModule, MatCheckboxModule, MatDialogActions } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
-
 
 
 @NgModule({
@@ -20,9 +19,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatIconModule,
     MatButtonModule,
     MatCardModule,
+    MatOptionModule,
+    MatSelectModule,
     ReactiveFormsModule,
     RouterModule,
     MatFormFieldModule,
+    MatTooltipModule,
+    MatCheckboxModule
   ],
   exports: [
     ProductListComponent
