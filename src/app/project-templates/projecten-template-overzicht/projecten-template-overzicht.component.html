@@ -1,5 +1,11 @@
 <h2 class="header2">Standaardprojecten</h2>
-<button mat-raised-button color="primary" class="mara"  routerLink="/add-project-template">Nieuw template</button>
+<button mat-raised-button color="primary" class="mara"  routerLink="/add-project-template">
+    <span class="mat-button-wrapper">
+        <mat-icon _ngcontent-bui-c1="" class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">add</mat-icon>
+        Nieuw
+    </span>
+    
+</button>
 <div class="parent">
     <mat-card *ngFor="let template of templates" class="lijstitem">
         <mat-card-header>
@@ -37,19 +43,23 @@
             </div>
             
         </div>
-        <div>
-            <mat-card *ngFor="let producttemplate of productTemplates">
+        <div class="parent">
+            <mat-card *ngFor="let producttemplate of this.currentProjectTemplate.productTemplates"  class="lijstitem">
                 <mat-card-header>
                     <mat-card-title >{{producttemplate.productName}}</mat-card-title>
                 </mat-card-header>
-                <img mat-card-image src="http://www.ifabpartners.com/wp-content/uploads/2015/12/IFAB_services_integrated_project_MAIN1.jpg" alt="project" sizes="">
+                <img mat-card-image class="productfoto" src="{{producttemplate.image}}" alt="project" sizes="">
                 <mat-card-content>
                     <p>{{producttemplate.description}}</p>
                 </mat-card-content>
             </mat-card>
         </div>
 
-        <button mat-raised-button color="basic" >Start Project</button>
+        <div class="h-row">
+                <button mat-raised-button  class="mara but" color="primary" >Start Project</button>
+                <button mat-raised-button class="mara but" color="accent" >Project bewerken</button>
+        </div>
+        
         
     </div>
     

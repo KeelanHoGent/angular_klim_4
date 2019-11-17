@@ -59,7 +59,6 @@ import { GroupService } from './services/group.service';
   providers: [
     ProjectService,
     ProjectTemplateService,
-    TemplateService,
     GroupService
   ],
   bootstrap: [AppComponent]

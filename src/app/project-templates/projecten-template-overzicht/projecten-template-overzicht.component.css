@@ -5,6 +5,10 @@
     
     
 }
+.productfoto {
+    width: 200px !important;
+    height: 200px !important;
+}
 .parent {
     display: flex;
     flex-wrap: nowrap; 
@@ -58,4 +62,8 @@
 }
 .topmara{
     margin-top: 2em;
+}
+.but {
+    min-width: 200px;
+    min-height: 50px;
 }
