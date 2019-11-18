@@ -24,8 +24,8 @@ export class AddProjectInfoComponent implements OnInit {
   public groups: Group[];
   public newProject: Project;
   public isEdit: boolean;
-  public evaluationCs : EvaluationCriterea[];
-  
+  public evaluationCs: EvaluationCriterea[];
+
 
 
   public error: String = "../../../../assets/images/error.svg";
@@ -65,9 +65,10 @@ export class AddProjectInfoComponent implements OnInit {
           this.isEdit = true;
           this._route.paramMap.pipe(switchMap((params: ParamMap) => this._projectDataService.getProjectById$(+params.get('id')))).subscribe((p: Project) => {
             this.newProject = p;
+            
             this.groups = p.groups;
             this.products = p.products;
-            console.log(this.newProject)
+            this.evaluationCs = p.evaluationCritereas;
             resolve(true);    // een edit pagina 
           });
         } else {
@@ -85,7 +86,7 @@ export class AddProjectInfoComponent implements OnInit {
       image: [isEdit ? this.newProject.image : '', Validators.required],
       budget: [isEdit ? this.newProject.budget : '', Validators.required],
       schoolYear: [isEdit ? this.newProject.schoolYear : '', Validators.required],
-      applicationDomain: [isEdit ? this.newProject.applicationDomain : '', Validators.required]
+      applicationDomain: [isEdit ? '' : '', Validators.required]
     });
     if (isEdit) {
       this.projectFg.controls['applicationDomain'].setValue(this.newProject.applicationDomain) //werkt nog niet 
@@ -95,13 +96,15 @@ export class AddProjectInfoComponent implements OnInit {
 
   // Opslaan van een nieuwe project of een project updaten 
   submitProject() {
-    if (!this.isEdit) {
-      this.newProject.name = this.projectFg.value.name;
-      this.newProject.descr = this.projectFg.value.description;
-      this.newProject.image = this.projectFg.value.image;
-      this.newProject.schoolYear = this.projectFg.value.schoolYear;
-      this.newProject.applicationDomainId = this.projectFg.value.applicationDomain;
+    this.newProject.name = this.projectFg.value.name;
+    this.newProject.descr = this.projectFg.value.description;
+    this.newProject.image = this.projectFg.value.image;
+    this.newProject.schoolYear = this.projectFg.value.schoolYear;
+    this.newProject.applicationDomainId = this.projectFg.value.applicationDomain;
 
+    console.log(this.newProject.applicationDomainId);
+
+    if (!this.isEdit) {
       this._projectDataService.addNewProject(this.newProject)
         .subscribe(res => {
           this.router.navigateByUrl("/projecten");
@@ -137,14 +140,13 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   addNewEvaluationCToProject(g: EvaluationCriterea) {
-    this.evaluationCs.push(g);
     this.newProject.addEvaluationCToProject(g);
+    this.evaluationCs = this.newProject.evaluationCritereas;
   }
 
   deleteEvaluationC(g: EvaluationCriterea): void {
-    let index = this.evaluationCs.indexOf(g);
-    this.evaluationCs.splice(index, 1);
     this.newProject.removeEvaluationC(g);
+    this.evaluationCs = this.newProject.evaluationCritereas;
   }
 
   getErrorMessage(errors: any) {
