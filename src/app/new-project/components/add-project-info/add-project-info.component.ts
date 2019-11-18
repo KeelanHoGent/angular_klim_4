@@ -40,6 +40,7 @@ export class AddProjectInfoComponent implements OnInit {
     this.newProject = new Project();
     this.products = this.newProject.products;
     this.groups = this.newProject.groups;
+    this.evaluationCs = this.newProject.evaluationCritereas;
 
     this._domainApps = this._projectDataService.getApplicationDomains$();
   }
