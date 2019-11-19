@@ -1,35 +1,45 @@
 .vertical{
-        display: flex;
-        flex-direction: column;
+    display: flex;
+    flex-direction: column;
 
 }
 
 .vertical > *{
-    margin-bottom: 1em;
+margin-bottom: 1em;
 }
 .lijstitem{
-    max-width: 250px;
-    margin: 3em;
-    flex: 0 0 auto;
-    
-    
+max-width: 250px;
+margin: 3em;
+flex: 0 0 auto;
+
+flex-direction: column;
+
+
 }
 .productfoto {
-    width: 200px !important;
-    height: 200px !important;
+width: 200px !important;
+height: 200px !important;
 }
 .projectfoto {
-    max-width: 500px !important;
-    max-height: 500px !important;
+max-width: 500px !important;
+max-height: 500px !important;
 }
 .parent {
-    display: flex;
-    flex-wrap: nowrap; 
-    overflow: auto;
+display: flex;
+flex-wrap: nowrap; 
+overflow: auto;
+flex-direction: column;
 }
 .container{
-    display: flex;
-    margin: auto 0;
-    justify-content: center;
-      
+display: flex;
+margin: auto 0;
+justify-content: center;
+  
+}
+.h-row {
+display: flex;
+flex-direction: row;
+align-items: baseline;
+justify-content: space-evenly;
+margin: auto 0;
 }

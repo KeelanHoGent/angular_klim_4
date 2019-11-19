@@ -10,6 +10,9 @@ import { ProductTemplate } from '../types/product-template-model';
   providedIn: 'root'
 })
 export class ProjectTemplateService {
+  updateProjectTemplate(_template: ProjectTemplate) {
+    throw new Error("Method not implemented.");
+  }
   private _templateId: number;
   constructor(private http: HttpClient) {
     // Dit is om makkelijk te kunnen testen met de data die in de database zit als mockdata

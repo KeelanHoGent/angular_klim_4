@@ -1,69 +1,29 @@
 <h2 class="header2">Standaardprojecten</h2>
-<button mat-raised-button color="primary" class="mara"  routerLink="/add-project-template">
+<button mat-raised-button color="primary" class="mara"  (click)="onSelectNieuw()">
     <span class="mat-button-wrapper">
-        <mat-icon _ngcontent-bui-c1="" class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">add</mat-icon>
+        <mat-icon _ngcontent-puw-c1="" class="mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">add</mat-icon>
         Nieuw
     </span>
     
 </button>
-<div class="parent">
-    <mat-card *ngFor="let template of templates" class="lijstitem">
-        <mat-card-header>
-            <mat-card-title data-cy="projectemplatesoverzichtname">{{template.name}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image src="http://www.ifabpartners.com/wp-content/uploads/2015/12/IFAB_services_integrated_project_MAIN1.jpg" alt="project" sizes="">
-        <mat-card-content>
-            <p>{{template.descr}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-                <button mat-button (click)="onSelect(template)">Details</button>
-                <button mat-button>Start Project</button>
-        </mat-card-actions>
-    </mat-card>
-</div>
-<div *ngIf="currentProjectTemplate" class="container topmara" #huidigeTemplate>
-    <div class="v-row"> 
-            
-        <div class="h-row">
-            
-            <div class="v-row para">
-                <div>
-                    <h4 class="header4">{{currentProjectTemplate.name}}</h4>
-                    
-                </div>
-                <div>
-                    <p class="mara">{{currentProjectTemplate.descr}}</p>
-                </div>
-                
-            </div>
-            <div>
-                <mat-card>
-                    <img src="http://www.ifabpartners.com/wp-content/uploads/2015/12/IFAB_services_integrated_project_MAIN1.jpg" alt="project" class="afbeelding">
+<div class="h-row">
+        <div class="parent">
+                <mat-card *ngFor="let template of templates" class="lijstitem">
+                    <mat-card-header>
+                        <mat-card-title class="kleurtje" data-cy="projectemplatesoverzichtname">{{template.name}}</mat-card-title>
+                    </mat-card-header>
+                    <img mat-card-image src="http://www.ifabpartners.com/wp-content/uploads/2015/12/IFAB_services_integrated_project_MAIN1.jpg" alt="project" sizes="">
+                    <mat-card-content>
+                        <p>{{template.descr}}</p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                            <button mat-button (click)="onSelect(template)">Details</button>
+                            <button mat-button color="primary">Start Project</button>
+                    </mat-card-actions>
                 </mat-card>
             </div>
-            
-        </div>
-        <div class="parent">
-            <mat-card *ngFor="let producttemplate of this.currentProjectTemplate.productTemplates"  class="lijstitem">
-                <mat-card-header>
-                    <mat-card-title >{{producttemplate.productName}}</mat-card-title>
-                </mat-card-header>
-                <img mat-card-image class="productfoto" src="{{producttemplate.image}}" alt="project" sizes="">
-                <mat-card-content>
-                    <p>{{producttemplate.description}}</p>
-                </mat-card-content>
-            </mat-card>
-        </div>
-
-        <div class="h-row">
-                <button mat-raised-button  class="mara but" color="primary" >Start Project</button>
-                <button mat-raised-button class="mara but" color="accent" >Project bewerken</button>
-        </div>
-        
-        
-    </div>
-    
-
-    
-    
+            <div>
+                <app-add-project-template  *ngIf="status ===1" ></app-add-project-template>
+                <app-edit-project-template  *ngIf="status ===2" [template]="currentProjectTemplate"></app-edit-project-template>
+            </div>
 </div>

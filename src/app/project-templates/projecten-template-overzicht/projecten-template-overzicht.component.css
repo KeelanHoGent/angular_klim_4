@@ -3,6 +3,7 @@
     margin: 3em;
     flex: 0 0 auto;
     
+    flex-direction: column;
     
 }
 .productfoto {
@@ -13,6 +14,8 @@
     display: flex;
     flex-wrap: nowrap; 
     overflow: auto;
+    
+    flex-direction: column;
 }
 .container{
     display: flex;
@@ -42,7 +45,7 @@
     font-size: 2em;
     font-weight: bold;
     text-align: center;
-    color: #008b8b;
+    color: var(--magenta);
 }
 
 .header4{
@@ -66,4 +69,7 @@
 .but {
     min-width: 200px;
     min-height: 50px;
+}
+.kleurtje{
+    color: var(--magenta);
 }

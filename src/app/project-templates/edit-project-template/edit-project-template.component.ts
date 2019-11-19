@@ -12,20 +12,21 @@ import { delay } from 'q';
 
 
 @Component({
-  selector: 'app-add-project-template',
-  templateUrl: './add-project-template.component.html',
-  styleUrls: ['./add-project-template.component.css']
+  selector: 'app-edit-project-template',
+  templateUrl: './edit-project-template.component.html',
+  styleUrls: ['./edit-project-template.component.css']
 })
 
-export class AddProjectTemplateComponent implements OnInit {
-
+export class EditProjectTemplateComponent implements OnInit {
+  @Input() template?: ProjectTemplate;
   public projecttemplate: FormGroup;
+  public isCreate: boolean;
   domains: ApplicationDomain[] = [];
   productTemplates: ProductTemplate[];
   geselecteerdeProductTemplates: ProductTemplate[];
   constructor(private _fb: FormBuilder,
-    private _projecttemplateDataService: ProjectTemplateService,
-    private _projectDataService: ProjectService) {
+              private _projecttemplateDataService: ProjectTemplateService,
+              private _projectDataService: ProjectService) {
 
 
   }
@@ -38,28 +39,31 @@ export class AddProjectTemplateComponent implements OnInit {
     this.projecttemplate.get('productTemplates').valueChanges.subscribe(pt => this.geselecteerdeProductTemplates = pt);
   }
   onSubmit() {
-    const p = new ProjectTemplate();
-    p.name = this.projecttemplate.value.name;
-    p.descr = this.projecttemplate.value.descr;
-    p.image = this.projecttemplate.value.image;
-    this.productTemplates.map(v => p.productTemplates.push(v));
-    p.applicationDomainId = this.projecttemplate.value.applicationDomain;
-    this._projecttemplateDataService.addNewProjecttemplate(p);
+    this.template.name = this.projecttemplate.value.name;
+    this.template.descr = this.projecttemplate.value.descr;
+    this.template.image = this.projecttemplate.value.image;
+    this.template.productTemplates.length = 0;
+    this.productTemplates.map(v => this.template.productTemplates.push(v)) ;
+    this.template.applicationDomainId = this.projecttemplate.value.applicationDomain;
+    this._projecttemplateDataService.updateProjectTemplate(this.template);
+
 
   }
   setForm() {
+
+    this.geselecteerdeProductTemplates = this.template.productTemplates;
     this.projecttemplate = this._fb.group({
-      name: ['', [Validators.required, Validators.minLength(6)]],
-      image: ['', Validators.required],
-      descr: ['', [Validators.required, Validators.minLength(6)]],
-      applicationDomain: [this.domains, Validators.required],
+      name: [this.template.name, [Validators.required, Validators.minLength(6)]],
+      image: [this.template.image, Validators.required],
+      descr: [ this.template.descr, [Validators.required, Validators.minLength(6)]],
+      applicationDomain: [this.domains.find(d => d.id === this.template.applicationDomainId) , Validators.required],
       productTemplates: [this.productTemplates, Validators.required]
-    });
+      });
 
   }
   compareFn(product: ProductTemplate, product2: ProductTemplate) {
     return product && product2 ? product.productTemplateId === product2.productTemplateId : product === product2;
-  }
+}
   getErrorMessage(errors: any) {
     if (!errors) {
       return null;
@@ -69,7 +73,7 @@ export class AddProjectTemplateComponent implements OnInit {
     } else if (errors.minlength) {
       return `moet minstens ${
         errors.minlength.requiredLength
-        } karakters bevatten (heeft ${errors.minlength.actualLength})`;
+      } karakters bevatten (heeft ${errors.minlength.actualLength})`;
     }
   }
 
