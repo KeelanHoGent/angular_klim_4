@@ -18,12 +18,13 @@ import { delay } from 'q';
 })
 
 export class EditProjectTemplateComponent implements OnInit {
-  @Input() template?: ProjectTemplate;
+  @Input() template: ProjectTemplate;
   public projecttemplate: FormGroup;
   public isCreate: boolean;
-  domains: ApplicationDomain[] = [];
+  public domains: ApplicationDomain[] = [];
   productTemplates: ProductTemplate[];
   geselecteerdeProductTemplates: ProductTemplate[];
+  geselecteerdeDomainApplication: ApplicationDomain;
   constructor(private _fb: FormBuilder,
               private _projecttemplateDataService: ProjectTemplateService,
               private _projectDataService: ProjectService) {
@@ -32,10 +33,9 @@ export class EditProjectTemplateComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.setForm();
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
     this._projecttemplateDataService.getProductTemplates$().subscribe(pt => this.productTemplates = pt);
-
-    this.setForm();
     this.projecttemplate.get('productTemplates').valueChanges.subscribe(pt => this.geselecteerdeProductTemplates = pt);
   }
   onSubmit() {
@@ -45,18 +45,19 @@ export class EditProjectTemplateComponent implements OnInit {
     this.template.productTemplates.length = 0;
     this.productTemplates.map(v => this.template.productTemplates.push(v)) ;
     this.template.applicationDomainId = this.projecttemplate.value.applicationDomain;
-    this._projecttemplateDataService.updateProjectTemplate(this.template);
+    console.log(this.template);
+    this._projecttemplateDataService.updateProjectTemplate(this.template.projectTemplateId, this.template);
 
 
   }
   setForm() {
-
+    this.geselecteerdeDomainApplication = this.domains.find(d => d.id === this.template.applicationDomainId);
     this.geselecteerdeProductTemplates = this.template.productTemplates;
     this.projecttemplate = this._fb.group({
       name: [this.template.name, [Validators.required, Validators.minLength(6)]],
       image: [this.template.image, Validators.required],
       descr: [ this.template.descr, [Validators.required, Validators.minLength(6)]],
-      applicationDomain: [this.domains.find(d => d.id === this.template.applicationDomainId) , Validators.required],
+      applicationDomain: [this.geselecteerdeDomainApplication , Validators.required],
       productTemplates: [this.productTemplates, Validators.required]
       });
 

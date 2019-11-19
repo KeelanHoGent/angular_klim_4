@@ -1,7 +1,7 @@
 <div class="h-row">
   <mat-card>
     <mat-card-title>
-        <mat-icon _ngcontent-btj-c9="" class="icon mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">edit</mat-icon>
+        <mat-icon>edit</mat-icon>
       Projectenconcept bewerken
     </mat-card-title>
     <img mat-card-image *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}" alt="project" sizes="">
@@ -65,7 +65,7 @@
   
           <mat-form-field appearance="outline">
             <mat-label>Onderwerp</mat-label>
-            <mat-select formControlName="applicationDomain"  required>
+            <mat-select formControlName="applicationDomain" required>
               <mat-option *ngFor="let domein of domains" [value]="domein.id">
                 {{domein.name}}
               </mat-option>

@@ -10,8 +10,9 @@ import { ProductTemplate } from '../types/product-template-model';
   providedIn: 'root'
 })
 export class ProjectTemplateService {
-  updateProjectTemplate(_template: ProjectTemplate) {
-    throw new Error("Method not implemented.");
+  updateProjectTemplate(id: number, template: ProjectTemplate): Observable<ProjectTemplate> {
+    return this.http.put<ProjectTemplate>(`${environment.apiUrl}/ProjectTemplate/${id}/`,
+    template.toJson()).pipe(map(ProjectTemplate.fromJSON));
   }
   private _templateId: number;
   constructor(private http: HttpClient) {

@@ -20,9 +20,9 @@ import { delay } from 'q';
 export class AddProjectTemplateComponent implements OnInit {
 
   public projecttemplate: FormGroup;
-  domains: ApplicationDomain[] = [];
-  productTemplates: ProductTemplate[];
-  geselecteerdeProductTemplates: ProductTemplate[];
+  public domains: ApplicationDomain[] = [];
+  public productTemplates: ProductTemplate[];
+  public geselecteerdeProductTemplates: ProductTemplate[];
   constructor(private _fb: FormBuilder,
     private _projecttemplateDataService: ProjectTemplateService,
     private _projectDataService: ProjectService) {
