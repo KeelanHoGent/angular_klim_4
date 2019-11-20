@@ -4,6 +4,9 @@ import { ProjectService } from 'src/app/services/project.service';
 import { Project } from 'src/app/types/project.model';
 import { Evaluation } from 'src/app/types/evaluation.model';
 import { GroupService } from 'src/app/services/group.service';
+import { MatDialogConfig, MatDialog } from '@angular/material';
+import { EvaluationFormComponent } from '../evaluation-form/evaluation-form.component';
+import { ConfigPdfComponent } from '../config-pdf/config-pdf.component';
 
 @Component({
   selector: 'app-project-progress-container',
@@ -17,7 +20,7 @@ export class ProjectProgressContainerComponent implements OnInit {
  
   selectedGroup : Group;
 
-  constructor(private ps: ProjectService, private gs: GroupService) { }
+  constructor(private ps: ProjectService, private gs: GroupService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.ps.getProjectByIdForProgress$(1).subscribe(p => {
@@ -62,6 +65,27 @@ export class ProjectProgressContainerComponent implements OnInit {
       console.log(g);
       this.selectedGroup.removeEvaluationById(g.evaluationId);
     });
-
   }
+
+  showEvaluationConfig(): void {
+    const config = new MatDialogConfig();
+    config.disableClose = false;
+    config.width = "450px";
+    config.autoFocus = true;
+    config.data = {
+      project: this.project
+    }
+
+    const dialogRef = this.dialog.open(ConfigPdfComponent, config);
+
+    dialogRef.afterClosed().subscribe(
+      data => {
+        if(data){
+          //this.addEvaluation(data)
+        }
+      }
+    );
+  }
+
+
 }
