@@ -1,23 +1,23 @@
 
-export class Variation {
+export class ProductVariationTemplate {
     
     private _id: number;
-    private _graad: string;
+    private _grade: string;
     private _description: string;
 
     toJson(): any {
         return {
             ProductVariationTemplateId: this._id,
             ProductDescr: this._description,
-            ESchoolGrade: this._graad
+            ESchoolGrade: this._grade
         }
     }
 
-    static fromJSON(p: any): Variation {
-        const result = new Variation();
+    static fromJSON(p: any): ProductVariationTemplate {
+        const result = new ProductVariationTemplate();
         result.id = p.ProductVariationTemplateId;
-        result.graad = p.ProductDescr;
-        result.description = p.ESchoolGrade;
+        result.grade = p.ESchoolGrade;
+        result.description = p.ProductDescr;
 
         return result;
     }
@@ -25,8 +25,8 @@ export class Variation {
         return this._id;
     }
 
-    public get graad() : string {
-        return this._graad;
+    public get grade() : string {
+        return this._grade;
     }
 
     public get description() : string {
@@ -41,7 +41,7 @@ export class Variation {
         this._description = v;
     }
     
-    public set graad(v : string) {
-        this._graad = v;
+    public set grade(v : string) {
+        this._grade = v;
     }
 }

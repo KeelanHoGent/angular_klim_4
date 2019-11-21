@@ -1,12 +1,15 @@
-import { Variation } from './variation.model';
+import { ProductVariationTemplate } from './productVariationTemplate.model';
 
 export class ProductTemplate {
     private _id: number;
     private _name: string;
     private _description: string;
+    private _score: number;
     private _image: string;
     private _categoryTemplateId: number;
-    private _variations = new Array<Variation>();
+    private _variations = new Array<ProductVariationTemplate>();
+    private _hasMultipleDisplayVariations: boolean;
+
 
     toJson(): any {
         return {
@@ -15,7 +18,9 @@ export class ProductTemplate {
             description: this._description,
             productImage: this._image,
             categoryTemplateId: this._categoryTemplateId,
-            variations: this.variations.map(va => va.toJson())
+            score: this._score,
+            hasMultipleDisplayVariations: this._hasMultipleDisplayVariations,
+            productVariationTemplates: this.variations.map(va => va.toJson())
         }
     }
 
@@ -25,8 +30,10 @@ export class ProductTemplate {
         result.name = p.productName;
         result.description = p.description;
         result.image = p.productImage;
+        result.score = p.score;
         result.categoryTemplateId = p.categoryTemplateId;
-        p.variations.map(Variation.fromJSON);
+        result.hasMultipleDisplayVariations = p.hasMultipleDisplayVariations;
+        p.variations.map(ProductVariationTemplate.fromJSON);
         
         return result;
     }
@@ -69,11 +76,27 @@ export class ProductTemplate {
         this._image = value;
     }
 
-    get variations(): Variation[] {
+    get variations(): ProductVariationTemplate[] {
         return this._variations;
     }
 
-    set variations(v: Variation[]){
+    set variations(v: ProductVariationTemplate[]){
         this._variations = v;
+    }
+
+    get hasMultipleDisplayVariations(): boolean {
+        return this._hasMultipleDisplayVariations;
+    }
+
+    set hasMultipleDisplayVariations(v: boolean) {
+        this._hasMultipleDisplayVariations = v;
+    }
+
+    get score(): number{
+        return this._score;
+    }
+
+    set score(v: number) {
+        this._score = v;
     }
 }
