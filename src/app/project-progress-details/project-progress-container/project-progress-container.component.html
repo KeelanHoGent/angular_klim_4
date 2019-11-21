@@ -9,9 +9,9 @@
 <div class="projecten-wrapper" *ngIf="project !== undefined">
         <div class="list-wrapper">
             <div class="list-title">
-                <button mat-raised-button type="button" color="default" rounded="true" >
-                  <mat-icon class="icon">lock</mat-icon> Vergrendel groepen
-              </button>
+                <button mat-raised-button type="button" color="default" rounded="true" (click)="showEvaluationConfig()">
+                    <mat-icon class="icon">picture_as_pdf</mat-icon> PDF van de evaluaties
+                  </button>
               
               </div>
           <app-horizontal-list-groups (clickGroup)="detailsGroup($event)" [list]="project.groups"></app-horizontal-list-groups>
@@ -23,7 +23,7 @@
     <div class="list-wrapper">
       <div class="list-title-smaller">
         <h1>Bestellingsoverzicht - {{selectedGroup.name}}</h1>
-        <h1>Budget: {{selectedGroup.order.totalOrderPrice}}
+        <h1>Gespendeerd: {{selectedGroup.order.totalOrderPrice}}
 
             <mat-icon *ngIf="!selectedGroup.overBudget()" class="done">done</mat-icon>   
             <mat-icon *ngIf="selectedGroup.overBudget()" class="error">error_outline</mat-icon>  
@@ -38,6 +38,7 @@
     <div class="list-wrapper">
       <div class="list-title-smaller">
         <h1>Evaluaties</h1>
+        
         <app-button-add-evaluation (newEvaluation)="addNewEvaluationToProject($event)"></app-button-add-evaluation>
       </div>
       <app-horizontal-list-evaluations (deletedEvaluation)="deleteEvaluation($event)" (clickEvaluation)="detailsEvaluation($event)" [list]="selectedGroup.evaluations"></app-horizontal-list-evaluations>

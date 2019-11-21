@@ -1,0 +1,24 @@
+<mat-card-title>Kies de instellingen voor de pdf</mat-card-title>
+
+<br>
+<br>
+<br>
+<table>
+<tr *ngFor="let group of project.groups; let i = index">
+        <td>
+            <mat-checkbox  [checked]="true" (click)="toggleAddGroup(group.id)">{{group.name}}</mat-checkbox>
+        </td>
+
+
+        <td class="tdevals">
+            <mat-checkbox [checked]="settings.showTeacher" (change)="teacherToggle($event)" *ngIf="i === 0">Evaluaties leerkracht</mat-checkbox>
+            <mat-checkbox [checked]="settings.showPupil" (change)="pupilToggle($event)" *ngIf="i === 1">Evaluaties leerling</mat-checkbox>
+        </td>
+</tr>
+</table>
+<br>
+
+<br>
+<button (click)="getPdf()" mat-raised-button type="button" color="default" rounded="true" data-toggle="modal">
+    <mat-icon class="icon">picture_as_pdf</mat-icon> &nbsp;Genereer pdf
+</button>
