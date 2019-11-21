@@ -33,6 +33,7 @@ export class EditProjectTemplateComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.template);
     this.setForm();
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
     this._projecttemplateDataService.getProductTemplates$().subscribe(pt => this.productTemplates = pt);
@@ -45,8 +46,9 @@ export class EditProjectTemplateComponent implements OnInit {
     this.template.productTemplates.length = 0;
     this.productTemplates.map(v => this.template.productTemplates.push(v)) ;
     this.template.applicationDomainId = this.projecttemplate.value.applicationDomain;
-    console.log(this.template);
     this._projecttemplateDataService.updateProjectTemplate(this.template.projectTemplateId, this.template);
+    this.template.budget = this.projecttemplate.value.budget;
+    this.template.maxScore = this.projecttemplate.value.maxScore;
 
 
   }
@@ -58,7 +60,9 @@ export class EditProjectTemplateComponent implements OnInit {
       image: [this.template.image, Validators.required],
       descr: [ this.template.descr, [Validators.required, Validators.minLength(6)]],
       applicationDomain: [this.geselecteerdeDomainApplication , Validators.required],
-      productTemplates: [this.productTemplates, Validators.required]
+      productTemplates: [this.productTemplates, Validators.required],
+      budget: [this.template.budget, Validators.required],
+      maxScore: [this.template.maxScore, Validators.required]
       });
 
   }

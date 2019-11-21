@@ -45,6 +45,8 @@ export class AddProjectTemplateComponent implements OnInit {
     this.productTemplates.map(v => p.productTemplates.push(v));
     p.applicationDomainId = this.projecttemplate.value.applicationDomain;
     this._projecttemplateDataService.addNewProjecttemplate(p);
+    p.budget = this.projecttemplate.value.budget;
+    p.maxScore = this.projecttemplate.value.maxScore;
 
   }
   setForm() {
@@ -53,7 +55,9 @@ export class AddProjectTemplateComponent implements OnInit {
       image: ['', Validators.required],
       descr: ['', [Validators.required, Validators.minLength(6)]],
       applicationDomain: [this.domains, Validators.required],
-      productTemplates: [this.productTemplates, Validators.required]
+      productTemplates: [this.productTemplates, Validators.required],
+      budget: [0, Validators.required],
+      maxScore: [0, Validators.required]
     });
 
   }

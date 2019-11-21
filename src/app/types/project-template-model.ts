@@ -8,6 +8,8 @@ export class ProjectTemplate {
     private _image: string;
     private _addedByGO: boolean;
     private _applicationDomainId: number;
+    private _budget: number;
+    private _maxScore: number;
 
 
     constructor() {
@@ -23,6 +25,8 @@ export class ProjectTemplate {
         p._applicationDomainId = json.applicationDomainId;
         p._productTemplates = json.productTemplates.map(t => ProductTemplate.fromJSON(t));
         p._projectTemplateId = json.projectId;
+        p._budget = json.budget;
+        p._maxScore = json.maxScore;
 
         return p;
     }
@@ -33,7 +37,9 @@ export class ProjectTemplate {
           projectDescr: this._descr,
           projectImage: this._image,
           applicationDomainId: this._applicationDomainId,
-          products: this._productTemplates.map(p => p.toJson())
+          products: this._productTemplates.map(p => p.toJson()),
+          budget: this._budget,
+          maxScore: this._maxScore
         };
       }
     get projectTemplateId(): number {
@@ -72,5 +78,17 @@ export class ProjectTemplate {
     }
     set productTemplates(value: ProductTemplate[]) {
         this._productTemplates = value;
+    }
+    get maxScore(): number {
+        return this._maxScore;
+    }
+    set maxScore(value: number) {
+        this._maxScore = value;
+    }
+    get budget(): number {
+        return this._budget;
+    }
+    set budget(value: number) {
+        this._budget = value;
     }
 }

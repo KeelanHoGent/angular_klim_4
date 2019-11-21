@@ -38,7 +38,7 @@ export class ProjectTemplateService {
     );
   }
   getProductTemplates$(): Observable<ProductTemplate[]> {
-    return this.http.get<ProductTemplate[]>(`${environment.apiUrl}/ProductTemplate/getAllProductTemplatesForSchool/${this._templateId}`)
+    return this.http.get<ProductTemplate[]>(`${environment.apiUrl}/School/productTemplates/${this._templateId}`)
     .pipe(
       map((list: any[]): ProductTemplate[] => list.map(ProductTemplate.fromJSON))
     );

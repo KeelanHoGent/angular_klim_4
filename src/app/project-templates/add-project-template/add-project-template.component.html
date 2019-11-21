@@ -61,6 +61,43 @@
                 </mat-error>
               </mat-form-field>
               
+              <mat-form-field appearance="outline">
+                <mat-label>Budget</mat-label>
+                <input
+                  matInput
+                  placeholder="Maximaal uit te geven budget"
+                  type="number"
+                  min="0" 
+                  formControlName="budget"
+                  data-cy="newprojecttemplatebudget"
+                  required
+                />
+                <mat-error
+                  *ngIf="projecttemplate.get('budget')?.errors && projecttemplate.get('budget')?.touched"
+                  data-cy="newprojecttemplatebudgeterror"
+                >
+                  {{ getErrorMessage(projecttemplate.get('budget').errors) }}
+                </mat-error>
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
+                <mat-label>Eco-score</mat-label>
+                <input
+                  matInput
+                  placeholder="Maximale ecologische score"
+                  type="number"
+                  min="0"
+                  formControlName="maxScore"
+                  data-cy="newprojecttemplatemaxScore"
+                  required
+                />
+                <mat-error
+                  *ngIf="projecttemplate.get('maxScore')?.errors && projecttemplate.get('maxScore')?.touched"
+                  data-cy="newprojecttemplatemaxScoreerror"
+                >
+                  {{ getErrorMessage(projecttemplate.get('maxScore').errors) }}
+                </mat-error>
+              </mat-form-field>
     
     
               <mat-form-field appearance="outline">
