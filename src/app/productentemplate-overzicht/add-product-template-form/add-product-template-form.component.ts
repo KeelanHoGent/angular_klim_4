@@ -8,12 +8,10 @@ import { ProductentemplateOverzichtModule } from '../productentemplate-overzicht
 
 function validateVariations(control: FormGroup): {[key: string]: any}{
 
-  const genVar = control.get('genVar');
-  const vars = control.get('variations');
-  if(genVar.value.length < 2  && vars.value.length < 2) {
-  return {required: true};
-  }
+  console.log(control.controls);
+ 
   return null;
+
 }
 
 @Component({
@@ -22,6 +20,10 @@ function validateVariations(control: FormGroup): {[key: string]: any}{
   styleUrls: ['./add-product-template-form.component.css']
 })
 export class AddProductTemplateFormComponent implements OnInit {
+
+  public error: String = "../../assets/images/error.svg";
+  public correct: String = "../../assets/images/correct.svg";
+
   public productTemplate: FormGroup;
   public readonly categories = [
     {name: 'Bindmiddel', description: "Iets om dingen mee vast te maken"}, 
@@ -48,11 +50,26 @@ export class AddProductTemplateFormComponent implements OnInit {
       categories: ['', [Validators.required]],
       score: ['', [Validators.required]],
       variationsCheck: [''],
-      genVar: [''],
+      genVar: ['', [Validators.required, Validators.minLength(2)]],
       variations: this._fb.array([])
-    }, {validators: validateVariations})
+    })
     this.addVariations();
-    console.log(this.productTemplate.get('variations').value);
+    this.variationsCheck.valueChanges.subscribe(el => {
+      const genVarControl = this.productTemplate.get('genVar');
+      const variationsControl = this.productTemplate.get('variations') as FormArray;
+      if(el) {
+        genVarControl.setValidators(null);
+        variationsControl.controls.forEach(el => {el.get('description').setValidators([Validators.required, Validators.minLength(2)])});
+
+        
+      } else{
+        genVarControl.setValidators([Validators.required, Validators.minLength(2)]);
+        variationsControl.controls.forEach(el => {el.get('description').setValidators(null)});
+      }
+
+      genVarControl.updateValueAndValidity();
+      variationsControl.controls.forEach(el => el.get('description').updateValueAndValidity());
+    })
   }
 
   get variations(): FormArray {
@@ -74,6 +91,7 @@ export class AddProductTemplateFormComponent implements OnInit {
         description: [''],
         grade: [grade]
       }
+      
     )
   }
 
@@ -86,7 +104,6 @@ export class AddProductTemplateFormComponent implements OnInit {
 
   save() {
     let productTemp = new ProductTemplate();
-    console.log(this.productTemplate.value.variations);
     if(this.variationsCheck.value === true)
     {
       console.log('test');

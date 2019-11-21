@@ -23,9 +23,9 @@
               {{ getErrorMessage(productTemplate.get('name')['errors']) }}
               <img src="{{error}}">
             </p>
-            <div *ngIf="!productTemplate.get('name')['errors'] && productTemplate.get('name').touched">
-              <img class="correctInput" src="{{correct}}">
-            </div>
+            <img *ngIf="!productTemplate.get('name')['errors'] && productTemplate.get('name').touched"
+              class="correct" src="{{correct}}"/>
+            
           </div>
           <div class="formGroup">
             <label>Beschrijving</label>
@@ -43,7 +43,6 @@
           </div>
           <div class="formGroup">
             <label>Afbeelding Url</label>
-            <div>
               <input
                 [ngClass]="{
                             'invalidInput': productTemplate.get('image')['errors']&& productTemplate.get('image').touched,
@@ -53,14 +52,11 @@
                 {{ getErrorMessage(productTemplate.get('image')['errors']) }}
                 <img src="{{error}}">
               </p>
-              <div *ngIf="!productTemplate.get('image')['errors'] && productTemplate.get('image').touched">
-                <img class="correctInput" src="{{correct}}">
-              </div>
-            </div>
+              <img *ngIf="!productTemplate.get('image')['errors'] && productTemplate.get('image').touched"
+                class="correct" src="{{correct}}"/>
           </div>
           <div class="formGroup">
             <label>Score</label>
-            <div>
               <input
                 [ngClass]="{
                                 'invalidInput': productTemplate.get('score')['errors']&& productTemplate.get('score').touched,
@@ -70,27 +66,22 @@
                 {{ getErrorMessage(productTemplate.get('score')['errors']) }}
                 <img src="{{error}}">
               </p>
-              <div *ngIf="!productTemplate.get('image')['errors'] && productTemplate.get('image').touched">
-                <img class="correctInput" src="{{correct}}">
+              <img *ngIf="!productTemplate.get('score')['errors'] && productTemplate.get('score').touched"
+                class="correct" src="{{correct}}"/>
               </div>
-            </div>
-          </div>
-          <div class="formGroup">
-            <mat-select placeholder="categories" aria-label="categories" formControlName="categories">
+          <mat-form-field class="formGroup">
+            <mat-label>Categories</mat-label>
+            <mat-select aria-label="categories" formControlName="categories">
               <mat-option *ngFor="let cat of categories" [value]="cat.name" matTooltip="{{cat.description}}"
                 matTooltipPosition="right">
                 {{ cat.name }}
               </mat-option>
             </mat-select>
-            <p class="error"
-              *ngIf="productTemplate.get('categories')['errors'] && productTemplate.get('categories').touched">
+            <mat-error *ngIf="productTemplate.get('categories')['errors'] && productTemplate.get('categories').touched">
               {{ getErrorMessage(productTemplate.get('categories')['errors']) }}
-              <img src="{{error}}">
-            </p>
-            <div *ngIf="!productTemplate.get('categories')['errors'] && productTemplate.get('categories').touched">
-              <img class="correctInput" src="{{correct}}">
-            </div>
-          </div>
+            </mat-error>
+            
+          </mat-form-field>
         </div>
         <div class="formsectie">
           <div class="formGroup">
@@ -100,25 +91,35 @@
           <div *ngIf="!variationsCheck.value">
             <div class="formGroup">
               <label>Algemene beschrijving voor leerlingen</label>
-              <input [ngClass]="{'invalidInput': productTemplate.errors && productTemplate.get('genVar').touched,
-                                        'validInput': !productTemplate.errors && productTemplate.get('genVar').touched
+              <input [ngClass]="{'invalidInput': productTemplate.get('genVar').errors && productTemplate.get('genVar').touched,
+                                        'validInput': !productTemplate.get('genVar').errors && productTemplate.get('genVar').touched
                                     }" aria-label="generalVariation" placeholder="Algemene beschrijving" type="text"
                 formControlName="genVar" #spy />
 
-              <p class="error" *ngIf="productTemplate.errors && productTemplate.get('genVar').touched">
-                {{ getErrorMessage(productTemplate.errors) }}
+              <p class="error" *ngIf="productTemplate.get('genVar').errors && productTemplate.get('genVar').touched">
+                {{ getErrorMessage(productTemplate.get('genVar').errors) }}
                 <img src="{{error}}">
               </p>
-              <div *ngIf="!productTemplate.get('genVar')['errors'] && productTemplate.get('genVar').touched">
-                <img class="correctInput" src="{{correct}}">
-              </div>
+              <img *ngIf="!productTemplate.get('genVar')['errors'] && productTemplate.get('genVar').touched"
+                 class="correct" src="{{correct}}"/>
+            
             </div>
           </div>
           <div *ngIf="variationsCheck.value">
             <div formArrayName="variations" *ngFor="let va of variations.controls; let i = index">
               <div class="formGroup" [formGroupName]="i" >
                 <label>Beschrijving {{va.get('grade').value}} graad</label>
-                <input aria-label="description" placeholder="{{va.get('grade').value}}" type="text" formControlName="description" #spy >
+                <input [ngClass]="{
+                                'invalidInput': va.get('description')['errors']&& va.get('description').touched,
+                                'validInput': !va.get('description')['errors'] && va.get('description').touched }"
+                aria-label="graad" placeholder="{{va.grade}}" type="text" formControlName="description" required />
+                <p class="error" *ngIf="va.get('description')['errors'] && va.get('description').touched">
+                    {{ getErrorMessage(va.get('description')['errors']) }}
+                    <img src="{{error}}">
+                  </p>
+                  <img *ngIf="!va.get('description')['errors'] && va.get('description').touched"
+                    class="correct" src="{{correct}}" />
+             
               </div>
             </div>
           </div>
