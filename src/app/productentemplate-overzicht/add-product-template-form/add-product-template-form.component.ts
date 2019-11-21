@@ -51,7 +51,7 @@ export class AddProductTemplateFormComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(2)]],
       image: ['', [Validators.required, Validators.minLength(2)]],
       categories: ['', [Validators.required]],
-      score: ['', [Validators.required]],
+      score: ['', [Validators.required, Validators.max(10), Validators.min(0)]],
       variationsCheck: [''],
       genVar: ['', [Validators.required, Validators.minLength(2)]],
       variations: this._fb.array([])
@@ -88,7 +88,10 @@ export class AddProductTemplateFormComponent implements OnInit {
       return 'Dit veld is verplicht';
     }
     if(errors.max) {
-      return 'Score mag maar max 5 zijn';
+      return 'Score mag maar max 10 zijn';
+    }
+    if(errors.min) {
+      return 'Score moet hoger dan 0 zijn';
     }
   }  
 
@@ -127,8 +130,10 @@ export class AddProductTemplateFormComponent implements OnInit {
     productTemp.categoryTemplateId = this.productTemplate.value.categories;
     productTemp.hasMultipleDisplayVariations = this.variationsCheck.value;
     productTemp.score = this.productTemplate.value.score;
-    console.log(this.variationsCheck.value);
+    console.log(productTemp);
     this._templateDataService.addProductTemplate(productTemp).subscribe();
+
+    this.router.navigateByUrl("/producten");
   }
   
 }

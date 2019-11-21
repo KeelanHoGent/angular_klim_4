@@ -24,10 +24,11 @@ export class TemplateService {
     return this.http.post(`${environment.apiUrl}/School/addProductTemplate/1`, productTemplate.toJson());
   }
 
-  get CategoryTemplates$(): Observable<CategoryTemplate[]>{
-    return this.http.get<CategoryTemplate[]>(`${environment.apiUrl}/ProductTemplate/GetCategories`)
+  getCategoryTemplates$(): Observable<CategoryTemplate[]>{
+    let test = this.http.get<CategoryTemplate[]>(`${environment.apiUrl}/ProductTemplate/GetCategories`)
     .pipe(map(x => x.map(c => CategoryTemplate.fromJSON(c)))
     );
+    return test;
   }
 
 }

@@ -72,9 +72,9 @@
           <mat-form-field class="formGroup">
             <mat-label>Categories</mat-label>
             <mat-select aria-label="categories" formControlName="categories">
-              <mat-option *ngFor="let cat of (categories | async)" [value]="test" matTooltip="{{cat.description}}"
+              <mat-option *ngFor="let cat of (categories | async)" [value]="1" matTooltip="{{cat.categoryDescr}}"
                 matTooltipPosition="right">
-                {{ cat.name }}
+                {{ cat.categoryName }}
               </mat-option>
             </mat-select>
             <mat-error *ngIf="productTemplate.get('categories')['errors'] && productTemplate.get('categories').touched">
