@@ -6,6 +6,7 @@ export class Order{
     private _approved : number; // by teacher
     private _totalOrderPrice : number;
     private _orderItems : OrderItem[] = []
+    private _avgScore : number;
 
 
 
@@ -24,6 +25,8 @@ export class Order{
             json.totalOrderPrice,
             json.orderItems.map(p => OrderItem.fromJSON(p))
         );
+        g._avgScore = json.avgScore;
+        
         g._id = json.orderId;
     
         return g;
@@ -36,6 +39,23 @@ export class Order{
         }
       }
 
+
+
+    /**
+     * Getter avgScore
+     * @return {number}
+     */
+	public get avgScore(): number {
+		return this._avgScore;
+	}
+
+    /**
+     * Setter avgScore
+     * @param {number} value
+     */
+	public set avgScore(value: number) {
+		this._avgScore = value;
+	}
 
 
     /**

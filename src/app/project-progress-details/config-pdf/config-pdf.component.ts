@@ -28,6 +28,9 @@ export class ConfigPdfComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.project)
+    this.project.groups.forEach(g => {
+      this.settings.groupsToShow.push(g.id);
+    });
   }
 
 
@@ -35,19 +38,19 @@ export class ConfigPdfComponent implements OnInit {
     
 
     var arrStr = encodeURIComponent(JSON.stringify(this.settings.groupsToShow));
-    console.log(arrStr)
+    console.log(this.settings)
 
     window.open(`${environment.apiUrl}/pdfgen/custompdf/evaluaties?projectId=${this.project.id}&showPupil=${this.settings.showPupil}
     &showTeacher=${this.settings.showTeacher}&groupNums=${arrStr}`,'_blank');
 
   }
 
-  teacherToggle(){
-    this.settings.showTeacher = !this.settings.showTeacher;
+  teacherToggle(event: any){
+    this.settings.showTeacher = event.checked
   }
 
-  pupilToggle(){
-    this.settings.showPupil = !this.settings.showPupil;
+  pupilToggle(event: any){
+    this.settings.showPupil = event.checked
   }
 
   toggleAddGroup(id: number){

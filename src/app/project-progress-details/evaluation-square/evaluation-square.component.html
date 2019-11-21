@@ -2,10 +2,10 @@
         <p class="naam">{{evaluation.title}}</p>
 
         <h2>Leerkracht</h2>
-        <p class="desc">{{evaluation.descriptionPrivate}} <span *ngIf="evaluation.descriptionPrivate === null || evaluation.descriptionPrivate === ''">...</span> </p>
+        <p class="desc">{{evaluation.descriptionPrivate}} <span style="size:25px; font-weight: bold;"  *ngIf="evaluation.descriptionPrivate === null || evaluation.descriptionPrivate === ''">...</span> </p>
 
         <h2>Leerling</h2>
-        <p class="desc">{{evaluation.descriptionPupil}} <span *ngIf="evaluation.descriptionPupil === null || evaluation.descriptionPupil === ''">...</span></p>
+        <p class="desc">{{evaluation.descriptionPupil}} <span style="size:25px; font-weight: bold;" *ngIf="evaluation.descriptionPupil === null || evaluation.descriptionPupil === ''">...</span></p>
        <!-- <button mat-raised-button class="details-button">Details</button>-->
     </div>
     

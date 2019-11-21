@@ -2,8 +2,8 @@ export class PdfSettings {
 
     private _groupsToShow: number[] = [];
 
-    private _showPupil: boolean = false;
-    private _showTeacher: boolean = false;
+    private _showPupil: boolean = true;
+    private _showTeacher: boolean = true;
 
     constructor() {
     }
