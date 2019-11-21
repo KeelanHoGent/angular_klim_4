@@ -8,6 +8,7 @@ import { map, catchError } from 'rxjs/operators';
 import { ApplicationDomain } from '../types/applicationDomain.model';
 import { Group } from '../types/group.model';
 import { Evaluation } from '../types/evaluation.model';
+import { PdfSettings } from '../types/customDTOs/PdfSettings.model';
 
 
 @Injectable({
@@ -35,6 +36,8 @@ export class GroupService {
     .delete(`${environment.apiUrl}/group/deleteEvaluation/${groupId}/${evaluationId}`)
     .pipe(map(Evaluation.fromJSON));
   }
+
+
 
 }
 

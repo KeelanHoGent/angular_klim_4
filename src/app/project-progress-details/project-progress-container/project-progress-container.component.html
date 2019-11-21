@@ -23,7 +23,7 @@
     <div class="list-wrapper">
       <div class="list-title-smaller">
         <h1>Bestellingsoverzicht - {{selectedGroup.name}}</h1>
-        <h1>Budget: {{selectedGroup.order.totalOrderPrice}}
+        <h1>Gespendeerd: {{selectedGroup.order.totalOrderPrice}}
 
             <mat-icon *ngIf="!selectedGroup.overBudget()" class="done">done</mat-icon>   
             <mat-icon *ngIf="selectedGroup.overBudget()" class="error">error_outline</mat-icon>  

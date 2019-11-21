@@ -3,7 +3,7 @@
         <!--[ngClass]="group.id === selectedGroupId ? 'groupSelected' : '' "-->
         <div class="group" [ngClass]="group.showClicked ? 'showSelected' : '' " (click)="detailsGroup()">
                 <p class="naam">{{group.name}}</p>
-                <p class="naamBudget">budget: {{group.order.totalOrderPrice}}  
+                <p class="naamBudget">Gespendeerd: {{group.order.totalOrderPrice}}  
 
                         <mat-icon *ngIf="!group.overBudget()" class="done">done</mat-icon>   
                         <mat-icon *ngIf="group.overBudget()" class="error">error_outline</mat-icon>   

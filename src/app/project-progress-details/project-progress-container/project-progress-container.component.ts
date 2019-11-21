@@ -7,6 +7,8 @@ import { GroupService } from 'src/app/services/group.service';
 import { MatDialogConfig, MatDialog } from '@angular/material';
 import { EvaluationFormComponent } from '../evaluation-form/evaluation-form.component';
 import { ConfigPdfComponent } from '../config-pdf/config-pdf.component';
+import { environment } from 'src/environments/environment';
+import { PdfSettings } from 'src/app/types/customDTOs/PdfSettings.model';
 
 @Component({
   selector: 'app-project-progress-container',
@@ -68,6 +70,9 @@ export class ProjectProgressContainerComponent implements OnInit {
   }
 
   showEvaluationConfig(): void {
+
+   
+
     const config = new MatDialogConfig();
     config.disableClose = false;
     config.width = "450px";
