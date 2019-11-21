@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { TemplateService } from 'src/app/services/template.service';
 import { Variation } from 'src/app/types/variation.model';
+import { ProductTemplate } from 'src/app/types/productTemplate.model';
+import { ProductentemplateOverzichtModule } from '../productentemplate-overzicht.module';
 
 function validateVariations(control: FormGroup): {[key: string]: any}{
 
@@ -27,9 +29,8 @@ export class AddProductTemplateFormComponent implements OnInit {
     {name: 'Hout', description: 'komt van bomen'}, 
     {name: 'Karton', description: 'niet onder water steken'},
     {name: 'Andere', description: 'hier komt nog de mogelijkheid om een eigen categorie toe te voegen'}];
-  public variations =  new Array<Variation>();
-   variationsCheck = new FormControl(false);
-    public readonly graden = ['eerste', 'tweede', 'derde'];
+  public variationsCheck = new FormControl(false);
+  public readonly graden = ['eerste', 'tweede', 'derde'];
 
   constructor(
     private _fb: FormBuilder,
@@ -38,12 +39,8 @@ export class AddProductTemplateFormComponent implements OnInit {
 
 
   ngOnInit() {
-   this.graden.forEach(graad => {
-     var variation = new Variation();
-     variation.graad = graad;
-     this.variations.push(variation);
-  });
-    this.variations.push()
+
+  
     this.productTemplate = this._fb.group({
       name: ['', [Validators.required, Validators.minLength(1)]],
       description: ['', [Validators.required, Validators.minLength(2)]],
@@ -52,8 +49,14 @@ export class AddProductTemplateFormComponent implements OnInit {
       score: ['', [Validators.required]],
       variationsCheck: [''],
       genVar: [''],
-      variations: ['']
+      variations: this._fb.array([])
     }, {validators: validateVariations})
+    this.addVariations();
+    console.log(this.productTemplate.get('variations').value);
+  }
+
+  get variations(): FormArray {
+    return <FormArray>this.productTemplate.get('variations');
   }
 
   getErrorMessage(errors: any) {
@@ -61,9 +64,44 @@ export class AddProductTemplateFormComponent implements OnInit {
       return 'Dit veld is verplicht';
     }
     if(errors.max) {
-      return 'Score mag maar max 5 zijn'
+      return 'Score mag maar max 5 zijn';
     }
   }  
 
+  createVariations(grade: string): FormGroup {
+    return this._fb.group(
+      {
+        description: [''],
+        grade: [grade]
+      }
+    )
+  }
+
+  addVariations(): void {
+    let variations = this.productTemplate.get('variations') as FormArray;
+    this.graden.forEach(graad => {
+      variations.push(this.createVariations(graad));
+    });
+  }
+
+  save() {
+    let productTemp = new ProductTemplate();
+    console.log(this.productTemplate.value.variations);
+    if(this.variationsCheck.value === true)
+    {
+      console.log('test');
+      productTemp.variations  = this.productTemplate.value.variations.map(Variation.fromJSON);
+    }
+    else {
+      productTemp.variations[0] = Variation.fromJSON(this.productTemplate.value.genVar);
+    }
+    
+    productTemp.description = this.productTemplate.value.description;
+    productTemp.name = this.productTemplate.value.name;
+    productTemp.image = this.productTemplate.value.image;
+
+    console.log(productTemp.toJson());
+     
+  }
   
 }

@@ -115,22 +115,10 @@
             </div>
           </div>
           <div *ngIf="variationsCheck.value">
-            <div *ngFor="let va of variations">
-              <div class="formGroup">
-
-                <label>Beschrijving {{va.graad}} graad</label>
-                <input [ngClass]="{'invalidInput': productTemplate.errors && productTemplate.get('variations').touched,
-                                                              'validInput': !productTemplate.errors && productTemplate.get('variations').touched
-                                                          }" aria-label="Graad" placeholder="{{va.graad}} graad"
-                  type="text" formControlName="variations" #spy />
-
-                <p class="error" *ngIf="productTemplate.errors && productTemplate.get('variations').touched">
-                  {{ getErrorMessage(productTemplate.errors) }}
-                  <img src="{{error}}">
-                </p>
-                <div *ngIf="!productTemplate.errors && productTemplate.get('variations').touched">
-                  <img class="correctInput" src="{{correct}}">
-                </div>
+            <div formArrayName="variations" *ngFor="let va of variations.controls; let i = index">
+              <div class="formGroup" [formGroupName]="i" >
+                <label>Beschrijving {{va.get('grade').value}} graad</label>
+                <input aria-label="description" placeholder="{{va.get('grade').value}}" type="text" formControlName="description" #spy >
               </div>
             </div>
           </div>
