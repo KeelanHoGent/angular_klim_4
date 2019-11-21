@@ -1,4 +1,4 @@
-<div class="h-row">
+<div *ngIf="magLaden | async" class="h-row">
   <mat-card>
     <mat-card-title>
         <mat-icon>edit</mat-icon>
@@ -101,25 +101,30 @@
           <mat-form-field appearance="outline">
             <mat-label>Onderwerp</mat-label>
             <mat-select formControlName="applicationDomain" required>
-              <mat-option *ngFor="let domein of domains" [value]="domein.id">
+              <mat-option *ngFor="let domein of domains"  [value]="domein">
                 {{domein.name}}
               </mat-option>
             </mat-select>
             
             <mat-error
-              *ngIf="projecttemplate.get('image')?.errors && projecttemplate.get('image')?.touched"
+              *ngIf="projecttemplate.get('applicationDomain')?.errors && projecttemplate.get('applicationDomain')?.touched"
             >
-              {{ getErrorMessage(projecttemplate.get('image').errors) }}
+              {{ getErrorMessage(projecttemplate.get('applicationDomain').errors) }}
             </mat-error>
           </mat-form-field>
         
           <mat-form-field appearance="outline">
             <mat-label>Productconcepten</mat-label>
-            <mat-select formControlName="productTemplates" [compareWith]="compareFn" [(ngModel)]="geselecteerdeProductTemplates" multiple required>
-              <mat-option *ngFor="let group of productTemplates"  [value]="group">
+            <mat-select formControlName="productTemplates" multiple required>
+              <mat-option *ngFor="let group of productTemplatesLijst" [value]="group">
                   {{group.productName}}
                 </mat-option>
             </mat-select>
+            <mat-error
+              *ngIf="projecttemplate.get('productTemplates')?.errors && projecttemplate.get('productTemplates')?.touched"
+            >
+              {{ getErrorMessage(projecttemplate.get('productTemplates').errors) }}
+            </mat-error>
           </mat-form-field>
   
   

@@ -44,9 +44,9 @@ export class AddProjectTemplateComponent implements OnInit {
     p.image = this.projecttemplate.value.image;
     this.productTemplates.map(v => p.productTemplates.push(v));
     p.applicationDomainId = this.projecttemplate.value.applicationDomain;
-    this._projecttemplateDataService.addNewProjecttemplate(p);
     p.budget = this.projecttemplate.value.budget;
     p.maxScore = this.projecttemplate.value.maxScore;
+    this._projecttemplateDataService.addNewProjecttemplate(p);
 
   }
   setForm() {
