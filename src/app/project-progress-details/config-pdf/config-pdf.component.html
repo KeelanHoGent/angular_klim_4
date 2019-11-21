@@ -8,13 +8,13 @@
         <td>
             <mat-checkbox  [checked]="true" (click)="toggleAddGroup(group.id)">{{group.name}}</mat-checkbox>
         </td>
-
-
-        <td class="tdevals">
+        
+        <td class="tdevals" >
             <mat-checkbox [checked]="settings.showTeacher" (change)="teacherToggle($event)" *ngIf="i === 0">Evaluaties leerkracht</mat-checkbox>
-            <mat-checkbox [checked]="settings.showPupil" (change)="pupilToggle($event)" *ngIf="i === 1">Evaluaties leerling</mat-checkbox>
+            <mat-checkbox [checked]="settings.showPupil" (change)="pupilToggle($event)" *ngIf="i === 1 || project.groups.length <= 1">Evaluaties leerling</mat-checkbox>
         </td>
 </tr>
+
 </table>
 <br>
 
