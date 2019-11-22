@@ -18,18 +18,11 @@ const routes: Routes = [
   {path: 'projecten', component: ProjectenContainerComponent},
   {path: 'producten', component: ProductListComponent},
   {path: 'add-product-template', component: AddProductTemplateFormComponent},
-  {
-    path: 'add-project-template',
-    component: AddProjectTemplateComponent
-  },
-  {
-    path: 'projecttemplates',
-    component: ProjectenTemplateOverzichtComponent
-  },
-
+  {path: 'add-project-template', component: AddProjectTemplateComponent},
+  {path: 'projecttemplates', component: ProjectenTemplateOverzichtComponent},
   {path: 'add-product-template', component: AddProductTemplateFormComponent},
-  {path: 'project-progress', component: ProjectProgressContainerComponent}
-
+  {path: 'project-progress', component: ProjectProgressContainerComponent},
+  {path: 'project-progress/:id', component: ProjectProgressContainerComponent}
 ];
 
 @NgModule({
