@@ -1,38 +1,6 @@
 export class Product {
-    private _id: number;
-    private _price: number;
-    private _name: string;
-    private _description: string;
-    private _image: string;
-    private _categoryId: number;
-    private _projectId: number;
 
-    toJson(): any {
-        return {
-            productId: this._id,
-            productName: this._name,
-            description: this._description,
-            productImage: this._image,
-            projectId: this._projectId,
-            price: this._price,
-            categoryId: this._categoryId
-        }
-    }
-
-    static fromJSON(p: any): Product {
-        const result = new Product();
-        result.id = p.productId;
-        result.name = p.productName;
-        result.description = p.description;
-        result.image = p.productImage;
-        result.projectId = p.projectId;
-        result.price = p.price;
-        result.categoryId = p.categoryId;
-
-        return result;
-    }
-
-    get id (): number {
+    get id(): number {
         return this._id;
     }
 
@@ -51,7 +19,7 @@ export class Product {
     public get name(): string {
         return this._name;
     }
-  
+
     public set name(value: string) {
         this._name = value;
     }
@@ -59,7 +27,7 @@ export class Product {
     public get description(): string {
         return this._description;
     }
-  
+
     public set description(value: string) {
         this._description = value;
     }
@@ -78,5 +46,37 @@ export class Product {
 
     set image(value: string) {
         this._image = value;
+    }
+    private _id: number;
+    private _price: number;
+    private _name: string;
+    private _description: string;
+    private _image: string;
+    private _categoryId: number;
+    private _projectId: number;
+
+    static fromJSON(p: any): Product {
+        const result = new Product();
+        result.id = p.productId;
+        result.name = p.productName;
+        result.description = p.description;
+        result.image = p.productImage;
+        result.projectId = p.projectId;
+        result.price = p.price;
+        result.categoryId = p.categoryId;
+
+        return result;
+    }
+
+    toJson(): any {
+        return {
+            productId: this._id,
+            productName: this._name,
+            description: this._description,
+            productImage: this._image,
+            projectId: this._projectId,
+            price: this._price,
+            categoryId: this._categoryId
+        }
     }
 }

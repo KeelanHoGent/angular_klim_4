@@ -1,0 +1,40 @@
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ProjectTemplate } from '../../types/project-template-model';
+import { ProjectTemplateService } from '../../services/project-template.service';
+import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
+import { ProjectService } from 'src/app/services/project.service';
+
+
+@Component({
+  selector: 'app-projecten-template-overzicht',
+  templateUrl: './projecten-template-overzicht.component.html',
+  styleUrls: ['./projecten-template-overzicht.component.css']
+})
+export class ProjectenTemplateOverzichtComponent implements OnInit {
+
+  public status: number = 0;
+  public templates: ProjectTemplate[];
+  private projects: Observable<ProjectTemplate[]>;
+  public currentProjectTemplate: ProjectTemplate;
+  public domains: ApplicationDomain[] = [];
+  public loader = true;
+  constructor(private _projecttemplateDataService: ProjectTemplateService,
+              private _projectDataService: ProjectService) {
+    this.projects = this._projecttemplateDataService.getProjectTemplates$();
+   }
+
+ngOnInit() {
+  this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
+  this._projecttemplateDataService.getProjectTemplates$().subscribe(t => this.templates = t);
+  }
+  onSelect(projectTemplate: ProjectTemplate): void {
+    this.currentProjectTemplate = projectTemplate;
+    window.location.hash = '#huidigTemplate';
+    this.status = 2;
+  }
+  onSelectNieuw(){
+    this.status = 1;
+  }
+
+}

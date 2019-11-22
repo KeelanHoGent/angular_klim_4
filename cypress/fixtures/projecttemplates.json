@@ -1,0 +1,33 @@
+[
+    {
+        "id": 1,
+        "name": "project met vuur",
+        "descr": "Een project met vuurproefjes", 
+        "image": "imagelink"
+    },
+    {
+        "id": 2,
+        "name": "project met water",
+        "descr": "Een project met een waterrad", 
+        "image": "imagelink"
+    },
+    {
+        "id": 3,
+        "name": "project met aarde",
+        "descr": "Een project met soorten gesteentes", 
+        "image": "imagelink"
+    },
+    {
+        "id": 4,
+        "name": "project met plastiek",
+        "descr": "Een project met plastiek speelgoed", 
+        "image": "imagelink"
+    },
+    {
+        "id": 5,
+        "name": "project met zeep",
+        "descr": "Een project met groene zeep", 
+        "image": "imagelink"
+    }
+    
+]
