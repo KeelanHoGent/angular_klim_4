@@ -1,56 +1,58 @@
 import { ProductVariationTemplate } from './productVariationTemplate.model';
 
 export class ProductTemplate {
-    private _id: number;
-    private _name: string;
+    private _productTemplateId: number;
+    private _productName: string;
     private _description: string;
     private _score: number;
     private _image: string;
+    private _projectId: number;
     private _categoryTemplateId: number;
-    private _variations = new Array<ProductVariationTemplate>();
+    private _productVariationTemplates = new Array<ProductVariationTemplate>();
     private _hasMultipleDisplayVariations: boolean;
 
+  static fromJSON(p: any): ProductTemplate {
+    const result = new ProductTemplate();
+    result.productTemplateId = p.productTemplateId;
+    result.productName = p.productName;
+    result.description = p.description;
+    result.image = p.productImage;
+    result.score = p.score;
+    result.categoryTemplateId = p.categoryTemplateId;
+    result.hasMultipleDisplayVariations = p.hasMultipleDisplayVariations;
+    p.productVariationTemplates.map(ProductVariationTemplate.fromJSON);
 
-    toJson(): any {
+    return result;
+  }
+
+
+  toJson(): any {
         return {
-            productId: this._id,
-            productName: this._name,
+            productTemplateId: this._productTemplateId,
+            productName: this._productName,
             description: this._description,
             productImage: this._image,
             categoryTemplateId: this._categoryTemplateId,
             score: this._score,
+            projectId: this._projectId,
             hasMultipleDisplayVariations: this._hasMultipleDisplayVariations,
-            productVariationTemplates: this.variations.map(va => va.toJson())
-        }
+            productVariationTemplates: this.productVariationTemplates.map(va => va.toJson())
+        };
     }
 
-    static fromJSON(p: any): ProductTemplate {
-        const result = new ProductTemplate();
-        result.id = p.productId;
-        result.name = p.productName;
-        result.description = p.description;
-        result.image = p.productImage;
-        result.score = p.score;
-        result.categoryTemplateId = p.categoryTemplateId;
-        result.hasMultipleDisplayVariations = p.hasMultipleDisplayVariations;
-        p.variations.map(ProductVariationTemplate.fromJSON);
-        
-        return result;
+    get productTemplateId(): number {
+        return this._productTemplateId;
     }
 
-    get id (): number {
-        return this._id;
+    set productTemplateId(id: number) {
+        this._productTemplateId = id;
     }
 
-    set id(id: number) {
-        this._id = id;
+    public get productName(): string {
+        return this._productName;
     }
-
-    public get name(): string {
-        return this._name;
-    }
-    public set name(value: string) {
-        this._name = value;
+    public set productName(value: string) {
+        this._productName = value;
     }
 
     public get description(): string {
@@ -64,7 +66,7 @@ export class ProductTemplate {
         this._categoryTemplateId = value;
     }
 
-    public get categoryTemplateId(): number {
+    public get categoryId(): number {
         return this._categoryTemplateId;
     }
 
@@ -76,12 +78,12 @@ export class ProductTemplate {
         this._image = value;
     }
 
-    get variations(): ProductVariationTemplate[] {
-        return this._variations;
+    get productVariationTemplates(): ProductVariationTemplate[] {
+        return this._productVariationTemplates;
     }
 
-    set variations(v: ProductVariationTemplate[]){
-        this._variations = v;
+    set productVariationTemplates(v: ProductVariationTemplate[]){
+        this._productVariationTemplates = v;
     }
 
     get hasMultipleDisplayVariations(): boolean {
@@ -98,5 +100,13 @@ export class ProductTemplate {
 
     set score(v: number) {
         this._score = v;
+    }
+
+    set projectId(value: number) {
+      this._projectId = value;
+    }
+
+    get projectId(): number {
+      return this._projectId;
     }
 }

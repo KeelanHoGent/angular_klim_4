@@ -1,47 +1,49 @@
 
 export class ProductVariationTemplate {
-    
-    private _id: number;
-    private _grade: string;
-    private _description: string;
+
+  private _productVariationTemplateId: number;
+  private _productDescr: string;
+  private _eSchoolGrade: string;
+
+  static fromJSON(p: any): ProductVariationTemplate {
+    const result = new ProductVariationTemplate();
+    result.productVariationTemplateId = p.ProductVariationTemplateId;
+    result.eSchoolGrade = p.ESchoolGrade;
+    result.productDescr = p.ProductDescr;
+
+    return result;
+   }
 
     toJson(): any {
         return {
-            ProductVariationTemplateId: this._id,
-            ProductDescr: this._description,
-            ESchoolGrade: this._grade
-        }
+            productVariationTemplateId: this._productVariationTemplateId,
+            productDescr: this._productDescr,
+            eSchoolGrade: this._eSchoolGrade
+        };
     }
 
-    static fromJSON(p: any): ProductVariationTemplate {
-        const result = new ProductVariationTemplate();
-        result.id = p.ProductVariationTemplateId;
-        result.grade = p.ESchoolGrade;
-        result.description = p.ProductDescr;
+  get productVariationTemplateId() : number {
+    return this._productVariationTemplateId;
+  }
 
-        return result;
-    }
-    public get id() : number {
-        return this._id;
-    }
+  set productVariationTemplateId(v: number) {
+    this._productVariationTemplateId = v;
+  }
 
-    public get grade() : string {
-        return this._grade;
-    }
+  get eSchoolGrade(): string {
+    return this._eSchoolGrade;
+  }
 
-    public get description() : string {
-        return this._description;
-    }
+  set eSchoolGrade(v: string) {
+    this._eSchoolGrade = v;
+  }
 
-    public set id(v : number) {
-        this._id = v;
-    }
-    
-    public set description(v : string) {
-        this._description = v;
-    }
-    
-    public set grade(v : string) {
-        this._grade = v;
-    }
+  get productDescr(): string {
+    return this._productDescr;
+  }
+
+  set productDescr(v: string) {
+    this._productDescr = v;
+  }
+
 }

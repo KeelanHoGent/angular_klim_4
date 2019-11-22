@@ -16,15 +16,15 @@ import { CategoryTemplate } from 'src/app/types/categoryTemplate.model';
 })
 export class AddProductTemplateFormComponent implements OnInit {
 
-  public error: String = "../../assets/images/error.svg";
-  public correct: String = "../../assets/images/correct.svg";
+  public error: string = '../../assets/images/error.svg';
+  public correct: string = '../../assets/images/correct.svg';
 
   public productTemplate: FormGroup;
   private categories$;
   // [
-  //   {name: 'Bindmiddel', description: "Iets om dingen mee vast te maken"}, 
-  //   {name: 'Plastiek', description: 'slecht voor het milieu'}, 
-  //   {name: 'Hout', description: 'komt van bomen'}, 
+  //   {name: 'Bindmiddel', description: "Iets om dingen mee vast te maken"},
+  //   {name: 'Plastiek', description: 'slecht voor het milieu'},
+  //   {name: 'Hout', description: 'komt van bomen'},
   //   {name: 'Karton', description: 'niet onder water steken'},
   //   {name: 'Andere', description: 'hier komt nog de mogelijkheid om een eigen categorie toe te voegen'}];
   public variationsCheck = new FormControl(false);
@@ -33,8 +33,8 @@ export class AddProductTemplateFormComponent implements OnInit {
   constructor(
     private _fb: FormBuilder,
     private router: Router,
-    private _templateDataService: TemplateService) { 
-      
+    private _templateDataService: TemplateService) {
+
     }
 
 
@@ -64,7 +64,7 @@ export class AddProductTemplateFormComponent implements OnInit {
         genVarControl.setValidators(null);
         variationsControl.controls.forEach(el => {el.get('ProductDescr').setValidators([Validators.required, Validators.minLength(2)])});
 
-        
+
       } else{
         genVarControl.setValidators([Validators.required, Validators.minLength(2)]);
         variationsControl.controls.forEach(el => {el.get('ProductDescr').setValidators(null)});
@@ -93,14 +93,14 @@ export class AddProductTemplateFormComponent implements OnInit {
     if(errors.min) {
       return 'Score moet hoger dan 0 zijn';
     }
-  }  
+  }
 
   createVariations(grade: string): FormGroup {
     return this._fb.group(
       {
         ProductDescr: [''],
         ESchoolGrade: [grade]
-      } 
+      }
     )
   }
 
@@ -115,17 +115,17 @@ export class AddProductTemplateFormComponent implements OnInit {
     let productTemp = new ProductTemplate();
     if(this.variationsCheck.value === true)
     {
-      productTemp.variations  = this.productTemplate.value.variations.map(ProductVariationTemplate.fromJSON);
+      productTemp.productVariationTemplates  = this.productTemplate.value.variations.map(ProductVariationTemplate.fromJSON);
     }
     else {
       let genVar = new ProductVariationTemplate();
-      genVar.description = this.productTemplate.value.genVar;
-      genVar.grade = 'algemeen';
-      productTemp.variations[0] = genVar;
+      genVar.productDescr = this.productTemplate.value.genVar;
+      genVar.eSchoolGrade = 'algemeen';
+      productTemp.productVariationTemplates[0] = genVar;
     }
-    
+
     productTemp.description = this.productTemplate.value.description;
-    productTemp.name = this.productTemplate.value.name;
+    productTemp.productName = this.productTemplate.value.name;
     productTemp.image = this.productTemplate.value.image;
     productTemp.categoryTemplateId = this.productTemplate.value.categories;
     productTemp.hasMultipleDisplayVariations = this.variationsCheck.value;
@@ -135,5 +135,5 @@ export class AddProductTemplateFormComponent implements OnInit {
 
     this.router.navigateByUrl("/producten");
   }
-  
+
 }

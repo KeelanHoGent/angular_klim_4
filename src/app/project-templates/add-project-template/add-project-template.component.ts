@@ -5,9 +5,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { Observable } from 'rxjs';
-import { ProductTemplate } from 'src/app/types/product-template-model';
 import { delay } from 'q';
 import {TemplateService} from '../../services/template.service';
+import {ProductTemplate} from '../../types/productTemplate.model';
 
 
 

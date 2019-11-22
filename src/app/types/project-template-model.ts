@@ -1,4 +1,4 @@
-import { ProductTemplate } from './product-template-model';
+import {ProductTemplate} from './productTemplate.model';
 
 export class ProjectTemplate {
     private _projectTemplateId: number;
