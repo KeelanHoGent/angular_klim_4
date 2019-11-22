@@ -17,7 +17,7 @@ const routes: Routes = [
   {path: '', component: AddProjectComponent},
   {path: 'projecten', component: ProjectenContainerComponent},
   {path: 'producten', component: ProductListComponent},
-  {path: 'add-product-template', component: AddProductTemplateFormComponent}
+  {path: 'add-product-template', component: AddProductTemplateFormComponent},
   {
     path: 'add-project-template',
     component: AddProjectTemplateComponent
@@ -27,6 +27,7 @@ const routes: Routes = [
     component: ProjectenTemplateOverzichtComponent
   },
 
+  {path: 'add-product-template', component: AddProductTemplateFormComponent},
   {path: 'project-progress', component: ProjectProgressContainerComponent}
 
 ];
