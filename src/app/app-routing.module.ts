@@ -5,6 +5,7 @@ import { AddProjectComponent } from './new-project/components/add-project/add-pr
 import { ProjectenContainerComponent } from "./projecten-overzicht/projecten-container/projecten-container.component";
 import { ProductListComponent } from './productentemplate-overzicht/product-list/product-list.component';
 import { AddProductTemplateFormComponent } from './productentemplate-overzicht/add-product-template-form/add-product-template-form.component';
+import { ProjectProgressContainerComponent } from './project-progress-details/project-progress-container/project-progress-container.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,8 @@ const routes: Routes = [
   {path: 'projecten', component: ProjectenContainerComponent},
   {path: 'producten', component: ProductListComponent},
   {path: 'add-product-template', component: AddProductTemplateFormComponent}
+  {path: 'project-progress', component: ProjectProgressContainerComponent}
+
 ];
 
 @NgModule({

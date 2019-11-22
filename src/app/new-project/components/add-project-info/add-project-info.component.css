@@ -24,11 +24,11 @@ label {
     margin-bottom: 20px;
 } 
 
-.naastElkaar {
+/*.naastElkaar {
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-}
+}*/
 
 .naastElkaar > div {
     flex-grow: 1;
@@ -167,4 +167,13 @@ textarea {
     position: absolute;
     top: 37px;
     right: 10px;
+}
+
+.subtitle {
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.accent {
+    color: var(--magenta);
 }

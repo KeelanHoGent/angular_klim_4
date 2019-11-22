@@ -10,8 +10,6 @@ import { Product } from '../../../types/product.model';
   styleUrls: ['./add-product.component.css']
 })
 
-
-
 export class AddProductComponent {
   @Output() public newProduct = new EventEmitter<Product>();
   public product: Product;

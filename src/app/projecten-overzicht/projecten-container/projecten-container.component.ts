@@ -10,10 +10,14 @@ import { Project } from "../../types/project.model";
 export class ProjectenContainerComponent implements OnInit {
 
   public projects: Project[] = [];
+  public loader = true;
 
   constructor(private ps: ProjectService) { }
 
   ngOnInit() {
-    this.ps.getProjects$().subscribe(ps => this.projects = ps);
+    this.ps.getProjects$().subscribe(ps => {
+      this.loader = false;
+      this.projects = ps
+    });
   }
 }

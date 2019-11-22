@@ -6,6 +6,8 @@ import { Observable } from 'rxjs';
 import { ApplicationDomain } from '../../../types/applicationDomain.model';
 import { Product } from '../../../types/product.model';
 import { Router } from '@angular/router';
+import { Group } from 'src/app/types/group.model';
+import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
 
 @Component({
   selector: 'app-add-project-info',
@@ -17,6 +19,9 @@ export class AddProjectInfoComponent implements OnInit {
   private _domainApps: Observable<ApplicationDomain[]>;
   public domains: ApplicationDomain[];
   public products: Product[];
+  public groups: Group[];
+  public evaluationCs : EvaluationCriterea[];
+  
   private newProject: Project;
 
 
@@ -29,6 +34,8 @@ export class AddProjectInfoComponent implements OnInit {
     private _projectDataService: ProjectService) {
 
     this.products = new Array<Product>();
+    this.groups = new Array<Group>();
+    this.evaluationCs = new Array<EvaluationCriterea>();
 
     //volgende is gewoon voor iets te zien bij stylen
     const p1 = new Product();
@@ -52,7 +59,6 @@ export class AddProjectInfoComponent implements OnInit {
     this.project = this._fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
-      code: ['', Validators.required],
       image: ['', Validators.required],
       budget: ['', Validators.required],
       schoolYear: ['', Validators.required],
@@ -66,13 +72,11 @@ export class AddProjectInfoComponent implements OnInit {
   // onSubmit() {
   //   this.newProject.name = this.project.value.name;
   //   this.newProject.descr = this.project.value.description;
-  //   this.newProject.code = this.project.value.code;
   //   this.newProject.image = this.project.value.image;
   //   this.newProject.budget = this.project.value.budget;
   //   this.newProject.schoolYear = this.project.value.schoolYear;
   //   this.newProject.applicationDomainId = this.project.value.applicationDomain;
 
-  //   console.log(this.newProject);
 
   //   this._projectDataService.addNewProject(this.newProject)
   //     .subscribe();
@@ -81,17 +85,17 @@ export class AddProjectInfoComponent implements OnInit {
   save(){
     this.newProject.name = this.project.value.name;
     this.newProject.descr = this.project.value.description;
-    this.newProject.code = this.project.value.code;
     this.newProject.image = this.project.value.image;
-    this.newProject.budget = this.project.value.budget;
     this.newProject.schoolYear = this.project.value.schoolYear;
     this.newProject.applicationDomainId = this.project.value.applicationDomain;
 
+    this._projectDataService.addNewProject(this.newProject)
+      .subscribe(res => {
+        this.router.navigateByUrl("/projecten");
 
-    this._projectDataService.addNewProject(this.newProject).pipe()
-      .subscribe();
+      });
 
-    this.router.navigateByUrl("");
+   
       
   }
 
@@ -112,7 +116,30 @@ export class AddProjectInfoComponent implements OnInit {
     let index = this.products.indexOf(p);
     this.products.splice(index, 1);
     this.newProject.removeProduct(p);
+  }
 
+  addNewGroupToProject(group: Group) {
+    this.groups.push(group);
+    this.newProject.addGroupToProject(group);
+  }
+
+  deleteGroup(g: Group): void {
+    
+    let index = this.groups.indexOf(g);
+    this.groups.splice(index, 1);
+    this.newProject.removeGroup(g);
+  }
+
+  addNewEvaluationCToProject(g: EvaluationCriterea) {
+    this.evaluationCs.push(g);
+    this.newProject.addEvaluationCToProject(g);
+  }
+
+  deleteEvaluationC(g: EvaluationCriterea): void {
+    
+    let index = this.evaluationCs.indexOf(g);
+    this.evaluationCs.splice(index, 1);
+    this.newProject.removeEvaluationC(g);
   }
 
   getErrorMessage(errors: any) {

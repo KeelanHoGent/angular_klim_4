@@ -5,7 +5,6 @@ import { MatCardModule } from "@angular/material/card";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { SharedModule } from "../shared/shared.module";
 import { MatButtonModule } from "@angular/material/button";
-
 import { NewProjectModule } from "../new-project/new-project.module";
 
 @NgModule({

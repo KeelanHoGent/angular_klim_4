@@ -1,13 +1,16 @@
 <div class="projecten-wrapper">
   <div class="list-wrapper">
     <div class="list-title">
-      <h1>Lopende modules</h1>
+      <h1>Lopende projecten</h1>
       <app-add-project></app-add-project>
     </div>
-    <app-horizontal-list [list]="projects | activeFilter"></app-horizontal-list>
+    <mat-spinner *ngIf="loader"></mat-spinner>
+    <app-horizontal-list *ngIf="!loader" [list]="projects | activeFilter"></app-horizontal-list>
   </div>
   <div class="list-wrapper">
-    <h1>Afgelopen modules</h1>
-    <app-horizontal-list [list]="projects | finishedFilter"></app-horizontal-list>
+    <h1>Afgelopen projecten</h1>
+    <mat-spinner *ngIf="loader"></mat-spinner>
+    <app-horizontal-list *ngIf="!loader" [list]="projects | finishedFilter"></app-horizontal-list>
   </div>
+
 </div>

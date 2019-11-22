@@ -10,13 +10,20 @@ import { ProductComponent } from './components/product/product.component';
 import { MatIconModule } from "@angular/material/icon";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 import { RouterModule } from "@angular/router";
+import { AddGroupButtonComponent } from '../new-project/components/add-group-button/add-group-button.component';
+import { GroupFormComponent } from '../new-project/components/group-form/group-form.component';
+
 
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 import { InlineSVGModule } from 'ng-inline-svg';
+import { GroupComponent } from './components/group/group.component';
+import { EvaluationCComponent } from './components/evaluation-c/evaluation-c.component';
+import { EvaluationCFormComponent } from './components/evaluation-c-form/evaluation-c-form.component';
+import { EvaluationCAddButtonComponent } from './components/evaluation-c-add-button/evaluation-c-add-button.component';
 
 
 @NgModule({
@@ -27,6 +34,13 @@ import { InlineSVGModule } from 'ng-inline-svg';
     AddProjectInfoComponent,
     AddProductFormComponent,
     ProductComponent,
+    AddGroupButtonComponent,
+    GroupFormComponent,
+    GroupComponent,
+    EvaluationCComponent,
+    EvaluationCFormComponent,
+    EvaluationCAddButtonComponent
+    
   ],
   imports: [
     CommonModule,
@@ -39,9 +53,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
     MatFormFieldModule,
     InlineSVGModule
   ],
-  entryComponents: [AddProductFormComponent],
-  exports: [
-    AddProjectComponent
-  ]
+  entryComponents: [AddProductFormComponent, GroupFormComponent, EvaluationCFormComponent],
+  exports: [AddProjectComponent]
 })
 export class NewProjectModule { }
