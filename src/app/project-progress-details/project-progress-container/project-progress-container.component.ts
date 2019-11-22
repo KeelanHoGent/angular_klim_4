@@ -9,6 +9,8 @@ import { EvaluationFormComponent } from '../evaluation-form/evaluation-form.comp
 import { ConfigPdfComponent } from '../config-pdf/config-pdf.component';
 import { environment } from 'src/environments/environment';
 import { PdfSettings } from 'src/app/types/customDTOs/PdfSettings.model';
+import { ActivatedRoute } from '@angular/router';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-project-progress-container',
@@ -18,28 +20,47 @@ import { PdfSettings } from 'src/app/types/customDTOs/PdfSettings.model';
 export class ProjectProgressContainerComponent implements OnInit {
 
   public project : Project;
+  subscription: Subscription;
+
+  
 
  
   selectedGroup : Group;
 
-  constructor(private ps: ProjectService, private gs: GroupService, public dialog: MatDialog) { }
+  constructor(private ps: ProjectService, private gs: GroupService, public dialog: MatDialog, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.ps.getProjectByIdForProgress$(1).subscribe(p => {
-      this.project = p
-      if(this.project.groups.length > 0){
-        this.selectedGroup = this.project.groups[0];
-        this.project.groups[0].showClicked = true;
-      }
-    })
+    this.route.params.subscribe(params => {
+      console.log(params.id)
+      this.ps.getProjectByIdForProgress$(params.id).subscribe(p => {
+        this.project = p
+        if(this.project.groups.length > 0){
+          this.selectedGroup = this.project.groups[0];
+          this.project.groups[0].showClicked = true;
+        }
+         //refresh groups every 5
+      const source = interval(5000);
+      this.subscription = source.subscribe(val => this.refreshGroup());
+      })
+    });
+
+   
+   
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 
-  /*refreshGroups(){
-    this.ps.getProjectGroupsById(2).subscribe(ps => {    
+  refreshGroup(){
+    console.log("refresh")
+    this.ps.getProjectGroupsById(this.project.id).subscribe(ps => {    
       this.project.groups = ps
+      this.selectedGroup = this.project.groups.find(g => g.id === this.selectedGroup.id)
+      this.selectedGroup.showClicked = true;
     });
-  }*/
+  }
 
   detailsGroup(group: Group){
     this.project.changeShowClickedAllGroupsFalse();
