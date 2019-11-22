@@ -1,0 +1,11 @@
+<div class="evaluation" (click)="editEvaluationForm(evaluation)">
+        <p class="naam">{{evaluation.title}}</p>
+
+        <h2>Leerkracht</h2>
+        <p class="desc">{{evaluation.descriptionPrivate}} <span class="evaluationsDescr"  *ngIf="evaluation.descriptionPrivate === null || evaluation.descriptionPrivate === ''">...</span> </p>
+
+        <h2>Leerling</h2>
+        <p class="desc">{{evaluation.descriptionPupil}} <span class="evaluationsDescr" *ngIf="evaluation.descriptionPupil === null || evaluation.descriptionPupil === ''">...</span></p>
+       <!-- <button mat-raised-button class="details-button">Details</button>-->
+    </div>
+    

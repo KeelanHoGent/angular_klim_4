@@ -1,80 +1,16 @@
 <div class="projecten-wrapper">
-  <div class="projects-list-container">
+  <div class="list-wrapper">
     <div class="list-title">
-      Projecten
+      <h1>Lopende projecten</h1>
+      <app-add-project></app-add-project>
     </div>
-    <div class="sublist">
-      <div class="sublist-item active-item">
-        actief
-      </div>
-      <div class="sublist-item">
-        gesloten
-      </div>
-    </div>
-    <div class="project-list">
-      <mat-card *ngFor="let p of projects | async" >
-        <mat-card-title>{{p.name}}</mat-card-title>
-        <mat-card-content>{{p.applicationDomain.name}}</mat-card-content>
-      </mat-card>
+    <mat-spinner *ngIf="loader"></mat-spinner>
+    <app-horizontal-list *ngIf="!loader" [list]="projects | activeFilter"></app-horizontal-list>
+  </div>
+  <div class="list-wrapper">
+    <h1>Afgelopen projecten</h1>
+    <mat-spinner *ngIf="loader"></mat-spinner>
+    <app-horizontal-list *ngIf="!loader" [list]="projects | finishedFilter"></app-horizontal-list>
+  </div>
 
-      <mat-card>
-        <mat-card-title>Extra 1</mat-card-title>
-        <mat-card-content>Een iets langere description om dat toch ook eens te testen he</mat-card-content>
-      </mat-card>
-      <mat-card>
-        <mat-card-title>Extra 2</mat-card-title>
-        <mat-card-content>amai</mat-card-content>
-      </mat-card>
-      <mat-card>
-        <mat-card-title>Extra 3</mat-card-title>
-        <mat-card-content></mat-card-content>
-      </mat-card>
-    </div>
-  </div>
-  <div class="project spinner" *ngIf="!currentProject">
-    <mat-spinner></mat-spinner>
-  </div>
-  <div class="project" *ngIf="currentProject">
-    <div class="details">
-      <div class="details-item">
-        <img src="../../../assets/GO-logo-magenta.png">
-      </div>
-      <div class="details-item">
-        <h1>{{currentProject.name}}</h1>
-        <p>{{currentProject.descr}}</p>
-        <p>Budget: {{currentProject.budget}}</p>
-      </div>
-      <div class="details-item last">
-        <span class="status">Actief</span>
-      </div>
-    </div>
-    <div class="list-groups">
-      <table style="width: 100%">
-        <tr class="table-header">
-          <th> Groep </th>
-          <th> Overgebleven budget </th>
-        </tr>
-        <tr>
-          <td>Team Eddy</td>
-          <td>10</td>
-        </tr>
-        <tr>
-          <td>Team Jan</td>
-          <td>8</td>
-        </tr>
-        <tr>
-          <td>Team Foo</td>
-          <td>22</td>
-        </tr>
-        <tr>
-          <td>Team Bar</td>
-          <td>3</td>
-        </tr>
-        <tr>
-          <td>Team Baz</td>
-          <td>16</td>
-        </tr>
-      </table>
-    </div>
-  </div>
 </div>

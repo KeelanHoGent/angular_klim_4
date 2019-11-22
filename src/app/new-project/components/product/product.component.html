@@ -1,0 +1,14 @@
+<div (click)="editProductForm(product)" class=product>
+    <div class=deleteIcon>
+        <mat-icon (click)="deleteProduct()">clear</mat-icon>
+    </div>
+    <h4>{{product.name}}</h4>
+    <div>
+        <p>Beschrijving:</p>
+        <p>{{product.description}}</p>
+    </div>
+    <div>
+        <p>Prijs:</p>
+        <p>{{product.price}} muntjes</p>
+    </div>
+</div>

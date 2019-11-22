@@ -1,0 +1,179 @@
+/* .form {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: center;
+    
+}
+*/
+
+/* .h {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-weight: 400;
+}
+
+label {
+    font-family: 'Roboto-Regular', sans-serif;
+    font-weight: 300;
+    font-style: thin;
+} */
+
+.formSectie {
+    border-bottom:1px solid #e1e4e8 ;
+    margin-bottom: 20px;
+} 
+
+/*.naastElkaar {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}*/
+
+.naastElkaar > div {
+    flex-grow: 1;
+    flex-basis: 60px;
+    max-width: 30%;
+}
+
+.titleBox {
+    border-bottom: 1px solid #e1e4e8;
+    margin-bottom: 20px;
+}
+
+.buttonContainer {
+    width: 100%;
+    display: block;
+}
+
+.button {
+    min-width: 120px;
+    margin-right: 20px ;
+}
+
+dl label {
+    padding-top: 10px;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+.formGroup > label {
+    font-weight: 500;
+    padding-bottom: 8px ;
+    font-size: 14px;
+}
+
+.formGroup > input, textarea, div > input {
+    border: none;
+    background-color: #fafbfc;
+    height: 30px;
+    max-width: 400px;
+    /* min-width: 200px; */
+    border: 1px solid #d1d5da;
+    font-size: 12px;
+    border-radius: 5px;
+    box-shadow: inset 0 1px 2px rgba(27,31,35,.075);
+    padding: 4px 8px;
+    outline: none;
+}
+
+.formGroup > div {
+    max-width: 400px;
+}
+
+.formGroup > div > input {
+    width: 95%;
+}
+
+textarea {
+    min-width: 70%;
+    max-width: 97%;
+    height: 80px;
+    min-height: 20px;
+}
+
+
+.formGroup > select {
+    max-width: 25%;
+    min-width: 150px;
+    height: 30px;
+    background-color: #fafbfc;
+    border-color: #d1d5da;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+::placeholder {
+    color:#adb2b9;
+}
+
+.producten {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.producten > div {
+    margin-right: 20px;
+    margin-bottom: 20px;
+    min-width: 132px;
+    width: 22%;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.invalidInput {
+    border: 1px solid #F74040 !important;
+}
+
+.validInput {
+    border: 1px solid #49C562 !important;
+}
+
+.error {
+    color: #F74040;
+    text-align: right;
+    padding-top: 4px;
+    position: relative;
+}
+
+.error > img {
+    position: absolute;
+    top: -27px;
+    right: 10px;
+}
+
+
+.formGroup > div {
+    position: relative;
+}
+
+.correctInput {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+.correct {
+    position: absolute;
+    top: 37px;
+    right: 10px;
+}
+
+.subtitle {
+    padding-bottom: 20px;
+    font-size: 20px;
+}
+
+.accent {
+    color: var(--magenta);
+}
