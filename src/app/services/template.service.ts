@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CategoryTemplate } from '../types/categoryTemplate.model';
 import { Observable } from 'rxjs';
-import {ProjectTemplate} from '../types/project-template-model';
+import {ProjectTemplate} from '../types/projectTemplate.model';
 import {Project} from '../types/project.model';
 
 @Injectable({

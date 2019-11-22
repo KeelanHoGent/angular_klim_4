@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, Optional, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { ProjectTemplate } from '../../types/project-template-model';
+import { ProjectTemplate } from '../../types/projectTemplate.model';
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
-import { ProductTemplate } from 'src/app/types/product-template-model';
+import { ProductTemplate } from 'src/app/types/productTemplate.model';
 import {TemplateService} from '../../services/template.service';
 
 

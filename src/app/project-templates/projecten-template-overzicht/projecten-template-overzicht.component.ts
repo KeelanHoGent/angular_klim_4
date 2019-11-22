@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProjectTemplate } from '../../types/project-template-model';
+import { ProjectTemplate } from '../../types/projectTemplate.model';
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
 import {TemplateService} from '../../services/template.service';

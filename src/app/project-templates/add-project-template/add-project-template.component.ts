@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, Optional, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ProjectTemplate } from '../../types/project-template-model';
+import { ProjectTemplate } from '../../types/projectTemplate.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
