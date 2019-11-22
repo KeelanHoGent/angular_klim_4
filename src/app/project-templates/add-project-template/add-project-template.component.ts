@@ -2,12 +2,12 @@ import { Component, OnInit, Inject, Optional, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProjectTemplate } from '../../types/project-template-model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { ProjectTemplateService } from 'src/app/services/project-template.service';
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { Observable } from 'rxjs';
 import { ProductTemplate } from 'src/app/types/product-template-model';
 import { delay } from 'q';
+import {TemplateService} from '../../services/template.service';
 
 
 
@@ -24,7 +24,7 @@ export class AddProjectTemplateComponent implements OnInit {
   public productTemplates: ProductTemplate[];
   public geselecteerdeProductTemplates: ProductTemplate[];
   constructor(private _fb: FormBuilder,
-    private _projecttemplateDataService: ProjectTemplateService,
+    private _projecttemplateDataService: TemplateService,
     private _projectDataService: ProjectService) {
 
 

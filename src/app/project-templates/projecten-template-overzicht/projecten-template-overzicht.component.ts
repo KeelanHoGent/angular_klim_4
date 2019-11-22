@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ProjectTemplate } from '../../types/project-template-model';
-import { ProjectTemplateService } from '../../services/project-template.service';
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
+import {TemplateService} from '../../services/template.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class ProjectenTemplateOverzichtComponent implements OnInit {
   public currentProjectTemplate: ProjectTemplate;
   public domains: ApplicationDomain[] = [];
   public loader = true;
-  constructor(private _projecttemplateDataService: ProjectTemplateService,
+  constructor(private _projecttemplateDataService: TemplateService,
               private _projectDataService: ProjectService) {
     this.projects = this._projecttemplateDataService.getProjectTemplates$();
    }

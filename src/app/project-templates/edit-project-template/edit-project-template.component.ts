@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject, Optional, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { ProjectTemplate } from '../../types/project-template-model';
-import { ProjectTemplateService } from 'src/app/services/project-template.service';
 import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProductTemplate } from 'src/app/types/product-template-model';
+import {TemplateService} from '../../services/template.service';
 
 
 
@@ -23,7 +23,7 @@ export class EditProjectTemplateComponent implements OnInit {
   public geselecteerdeProductTemplates: ProductTemplate[];
   public geselecteerdeDomainApplication: ApplicationDomain;
   constructor(private _fb: FormBuilder,
-              private _projecttemplateDataService: ProjectTemplateService,
+              private _projecttemplateDataService: TemplateService,
               private _projectDataService: ProjectService) {
 
 
