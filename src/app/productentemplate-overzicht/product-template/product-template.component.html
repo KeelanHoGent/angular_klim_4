@@ -1,7 +1,6 @@
-<div class=product>
-    <h4>{{productTemplate.productName}}</h4>
-    <div>
-        <p>Beschrijving:</p>
-        <p>{{productTemplate.description}}</p>
-    </div>
+
+<div class="product">
+  <p class="naam">{{productTemplate.productName}}</p>
+  <img mat-card-image class="productfoto" src="{{productTemplate.image}}" alt="product" >
+  <p class="desc">{{productTemplate.description | slice:0:75}} ...</p>
 </div>
