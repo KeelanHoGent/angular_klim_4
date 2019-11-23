@@ -10,8 +10,10 @@ export class ProductTemplate {
     private _categoryTemplateId: number;
     private _productVariationTemplates = new Array<ProductVariationTemplate>();
     private _hasMultipleDisplayVariations: boolean;
+    private _addedByGO: boolean;
 
   static fromJSON(p: any): ProductTemplate {
+    console.log(p.addedByGo);
     const result = new ProductTemplate();
     result.productTemplateId = p.productTemplateId;
     result.productName = p.productName;
@@ -20,6 +22,7 @@ export class ProductTemplate {
     result.score = p.score;
     result.categoryTemplateId = p.categoryTemplateId;
     result.hasMultipleDisplayVariations = p.hasMultipleDisplayVariations;
+    result.addedByGo = p.addedByGO;
     p.productVariationTemplates.map(ProductVariationTemplate.fromJSON);
 
     return result;
@@ -36,6 +39,7 @@ export class ProductTemplate {
             score: this._score,
             projectId: this._projectId,
             hasMultipleDisplayVariations: this._hasMultipleDisplayVariations,
+            addedByGo: this._addedByGO,
             productVariationTemplates: this.productVariationTemplates.map(va => va.toJson())
         };
     }
@@ -108,5 +112,13 @@ export class ProductTemplate {
 
     get projectId(): number {
       return this._projectId;
+    }
+
+    set addedByGo(v: boolean) {
+      this._addedByGO = v;
+    }
+
+    get addedByGo(): boolean {
+    return this._addedByGO;
     }
 }

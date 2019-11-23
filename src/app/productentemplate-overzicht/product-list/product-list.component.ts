@@ -17,8 +17,10 @@ export class ProductListComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    this._templateDataService.getProductTemplates$().subscribe(pt => this.productTemplates = pt);
-    this.loader = false;
+    this._templateDataService.getProductTemplates$().subscribe(pt => {
+      this.productTemplates = pt;
+      this.loader = false;
+    });
   }
 
 }

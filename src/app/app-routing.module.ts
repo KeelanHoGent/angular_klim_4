@@ -10,6 +10,7 @@ import { AddProjectTemplateComponent } from './project-templates/add-project-tem
 import { ProjectenTemplateOverzichtComponent } from './project-templates/projecten-template-overzicht/projecten-template-overzicht.component';
 
 import { ProjectProgressContainerComponent } from './project-progress-details/project-progress-container/project-progress-container.component';
+import {ProductTemplateDetailsComponent} from './productentemplate-overzicht/product-template-details/product-template-details.component';
 
 
 const routes: Routes = [
@@ -28,9 +29,8 @@ const routes: Routes = [
   },
 
   {path: 'add-product-template', component: AddProductTemplateFormComponent},
-  {path: 'project-progress', component: ProjectProgressContainerComponent}
-
-];
+  {path: 'project-progress', component: ProjectProgressContainerComponent},
+  {path: 'product-template-details/:id', component: ProductTemplateDetailsComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
