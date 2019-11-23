@@ -1,5 +1,6 @@
-
+<a routerLink="/add-product-template">
 <div class="product">
   <p class="naam" >{{productTemplate.productName | slice: 0: 9}} </p>
-  <img mat-card-image class="productfoto" src="{{productTemplate.image}}" alt="product" >
+  <img mat-card-image class="productfoto" src="{{productTemplate.image}}" alt="{{productTemplate.productName}}" >
 </div>
+</a>

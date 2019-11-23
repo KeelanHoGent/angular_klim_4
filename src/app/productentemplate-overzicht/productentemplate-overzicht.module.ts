@@ -18,6 +18,7 @@ import {
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HorizontalListProductsComponent } from './horizontal-list-products/horizontal-list-products.component';
+import { ProductTemplateDetailsComponent } from './product-template-details/product-template-details.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HorizontalListProductsComponent } from './horizontal-list-products/hori
     ProductListComponent,
     ProductTemplateComponent,
     AddProductTemplateFormComponent,
-    HorizontalListProductsComponent],
+    HorizontalListProductsComponent,
+    ProductTemplateDetailsComponent],
 
   imports: [
     CommonModule,
