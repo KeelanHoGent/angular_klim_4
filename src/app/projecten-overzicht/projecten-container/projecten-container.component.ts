@@ -17,7 +17,7 @@ export class ProjectenContainerComponent implements OnInit {
   ngOnInit() {
     this.ps.getProjects$().subscribe(ps => {
       this.loader = false;
-      this.projects = ps
+      this.projects = ps;
     });
   }
 }

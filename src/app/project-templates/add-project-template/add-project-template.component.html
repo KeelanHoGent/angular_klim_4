@@ -1,0 +1,149 @@
+<div class="h-row">
+    <mat-card>
+        <mat-card-title>
+            <mat-icon _ngcontent-btj-c9="" class="icon mat-icon notranslate material-icons mat-icon-no-color" role="img" aria-hidden="true">post_add</mat-icon>
+          Projectenconcept toevoegen
+        </mat-card-title>
+        <img mat-card-image *ngIf="projecttemplate.get('image')?.touched" src="{{foto.value}}" alt="project" sizes="">
+        <mat-card-content>
+          <form [formGroup]="projecttemplate" (ngSubmit)="onSubmit()">
+              <div class="vertical">
+            <mat-form-field appearance="outline">
+                <mat-label>Naam</mat-label>
+              <input
+                matInput
+                placeholder="Naam van het project"
+                type="text"
+                formControlName="name"
+                data-cy="newprojecttemplatename"
+                required
+              />
+              <mat-error
+                *ngIf="projecttemplate.get('name')?.errors && projecttemplate.get('name')?.touched"
+                data-cy="newprojecttemplatenameerror"
+              >
+                {{ getErrorMessage(projecttemplate.get('name').errors) }}
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Beschrijving</mat-label>
+                <input
+                  matInput
+                  placeholder="Beschrijving van het project"
+                  type="text"
+                  formControlName="descr"
+                  data-cy="newprojecttemplatedescription"
+                  required
+                />
+                <mat-error
+                  *ngIf="projecttemplate.get('descr')?.errors && projecttemplate.get('descr')?.touched"
+                  data-cy="newprojecttemplatedescriptionerror"
+                >
+                  {{ getErrorMessage(projecttemplate.get('descr').errors) }}
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                  <mat-label>Afbeelding</mat-label>
+                <input
+                  matInput
+                  placeholder="Link naar de afbeelding"
+                  type="text"
+                  formControlName="image"
+                  data-cy="newprojecttemplateimage"
+                  required
+                  #foto
+                />
+                <mat-error
+                  *ngIf="projecttemplate.get('image')?.errors && projecttemplate.get('image')?.touched"
+                  data-cy="newprojecttemplateimageerror"
+                >
+                  {{ getErrorMessage(projecttemplate.get('image').errors) }}
+                </mat-error>
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
+                <mat-label>Budget</mat-label>
+                <input
+                  matInput
+                  placeholder="Maximaal uit te geven budget"
+                  type="number"
+                  min="0" 
+                  formControlName="budget"
+                  data-cy="newprojecttemplatebudget"
+                  required
+                />
+                <mat-error
+                  *ngIf="projecttemplate.get('budget')?.errors && projecttemplate.get('budget')?.touched"
+                  data-cy="newprojecttemplatebudgeterror"
+                >
+                  {{ getErrorMessage(projecttemplate.get('budget').errors) }}
+                </mat-error>
+              </mat-form-field>
+              
+              <mat-form-field appearance="outline">
+                <mat-label>Eco-score</mat-label>
+                <input
+                  matInput
+                  placeholder="Maximale ecologische score"
+                  type="number"
+                  min="0"
+                  formControlName="maxScore"
+                  data-cy="newprojecttemplatemaxScore"
+                  required
+                />
+                <mat-error
+                  *ngIf="projecttemplate.get('maxScore')?.errors && projecttemplate.get('maxScore')?.touched"
+                  data-cy="newprojecttemplatemaxScoreerror"
+                >
+                  {{ getErrorMessage(projecttemplate.get('maxScore').errors) }}
+                </mat-error>
+              </mat-form-field>
+    
+    
+              <mat-form-field appearance="outline">
+                <mat-label>Onderwerp</mat-label>
+                <mat-select formControlName="applicationDomain"  required>
+                  <mat-option *ngFor="let domein of domains" [value]="domein.id">
+                    {{domein.name}}
+                  </mat-option>
+                </mat-select>
+                
+                <mat-error
+                  *ngIf="projecttemplate.get('image')?.errors && projecttemplate.get('image')?.touched"
+                >
+                  {{ getErrorMessage(projecttemplate.get('image').errors) }}
+                </mat-error>
+              </mat-form-field>
+            
+              <mat-form-field appearance="outline">
+                <mat-label>Productconcepten</mat-label>
+                <mat-select formControlName="productTemplates" [compareWith]="compareFn" [(ngModel)]="geselecteerdeProductTemplates" multiple required>
+                  <mat-option *ngFor="let group of productTemplates"  [value]="group">
+                      {{group.productName}}
+                    </mat-option>
+                </mat-select>
+              </mat-form-field>
+    
+    
+    
+            <button type="submit" mat-raised-button [disabled]="!projecttemplate.valid" data-cy="newprojecttemplatesubmit">
+              Bevestig
+            </button>
+            </div>
+          </form>
+          
+          
+        </mat-card-content>
+      </mat-card>
+    <div class="parent">
+        <mat-card *ngFor="let producttemplate of geselecteerdeProductTemplates"  class="lijstitem">
+            <mat-card-header>
+                <mat-card-title >{{producttemplate.productName}}</mat-card-title>
+            </mat-card-header>
+            <img mat-card-image class="productfoto" src="{{producttemplate.image}}" alt="project" sizes="">
+            <mat-card-content>
+                <p>{{producttemplate.description}}</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
