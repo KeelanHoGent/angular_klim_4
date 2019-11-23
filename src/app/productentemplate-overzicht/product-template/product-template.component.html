@@ -1,6 +1,5 @@
 
 <div class="product">
-  <p class="naam">{{productTemplate.productName}}</p>
+  <p class="naam" >{{productTemplate.productName | slice: 0: 9}} </p>
   <img mat-card-image class="productfoto" src="{{productTemplate.image}}" alt="product" >
-  <p class="desc">{{productTemplate.description | slice:0:75}} ...</p>
 </div>

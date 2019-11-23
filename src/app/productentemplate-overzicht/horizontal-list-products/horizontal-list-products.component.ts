@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Project} from '../../types/project.model';
+import {ProductTemplate} from '../../types/productTemplate.model';
 
 @Component({
   selector: 'app-horizontal-list-products',
@@ -8,7 +8,7 @@ import {Project} from '../../types/project.model';
 })
 export class HorizontalListProductsComponent implements OnInit {
 
-  @Input() list: Project[];
+  @Input() list: ProductTemplate[];
   @Input() ListTitle: string;
 
   constructor() { }
