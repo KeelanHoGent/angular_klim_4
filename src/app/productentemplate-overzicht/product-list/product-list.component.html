@@ -7,9 +7,8 @@
       <mat-icon class="icon">add</mat-icon>Nieuw product template
     </button>
   </div>
-  <div class=producten>
-    <div *ngFor="let p of productTemplates">
-      <!-- TO DO IN NEXT BRANCH -->
-    </div>
-  </div>
+  <mat-spinner *ngIf="loader"></mat-spinner>
+  <app-horizontal-list-products *ngIf="!loader" [list]="productTemplates"></app-horizontal-list-products>
+
 </div>
+

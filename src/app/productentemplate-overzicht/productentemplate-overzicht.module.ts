@@ -4,15 +4,28 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ProductTemplateComponent } from './product-template/product-template.component';
 import { AddProductTemplateFormComponent } from './add-product-template-form/add-product-template-form.component';
 import { RouterModule } from '@angular/router';
-import { MatFormFieldModule, MatCardModule, MatButtonModule, MatIconModule, MatOptionModule, MatSelectModule, MatTooltipModule, MatCheckboxModule, MatDialogActions } from '@angular/material';
+import {
+  MatFormFieldModule,
+  MatCardModule,
+  MatButtonModule,
+  MatIconModule,
+  MatOptionModule,
+  MatSelectModule,
+  MatTooltipModule,
+  MatCheckboxModule,
+  MatDialogActions,
+  MatProgressSpinnerModule
+} from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HorizontalListProductsComponent } from './horizontal-list-products/horizontal-list-products.component';
 
 
 @NgModule({
   declarations: [
     ProductListComponent,
     ProductTemplateComponent,
-    AddProductTemplateFormComponent],
+    AddProductTemplateFormComponent,
+    HorizontalListProductsComponent],
 
   imports: [
     CommonModule,
@@ -25,7 +38,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     MatFormFieldModule,
     MatTooltipModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   exports: [
     ProductListComponent

@@ -8,8 +8,8 @@ import { ProductTemplate } from 'src/app/types/productTemplate.model';
 })
 export class ProductTemplateComponent implements OnInit {
 
-  @Input() public product: ProductTemplate;
-  
+  @Input() public productTemplate: ProductTemplate;
+
   constructor() { }
 
   ngOnInit() {
