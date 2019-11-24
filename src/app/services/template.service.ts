@@ -7,6 +7,7 @@ import { CategoryTemplate } from '../types/categoryTemplate.model';
 import { Observable } from 'rxjs';
 import {ProjectTemplate} from '../types/projectTemplate.model';
 import {Project} from '../types/project.model';
+import {Product} from '../types/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +70,7 @@ export class TemplateService {
     return this.http.get<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/${id}`)
       .pipe(map(p => {
         console.log(p);
+        console.log(ProductTemplate.fromJSON(p));
         return ProductTemplate.fromJSON(p);
       }));
   }
