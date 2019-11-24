@@ -122,6 +122,9 @@ export class ProductTemplateDetailsComponent implements OnInit {
     }
     else {
       const genVar = new ProductVariationTemplate();
+      if (!this.productTemp.hasMultipleDisplayVariations){
+        genVar.productVariationTemplateId = this.productTemp.productVariationTemplates[0].productVariationTemplateId;
+      }
       genVar.productDescr = this.productTemplate.value.genVar;
       genVar.eSchoolGrade = 'algemeen';
       productTemp2.productVariationTemplates[0] = genVar;
@@ -136,6 +139,8 @@ export class ProductTemplateDetailsComponent implements OnInit {
     productTemp2.categoryTemplate = this.productTemplate.value.categories;
     productTemp2.hasMultipleDisplayVariations = this.variationsCheck.value;
     productTemp2.score = this.productTemplate.value.score;
+    console.log(productTemp2);
+    console.log(productTemp2.toJson());
     this.templateService.editProductTemplate(productTemp2).subscribe();
 
     this.router.navigateByUrl("/producten");

@@ -62,17 +62,17 @@ export class AddProductTemplateFormComponent implements OnInit {
       const variationsControl = this.productTemplate.get('variations') as FormArray;
       if(el) {
         genVarControl.setValidators(null);
-        variationsControl.controls.forEach(el => {el.get('ProductDescr').setValidators([Validators.required, Validators.minLength(2)])});
+        variationsControl.controls.forEach(el => {el.get('productDescr').setValidators([Validators.required, Validators.minLength(2)])});
 
 
       } else{
         genVarControl.setValidators([Validators.required, Validators.minLength(2)]);
-        variationsControl.controls.forEach(el => {el.get('ProductDescr').setValidators(null)});
+        variationsControl.controls.forEach(el => {el.get('productDescr').setValidators(null)});
         console.log(this.categories);
       }
 
       genVarControl.updateValueAndValidity();
-      variationsControl.controls.forEach(el => el.get('ProductDescr').updateValueAndValidity());
+      variationsControl.controls.forEach(el => el.get('productDescr').updateValueAndValidity());
     })
   }
 
@@ -98,8 +98,8 @@ export class AddProductTemplateFormComponent implements OnInit {
   createVariations(grade: string): FormGroup {
     return this._fb.group(
       {
-        ProductDescr: [''],
-        ESchoolGrade: [grade]
+        productDescr: [''],
+        eSchoolGrade: [grade]
       }
     )
   }
@@ -127,10 +127,11 @@ export class AddProductTemplateFormComponent implements OnInit {
     productTemp.description = this.productTemplate.value.description;
     productTemp.productName = this.productTemplate.value.name;
     productTemp.image = this.productTemplate.value.image;
-    productTemp.categoryTemplateId = this.productTemplate.value.categories;
+    productTemp.categoryTemplateId = this.productTemplate.value.categories.categoryTemplateId;
+    productTemp.categoryTemplate = this.productTemplate.value.categories;
     productTemp.hasMultipleDisplayVariations = this.variationsCheck.value;
     productTemp.score = this.productTemplate.value.score;
-    console.log(productTemp);
+    console.log(productTemp.toJson());
     this._templateDataService.addProductTemplate(productTemp).subscribe();
 
     this.router.navigateByUrl("/producten");

@@ -56,6 +56,7 @@ export class TemplateService {
   }
 
   addProductTemplate(productTemplate: ProductTemplate) {
+    console.log(productTemplate.toJson());
     return this.http.post(`${environment.apiUrl}/School/addProductTemplate/1`, productTemplate.toJson());
   }
 
