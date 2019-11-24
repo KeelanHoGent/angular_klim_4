@@ -1,4 +1,7 @@
 <div class="list" >
-
-  <app-product-template *ngFor="let productTemp of list" [productTemplate]="productTemp"></app-product-template>
+  <div *ngFor="let productTemp of list">
+  <a [routerLink]="['/product-template-details/', productTemp.productTemplateId]">
+  <app-product-template  [productTemplate]="productTemp"></app-product-template>
+  </a>
+  </div>
 </div>

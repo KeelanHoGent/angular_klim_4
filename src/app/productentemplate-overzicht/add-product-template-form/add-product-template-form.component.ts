@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, FormControl, FormArray } from '@angular/forms';
 import { TemplateService } from 'src/app/services/template.service';
@@ -19,6 +19,7 @@ export class AddProductTemplateFormComponent implements OnInit {
   public error: string = '../../assets/images/error.svg';
   public correct: string = '../../assets/images/correct.svg';
 
+  @Input() productTemplateObject: ProductTemplate;
   public productTemplate: FormGroup;
   private categories$;
   // [

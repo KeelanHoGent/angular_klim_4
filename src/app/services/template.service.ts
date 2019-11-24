@@ -65,4 +65,11 @@ export class TemplateService {
     return test;
   }
 
+  getProductTemplate(id): Observable<ProductTemplate> {
+    return this.http.get<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/${id}`)
+      .pipe(map(p => {
+        console.log(p);
+        return ProductTemplate.fromJSON(p);
+      }));
+  }
 }

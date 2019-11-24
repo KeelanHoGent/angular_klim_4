@@ -11,6 +11,7 @@ import { ProjectenTemplateOverzichtComponent } from './project-templates/project
 
 import { ProjectProgressContainerComponent } from './project-progress-details/project-progress-container/project-progress-container.component';
 import {ProductTemplateDetailsComponent} from './productentemplate-overzicht/product-template-details/product-template-details.component';
+import {ProductTemplateResolver} from './productentemplate-overzicht/productTemplate-resolver';
 
 
 const routes: Routes = [
@@ -30,7 +31,7 @@ const routes: Routes = [
 
   {path: 'add-product-template', component: AddProductTemplateFormComponent},
   {path: 'project-progress', component: ProjectProgressContainerComponent},
-  {path: 'product-template-details/:id', component: ProductTemplateDetailsComponent}];
+  {path: 'product-template-details/:id', component: ProductTemplateDetailsComponent, resolve: {productTemp: ProductTemplateResolver}}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
