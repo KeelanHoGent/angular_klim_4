@@ -74,4 +74,9 @@ export class TemplateService {
         return ProductTemplate.fromJSON(p);
       }));
   }
+
+  editProductTemplate(productTemp: ProductTemplate) {
+    return this.http.put<ProjectTemplate>(`${environment.apiUrl}/ProductTemplate/${productTemp.productTemplateId}/`,
+      productTemp.toJson()).pipe(map(ProductTemplate.fromJSON));
+  }
 }

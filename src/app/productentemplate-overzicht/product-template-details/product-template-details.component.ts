@@ -39,8 +39,6 @@ export class ProductTemplateDetailsComponent implements OnInit {
   }
 
   buildForm() {
-    console.log(this.productTemp.productVariationTemplates);
-
     this.productTemplate = this._fb.group({
       name: [this.productTemp.productName, [Validators.required, Validators.minLength(1)]],
       description: [this.productTemp.description, [Validators.required, Validators.minLength(2)]],
@@ -64,19 +62,19 @@ export class ProductTemplateDetailsComponent implements OnInit {
     if (el) {
       genVarControl.setValidators(null);
       variationsControl.controls.forEach(el => {
-        el.get('ProductDescr').setValidators([Validators.required, Validators.minLength(2)]);
+        el.get('productDescr').setValidators([Validators.required, Validators.minLength(2)]);
       });
 
 
     } else {
       genVarControl.setValidators([Validators.required, Validators.minLength(2)]);
       variationsControl.controls.forEach(el => {
-        el.get('ProductDescr').setValidators(null);
+        el.get('productDescr').setValidators(null);
       });
     }
 
     genVarControl.updateValueAndValidity();
-    variationsControl.controls.forEach(el => el.get('ProductDescr').updateValueAndValidity());
+    variationsControl.controls.forEach(el => el.get('productDescr').updateValueAndValidity());
   }
 
   get categories() {
@@ -99,12 +97,14 @@ export class ProductTemplateDetailsComponent implements OnInit {
   }
 
   createVariations(grade: string): FormGroup {
+    const variation = this.productTemp.productVariationTemplates[this.graden.indexOf(grade)];
     return this._fb.group(
       {
-        ProductDescr: [this.productTemp.hasMultipleDisplayVariations ? this.productTemp.productVariationTemplates[this.graden.indexOf(grade)].productDescr : ''],
-        ESchoolGrade: [grade]
+        productVariationTemplateId: [variation.productVariationTemplateId],
+        productDescr: [this.productTemp.hasMultipleDisplayVariations ? variation.productDescr : ''],
+        eSchoolGrade: [grade]
       }
-    )
+    );
   }
 
   addVariations(): void {
@@ -115,26 +115,28 @@ export class ProductTemplateDetailsComponent implements OnInit {
   }
 
   save() {
-    let productTemp = new ProductTemplate();
+    let productTemp2 = new ProductTemplate();
     if (this.variationsCheck.value === true)
     {
-      productTemp.productVariationTemplates  = this.productTemplate.value.variations.map(ProductVariationTemplate.fromJSON);
+      productTemp2.productVariationTemplates  = this.productTemplate.value.variations.map(ProductVariationTemplate.fromJSON);
     }
     else {
       const genVar = new ProductVariationTemplate();
       genVar.productDescr = this.productTemplate.value.genVar;
       genVar.eSchoolGrade = 'algemeen';
-      productTemp.productVariationTemplates[0] = genVar;
+      productTemp2.productVariationTemplates[0] = genVar;
     }
 
-    productTemp.description = this.productTemplate.value.description;
-    productTemp.productName = this.productTemplate.value.name;
-    productTemp.image = this.productTemplate.value.image;
-    productTemp.categoryTemplateId = this.productTemplate.value.categories;
-    productTemp.hasMultipleDisplayVariations = this.variationsCheck.value;
-    productTemp.score = this.productTemplate.value.score;
-    console.log(productTemp);
-    //this.templateService.addProductTemplate(productTemp).subscribe();
+    productTemp2.productTemplateId = this.productTemp.productTemplateId;
+    productTemp2.description = this.productTemplate.value.description;
+    productTemp2.productName = this.productTemplate.value.name;
+    productTemp2.image = this.productTemplate.value.image;
+    productTemp2.categoryTemplateId = this.productTemplate.value.categories.categoryTemplateId;
+
+    productTemp2.categoryTemplate = this.productTemplate.value.categories;
+    productTemp2.hasMultipleDisplayVariations = this.variationsCheck.value;
+    productTemp2.score = this.productTemplate.value.score;
+    this.templateService.editProductTemplate(productTemp2).subscribe();
 
     this.router.navigateByUrl("/producten");
   }
