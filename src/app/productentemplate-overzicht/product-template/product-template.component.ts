@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { ProductTemplate } from 'src/app/types/productTemplate.model';
+import {Product} from '../../types/product.model';
+import {TemplateService} from '../../services/template.service';
 
 @Component({
   selector: 'app-product-template',
@@ -9,10 +11,17 @@ import { ProductTemplate } from 'src/app/types/productTemplate.model';
 export class ProductTemplateComponent implements OnInit {
 
   @Input() public productTemplate: ProductTemplate;
+  @Output() public deletedProduct = new EventEmitter<ProductTemplate>();
 
-  constructor() { }
+  constructor(private templateService: TemplateService) { }
 
   ngOnInit() {
   }
 
+  deleteProduct():boolean {
+    this.deletedProduct.emit(this.productTemplate);
+    console.log(this.productTemplate)
+    this.templateService.deleteProductTemplate(this.productTemplate).subscribe();
+    return false;
+  }
 }

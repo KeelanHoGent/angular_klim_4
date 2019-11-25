@@ -62,6 +62,15 @@
 
 }
 
-
+.deleteIcon {
+  display: block;
+  position: absolute;
+  top: -20px;
+  left: 90%;
+  /* border: red 1px solid; */
+  padding-bottom: 0px;
+  border-radius: 50%;
+  background: white;
+}
 
 

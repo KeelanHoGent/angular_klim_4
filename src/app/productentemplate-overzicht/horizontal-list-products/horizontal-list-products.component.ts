@@ -16,4 +16,8 @@ export class HorizontalListProductsComponent implements OnInit {
   ngOnInit() {
   }
 
+  deleteProduct(p: ProductTemplate) {
+    let index = this.list.indexOf(p);
+    this.list.splice(index, 1);
+  }
 }

@@ -139,8 +139,6 @@ export class ProductTemplateDetailsComponent implements OnInit {
     productTemp2.categoryTemplate = this.productTemplate.value.categories;
     productTemp2.hasMultipleDisplayVariations = this.variationsCheck.value;
     productTemp2.score = this.productTemplate.value.score;
-    console.log(productTemp2);
-    console.log(productTemp2.toJson());
     this.templateService.editProductTemplate(productTemp2).subscribe();
 
     this.router.navigateByUrl("/producten");

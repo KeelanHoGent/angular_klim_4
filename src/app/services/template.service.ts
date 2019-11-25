@@ -77,7 +77,11 @@ export class TemplateService {
   }
 
   editProductTemplate(productTemp: ProductTemplate) {
-    return this.http.put<ProjectTemplate>(`${environment.apiUrl}/ProductTemplate/${productTemp.productTemplateId}/`,
+    return this.http.put<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/${productTemp.productTemplateId}/`,
       productTemp.toJson()).pipe(map(ProductTemplate.fromJSON));
+  }
+
+  deleteProductTemplate(productTemplate: ProductTemplate) {
+    return this.http.delete<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/${productTemplate.productTemplateId}`);
   }
 }
