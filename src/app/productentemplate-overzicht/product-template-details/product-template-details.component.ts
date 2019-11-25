@@ -36,6 +36,7 @@ export class ProductTemplateDetailsComponent implements OnInit {
     });
     this.buildForm();
     this.setValidations(this.productTemp.hasMultipleDisplayVariations);
+    this.disableInputs();
   }
 
   buildForm() {
@@ -145,4 +146,16 @@ export class ProductTemplateDetailsComponent implements OnInit {
   }
 
 
+  private disableInputs() {
+    if(this.productTemp.addedByGo) {
+      this.productTemplate.get('name').disable();
+      this.productTemplate.get('description').disable();
+      this.productTemplate.get('image').disable();
+      this.productTemplate.get('categories').disable();
+      this.productTemplate.get('score').disable();
+      this.productTemplate.get('variationsCheck').disable();
+      this.productTemplate.get('genVar').disable();
+      this.productTemplate.get('variations').disable();
+    }
+  }
 }

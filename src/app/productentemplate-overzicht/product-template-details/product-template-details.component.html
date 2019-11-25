@@ -14,59 +14,58 @@
           <div class="formGroup">
             <label>Product naam</label>
             <input [ngClass]="{
-                        'invalidInput': productTemplate.get('name')['errors']&& productTemplate.get('name').touched,
-                        'validInput': !productTemplate.get('name')['errors'] && productTemplate.get('name').touched
+                        'invalidInput': productTemplate.get('name')['errors'],
+                        'validInput': !productTemplate.get('name')['errors']
                     }" aria-label="productTemplatenaam" type="text" formControlName="name" #spy
                    required />
-
-            <p class="error" *ngIf="productTemplate.get('name')['errors'] && productTemplate.get('name').touched">
+            <p class="error" *ngIf="productTemplate.get('name')['errors']">
               {{ getErrorMessage(productTemplate.get('name')['errors']) }}
               <img src="{{error}}">
             </p>
-            <img *ngIf="!productTemplate.get('name')['errors'] && productTemplate.get('name').touched"
+            <img *ngIf="!productTemplate.get('name')['errors']"
                  class="correct" src="{{correct}}"/>
 
           </div>
           <div class="formGroup">
             <label>Beschrijving</label>
             <textarea [ngClass]="{
-                            'invalidInput': productTemplate.get('description')['errors']&& productTemplate.get('description').touched,
-                            'validInput': !productTemplate.get('description')['errors'] && productTemplate.get('description').touched
+                            'invalidInput': productTemplate.get('description')['errors'],
+                            'validInput': !productTemplate.get('description')['errors']
                         }" aria-label="description" type="text" formControlName="description" required></textarea>
             <p class="error"
-               *ngIf="productTemplate.get('description')['errors'] && productTemplate.get('description').touched">
+               *ngIf="productTemplate.get('description')['errors']">
               {{ getErrorMessage(productTemplate.get('description')['errors']) }}
               <img src="{{error}}">
             </p>
-            <img *ngIf="!productTemplate.get('description')['errors'] && productTemplate.get('description').touched"
+            <img *ngIf="!productTemplate.get('description')['errors']"
                  class="correct" src="{{correct}}">
           </div>
           <div class="formGroup">
             <label>Afbeelding Url</label>
             <input
               [ngClass]="{
-                            'invalidInput': productTemplate.get('image')['errors']&& productTemplate.get('image').touched,
-                            'validInput': !productTemplate.get('image')['errors'] && productTemplate.get('image').touched }"
+                            'invalidInput': productTemplate.get('image')['errors'],
+                            'validInput': !productTemplate.get('image')['errors'] }"
               aria-label="image" type="text" formControlName="image" required />
-            <p class="error" *ngIf="productTemplate.get('image')['errors'] && productTemplate.get('image').touched">
+            <p class="error" *ngIf="productTemplate.get('image')['errors']">
               {{ getErrorMessage(productTemplate.get('image')['errors']) }}
               <img src="{{error}}">
             </p>
-            <img *ngIf="!productTemplate.get('image')['errors'] && productTemplate.get('image').touched"
+            <img *ngIf="!productTemplate.get('image')['errors']"
                  class="correct" src="{{correct}}"/>
           </div>
           <div class="formGroup">
             <label>Score</label>
             <input
               [ngClass]="{
-                                'invalidInput': productTemplate.get('score')['errors']&& productTemplate.get('score').touched,
-                                'validInput': !productTemplate.get('score')['errors'] && productTemplate.get('score').touched }"
+                                'invalidInput': productTemplate.get('score')['errors'],
+                                'validInput': !productTemplate.get('score')['errors']}"
               aria-label="score" type="number" formControlName="score" required />
-            <p class="error" *ngIf="productTemplate.get('score')['errors'] && productTemplate.get('score').touched">
+            <p class="error" *ngIf="productTemplate.get('score')['errors'] ">
               {{ getErrorMessage(productTemplate.get('score')['errors']) }}
               <img src="{{error}}">
             </p>
-            <img *ngIf="!productTemplate.get('score')['errors'] && productTemplate.get('score').touched"
+            <img *ngIf="!productTemplate.get('score')['errors']"
                  class="correct" src="{{correct}}"/>
           </div>
           <mat-form-field class="formGroup">
@@ -76,7 +75,7 @@
                 {{ cat.categoryName }}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="productTemplate.get('categories')['errors'] && productTemplate.get('categories').touched">
+            <mat-error *ngIf="productTemplate.get('categories')['errors'] ">
               {{ getErrorMessage(productTemplate.get('categories')['errors']) }}
             </mat-error>
           </mat-form-field>
@@ -89,16 +88,16 @@
           <div *ngIf="!variationsCheck.value">
             <div class="formGroup">
               <label>Algemene beschrijving voor leerlingen</label>
-              <input [ngClass]="{'invalidInput': productTemplate.get('genVar').errors && productTemplate.get('genVar').touched,
-                                        'validInput': !productTemplate.get('genVar').errors && productTemplate.get('genVar').touched
+              <input [ngClass]="{'invalidInput': productTemplate.get('genVar').errors,
+                                        'validInput': !productTemplate.get('genVar').errors
                                     }" aria-label="generalVariation" type="text"
                      formControlName="genVar" #spy />
 
-              <p class="error" *ngIf="productTemplate.get('genVar').errors && productTemplate.get('genVar').touched">
+              <p class="error" *ngIf="productTemplate.get('genVar').errors">
                 {{ getErrorMessage(productTemplate.get('genVar').errors) }}
                 <img src="{{error}}">
               </p>
-              <img *ngIf="!productTemplate.get('genVar')['errors'] && productTemplate.get('genVar').touched"
+              <img *ngIf="!productTemplate.get('genVar')['errors']"
                    class="correct" src="{{correct}}"/>
 
             </div>
@@ -108,23 +107,23 @@
               <div class="formGroup" [formGroupName]="i" >
                 <label>Beschrijving {{va.get('eSchoolGrade').value}} graad</label>
                 <input [ngClass]="{
-                                'invalidInput': va.get('productDescr')['errors']&& va.get('productDescr').touched,
-                                'validInput': !va.get('productDescr')['errors'] && va.get('productDescr').touched }"
+                                'invalidInput': va.get('productDescr')['errors'],
+                                'validInput': !va.get('productDescr')['errors'] }"
                        aria-label="graad" type="text" formControlName="productDescr"
                        required />
-                <p class="error" *ngIf="va.get('productDescr')['errors'] && va.get('productDescr').touched">
+                <p class="error" *ngIf="va.get('productDescr')['errors'] ">
                   {{ getErrorMessage(va.get('productDescr')['errors']) }}
                   <img src="{{error}}">
                 </p>
-                <img *ngIf="!va.get('productDescr')['errors'] && va.get('productDescr').touched"
+                <img *ngIf="!va.get('productDescr')['errors']"
                      class="correct" src="{{correct}}" />
               </div>
             </div>
           </div>
         </div>
       </form>
-      <button routerLink="/producten-template" class="button" mat-raised-button>
-        annuleer
+      <button routerLink="/producten" class="button" mat-raised-button>
+        terug
       </button>
       <button (click)="save()" class="button" type="submit" mat-raised-button color='primary'
               [disabled]='!productTemplate.valid'>

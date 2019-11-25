@@ -18,7 +18,7 @@ export class ProductTemplateComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteProduct():boolean {
+  deleteProduct(): boolean {
     this.deletedProduct.emit(this.productTemplate);
     console.log(this.productTemplate)
     this.templateService.deleteProductTemplate(this.productTemplate).subscribe();
