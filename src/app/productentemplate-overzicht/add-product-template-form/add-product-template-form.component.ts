@@ -16,8 +16,8 @@ import { CategoryTemplate } from 'src/app/types/categoryTemplate.model';
 })
 export class AddProductTemplateFormComponent implements OnInit {
 
-  public error = '../../assets/images/error.svg';
-  public correct = '../../assets/images/correct.svg';
+  public error = 'assets/images/error.svg';
+  public correct = 'assets/images/correct.svg';
 
   public productTemplate: FormGroup;
   private categories$;

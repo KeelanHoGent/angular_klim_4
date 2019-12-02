@@ -13,8 +13,8 @@ import {CategoryTemplate} from '../../types/categoryTemplate.model';
 })
 export class ProductTemplateDetailsComponent implements OnInit {
   public productTemp: ProductTemplate;
-  public error = '../../assets/images/error.svg';
-  public correct = '../../assets/images/correct.svg';
+  public error = 'assets/images/error.svg';
+  public correct = 'assets/images/correct.svg';
 
   public productTemplate: FormGroup;
   private categories$;
