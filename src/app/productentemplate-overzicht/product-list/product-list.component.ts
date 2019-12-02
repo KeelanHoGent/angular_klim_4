@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductTemplate } from 'src/app/types/productTemplate.model';
+import {TemplateService} from '../../services/template.service';
 
 @Component({
   selector: 'app-product-list',
@@ -8,26 +9,18 @@ import { ProductTemplate } from 'src/app/types/productTemplate.model';
 })
 export class ProductListComponent implements OnInit {
 
-  public _productTemplates: ProductTemplate[];
+  public productTemplates: ProductTemplate[];
+  public loader = true;
 
-  constructor() {
-
-
-    this._productTemplates = new Array<ProductTemplate>();
-    //volgende is gewoon voor iets te zien bij stylen
-    const p1 = new ProductTemplate();
-    const p2 = new ProductTemplate();
-    p1.productName = "Hout";
-    p1.description = "Heel millieuvriendelijk";
-    p2.productName = "Plastiek";
-    p2.description = "slecht voor het millieu";
-    this._productTemplates.push(p1);
-    this._productTemplates.push(p2);
-    //
-  }
+  constructor(
+      private _templateDataService: TemplateService
+  ) {  }
 
   ngOnInit() {
-
+    this._templateDataService.getProductTemplates$().subscribe(pt => {
+      this.productTemplates = pt;
+      this.loader = false;
+    });
   }
 
 }

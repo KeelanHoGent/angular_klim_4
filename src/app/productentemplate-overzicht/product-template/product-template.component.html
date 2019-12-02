@@ -1,7 +1,15 @@
-<div class=product>
-    <h4>{{product.productName}}</h4>
-    <div>
-        <p>Beschrijving:</p>
-        <p>{{product.description}}</p>
-    </div>
+
+<div class="product">
+  <div class=deleteIcon *ngIf="!productTemplate.addedByGo">
+    <mat-icon (click)="deleteProduct()">clear</mat-icon>
+  </div>
+  <p class="naam" >{{productTemplate.productName | slice: 0: 9}} </p>
+  <img
+    mat-card-image
+    class="productfoto"
+    src="{{productFotoSrc}}"
+    alt="{{productTemplate.productName}}"
+    (error)="showDefaultImage()"
+  >
+  <div class="desc" *ngIf="productTemplate.addedByGo">GO product</div>
 </div>

@@ -8,7 +8,7 @@ export class CategoryTemplate {
             categoryTemplateId: this._categoryTemplateId,
             categoryName: this._categoryName,
             categoryDescr: this._categoryDescr
-        }
+        };
     }
 
     static fromJSON(p: any): CategoryTemplate {

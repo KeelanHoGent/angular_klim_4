@@ -7,6 +7,7 @@ import { CategoryTemplate } from '../types/categoryTemplate.model';
 import { Observable } from 'rxjs';
 import {ProjectTemplate} from '../types/projectTemplate.model';
 import {Project} from '../types/project.model';
+import {Product} from '../types/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -48,11 +49,14 @@ export class TemplateService {
   getProductTemplates$(): Observable<ProductTemplate[]> {
     return this.http.get<ProductTemplate[]>(`${environment.apiUrl}/School/productTemplates/${this._templateId}`)
       .pipe(
-        map((list: any[]): ProductTemplate[] => list.map(ProductTemplate.fromJSON))
+        map((list: any[]): ProductTemplate[] => {
+          return list.map(ProductTemplate.fromJSON);
+        })
       );
   }
 
   addProductTemplate(productTemplate: ProductTemplate) {
+    console.log(productTemplate.toJson());
     return this.http.post(`${environment.apiUrl}/School/addProductTemplate/1`, productTemplate.toJson());
   }
 
@@ -63,4 +67,21 @@ export class TemplateService {
     return test;
   }
 
+  getProductTemplate(id): Observable<ProductTemplate> {
+    return this.http.get<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/${id}`)
+      .pipe(map(p => {
+        console.log(p);
+        console.log(ProductTemplate.fromJSON(p));
+        return ProductTemplate.fromJSON(p);
+      }));
+  }
+
+  editProductTemplate(productTemp: ProductTemplate) {
+    return this.http.put<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/${productTemp.productTemplateId}/`,
+      productTemp.toJson()).pipe(map(ProductTemplate.fromJSON));
+  }
+
+  deleteProductTemplate(productTemplate: ProductTemplate) {
+    return this.http.delete<ProductTemplate>(`${environment.apiUrl}/ProductTemplate/${productTemplate.productTemplateId}`);
+  }
 }

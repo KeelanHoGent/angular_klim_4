@@ -7,10 +7,9 @@ export class ProductVariationTemplate {
 
   static fromJSON(p: any): ProductVariationTemplate {
     const result = new ProductVariationTemplate();
-    result.productVariationTemplateId = p.ProductVariationTemplateId;
-    result.eSchoolGrade = p.ESchoolGrade;
-    result.productDescr = p.ProductDescr;
-
+    result.productVariationTemplateId = p.productVariationTemplateId;
+    result.eSchoolGrade = p.eSchoolGrade;
+    result.productDescr = p.productDescr;
     return result;
    }
 
@@ -22,7 +21,7 @@ export class ProductVariationTemplate {
         };
     }
 
-  get productVariationTemplateId() : number {
+  get productVariationTemplateId(): number {
     return this._productVariationTemplateId;
   }
 
