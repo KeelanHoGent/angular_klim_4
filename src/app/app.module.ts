@@ -27,6 +27,7 @@ import { ProjectProgressDetailsModule } from './project-progress-details/project
 import { GroupService } from './services/group.service';
 import { EditProjectTemplateComponent } from './project-templates/edit-project-template/edit-project-template.component';
 import { UserModule } from './user/user.module';
+import {httpInterceptorProviders} from "./interceptors";
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { UserModule } from './user/user.module';
   ],
   providers: [
     ProjectService,
-    GroupService
+    GroupService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })
