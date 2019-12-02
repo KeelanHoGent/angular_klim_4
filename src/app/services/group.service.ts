@@ -2,11 +2,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../environments/environment";
-import { Project } from '../types/project.model';
-import { Observable, Subject, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-import { ApplicationDomain } from '../types/applicationDomain.model';
-import { Group } from '../types/group.model';
+import { Observable, Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Evaluation } from '../types/evaluation.model';
 
 

@@ -78,8 +78,6 @@ export class ProjectService {
     )
   }
 
-
-
   getProjectGroupsById(id: number): Observable<Group[]> {
     return this.http.get<Project[]>(`${environment.apiUrl}/project/groups/${id}`).pipe(
       map(x => x.map(p => Group.fromJSON(p)))

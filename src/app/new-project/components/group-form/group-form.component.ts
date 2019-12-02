@@ -14,40 +14,35 @@ export class GroupFormComponent implements OnInit {
   public correct: String = "../../../../assets/images/correct.svg";
   public isEdit: boolean;
   public group: FormGroup;
-  public newGroup: Group;
 
 
   pupils: FormArray;
-  
+
 
   constructor(private _fb: FormBuilder,
     public dialogRef: MatDialogRef<GroupFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
-      this.isEdit = data.soort;
+    this.isEdit = data.soort;
   }
 
   ngOnInit() {
     this.group = this._fb.group({
       name: [this.data.name ? this.data.name : '', Validators.required],
-      pupils: this._fb.array([   
+      pupils: this._fb.array([
 
       ])
     });
 
-    if(!(this.data.pupils === undefined)){
+    if (!(this.data.pupils === undefined)) {
       const control = <FormArray>this.group.controls['pupils'];
-      this.data.pupils.forEach((element : Pupil) => {
+      this.data.pupils.forEach((element: Pupil) => {
         control.push(this.createPupil(element))
       });
     }
-   
-
-
   }
 
   save(valid?: boolean) {
     if (valid) {
-
       this.dialogRef.close(this.group.value);
     }
   }
@@ -64,15 +59,15 @@ export class GroupFormComponent implements OnInit {
 
   addPupil(): void {
     this.pupils = this.group.get('pupils') as FormArray;
-    this.pupils.push(this.createPupil(new Pupil("","")));
+    this.pupils.push(this.createPupil(new Pupil("", "")));
   }
 
 
-  createPupil(p : Pupil): FormGroup {
+  createPupil(p: Pupil): FormGroup {
     return this._fb.group({
-      firstName: p.firstName,
+      firstName: p.firstName
     });
   }
 
- 
+  get formPupils() { return <FormArray>this.group.get('Data'); }
 }

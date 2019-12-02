@@ -88,6 +88,7 @@ export class AddProjectInfoComponent implements OnInit {
       schoolYear: [isEdit ? this.newProject.schoolYear : '', Validators.required],
       applicationDomain: [isEdit ? '' : '', Validators.required]
     });
+
     if (isEdit) {
       this.projectFg.controls['applicationDomain'].setValue(this.newProject.applicationDomain) //werkt nog niet 
     }
@@ -96,6 +97,7 @@ export class AddProjectInfoComponent implements OnInit {
 
   // Opslaan van een nieuwe project of een project updaten 
   submitProject() {
+    
     this.newProject.name = this.projectFg.value.name;
     this.newProject.descr = this.projectFg.value.description;
     this.newProject.image = this.projectFg.value.image;

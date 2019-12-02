@@ -42,6 +42,7 @@ export class Project {
   }
 
   toJson(): any {
+    console.log(this.groups);
     return {
       projectId: this._id,
       projectName: this._name,
@@ -52,8 +53,8 @@ export class Project {
       classRoomId: this._classRoomId,
       applicationDomainId: this._applicationDomainId,
       products: this._products.map(p => p.toJson()),
-      groups: this._groups.map(p=> p.toJson()),
-      evaluationCritereas: this._evaluationCritereas.map(p=> p.toJson())
+      evaluationCritereas: this._evaluationCritereas.map(e => e.toJson()),
+      groups: this._groups.map(g => g.toJson())
     }
   }
 

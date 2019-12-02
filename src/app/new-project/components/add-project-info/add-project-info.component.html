@@ -135,8 +135,8 @@
         <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">evaluatie criteria</span> toe
         </mat-card-subtitle>
         <div class=producten>
-            <div *ngFor="let p of evaluationCs">
-                <app-evaluation-c (deletedEvaluationC)="deleteEvaluationC($event)" [evaluationC]="p"></app-evaluation-c>
+            <div *ngFor="let e of evaluationCs">
+                <app-evaluation-c (deletedEvaluationC)="deleteEvaluationC($event)" [evaluationC]="e"></app-evaluation-c>
             </div>
             <div>
                 <app-evaluation-c-add-button (newEvaluationC)="addNewEvaluationCToProject($event)"></app-evaluation-c-add-button>
