@@ -13,10 +13,12 @@ import { ProjectProgressContainerComponent } from './project-progress-details/pr
 import {AuthGuard} from './user/auth-guard.service';
 import {ProductTemplateDetailsComponent} from './productentemplate-overzicht/product-template-details/product-template-details.component';
 import {ProductTemplateResolver} from './productentemplate-overzicht/productTemplate-resolver';
+import {LoginComponent} from './user/login/login.component';
 
 
 const routes: Routes = [
   {path: '', component: AddProjectComponent},
+  {path: 'login', component: LoginComponent},
   {path: 'projecten', component: ProjectenContainerComponent},
   {path: 'add-project', canActivate: [AuthGuard], component: AddProjectFormComponent},
   {path: 'producten', component: ProductListComponent},
