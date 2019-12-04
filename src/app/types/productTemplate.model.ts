@@ -1,4 +1,5 @@
 import { ProductVariationTemplate } from './productVariationTemplate.model';
+import {CategoryTemplate} from './categoryTemplate.model';
 
 export class ProductTemplate {
     private _productTemplateId: number;
@@ -8,8 +9,10 @@ export class ProductTemplate {
     private _image: string;
     private _projectId: number;
     private _categoryTemplateId: number;
+    private _categoryTemplate: CategoryTemplate;
     private _productVariationTemplates = new Array<ProductVariationTemplate>();
     private _hasMultipleDisplayVariations: boolean;
+    private _addedByGO: boolean;
 
   static fromJSON(p: any): ProductTemplate {
     const result = new ProductTemplate();
@@ -19,8 +22,10 @@ export class ProductTemplate {
     result.image = p.productImage;
     result.score = p.score;
     result.categoryTemplateId = p.categoryTemplateId;
+    result.categoryTemplate = p.categoryTemplate;
     result.hasMultipleDisplayVariations = p.hasMultipleDisplayVariations;
-    p.productVariationTemplates.map(ProductVariationTemplate.fromJSON);
+    result.addedByGo = p.addedByGO;
+    result.productVariationTemplates = p.productVariationTemplates.map(ProductVariationTemplate.fromJSON);
 
     return result;
   }
@@ -33,9 +38,11 @@ export class ProductTemplate {
             description: this._description,
             productImage: this._image,
             categoryTemplateId: this._categoryTemplateId,
+            categoryTemplate: this.categoryTemplate.toJson(),
             score: this._score,
             projectId: this._projectId,
             hasMultipleDisplayVariations: this._hasMultipleDisplayVariations,
+            addedByGo: this._addedByGO,
             productVariationTemplates: this.productVariationTemplates.map(va => va.toJson())
         };
     }
@@ -108,5 +115,21 @@ export class ProductTemplate {
 
     get projectId(): number {
       return this._projectId;
+    }
+
+    set addedByGo(v: boolean) {
+      this._addedByGO = v;
+    }
+
+    get addedByGo(): boolean {
+    return this._addedByGO;
+    }
+
+    set categoryTemplate(v: CategoryTemplate) {
+    this._categoryTemplate = v;
+    }
+
+    get categoryTemplate(): CategoryTemplate {
+    return this._categoryTemplate;
     }
 }
