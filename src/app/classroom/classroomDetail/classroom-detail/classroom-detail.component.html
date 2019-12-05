@@ -1,13 +1,33 @@
 
-<div class="container">
-  <mat-card class="info">
-      <mat-card-title>
+<div class="info" >
+  <mat-card>
+      <mat-card-title class="card">
         klas {{classroom.name}}
       </mat-card-title>
       <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
-    <div>
+    <mat-card-content>
 
-    </div>
+      <table mat-table [dataSource]="dataSource" *ngIf="classroom.pupils.length > 0">
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef> firstName </th>
+          <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="surName">
+          <th mat-header-cell *matHeaderCellDef> surName </th>
+          <td mat-cell *matCellDef="let element"> {{element.surName}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <table>
+        <td>Geen leerlingen in deze klas</td>
+      </table>
+    </mat-card-content>
   </mat-card>
-
-
+</div>

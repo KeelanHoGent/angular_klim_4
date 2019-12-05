@@ -1,8 +1,32 @@
 .info {
-  display: flex;
-  margin: 20px auto;
+  margin: auto;
   padding: 10px;
   padding-top: 20px;
-  justify-content: center;
+
 }
+.card{
+  margin: 40px auto;
+
+}
+
+table {
+  margin: 20px auto;
+  width: 80%;
+}
+
+table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+table tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+th{
+  background-color: #D3394C;
+  color:white;
+  font-size: 2em;
+  padding: 10px;
+}
+
 

@@ -10,25 +10,25 @@ export class Pupil {
 		this._firstName = firstName;
 		this._surName = surName;
     }
-    
+
 
 
     static fromJSON(json: any): Pupil {
         const g = new Pupil(
             json.firstName,
-            json.surName
+            json.surname
         );
         g._pupilId = json.pupilId;
-    
+
         return g;
-    
+
       }
-    
+
       toJson(): any {
         return {
             pupilId: this._pupilId,
             firstName: this._firstName,
-            surName: this._surName
+            surname: this._surName
         }
       }
 
@@ -84,5 +84,5 @@ export class Pupil {
 
 
 
- 
+
 }

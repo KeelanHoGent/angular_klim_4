@@ -1,6 +1,4 @@
 import {ActivatedRouteSnapshot, Resolve, RouterStateSnapshot} from '@angular/router';
-import {ProductTemplate} from '../types/productTemplate.model';
-import {TemplateService} from '../services/template.service';
 import {Observable} from 'rxjs';
 import {Injectable} from '@angular/core';
 import {Classroom} from "../types/classroom.model";
