@@ -18,6 +18,13 @@ export class Classroom {
     return c;
   }
 
+  toJson() {
+    return {
+      name: this._name,
+      pupils: this._pupils.map(p => p.toJson())
+    };
+  }
+
 
   get id(): number {
     return this._id;
@@ -58,4 +65,5 @@ export class Classroom {
   set pupils(value: Pupil[]) {
     this._pupils = value;
   }
+
 }

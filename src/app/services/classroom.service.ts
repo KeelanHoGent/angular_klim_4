@@ -36,4 +36,8 @@ export class ClassroomService {
     return this.http.delete<Classroom>(`${environment.apiUrl}/Classroom/${classroom.id}`);
   }
 
+  addNewClassroom(classroom: Classroom) {
+      return this.http.post(`${environment.apiUrl}/School/addClassroom/1`, classroom.toJson());
+
+  }
 }

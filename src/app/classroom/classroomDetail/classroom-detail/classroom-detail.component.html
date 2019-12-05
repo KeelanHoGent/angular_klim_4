@@ -7,22 +7,19 @@
       <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
     <mat-card-content>
 
-      <table mat-table [dataSource]="dataSource" *ngIf="classroom.pupils.length > 0">
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="firstName">
-          <th mat-header-cell *matHeaderCellDef> Voornaam </th>
-          <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-        </ng-container>
-
-        <!-- Weight Column -->
-        <ng-container matColumnDef="surName">
-          <th mat-header-cell *matHeaderCellDef> Achternaam </th>
-          <td mat-cell *matCellDef="let element"> {{element.surName}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <table>
+        <thead>
+        <tr>
+          <th>Voornaam </th>
+          <th>Achternaam </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let record of classroom.pupils;let i = index;">
+          <td> <span>{{record.firstName}}</span> </td>
+          <td> <span>{{record.surName}}</span> </td>
+        </tr>
+        </tbody>
       </table>
 
       <table *ngIf="classroom.pupils.length == 0">

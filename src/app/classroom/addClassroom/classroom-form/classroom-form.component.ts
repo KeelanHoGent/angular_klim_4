@@ -38,9 +38,11 @@ export class ClassroomFormComponent implements OnInit {
   }
 
   save() {
-    console.log("hallo");
-    let class = new Classroom();
-    class.name
+    let classroom = new Classroom();
+    classroom.name = this.classForm.value.name;
+      classroom.pupils = this.records;
+
+    this.classroomService.addNewClassroom(classroom).subscribe();
   }
 
   uploadListener($event: any): void {
