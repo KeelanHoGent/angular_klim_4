@@ -1,10 +1,12 @@
 import {Project} from "./project.model";
+import {Pupil} from "./pupil.model";
 
 export class Classroom {
   private _id: number;
   private _name: string;
   private _schoolId: number;
   private _projects: Project[] = [];
+  private _pupils: Pupil[] = [];
 
   static fromJSON(json: any): Classroom {
     const c = new Classroom();
@@ -12,6 +14,7 @@ export class Classroom {
     c._name = json.name;
     c._schoolId = json.schoolId;
     c._projects = json.projects.map(p => Project.fromJSON(p));
+    c._pupils = json.pupils.map(p => p.fromJSON(p));
     return c;
   }
 
@@ -46,5 +49,13 @@ export class Classroom {
 
   set projects(value: Project[]) {
     this._projects = value;
+  }
+
+  get pupils(): Pupil[] {
+    return this._pupils;
+  }
+
+  set pupils(value: Pupil[]) {
+    this._pupils = value;
   }
 }
