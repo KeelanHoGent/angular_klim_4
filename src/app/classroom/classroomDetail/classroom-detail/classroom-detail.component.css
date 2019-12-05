@@ -1,0 +1,8 @@
+.info {
+  display: flex;
+  margin: 20px auto;
+  padding: 10px;
+  padding-top: 20px;
+  justify-content: center;
+}
+

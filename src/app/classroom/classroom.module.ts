@@ -8,6 +8,8 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
 import { ClassroomDetailComponent } from './classroomDetail/classroom-detail/classroom-detail.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatTableModule} from "@angular/material/table";
 
 
 
@@ -18,7 +20,9 @@ import { ClassroomDetailComponent } from './classroomDetail/classroom-detail/cla
     MatIconModule,
     MatProgressSpinnerModule,
     MatButtonModule,
-    RouterModule
+    RouterModule,
+    MatCardModule,
+    MatTableModule
   ],
   exports: [
     ClassroomListComponent

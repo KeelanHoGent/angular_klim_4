@@ -25,7 +25,15 @@ export class ClassroomService {
       );
   }
 
+  getClassroom(id: number) {
+    return this.http.get<Classroom>(`${environment.apiUrl}/Classroom/${id}`)
+      .pipe(map(c => {
+        return Classroom.fromJSON(c);
+      }));
+  }
+
   deleteClassroom(classroom: Classroom) {
     return this.http.delete<Classroom>(`${environment.apiUrl}/Classroom/${classroom.id}`);
   }
+
 }
