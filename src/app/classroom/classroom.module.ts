@@ -10,6 +10,9 @@ import { ClassroomComponent } from './overzicht/classroom/classroom.component';
   declarations: [HorizontalListClassroomsComponent, ClassroomListComponent, ClassroomComponent],
   imports: [
     CommonModule
+  ],
+  exports: [
+    ClassroomListComponent
   ]
 })
 export class ClassroomModule { }
