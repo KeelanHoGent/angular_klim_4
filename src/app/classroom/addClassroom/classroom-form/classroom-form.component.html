@@ -1,0 +1,39 @@
+<div class="fullPage">
+  <mat-card class="info">
+    <div class="titleBox">
+      <mat-card-title>
+        <mat-icon class="icon">post_add</mat-icon>Maak een nieuw klas aan
+      </mat-card-title>
+      <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
+    </div>
+    <mat-card-content class="form">
+      <form [formGroup]="classForm">
+
+        <div class=formSectie>
+          <div class="formGroup">
+            <label>Product naam</label>
+            <input [ngClass]="{
+                        'invalidInput': classForm.get('name')['errors']&& classForm.get('name').touched,
+                        'validInput': !classForm.get('name')['errors'] && classForm.get('name').touched
+                    }" aria-label="productTemplatenaam" placeholder="naam" type="text" formControlName="name" #spy
+                   required />
+
+            <p class="error" *ngIf="classForm.get('name')['errors'] && classForm.get('name').touched">
+              {{ getErrorMessage(classForm.get('name')['errors']) }}
+              <img src="{{error}}">
+            </p>
+            <img *ngIf="!classForm.get('name')['errors'] && classForm.get('name').touched"
+                 class="correct" src="{{correct}}"/>
+          </div>
+        </div>
+      </form>
+      <button routerLink="/producten-template" class="button" mat-raised-button>
+        annuleer
+      </button>
+      <button (click)="save()" class="button" type="submit" mat-raised-button color='primary'
+              [disabled]='!classForm.valid'>
+        Maak product
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

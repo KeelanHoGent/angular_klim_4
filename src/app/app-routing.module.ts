@@ -15,6 +15,7 @@ import {ProductTemplateResolver} from './productentemplate-overzicht/productTemp
 import {ClassroomListComponent} from "./classroom/overzicht/classroom-list/classroom-list.component";
 import {ClassroomDetailComponent} from "./classroom/classroomDetail/classroom-detail/classroom-detail.component";
 import {ClassroomResolver} from "./classroom/classroom-resolver";
+import {ClassroomFormComponent} from "./classroom/addClassroom/classroom-form/classroom-form.component";
 
 
 const routes: Routes = [
@@ -36,7 +37,8 @@ const routes: Routes = [
   {path: 'project-progress', component: ProjectProgressContainerComponent},
   {path: 'product-template-details/:id', component: ProductTemplateDetailsComponent, resolve: {productTemp: ProductTemplateResolver}},
   {path: 'klassen', component: ClassroomListComponent},
-  {path: 'klas/:id', component: ClassroomDetailComponent, resolve: {classroom: ClassroomResolver}}];
+  {path: 'klas/:id', component: ClassroomDetailComponent, resolve: {classroom: ClassroomResolver}},
+  {path: 'add/classroom', component: ClassroomFormComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

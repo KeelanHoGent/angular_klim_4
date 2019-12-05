@@ -10,11 +10,14 @@ import {RouterModule} from "@angular/router";
 import { ClassroomDetailComponent } from './classroomDetail/classroom-detail/classroom-detail.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatTableModule} from "@angular/material/table";
+import { ClassroomFormComponent } from './addClassroom/classroom-form/classroom-form.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 
 @NgModule({
-  declarations: [HorizontalListClassroomsComponent, ClassroomListComponent, ClassroomComponent, ClassroomDetailComponent],
+  declarations: [HorizontalListClassroomsComponent, ClassroomListComponent, ClassroomComponent, ClassroomDetailComponent, ClassroomFormComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -22,7 +25,9 @@ import {MatTableModule} from "@angular/material/table";
     MatButtonModule,
     RouterModule,
     MatCardModule,
-    MatTableModule
+    MatTableModule,
+    ReactiveFormsModule,
+    MatFormFieldModule
   ],
   exports: [
     ClassroomListComponent
