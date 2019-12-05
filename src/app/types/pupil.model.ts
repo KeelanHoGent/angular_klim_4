@@ -5,22 +5,13 @@ export class Pupil {
     private _firstName: string;
     private _surName: string;
 
-
-	constructor(firstName: string, surName: string) {
-		this._firstName = firstName;
-		this._surName = surName;
-    }
-
-
-
     static fromJSON(json: any): Pupil {
-        const g = new Pupil(
-            json.firstName,
-            json.surname
-        );
-        g._pupilId = json.pupilId;
+        const pupil = new Pupil();
+        pupil.firstName = json.firstName;
+        pupil.surName = json.surname;
+        pupil.id = json.pupilId;
 
-        return g;
+        return pupil;
 
       }
 

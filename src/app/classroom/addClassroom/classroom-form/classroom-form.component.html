@@ -26,6 +26,7 @@
                  class="correct" src="{{correct}}"/>
           </div>
         </div>
+        <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
       </form>
       <button routerLink="/producten-template" class="button" mat-raised-button>
         annuleer
