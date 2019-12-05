@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ClassroomService} from "../../../services/classroom.service";
 import {Pupil} from "../../../types/pupil.model";
+import {Classroom} from "../../../types/classroom.model";
 
 @Component({
   selector: 'app-classroom-form',
@@ -37,12 +38,14 @@ export class ClassroomFormComponent implements OnInit {
   }
 
   save() {
-
+    console.log("hallo");
+    let class = new Classroom();
+    class.name
   }
 
   uploadListener($event: any): void {
     let text = [];
-    let files = $event.srcElement.files;
+    let files = $event.target.files;
     if (this.isValidCSVFile(files[0])) {
       let input = $event.target;
       let reader = new FileReader();
@@ -51,6 +54,7 @@ export class ClassroomFormComponent implements OnInit {
         let csvData = reader.result;
         let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
         let headersRow = this.getHeaderArray(csvRecordsArray);
+        console.log(headersRow);
         this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
       };
       reader.onerror = function () {
@@ -62,13 +66,16 @@ export class ClassroomFormComponent implements OnInit {
   }
 
   getDataRecordsArrayFromCSVFile(csvRecordsArray: any, headerLength: any) {
-    let csvArr = [];
+    let csvArr = new Array<Pupil>();
     for (let i = 1; i < csvRecordsArray.length-1; i++) {
+
       let currentRecord = (<string>csvRecordsArray[i]).split(';');
+      console.log(headerLength)
       if (currentRecord.length == headerLength) {
         let pupil: Pupil = new Pupil();
         pupil.surName = currentRecord[0].trim();
         pupil.firstName = currentRecord[1].trim();
+        console.log(pupil);
         csvArr.push(pupil);
       }
     }
@@ -79,7 +86,7 @@ export class ClassroomFormComponent implements OnInit {
     return file.name.endsWith(".csv");
   }
   getHeaderArray(csvRecordsArr: any) {
-    let headers = (<string>csvRecordsArr[0]).split(',');
+    let headers = (<string>csvRecordsArr[0]).split(';');
     let headerArray = [];
     for (let j = 0; j < headers.length; j++) {
       headerArray.push(headers[j]);
