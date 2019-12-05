@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {Classroom} from "../types/classroom.model";
+import {ProductTemplate} from "../types/productTemplate.model";
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class ClassroomService {
           return list.map(Classroom.fromJSON);
         })
       );
+  }
+
+  deleteClassroom(classroom: Classroom) {
+    return this.http.delete<Classroom>(`${environment.apiUrl}/Classroom/${classroom.id}`);
   }
 }

@@ -8,6 +8,6 @@
     </button>
   </div>
   <mat-spinner *ngIf="loader"></mat-spinner>
-  <div></div>
+  <app-horizontal-list-classrooms *ngIf="!loader" [list]="classrooms" ></app-horizontal-list-classrooms>
 </div>
 

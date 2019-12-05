@@ -1,1 +1,7 @@
-<p>horizontal-list-classrooms works!</p>
+<div class="list" >
+  <div *ngFor="let classRoom of list">
+    <a>
+      <app-classroom  (deletedClassroom)="deleteClassroom($event)" [classroom]="classRoom"></app-classroom>
+    </a>
+  </div>
+</div>

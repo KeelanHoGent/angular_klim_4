@@ -6,6 +6,7 @@ import { ClassroomComponent } from './overzicht/classroom/classroom.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatButtonModule} from "@angular/material/button";
+import {RouterModule} from "@angular/router";
 
 
 
@@ -15,7 +16,8 @@ import {MatButtonModule} from "@angular/material/button";
     CommonModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    MatButtonModule
+    MatButtonModule,
+    RouterModule
   ],
   exports: [
     ClassroomListComponent
