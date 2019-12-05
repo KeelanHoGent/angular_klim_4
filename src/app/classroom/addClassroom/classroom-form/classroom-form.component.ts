@@ -43,6 +43,7 @@ export class ClassroomFormComponent implements OnInit {
       classroom.pupils = this.records;
 
     this.classroomService.addNewClassroom(classroom).subscribe();
+    this.router.navigateByUrl("/klassen");
   }
 
   uploadListener($event: any): void {
@@ -56,7 +57,6 @@ export class ClassroomFormComponent implements OnInit {
         let csvData = reader.result;
         let csvRecordsArray = (<string>csvData).split(/\r\n|\n/);
         let headersRow = this.getHeaderArray(csvRecordsArray);
-        console.log(headersRow);
         this.records = this.getDataRecordsArrayFromCSVFile(csvRecordsArray, headersRow.length);
       };
       reader.onerror = function () {
@@ -72,16 +72,13 @@ export class ClassroomFormComponent implements OnInit {
     for (let i = 1; i < csvRecordsArray.length-1; i++) {
 
       let currentRecord = (<string>csvRecordsArray[i]).split(';');
-      console.log(headerLength)
       if (currentRecord.length == headerLength) {
         let pupil: Pupil = new Pupil();
         pupil.surName = currentRecord[0].trim();
         pupil.firstName = currentRecord[1].trim();
-        console.log(pupil);
         csvArr.push(pupil);
       }
     }
-    console.log(csvArr);
     return csvArr;
   }
   isValidCSVFile(file: any) {
