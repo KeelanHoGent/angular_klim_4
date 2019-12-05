@@ -14,7 +14,7 @@ export class Classroom {
     c._name = json.name;
     c._schoolId = json.schoolId;
     c._projects = json.projects.map(p => Project.fromJSON(p));
-    c._pupils = json.pupils.map(p => p.fromJSON(p));
+    c._pupils = json.pupils.map(p => Pupil.fromJSON(p));
     return c;
   }
 
