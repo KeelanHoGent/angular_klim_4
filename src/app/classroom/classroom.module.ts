@@ -7,11 +7,12 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatButtonModule} from "@angular/material/button";
 import {RouterModule} from "@angular/router";
+import { ClassroomDetailComponent } from './classroomDetail/classroom-detail/classroom-detail.component';
 
 
 
 @NgModule({
-  declarations: [HorizontalListClassroomsComponent, ClassroomListComponent, ClassroomComponent],
+  declarations: [HorizontalListClassroomsComponent, ClassroomListComponent, ClassroomComponent, ClassroomDetailComponent],
   imports: [
     CommonModule,
     MatIconModule,
