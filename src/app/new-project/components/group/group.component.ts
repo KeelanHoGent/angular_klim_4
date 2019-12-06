@@ -21,7 +21,6 @@ export class GroupComponent {
   }
 
   editGroupForm(g: Group): void {
-    
     const config = new MatDialogConfig();
 
     config.disableClose = true;

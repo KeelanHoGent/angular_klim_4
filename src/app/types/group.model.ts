@@ -41,7 +41,6 @@ export class Group {
 
 
   toJson(): any {
-    console.log(this.pupils);
     return {
       id: this._id,
       groupName: this._name,

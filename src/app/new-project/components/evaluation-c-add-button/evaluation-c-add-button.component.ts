@@ -29,9 +29,6 @@ export class EvaluationCAddButtonComponent  {
     config.autoFocus = true;
     config.data = {
       title: ""
-      /*price: "",
-      description: "",
-      image: ""*/
     }
 
     const dialogRef = this.dialog.open(EvaluationCFormComponent, config);

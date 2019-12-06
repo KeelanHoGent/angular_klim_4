@@ -27,7 +27,6 @@ export class AddProjectInfoComponent implements OnInit {
   public evaluationCs: EvaluationCriterea[];
 
 
-
   public error: String = "../../../../assets/images/error.svg";
   public correct: String = "../../../../assets/images/correct.svg";
 
@@ -47,13 +46,14 @@ export class AddProjectInfoComponent implements OnInit {
 
   ngOnInit() {
     this.isEdit = false;
+    
     this.initFormGroup(false);
-
     //  Keuze tussen edit project en new project 
     let editPromise = this.initEditPage();
     editPromise.then(edit => this.initFormGroup(edit));
 
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
+
   }
 
 
@@ -86,12 +86,12 @@ export class AddProjectInfoComponent implements OnInit {
       image: [isEdit ? this.newProject.image : '', Validators.required],
       budget: [isEdit ? this.newProject.budget : '', Validators.required],
       schoolYear: [isEdit ? this.newProject.schoolYear : '', Validators.required],
-      applicationDomain: [isEdit ? '' : '', Validators.required]
+      applicationDomain: [isEdit ? this.newProject.applicationDomain : '', Validators.required]
     });
 
-    if (isEdit) {
-      this.projectFg.controls['applicationDomain'].setValue(this.newProject.applicationDomain) //werkt nog niet 
-    }
+    // if(isEdit) {
+    //   this.projectFg.controls['applicationDomain'].setValue(this._domainApps[2]); //werkt niet 
+    // }
   }
 
 
@@ -102,10 +102,10 @@ export class AddProjectInfoComponent implements OnInit {
     this.newProject.descr = this.projectFg.value.description;
     this.newProject.image = this.projectFg.value.image;
     this.newProject.schoolYear = this.projectFg.value.schoolYear;
-    this.newProject.applicationDomainId = this.projectFg.value.applicationDomain;
+    this.newProject.budget = this.projectFg.value.budget;
+    this.newProject.applicationDomainId = this.projectFg.value.applicationDomain.id;
 
-    console.log(this.newProject.applicationDomainId);
-
+    console.log(this.newProject.budget)
     if (!this.isEdit) {
       this._projectDataService.addNewProject(this.newProject)
         .subscribe(res => {

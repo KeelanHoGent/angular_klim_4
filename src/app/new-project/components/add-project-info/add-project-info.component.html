@@ -98,7 +98,7 @@
                 <label>Onderwerp</label>
                 <select formControlName="applicationDomain">
                     <option value="">Kies het onderwerp</option>
-                    <option *ngFor="let domain of domains" [ngValue]="domain.id">
+                    <option *ngFor="let domain of domains" [ngValue]="domain">
                         {{domain.name}}
                     </option>
                 </select>
@@ -132,14 +132,15 @@
         </div>
     </div>
     <div class="formSectie">
-        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">evaluatie criteria</span> toe
+        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">evaluatiecriteria</span> toe
         </mat-card-subtitle>
         <div class=producten>
             <div *ngFor="let e of evaluationCs">
                 <app-evaluation-c (deletedEvaluationC)="deleteEvaluationC($event)" [evaluationC]="e"></app-evaluation-c>
             </div>
             <div>
-                <app-evaluation-c-add-button (newEvaluationC)="addNewEvaluationCToProject($event)"></app-evaluation-c-add-button>
+                <app-evaluation-c-add-button (newEvaluationC)="addNewEvaluationCToProject($event)">
+                </app-evaluation-c-add-button>
             </div>
         </div>
     </div>
