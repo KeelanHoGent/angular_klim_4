@@ -17,7 +17,8 @@ import { EvaluationSquareComponent } from './evaluation-square/evaluation-square
 import { EvaluationFormComponent } from './evaluation-form/evaluation-form.component';
 import { ButtonAddEvaluationComponent } from './button-add-evaluation/button-add-evaluation.component';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
-
+import { ConfigPdfComponent } from './config-pdf/config-pdf.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   declarations: [
   ProjectProgressContainerComponent,
@@ -29,7 +30,8 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
   HorizontalListEvaluationsComponent,
   EvaluationSquareComponent,
   EvaluationFormComponent,
-  ButtonAddEvaluationComponent],
+  ButtonAddEvaluationComponent,
+  ConfigPdfComponent],
   imports: [
     CommonModule,
     MatCardModule,
@@ -40,9 +42,10 @@ import { ReactiveFormsModule, FormsModule } from "@angular/forms";
     MatFormFieldModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCheckboxModule
   ],
-  entryComponents: [EvaluationFormComponent],
+  entryComponents: [EvaluationFormComponent, ConfigPdfComponent],
   exports: [
     
   ]

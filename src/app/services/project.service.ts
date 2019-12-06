@@ -16,8 +16,8 @@ export class ProjectService {
   private _classroomId: number;
 
   constructor(private http: HttpClient) {
-    //Dit is om makkelijk te kunnen testen met de data die in de database zit als mockdata
-    //later kan dit veranderd worden naar de classroomId van de ingelogde gebruiker
+    // Dit is om makkelijk te kunnen testen met de data die in de database zit als mockdata
+    // later kan dit veranderd worden naar de classroomId van de ingelogde gebruiker
     this._classroomId = 1;
   }
 
