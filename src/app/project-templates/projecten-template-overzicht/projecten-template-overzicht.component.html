@@ -6,21 +6,9 @@
 
     </button>
 </div>
-
-<div class="h-row">
-        <div class="parent">
-                <mat-card *ngFor="let template of templates" class="lijstitem">
-                    <mat-card-header>
-                        <mat-card-title class="kleurtje" data-cy="projectemplatesoverzichtname">{{template.name}}</mat-card-title>
-                    </mat-card-header>
-                    <img mat-card-image src="http://www.ifabpartners.com/wp-content/uploads/2015/12/IFAB_services_integrated_project_MAIN1.jpg" alt="project" sizes="">
-                    <mat-card-content>
-                        <p>{{template.descr}}</p>
-                    </mat-card-content>
-                    <mat-card-actions>
-                            <button mat-button (click)="onSelect(template)">Details</button>
-                            <button mat-button color="primary">Start Project</button>
-                    </mat-card-actions>
-                </mat-card>
-            </div>
+<div class="list" >
+  <div *ngFor="let projectTemp of templates">
+      <app-project-template  [template]="projectTemp"></app-project-template>
+  </div>
 </div>
+

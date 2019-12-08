@@ -28,13 +28,5 @@ ngOnInit() {
   this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
   this._projecttemplateDataService.getProjectTemplates$().subscribe(t => this.templates = t);
   }
-  onSelect(projectTemplate: ProjectTemplate): void {
-    this.currentProjectTemplate = projectTemplate;
-    window.location.hash = '#huidigTemplate';
-    this.status = 2;
-  }
-  onSelectNieuw(){
-    this.status = 1;
-  }
 
 }

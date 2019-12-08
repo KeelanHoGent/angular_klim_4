@@ -12,9 +12,9 @@
     max-width: 250px;
     margin: 3em;
     flex: 0 0 auto;
-    
+
     flex-direction: column;
-    
+
 }
 .productfoto {
     width: 200px !important;
@@ -22,16 +22,16 @@
 }
 .parent {
     display: flex;
-    flex-wrap: nowrap; 
+    flex-wrap: nowrap;
     overflow: auto;
-    
+
     flex-direction: column;
 }
 .container{
     display: flex;
     margin: auto 0;
     justify-content: center;
-      
+
 }
 .v-row{
     display: flex;
@@ -39,7 +39,7 @@
     align-items: baseline;
     justify-content: space-evenly;
     margin: auto 0;
-    
+
 }
 .h-row {
     display: flex;
@@ -82,4 +82,16 @@
 }
 .kleurtje{
     color: var(--magenta);
+}
+
+.list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+  width: 100%;
+}
+a {
+  text-decoration: none;
+  color: black;
 }
