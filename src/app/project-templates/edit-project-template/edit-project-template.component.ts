@@ -20,7 +20,6 @@ export class EditProjectTemplateComponent implements OnInit {
   public projecttemplate: FormGroup;
   public domains: ApplicationDomain[];
   public productTemplatesLijst: ProductTemplate[];
-  public magLaden: Promise<boolean>;
   public geselecteerdeProductTemplates: ProductTemplate[];
   public geselecteerdeDomainApplication: ApplicationDomain;
 
@@ -49,7 +48,6 @@ export class EditProjectTemplateComponent implements OnInit {
         this.projecttemplate.get('productTemplates').setValue(this.geselecteerdeProductTemplates);
 
         this.projecttemplate.get('productTemplates').valueChanges.subscribe(t => this.geselecteerdeProductTemplates = t);
-        this.magLaden = Promise.resolve(true);
       });
     });
   }
