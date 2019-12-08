@@ -12,6 +12,7 @@ import { ProjectenTemplateOverzichtComponent } from './project-templates/project
 import { ProjectProgressContainerComponent } from './project-progress-details/project-progress-container/project-progress-container.component';
 import {ProductTemplateDetailsComponent} from './productentemplate-overzicht/product-template-details/product-template-details.component';
 import {ProductTemplateResolver} from './productentemplate-overzicht/productTemplate-resolver';
+import {EditProjectTemplateComponent} from "./project-templates/edit-project-template/edit-project-template.component";
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
     path: 'add-project-template',
     component: AddProjectTemplateComponent
   },
+  {path: 'edit/project/template/:id', component: EditProjectTemplateComponent},
   {
     path: 'projecttemplates',
     component: ProjectenTemplateOverzichtComponent

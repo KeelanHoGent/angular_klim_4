@@ -26,7 +26,10 @@ export class ProjectenTemplateOverzichtComponent implements OnInit {
 
 ngOnInit() {
   this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
-  this._projecttemplateDataService.getProjectTemplates$().subscribe(t => this.templates = t);
+  this._projecttemplateDataService.getProjectTemplates$().subscribe(t => {
+    this.templates = t;
+    this.loader = false;
+  });
   }
 
 }

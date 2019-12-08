@@ -1,14 +1,16 @@
-<div class="title">
-    <h2 class="header2">Standaardprojecten</h2>
-    <button mat-raised-button type="button" color="default" rounded="true" data-toggle="modal" (click)="onSelectNieuw()">
-            <mat-icon>add</mat-icon>
-            Nieuw concept
+<div class="body-wrapper">
+  <div class="list-title">
+    <h1>Project templates</h1>
 
+    <button routerLink="/add-project-template" mat-raised-button type="button" color="default" rounded="true"
+            data-toggle="modal">
+      <mat-icon class="icon">add</mat-icon>Nieuw product template
     </button>
-</div>
-<div class="list" >
-  <div *ngFor="let projectTemp of templates">
+  </div>
+  <mat-spinner *ngIf="loader"></mat-spinner>
+  <div class="list" *ngIf="!loader">
+    <div *ngFor="let projectTemp of templates">
       <app-project-template  [template]="projectTemp"></app-project-template>
+    </div>
   </div>
 </div>
-

@@ -27,6 +27,7 @@ import { ProjectProgressDetailsModule } from './project-progress-details/project
 import { GroupService } from './services/group.service';
 import { EditProjectTemplateComponent } from './project-templates/edit-project-template/edit-project-template.component';
 import { ProjectTemplateComponent } from './project-templates/project-template/project-template.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -57,7 +58,8 @@ import { ProjectTemplateComponent } from './project-templates/project-template/p
     MatInputModule,
     MatButtonModule,
     NewProjectModule,
-    ProductentemplateOverzichtModule
+    ProductentemplateOverzichtModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     ProjectService,
