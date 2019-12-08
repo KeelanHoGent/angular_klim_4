@@ -1,0 +1,30 @@
+
+<div class="info" >
+  <mat-card>
+      <mat-card-title class="card">
+        klas {{classroom.name}}
+      </mat-card-title>
+      <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
+    <mat-card-content>
+
+      <table>
+        <thead>
+        <tr>
+          <th>Voornaam </th>
+          <th>Achternaam </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let record of classroom.pupils;let i = index;">
+          <td> <span>{{record.firstName}}</span> </td>
+          <td> <span>{{record.surName}}</span> </td>
+        </tr>
+        </tbody>
+      </table>
+
+      <table *ngIf="classroom.pupils.length == 0">
+        <td>Geen leerlingen in deze klas</td>
+      </table>
+    </mat-card-content>
+  </mat-card>
+</div>

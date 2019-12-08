@@ -1,0 +1,85 @@
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    align-items: center;
+}
+
+.lijstitem{
+    max-width: 250px;
+    margin: 3em;
+    flex: 0 0 auto;
+    
+    flex-direction: column;
+    
+}
+.productfoto {
+    width: 200px !important;
+    height: 200px !important;
+}
+.parent {
+    display: flex;
+    flex-wrap: nowrap; 
+    overflow: auto;
+    
+    flex-direction: column;
+}
+.container{
+    display: flex;
+    margin: auto 0;
+    justify-content: center;
+      
+}
+.v-row{
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+    margin: auto 0;
+    
+}
+.h-row {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-evenly;
+    margin: auto 0;
+}
+
+.header2{
+    margin: auto 2em;
+    padding: 1em 0;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    color: var(--magenta);
+}
+
+.header4{
+    font-size: 2em;
+    color: #79e0e0;
+}
+.afbeelding{
+    max-width: 400px;
+    max-height: auto;
+}
+.mara{
+    margin: 1em;
+}
+
+.para{
+    padding: 1em;
+}
+.topmara{
+    margin-top: 2em;
+}
+.but {
+    min-width: 200px;
+    min-height: 50px;
+}
+.kleurtje{
+    color: var(--magenta);
+}

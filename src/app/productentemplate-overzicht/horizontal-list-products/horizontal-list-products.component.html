@@ -1,0 +1,7 @@
+<div class="list" >
+  <div *ngFor="let productTemp of list">
+  <a [routerLink]="['/product-template-details/', productTemp.productTemplateId]">
+  <app-product-template  (deletedProduct)="deleteProduct($event)" [productTemplate]="productTemp"></app-product-template>
+  </a>
+  </div>
+</div>

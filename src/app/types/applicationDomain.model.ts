@@ -14,6 +14,13 @@ export class ApplicationDomain {
 
       return domain;
     }
+    toJSON(): any {
+      return {
+        applicationDomainId: this._id,
+        applicationDomainName: this._name,
+        applicationDomainDescr: this._descr
+      };
+    }
 
     //GETTERS AND SETTERS
 
