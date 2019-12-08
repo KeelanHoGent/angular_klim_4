@@ -16,7 +16,6 @@ export class ProjectenTemplateOverzichtComponent implements OnInit {
   public status: number = 0;
   public templates: ProjectTemplate[];
   private projects: Observable<ProjectTemplate[]>;
-  public currentProjectTemplate: ProjectTemplate;
   public domains: ApplicationDomain[] = [];
   public loader = true;
   constructor(private _projecttemplateDataService: TemplateService,

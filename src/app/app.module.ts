@@ -28,15 +28,12 @@ import { GroupService } from './services/group.service';
 import { EditProjectTemplateComponent } from './project-templates/edit-project-template/edit-project-template.component';
 import { ProjectTemplateComponent } from './project-templates/project-template/project-template.component';
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ProjectTemplatesModule} from "./project-templates/project-templates.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProjectenTemplateOverzichtComponent,
-    AddProjectTemplateComponent,
-    EditProjectTemplateComponent,
-    ProjectTemplateComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +42,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     ProjectenOverzichtModule,
     BrowserAnimationsModule,
     ProjectProgressDetailsModule,
+    ProjectTemplatesModule,
     HttpClientModule,
     MatListModule,
     MatCardModule,

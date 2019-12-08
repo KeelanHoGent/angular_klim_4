@@ -19,12 +19,4 @@ export class ProjectTemplateComponent implements OnInit {
   showDefaultImage() {
     this.projectFotoSrc = 'assets/images/image-not-found.png';
   }
-
-  onSelect(projectTemplate: ProjectTemplate): void {
-    this.currentProjectTemplate = projectTemplate;
-    this.status = 2;
-  }
-  onSelectNieuw(){
-    this.status = 1;
-  }
 }
