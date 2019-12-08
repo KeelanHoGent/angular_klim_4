@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: '', component: AddProjectComponent},
   {path: 'projecten', component: ProjectenContainerComponent},
   {path: 'editProject/:id', component: EditpageComponent},
-  {path: 'project-progress', component: ProjectProgressContainerComponent}
+  {path: 'project-progress', component: ProjectProgressContainerComponent},
   {path: 'producten', component: ProductListComponent},
   {path: 'add-product-template', component: AddProductTemplateFormComponent},
   {

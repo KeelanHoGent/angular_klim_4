@@ -56,7 +56,7 @@ import { EditProjectTemplateComponent } from './project-templates/edit-project-t
     MatInputModule,
     MatButtonModule,
     NewProjectModule,
-    EditProjectModule
+    EditProjectModule,
     ProductentemplateOverzichtModule
   ],
   providers: [
