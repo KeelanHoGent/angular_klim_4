@@ -23,23 +23,27 @@ export class EditProjectTemplateComponent implements OnInit {
   public magLaden: Promise<boolean>;
   public geselecteerdeProductTemplates: ProductTemplate[];
   public geselecteerdeDomainApplication: ApplicationDomain;
+
+  public error: String = "assets/images/error.svg";
+  public correct: String = "assets/images/correct.svg";
+
+  public productFotoSrc = '';
+
   constructor(private _fb: FormBuilder,
               private _projecttemplateDataService: TemplateService,
               private projectService: ProjectService,
-              private route: ActivatedRoute) {
-
-
-  }
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.route.data.subscribe(item => this.template = item['projectTemp']);
+    this.setForm();
     this.projectService.getApplicationDomains$().subscribe(ad => {
       this.domains = ad;
       this.geselecteerdeDomainApplication = this.domains.find(d => d.id === this.template.applicationDomainId);
       this._projecttemplateDataService.getProductTemplates$().subscribe(pt => {
         this.productTemplatesLijst = pt;
         this.geselecteerdeProductTemplates = this.template.productTemplates;
-        this.setForm();
+
         this.projecttemplate.get('applicationDomain').setValue(this.geselecteerdeDomainApplication);
         //dit werkt niet somehow
         this.projecttemplate.get('productTemplates').setValue(this.geselecteerdeProductTemplates);
@@ -47,13 +51,24 @@ export class EditProjectTemplateComponent implements OnInit {
         this.projecttemplate.get('productTemplates').valueChanges.subscribe(t => this.geselecteerdeProductTemplates = t);
         this.magLaden = Promise.resolve(true);
       });
-
     });
-
   }
-  onSubmit() {
+
+  setForm() {
+    this.projecttemplate = this._fb.group({
+      name: [this.template.name, [Validators.required, Validators.minLength(6)]],
+      image: [this.template.image, Validators.required],
+      description: [ this.template.descr, [Validators.required, Validators.minLength(6)]],
+      applicationDomain: [ , Validators.required],
+      productTemplates: [this.geselecteerdeProductTemplates, Validators.required],
+      budget: [this.template.budget, Validators.required],
+      maxScore: [this.template.maxScore, Validators.required]
+      });
+  }
+
+  save() {
     this.template.name = this.projecttemplate.value.name;
-    this.template.descr = this.projecttemplate.value.descr;
+    this.template.descr = this.projecttemplate.value.description;
     this.template.image = this.projecttemplate.value.image;
     this.template.productTemplates.length = 0;
     this.productTemplatesLijst.map(v => this.template.productTemplates.push(v)) ;
@@ -62,18 +77,6 @@ export class EditProjectTemplateComponent implements OnInit {
     this.template.maxScore = this.projecttemplate.value.maxScore;
 
     this._projecttemplateDataService.updateProjectTemplate(this.template.projectTemplateId, this.template);
-  }
-  setForm() {
-    this.projecttemplate = this._fb.group({
-      name: [this.template.name, [Validators.required, Validators.minLength(6)]],
-      image: [this.template.image, Validators.required],
-      descr: [ this.template.descr, [Validators.required, Validators.minLength(6)]],
-      applicationDomain: [ , Validators.required],
-      productTemplates: [this.geselecteerdeProductTemplates, Validators.required],
-      budget: [this.template.budget, Validators.required],
-      maxScore: [this.template.maxScore, Validators.required]
-      });
-
   }
 
   getErrorMessage(errors: any) {
@@ -87,6 +90,10 @@ export class EditProjectTemplateComponent implements OnInit {
         errors.minlength.requiredLength
       } karakters bevatten (heeft ${errors.minlength.actualLength})`;
     }
+  }
+
+  showDefaultImage() {
+    this.productFotoSrc = 'assets/images/image-not-found.png';
   }
 
 }
