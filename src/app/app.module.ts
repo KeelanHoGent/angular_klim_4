@@ -26,6 +26,7 @@ import { ProductentemplateOverzichtModule } from './productentemplate-overzicht/
 import { ProjectProgressDetailsModule } from './project-progress-details/project-progress-details.module';
 import { GroupService } from './services/group.service';
 import { EditProjectTemplateComponent } from './project-templates/edit-project-template/edit-project-template.component';
+import { ProjectTemplateComponent } from './project-templates/project-template/project-template.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { EditProjectTemplateComponent } from './project-templates/edit-project-t
     AppComponent,
     ProjectenTemplateOverzichtComponent,
     AddProjectTemplateComponent,
-    EditProjectTemplateComponent
+    EditProjectTemplateComponent,
+    ProjectTemplateComponent
   ],
   imports: [
     BrowserModule,

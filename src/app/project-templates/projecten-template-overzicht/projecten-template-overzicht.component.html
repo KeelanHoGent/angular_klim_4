@@ -3,7 +3,7 @@
     <button mat-raised-button type="button" color="default" rounded="true" data-toggle="modal" (click)="onSelectNieuw()">
             <mat-icon>add</mat-icon>
             Nieuw concept
-        
+
     </button>
 </div>
 
@@ -22,9 +22,5 @@
                             <button mat-button color="primary">Start Project</button>
                     </mat-card-actions>
                 </mat-card>
-            </div>
-            <div>
-                <app-add-project-template  *ngIf="status ===1" ></app-add-project-template>
-                <app-edit-project-template  *ngIf="status ===2" [template]="currentProjectTemplate"></app-edit-project-template>
             </div>
 </div>
