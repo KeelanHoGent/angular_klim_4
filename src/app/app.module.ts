@@ -27,6 +27,8 @@ import { ProductentemplateOverzichtModule } from './productentemplate-overzicht/
 import { ProjectProgressDetailsModule } from './project-progress-details/project-progress-details.module';
 import { GroupService } from './services/group.service';
 import { EditProjectTemplateComponent } from './project-templates/edit-project-template/edit-project-template.component';
+import {ClassroomListComponent} from "./classroom/overzicht/classroom-list/classroom-list.component";
+import {ClassroomModule} from "./classroom/classroom.module";
 
 
 @NgModule({
@@ -58,6 +60,8 @@ import { EditProjectTemplateComponent } from './project-templates/edit-project-t
     NewProjectModule,
     EditProjectModule,
     ProductentemplateOverzichtModule
+    ProductentemplateOverzichtModule,
+    ClassroomModule
   ],
   providers: [
     ProjectService,

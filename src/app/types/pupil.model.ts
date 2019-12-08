@@ -5,7 +5,6 @@ export class Pupil {
     private _firstName: string;
     private _surName: string;
 
-
     constructor(firstName: string, surName: string) {
         this._firstName = firstName;
         this._surName = surName;
@@ -14,7 +13,6 @@ export class Pupil {
 
 
     static fromJSON(json: any): Pupil {
-        console.log("pupil")
 
         const g = new Pupil(
             json.firstName,
@@ -81,9 +79,6 @@ export class Pupil {
     public set surName(value: string) {
         this._surName = value;
     }
-
-
-
 
 
 }

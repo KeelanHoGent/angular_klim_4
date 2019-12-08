@@ -13,6 +13,10 @@ import { ProjectenTemplateOverzichtComponent } from './project-templates/project
 import { ProjectProgressContainerComponent } from './project-progress-details/project-progress-container/project-progress-container.component';
 import {ProductTemplateDetailsComponent} from './productentemplate-overzicht/product-template-details/product-template-details.component';
 import {ProductTemplateResolver} from './productentemplate-overzicht/productTemplate-resolver';
+import {ClassroomListComponent} from "./classroom/overzicht/classroom-list/classroom-list.component";
+import {ClassroomDetailComponent} from "./classroom/classroomDetail/classroom-detail/classroom-detail.component";
+import {ClassroomResolver} from "./classroom/classroom-resolver";
+import {ClassroomFormComponent} from "./classroom/addClassroom/classroom-form/classroom-form.component";
 
 
 const routes: Routes = [
@@ -35,7 +39,10 @@ const routes: Routes = [
 
   {path: 'add-product-template', component: AddProductTemplateFormComponent},
   {path: 'project-progress', component: ProjectProgressContainerComponent},
-  {path: 'product-template-details/:id', component: ProductTemplateDetailsComponent, resolve: {productTemp: ProductTemplateResolver}}];
+  {path: 'product-template-details/:id', component: ProductTemplateDetailsComponent, resolve: {productTemp: ProductTemplateResolver}},
+  {path: 'klassen', component: ClassroomListComponent},
+  {path: 'klas/:id', component: ClassroomDetailComponent, resolve: {classroom: ClassroomResolver}},
+  {path: 'add/classroom', component: ClassroomFormComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
