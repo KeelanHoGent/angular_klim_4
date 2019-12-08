@@ -12,9 +12,9 @@
   </mat-card-footer>
 </mat-card> -->
 
-<div class="project">
+<div [routerLink]="['/add-project', project.id]" class="project">
     <p class="naam">{{project.name}}</p>
     <p class="desc">{{project.descr | slice:0:75}} ...</p>
-    <button mat-raised-button class="details-button">Details</button>
+    <!-- <button mat-raised-button class="details-button">Details</button> -->
 </div>
 

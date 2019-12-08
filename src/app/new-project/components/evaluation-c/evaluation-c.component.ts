@@ -46,8 +46,8 @@ export class EvaluationCComponent {
   }
 
   updateEc(data: any){
+    console.log(this.evaluationC.evaluationCritereaId)
     this.evaluationC.title = data.title;
-  
   }
 
 }

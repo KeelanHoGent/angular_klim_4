@@ -40,7 +40,7 @@ export class ClassroomFormComponent implements OnInit {
   save() {
     let classroom = new Classroom();
     classroom.name = this.classForm.value.name;
-      classroom.pupils = this.records;
+    classroom.pupils = this.records;
 
     this.classroomService.addNewClassroom(classroom).subscribe();
     this.router.navigateByUrl("/klassen");
@@ -73,9 +73,9 @@ export class ClassroomFormComponent implements OnInit {
 
       let currentRecord = (<string>csvRecordsArray[i]).split(';');
       if (currentRecord.length == headerLength) {
-        let pupil: Pupil = new Pupil();
-        pupil.surName = currentRecord[0].trim();
-        pupil.firstName = currentRecord[1].trim();
+        let pupil: Pupil = new Pupil(currentRecord[0].trim(), currentRecord[1].trim());
+        // pupil.surName = currentRecord[0].trim();
+        // pupil.firstName = currentRecord[1].trim();
         csvArr.push(pupil);
       }
     }

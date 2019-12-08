@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Group } from 'src/app/types/group.model';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { GroupFormComponent } from '../group-form/group-form.component';
+import { Pupil } from 'src/app/types/pupil.model';
 
 @Component({
   selector: 'app-group',
@@ -35,15 +36,20 @@ export class GroupComponent {
 
     dialogRef.afterClosed().subscribe(
       data => {
+        console.log(g.id);
         if(data){
           this.updateGroup(data);
-        }
+        } 
       }
     );
   }
 
   updateGroup(data: any){
+    this.group.pupils = new Array<Pupil>();
     this.group.name = data.name;
-    this.group.pupils = data.pupils;
+    data.pupils.forEach((pu: Pupil) => {
+      pu = new Pupil(pu.firstName, "");
+      this.group.pupils.push(pu);
+    });
   }
 }

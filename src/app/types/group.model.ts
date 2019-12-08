@@ -30,8 +30,8 @@ export class Group {
     const g = new Group();
     g.id = json.groupId
     g.name = json.groupName;
-    g._pupils = json.pupils.map(p => Pupil.fromJSON(p));
-    g._evaluations = json.evaluations.map(p => Evaluation.fromJSON(p));
+    g._pupils = json.pupils.map(pu => Pupil.fromJSON(pu));
+    g._evaluations = json.evaluations.map(g => Evaluation.fromJSON(g));
     g._order = Order.fromJSON(json.order)
     g._projectBudget = budget
 
@@ -42,10 +42,14 @@ export class Group {
 
   toJson(): any {
     return {
+      id: this._id,
       groupName: this._name,
-      pupils: this._pupils.map((p : Pupil) => p.toJson())
+      pupils: this._pupils.map(pu => pu.toJson())
     }
   }
+
+
+  
 
 
   public overBudget(budget: number) : boolean {

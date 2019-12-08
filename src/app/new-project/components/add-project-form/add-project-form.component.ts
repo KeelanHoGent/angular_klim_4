@@ -12,6 +12,6 @@ import { ApplicationDomain } from '../../../types/applicationDomain.model';
   styleUrls: ['./add-project-form.component.css']
 })
 export class AddProjectFormComponent{
-  
+   
 }
 
