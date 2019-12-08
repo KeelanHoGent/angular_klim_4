@@ -5,6 +5,7 @@ import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProductTemplate } from 'src/app/types/productTemplate.model';
 import {TemplateService} from '../../services/template.service';
+import {ActivatedRoute} from "@angular/router";
 
 
 
@@ -15,7 +16,7 @@ import {TemplateService} from '../../services/template.service';
 })
 
 export class EditProjectTemplateComponent implements OnInit {
-  @Input() template: ProjectTemplate;
+  public template: ProjectTemplate
   public projecttemplate: FormGroup;
   public domains: ApplicationDomain[];
   public productTemplatesLijst: ProductTemplate[];
@@ -24,13 +25,15 @@ export class EditProjectTemplateComponent implements OnInit {
   public geselecteerdeDomainApplication: ApplicationDomain;
   constructor(private _fb: FormBuilder,
               private _projecttemplateDataService: TemplateService,
-              private _projectDataService: ProjectService) {
+              private projectService: ProjectService,
+              private route: ActivatedRoute) {
 
 
   }
 
   ngOnInit() {
-    this._projectDataService.getApplicationDomains$().subscribe(ad => {
+    this.route.data.subscribe(item => this.template = item['projectTemp']);
+    this.projectService.getApplicationDomains$().subscribe(ad => {
       this.domains = ad;
       this.geselecteerdeDomainApplication = this.domains.find(d => d.id === this.template.applicationDomainId);
       this._projecttemplateDataService.getProductTemplates$().subscribe(pt => {
