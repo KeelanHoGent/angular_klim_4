@@ -48,7 +48,6 @@ export class AddGroupButtonComponent {
     });
 
     this.newGroup.emit(group);
-    console.log(group);
     return false;
   }
 }

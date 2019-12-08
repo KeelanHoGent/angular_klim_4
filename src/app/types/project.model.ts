@@ -42,7 +42,6 @@ export class Project {
   }
 
   toJson(): any {
-    console.log("toJson:", this.evaluationCritereas);
     return {
       projectId: this._id,
       projectName: this._name,

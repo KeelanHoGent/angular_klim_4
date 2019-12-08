@@ -25,7 +25,7 @@ export class AddProjectInfoComponent implements OnInit {
   public newProject: Project;
   public isEdit: boolean;
   public evaluationCs: EvaluationCriterea[];
-
+  
 
   public error: String = "../../../../assets/images/error.svg";
   public correct: String = "../../../../assets/images/correct.svg";
@@ -47,10 +47,10 @@ export class AddProjectInfoComponent implements OnInit {
   ngOnInit() {
     this.isEdit = false;
     
-    this.initFormGroup(false);
+    this.initFormGroup(false, 0);
     //  Keuze tussen edit project en new project 
     let editPromise = this.initEditPage();
-    editPromise.then(edit => this.initFormGroup(edit));
+    editPromise.then(edit => this.initFormGroup(edit, this.newProject.applicationDomain.id-1));
 
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
 
@@ -65,7 +65,8 @@ export class AddProjectInfoComponent implements OnInit {
           this.isEdit = true;
           this._route.paramMap.pipe(switchMap((params: ParamMap) => this._projectDataService.getProjectById$(+params.get('id')))).subscribe((p: Project) => {
             this.newProject = p;
-            
+
+            //Frontend lijsten initializeren 
             this.groups = p.groups;
             this.products = p.products;
             this.evaluationCs = p.evaluationCritereas;
@@ -79,14 +80,14 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   // Op basis van het soort pagina, wordt de formgroup geinitializeerd  
-  private initFormGroup(isEdit) {
+  private initFormGroup(isEdit, appDomain: number) {
     this.projectFg = this._fb.group({
       name: [isEdit ? this.newProject.name : '', Validators.required],
       description: [isEdit ? this.newProject.descr : '', Validators.required],
       image: [isEdit ? this.newProject.image : '', Validators.required],
       budget: [isEdit ? this.newProject.budget : '', Validators.required],
       schoolYear: [isEdit ? this.newProject.schoolYear : '', Validators.required],
-      applicationDomain: [isEdit ? this.newProject.applicationDomain : '', Validators.required]
+      applicationDomain: [isEdit ? this.domains[appDomain] : '', Validators.required]
     });
 
     // if(isEdit) {
@@ -105,7 +106,6 @@ export class AddProjectInfoComponent implements OnInit {
     this.newProject.budget = this.projectFg.value.budget;
     this.newProject.applicationDomainId = this.projectFg.value.applicationDomain.id;
 
-    console.log(this.newProject.budget)
     if (!this.isEdit) {
       this._projectDataService.addNewProject(this.newProject)
         .subscribe(res => {
@@ -121,7 +121,6 @@ export class AddProjectInfoComponent implements OnInit {
 
   addNewProductToProject(product: Product) {
     product.categoryId = 1;                           //TIJDELIJK!!!!
-
     this.newProject.addProductToProject(product);
     this.products = this.newProject.products;
   }
@@ -134,6 +133,7 @@ export class AddProjectInfoComponent implements OnInit {
   addNewGroupToProject(group: Group) {
     this.newProject.addGroupToProject(group);
     this.groups = this.newProject.groups;
+
   }
 
   deleteGroup(g: Group): void {

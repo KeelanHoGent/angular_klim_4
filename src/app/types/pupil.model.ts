@@ -14,8 +14,6 @@ export class Pupil {
 
 
     static fromJSON(json: any): Pupil {
-        console.log("pupil")
-
         const g = new Pupil(
             json.firstName,
             json.surName

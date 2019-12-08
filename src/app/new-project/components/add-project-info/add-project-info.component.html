@@ -98,7 +98,7 @@
                 <label>Onderwerp</label>
                 <select formControlName="applicationDomain">
                     <option value="">Kies het onderwerp</option>
-                    <option *ngFor="let domain of domains" [ngValue]="domain">
+                    <option [ngValue]="domain" *ngFor="let domain of domains" >
                         {{domain.name}}
                     </option>
                 </select>
