@@ -18,13 +18,13 @@ export class ProjectTemplate {
 
     static fromJSON(json: any): ProjectTemplate {
         const p = new ProjectTemplate();
+        p._projectTemplateId = json.projectTemplateId;
         p._name = json.projectName;
         p._descr = json.projectDescr;
         p._image = json.projectImage;
         p._addedByGO = json.addedByGO;
         p._applicationDomainId = json.applicationDomainId;
         p._productTemplates = json.productTemplates.map(t => ProductTemplate.fromJSON(t));
-        p._projectTemplateId = json.projectId;
         p._budget = json.budget;
         p._maxScore = json.maxScore;
 
@@ -32,7 +32,7 @@ export class ProjectTemplate {
     }
     toJson(): any {
         return {
-          projectId: this._projectTemplateId,
+          projectTemplateId: this._projectTemplateId,
           projectName: this._name,
           projectDescr: this._descr,
           projectImage: this._image,

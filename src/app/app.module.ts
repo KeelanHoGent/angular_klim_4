@@ -27,16 +27,18 @@ import { ProductentemplateOverzichtModule } from './productentemplate-overzicht/
 import { ProjectProgressDetailsModule } from './project-progress-details/project-progress-details.module';
 import { GroupService } from './services/group.service';
 import { EditProjectTemplateComponent } from './project-templates/edit-project-template/edit-project-template.component';
+
+import { ProjectTemplateComponent } from './project-templates/project-template/project-template.component';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ProjectTemplatesModule} from "./project-templates/project-templates.module";
+
 import {ClassroomListComponent} from "./classroom/overzicht/classroom-list/classroom-list.component";
 import {ClassroomModule} from "./classroom/classroom.module";
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ProjectenTemplateOverzichtComponent,
-    AddProjectTemplateComponent,
-    EditProjectTemplateComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ import {ClassroomModule} from "./classroom/classroom.module";
     ProjectenOverzichtModule,
     BrowserAnimationsModule,
     ProjectProgressDetailsModule,
+    ProjectTemplatesModule,
     HttpClientModule,
     MatListModule,
     MatCardModule,
@@ -60,6 +63,7 @@ import {ClassroomModule} from "./classroom/classroom.module";
     NewProjectModule,
     EditProjectModule,
     ProductentemplateOverzichtModule,
+    MatProgressSpinnerModule
     ClassroomModule
   ],
   providers: [
