@@ -29,6 +29,7 @@ import { AuthGuard } from './user/auth-guard.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProjectTemplatesModule } from './project-templates/project-templates.module';
 import { ClassroomModule } from './classroom/classroom.module';
+import {AuthenticationService} from "./user/authentication.service";
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { ClassroomModule } from './classroom/classroom.module';
     ProjectService,
     GroupService,
     httpInterceptorProviders,
-    AuthGuard
+    AuthGuard,
+    AuthenticationService
   ],
   bootstrap: [AppComponent]
 })

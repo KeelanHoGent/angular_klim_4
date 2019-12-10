@@ -39,7 +39,9 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['']);
           }
         }
-      }, err => this.error = err);
+      }, err => this.error = "Ongeldige inloggegevens");
+    } else {
+      this.error = 'Niet alle velden zijn ingevuld!';
     }
   }
 
