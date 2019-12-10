@@ -9,6 +9,7 @@ import { delay } from 'q';
 import {TemplateService} from '../../services/template.service';
 import {ProductTemplate} from '../../types/productTemplate.model';
 import { Router } from '@angular/router';
+import { SourceListMap } from 'source-list-map';
 
 
 
@@ -41,7 +42,7 @@ export class AddProjectTemplateComponent implements OnInit {
   ngOnInit() {
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
     this._projecttemplateDataService.getProductTemplates$().subscribe(pt => this.productTemplates = pt);
-
+    console.log(this.domains);
     this.setForm();
     this.projecttemplate.get('productTemplates').valueChanges.subscribe(pt => this.geselecteerdeProductTemplates = pt);
   }
@@ -67,6 +68,8 @@ export class AddProjectTemplateComponent implements OnInit {
     p.applicationDomainId = this.projecttemplate.value.applicationDomain.id;
     p.budget = this.projecttemplate.value.budget;
     p.maxScore = this.projecttemplate.value.maxScore;
+    console.log(this.projecttemplate.value);
+
     this._projecttemplateDataService.addNewProjecttemplate(p)
     .subscribe(res => {
       console.log(res);

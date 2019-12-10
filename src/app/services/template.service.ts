@@ -13,12 +13,11 @@ import {Project} from '../types/project.model';
 })
 export class TemplateService {
   public schoolId = 1;
-  private _templateId: number;
 
   constructor(private http: HttpClient) {
     // Dit is om makkelijk te kunnen testen met de data die in de database zit als mockdata
     // later kan dit veranderd worden naar de classroomId van de ingelogde gebruiker
-    this._templateId = 1;
+    
   }
 
   // project templates
@@ -30,7 +29,7 @@ export class TemplateService {
   }
 
   getProjectTemplate$(id: number) {
-    return this.http.get<ProjectTemplate>(`${environment.apiUrl}/ProjectTemplate/${this._templateId}`).pipe(
+    return this.http.get<ProjectTemplate>(`${environment.apiUrl}/ProjectTemplate/${id}`).pipe(
       map(x => ProjectTemplate.fromJSON(x))
     );
   }
@@ -41,14 +40,14 @@ export class TemplateService {
 
 
   getProjectTemplates$(): Observable<ProjectTemplate[]> {
-    return this.http.get<ProjectTemplate[]>(`${environment.apiUrl}/ProjectTemplate/projecttemplates/${this._templateId}`).pipe(
+    return this.http.get<ProjectTemplate[]>(`${environment.apiUrl}/ProjectTemplate/projecttemplates/${this.schoolId}`).pipe(
       map((list: any[]): ProjectTemplate[] => list.map(ProjectTemplate.fromJSON))
     );
   }
 
   // product templates
   getProductTemplates$(): Observable<ProductTemplate[]> {
-    return this.http.get<ProductTemplate[]>(`${environment.apiUrl}/School/productTemplates/${this._templateId}`)
+    return this.http.get<ProductTemplate[]>(`${environment.apiUrl}/School/productTemplates/${this.schoolId}`)
       .pipe(
         map((list: any[]): ProductTemplate[] => {
           return list.map(ProductTemplate.fromJSON);

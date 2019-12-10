@@ -79,8 +79,8 @@ export class EditProjectTemplateComponent implements OnInit {
     this.template.productTemplates.length = 0;
     this.geselecteerdeProductTemplates.map(v => this.template.productTemplates.push(v)) ;
     this.template.applicationDomainId = this.projecttemplate.value.applicationDomain.id;
-    this.template.budget = this.projecttemplate.value.budget;
-    this.template.maxScore = this.projecttemplate.value.maxScore;
+    this.template.budget = +this.projecttemplate.value.budget;
+    this.template.maxScore = +this.projecttemplate.value.maxScore;
     console.log(this.template.toJson());
 
     this._projecttemplateDataService.updateProjectTemplate(this.template.projectTemplateId, this.template)
