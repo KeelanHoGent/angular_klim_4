@@ -1,4 +1,4 @@
-header {
+/* header {
   height: 70px;
   background-color: white;
   display: flex;
@@ -30,4 +30,67 @@ button {
 
 button:hover {
   background-color: #eaeaea;
+} */
+
+.bar {
+   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.09);
+   padding: 20px 40px;
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.bar > * {
+  font-size: 15px;
+}
+
+.logo {
+  background-image: url(../../../../assets/images/GO-logo-magenta.png);
+  height: 60px;
+  width: 200px;
+  background-size: cover;
+  background-position: 0 1.38px;
+  content: ' ';
+  display: block;
+  overflow: hidden;
+  margin: 0;
+}
+
+.lists {
+  display: flex;
+  align-items: center;
+}
+
+.item {
+  margin-left: 40px;
+  display: inline-block;
+}
+
+.item > a {
+  text-decoration: none;
+  color: black;
+  padding-bottom: 10px;
+  border-bottom: 1px solid transparent;
+}
+
+.item > a:hover {
+  color: var(--magenta);
+  border-bottom: 1px solid red;
+  transition: all 0.3s;
+}
+
+.loginButton {
+  border: 1px solid var(--magenta);
+  padding: 10px 25px;
+  border-radius: 7px;
+  background-color: var(--magenta);
+  color: white !important;
+}
+
+.loginButton:hover {
+  color: white !important;
+  cursor: pointer;
+  background-color: #DE739C;
+  transition: all 0.3s;
 }
