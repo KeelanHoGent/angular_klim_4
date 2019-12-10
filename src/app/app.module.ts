@@ -63,7 +63,7 @@ import {ClassroomModule} from "./classroom/classroom.module";
     NewProjectModule,
     EditProjectModule,
     ProductentemplateOverzichtModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
     ClassroomModule
   ],
   providers: [

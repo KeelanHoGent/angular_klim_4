@@ -7,7 +7,6 @@ import { CategoryTemplate } from '../types/categoryTemplate.model';
 import { Observable } from 'rxjs';
 import {ProjectTemplate} from '../types/projectTemplate.model';
 import {Project} from '../types/project.model';
-import {Product} from '../types/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +23,9 @@ export class TemplateService {
 
   // project templates
   updateProjectTemplate(id: number, template: ProjectTemplate): Observable<ProjectTemplate> {
-    return this.http.put<ProjectTemplate>(`${environment.apiUrl}/ProjectTemplate/${id}/`,
+    console.log(template.toJson());
+    console.log("dit was in de put methode");
+    return this.http.put<ProjectTemplate>(`${environment.apiUrl}/ProjectTemplate/${id}`,
       template.toJson()).pipe(map(ProjectTemplate.fromJSON));
   }
 
@@ -33,9 +34,9 @@ export class TemplateService {
       map(x => ProjectTemplate.fromJSON(x))
     );
   }
-  addNewProjecttemplate(projecttemplate: ProjectTemplate): Observable<Project> {
-    return this.http.post(`${environment.apiUrl}/ClassRoom/addProjectTemplate/1`,
-      projecttemplate.toJson()).pipe(map(Project.fromJSON));
+  addNewProjecttemplate(projecttemplate: ProjectTemplate): Observable<ProjectTemplate> {
+    return this.http.post(`${environment.apiUrl}/School/addProjectTemplate/${this.schoolId}`,
+      projecttemplate.toJson()).pipe(map(ProjectTemplate.fromJSON));
   }
 
 

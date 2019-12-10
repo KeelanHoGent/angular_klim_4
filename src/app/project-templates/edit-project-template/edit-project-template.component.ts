@@ -5,7 +5,7 @@ import { ApplicationDomain } from 'src/app/types/applicationDomain.model';
 import { ProjectService } from 'src/app/services/project.service';
 import { ProductTemplate } from 'src/app/types/productTemplate.model';
 import {TemplateService} from '../../services/template.service';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 
 
@@ -28,13 +28,14 @@ export class EditProjectTemplateComponent implements OnInit {
 
   public productFotoSrc = '';
 
-  constructor(private _fb: FormBuilder,
+  constructor(private router: Router,
+              private _fb: FormBuilder,
               private _projecttemplateDataService: TemplateService,
               private projectService: ProjectService,
               private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.route.data.subscribe(item => this.template = item['projectTemp']);
+    this.route.data.subscribe(item => this.template = item.projectTemp);
     this.setForm();
     this.projectService.getApplicationDomains$().subscribe(ad => {
       this.domains = ad;
@@ -69,12 +70,17 @@ export class EditProjectTemplateComponent implements OnInit {
     this.template.descr = this.projecttemplate.value.description;
     this.template.image = this.projecttemplate.value.image;
     this.template.productTemplates.length = 0;
-    this.productTemplatesLijst.map(v => this.template.productTemplates.push(v)) ;
+    this.geselecteerdeProductTemplates.map(v => this.template.productTemplates.push(v)) ;
     this.template.applicationDomainId = this.projecttemplate.value.applicationDomain.id;
     this.template.budget = this.projecttemplate.value.budget;
     this.template.maxScore = this.projecttemplate.value.maxScore;
+    console.log(this.template.toJson());
 
-    this._projecttemplateDataService.updateProjectTemplate(this.template.projectTemplateId, this.template);
+    this._projecttemplateDataService.updateProjectTemplate(this.template.projectTemplateId, this.template)
+      .subscribe(res => {
+        console.log(res);
+      this.router.navigateByUrl("/projecttemplates");
+    });
   }
 
   getErrorMessage(errors: any) {

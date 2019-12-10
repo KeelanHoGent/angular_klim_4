@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { delay } from 'q';
 import {TemplateService} from '../../services/template.service';
 import {ProductTemplate} from '../../types/productTemplate.model';
+import { Router } from '@angular/router';
 
 
 
@@ -29,9 +30,10 @@ export class AddProjectTemplateComponent implements OnInit {
 
   public productFotoSrc = '';
 
-  constructor(private _fb: FormBuilder,
-    private _projecttemplateDataService: TemplateService,
-    private _projectDataService: ProjectService) {
+  constructor(private router: Router,
+              private _fb: FormBuilder,
+              private _projecttemplateDataService: TemplateService,
+              private _projectDataService: ProjectService) {
 
 
   }
@@ -62,10 +64,14 @@ export class AddProjectTemplateComponent implements OnInit {
     p.descr = this.projecttemplate.value.description;
     p.image = this.projecttemplate.value.image;
     this.productTemplates.map(v => p.productTemplates.push(v));
-    p.applicationDomainId = this.projecttemplate.value.applicationDomain;
+    p.applicationDomainId = this.projecttemplate.value.applicationDomain.id;
     p.budget = this.projecttemplate.value.budget;
     p.maxScore = this.projecttemplate.value.maxScore;
-    this._projecttemplateDataService.addNewProjecttemplate(p);
+    this._projecttemplateDataService.addNewProjecttemplate(p)
+    .subscribe(res => {
+      console.log(res);
+      this.router.navigateByUrl('/projecttemplates');
+    });
   }
 
   getErrorMessage(errors: any) {
