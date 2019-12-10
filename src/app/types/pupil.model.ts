@@ -15,7 +15,7 @@ export class Pupil {
     static fromJSON(json: any): Pupil {
         const g = new Pupil(
             json.firstName,
-            json.surName
+            json.surname
         );
         g._pupilId = json.pupilId;
         return g;
