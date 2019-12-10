@@ -35,8 +35,8 @@ export class AuthenticationService {
 
   login(username: string, password): Observable<boolean> {
     return this.http.post(
-      `${environment.apiUrl}/account`,
-      {username, password},
+      `${environment.apiUrl}/Account/login`,
+       {username, password},
       {responseType: 'text'}
     ).pipe(
       map((token: any) => {

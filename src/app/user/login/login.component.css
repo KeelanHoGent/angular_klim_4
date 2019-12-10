@@ -1,5 +1,5 @@
 mat-card {
-  width: 200px;
+  width: 300px;
   margin: 0 auto;
   position: relative;
   top: 50%;
@@ -8,6 +8,14 @@ mat-card {
   transform: translateY(-50%);
 }
 
+mat-form-field {
+  width: 100%;
+}
+
 .outer {
   height: 100%;
+}
+
+mat-card-actions {
+  text-align: center;
 }
