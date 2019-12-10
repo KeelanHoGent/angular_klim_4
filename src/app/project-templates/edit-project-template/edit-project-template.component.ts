@@ -16,12 +16,14 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 
 export class EditProjectTemplateComponent implements OnInit {
-  public template: ProjectTemplate
+  public template: ProjectTemplate;
   public projecttemplate: FormGroup;
   public domains: ApplicationDomain[];
   public productTemplatesLijst: ProductTemplate[];
   public geselecteerdeProductTemplates: ProductTemplate[];
   public geselecteerdeDomainApplication: ApplicationDomain;
+
+  public productTemps: FormControl = new FormControl();
 
   public error: String = "assets/images/error.svg";
   public correct: String = "assets/images/correct.svg";
@@ -36,19 +38,24 @@ export class EditProjectTemplateComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(item => this.template = item.projectTemp);
+    this.geselecteerdeProductTemplates = this.template.productTemplates;
+
     this.setForm();
+
     this.projectService.getApplicationDomains$().subscribe(ad => {
       this.domains = ad;
       this.geselecteerdeDomainApplication = this.domains.find(d => d.id === this.template.applicationDomainId);
       this._projecttemplateDataService.getProductTemplates$().subscribe(pt => {
         this.productTemplatesLijst = pt;
-        this.geselecteerdeProductTemplates = this.template.productTemplates;
+
 
         this.projecttemplate.get('applicationDomain').setValue(this.geselecteerdeDomainApplication);
-        //dit werkt niet somehow
-        this.projecttemplate.get('productTemplates').setValue(this.geselecteerdeProductTemplates);
 
-        this.projecttemplate.get('productTemplates').valueChanges.subscribe(t => this.geselecteerdeProductTemplates = t);
+        this.productTemps.setValue(this.geselecteerdeProductTemplates.map(p => p.productTemplateId));
+
+        this.productTemps.valueChanges.subscribe(t => {
+          this.geselecteerdeProductTemplates = t.map(p => this.productTemplatesLijst.find(x => x.productTemplateId == p))
+        });
       });
     });
   }
@@ -59,7 +66,7 @@ export class EditProjectTemplateComponent implements OnInit {
       image: [this.template.image, Validators.required],
       description: [ this.template.descr, [Validators.required, Validators.minLength(6)]],
       applicationDomain: [ , Validators.required],
-      productTemplates: [this.geselecteerdeProductTemplates, Validators.required],
+      //productTemplates: [this.geselecteerdeProductTemplates.map(p => p.productTemplateId), Validators.required],
       budget: [this.template.budget, Validators.required],
       maxScore: [this.template.maxScore, Validators.required]
       });
