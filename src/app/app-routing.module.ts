@@ -23,10 +23,11 @@ import {ClassroomListComponent} from './classroom/overzicht/classroom-list/class
 import {ClassroomDetailComponent} from './classroom/classroomDetail/classroom-detail/classroom-detail.component';
 import {ClassroomResolver} from './classroom/classroom-resolver';
 import {ClassroomFormComponent} from './classroom/addClassroom/classroom-form/classroom-form.component';
+import {StartScreenComponent} from "./start-screen/start-screen/start-screen.component";
 
 
 const routes: Routes = [
-    {path: '', component: AddProjectComponent},
+    {path: '', component: StartScreenComponent},
     {path: 'login', component: LoginComponent},
     {path: 'projecten', canActivate: [AuthGuard], component: ProjectenContainerComponent},
     {path: 'add-project', canActivate: [AuthGuard], component: AddProjectFormComponent},

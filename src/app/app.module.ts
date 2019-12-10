@@ -30,6 +30,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { ProjectTemplatesModule } from './project-templates/project-templates.module';
 import { ClassroomModule } from './classroom/classroom.module';
 import {AuthenticationService} from "./user/authentication.service";
+import {StartScreenModule} from "./start-screen/start-screen.module";
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import {AuthenticationService} from "./user/authentication.service";
     ProductentemplateOverzichtModule,
     MatProgressSpinnerModule,
     ClassroomModule,
-    UserModule
+    UserModule,
+    StartScreenModule
   ],
   providers: [
     ProjectService,
