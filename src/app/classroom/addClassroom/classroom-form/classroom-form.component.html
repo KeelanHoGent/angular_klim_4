@@ -26,9 +26,10 @@
                  class="correct" src="{{correct}}"/>
           </div>
         </div>
-        <div class="formGroup">
+        <button class="fileContainer" mat-raised-button>
+          Upload file
           <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
-        </div>
+        </button>
       </form>
         <div>
           <table mat-table [dataSource]="records" *ngIf="records.length > 0">

@@ -20,7 +20,7 @@ export class ClassroomDetailComponent implements OnInit {
 
   ngOnInit() {
     this.route.data.subscribe(item => this.classroom = item['classroom']);
-    this.dataSource = this.classroom.pupils
+    this.dataSource = this.classroom.pupils;
   }
 
 
