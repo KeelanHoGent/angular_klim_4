@@ -18,6 +18,7 @@ export class ClassroomFormComponent implements OnInit {
   public classForm: FormGroup;
 
   public records: any[] = [];
+  public displayedColumns: String[] = ['firstName', 'surName'];
 
   constructor(
     private fb: FormBuilder,
