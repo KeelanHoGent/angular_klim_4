@@ -23,6 +23,12 @@ export class AddProjectTemplateComponent implements OnInit {
   public domains: ApplicationDomain[] = [];
   public productTemplates: ProductTemplate[];
   public geselecteerdeProductTemplates: ProductTemplate[];
+
+  public error: String = "assets/images/error.svg";
+  public correct: String = "assets/images/correct.svg";
+
+  public productFotoSrc = '';
+
   constructor(private _fb: FormBuilder,
     private _projecttemplateDataService: TemplateService,
     private _projectDataService: ProjectService) {
@@ -37,33 +43,31 @@ export class AddProjectTemplateComponent implements OnInit {
     this.setForm();
     this.projecttemplate.get('productTemplates').valueChanges.subscribe(pt => this.geselecteerdeProductTemplates = pt);
   }
-  onSubmit() {
+
+  setForm() {
+    this.projecttemplate = this._fb.group({
+      name: ['', [Validators.required, Validators.minLength(6)]],
+      image: ['', Validators.required],
+      description: ['', [Validators.required, Validators.minLength(6)]],
+      applicationDomain: [this.domains, Validators.required],
+      productTemplates: [this.productTemplates, Validators.required],
+      budget: [0, Validators.required],
+      maxScore: [0, Validators.required]
+    });
+  }
+
+  save() {
     const p = new ProjectTemplate();
     p.name = this.projecttemplate.value.name;
-    p.descr = this.projecttemplate.value.descr;
+    p.descr = this.projecttemplate.value.description;
     p.image = this.projecttemplate.value.image;
     this.productTemplates.map(v => p.productTemplates.push(v));
     p.applicationDomainId = this.projecttemplate.value.applicationDomain;
     p.budget = this.projecttemplate.value.budget;
     p.maxScore = this.projecttemplate.value.maxScore;
     this._projecttemplateDataService.addNewProjecttemplate(p);
+  }
 
-  }
-  setForm() {
-    this.projecttemplate = this._fb.group({
-      name: ['', [Validators.required, Validators.minLength(6)]],
-      image: ['', Validators.required],
-      descr: ['', [Validators.required, Validators.minLength(6)]],
-      applicationDomain: [this.domains, Validators.required],
-      productTemplates: [this.productTemplates, Validators.required],
-      budget: [0, Validators.required],
-      maxScore: [0, Validators.required]
-    });
-
-  }
-  compareFn(product: ProductTemplate, product2: ProductTemplate) {
-    return product && product2 ? product.productTemplateId === product2.productTemplateId : product === product2;
-  }
   getErrorMessage(errors: any) {
     if (!errors) {
       return null;
@@ -75,6 +79,10 @@ export class AddProjectTemplateComponent implements OnInit {
         errors.minlength.requiredLength
         } karakters bevatten (heeft ${errors.minlength.actualLength})`;
     }
+  }
+
+  showDefaultImage() {
+    this.productFotoSrc = 'assets/images/image-not-found.png';
   }
 
 }

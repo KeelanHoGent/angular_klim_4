@@ -26,6 +26,7 @@ import { EvaluationCFormComponent } from './components/evaluation-c-form/evaluat
 import { EvaluationCAddButtonComponent } from './components/evaluation-c-add-button/evaluation-c-add-button.component';
 
 
+
 @NgModule({
   declarations: [
     AddProjectComponent,
@@ -51,7 +52,8 @@ import { EvaluationCAddButtonComponent } from './components/evaluation-c-add-but
     MatDialogModule,
     RouterModule,
     MatFormFieldModule,
-    InlineSVGModule
+    InlineSVGModule,
+    FormsModule
   ],
   entryComponents: [AddProductFormComponent, GroupFormComponent, EvaluationCFormComponent],
   exports: [AddProjectComponent]

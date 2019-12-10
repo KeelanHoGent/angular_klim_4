@@ -16,7 +16,6 @@ export class ProjectenTemplateOverzichtComponent implements OnInit {
   public status: number = 0;
   public templates: ProjectTemplate[];
   private projects: Observable<ProjectTemplate[]>;
-  public currentProjectTemplate: ProjectTemplate;
   public domains: ApplicationDomain[] = [];
   public loader = true;
   constructor(private _projecttemplateDataService: TemplateService,
@@ -26,15 +25,10 @@ export class ProjectenTemplateOverzichtComponent implements OnInit {
 
 ngOnInit() {
   this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
-  this._projecttemplateDataService.getProjectTemplates$().subscribe(t => this.templates = t);
-  }
-  onSelect(projectTemplate: ProjectTemplate): void {
-    this.currentProjectTemplate = projectTemplate;
-    window.location.hash = '#huidigTemplate';
-    this.status = 2;
-  }
-  onSelectNieuw(){
-    this.status = 1;
+  this._projecttemplateDataService.getProjectTemplates$().subscribe(t => {
+    this.templates = t;
+    this.loader = false;
+  });
   }
 
 }

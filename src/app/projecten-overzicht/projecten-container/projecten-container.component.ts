@@ -15,6 +15,10 @@ export class ProjectenContainerComponent implements OnInit {
   constructor(private ps: ProjectService) { }
 
   ngOnInit() {
+    this.getProjects();
+  }
+
+  public getProjects() {
     this.ps.getProjects$().subscribe(ps => {
       this.loader = false;
       this.projects = ps;

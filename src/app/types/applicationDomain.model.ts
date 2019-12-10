@@ -4,18 +4,15 @@ export class ApplicationDomain {
     private _name: string;
     private _descr: string;
 
-    constructor(id: number, name: string, descr: string) {
-      this._id = id;
-      this._name = name;
-      this._descr = descr;
-    }
+    
 
     static fromJSON(json: any): ApplicationDomain {
-      return new ApplicationDomain(
-        json.applicationDomainId,
-        json.applicationDomainName,
-        json.applicationDomainDescr
-      );
+      const domain = new ApplicationDomain();
+      domain._id = json.applicationDomainId;
+      domain._name = json.applicationDomainName;
+      domain._descr = json.applicationDomainDescr;
+
+      return domain;
     }
     toJSON(): any {
       return {

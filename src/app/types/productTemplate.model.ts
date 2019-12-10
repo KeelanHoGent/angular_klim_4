@@ -38,7 +38,7 @@ export class ProductTemplate {
             description: this._description,
             productImage: this._image,
             categoryTemplateId: this._categoryTemplateId,
-            categoryTemplate: this.categoryTemplate.toJson(),
+            categoryTemplate: this._categoryTemplate,
             score: this._score,
             projectId: this._projectId,
             hasMultipleDisplayVariations: this._hasMultipleDisplayVariations,

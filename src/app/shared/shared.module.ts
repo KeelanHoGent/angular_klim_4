@@ -6,6 +6,7 @@ import { ActiveFilter, FinishedFilter } from "./filterProjects.pipe";
 import { MatCardModule } from "@angular/material/card";
 import { MatButtonModule } from "@angular/material/button";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import { Routes, RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     CommonModule,
     MatCardModule,
     MatButtonModule,
+    RouterModule
   ],
   exports: [
     HorizontalListComponent,

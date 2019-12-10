@@ -1,26 +1,33 @@
 <div class="titleBox">
-    <mat-card-title class="h">
-        <mat-icon class="icon">post_add</mat-icon>Maak een nieuw project
+    <mat-card-title *ngIf="isEdit; else newProject" class="h">
+        <mat-icon class="icon">post_add</mat-icon>Pas een project aan
     </mat-card-title>
+
+    <ng-template #newProject class="h">
+        <mat-card-title class="h">
+            <mat-icon class="icon">post_add</mat-icon>Maak een nieuw project
+        </mat-card-title>
+
+    </ng-template>
     <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
 </div>
 <mat-card-content class="form">
     <div class=formSectie>
-        <form class='container' [formGroup]="project">
+        <form class='container' [formGroup]="projectFg">
             <div class="formGroup">
                 <label>Projectnaam</label>
                 <div>
                     <input [ngClass]="{
-                    'invalidInput': project.get('name')['errors']&& project.get('name').touched,
-                    'validInput': !project.get('name')['errors'] && project.get('name').touched
+                    'invalidInput': projectFg.get('name')['errors']&& projectFg.get('name').touched,
+                    'validInput': !projectFg.get('name')['errors'] && projectFg.get('name').touched
                 }" aria-label="projectnaam" placeholder="Project naam" type="text" formControlName="name" #spy
                         required />
 
-                    <p class="error" *ngIf="project.get('name')['errors'] && project.get('name').touched">
-                        {{ getErrorMessage(project.get('name')['errors']) }}
+                    <p class="error" *ngIf="projectFg.get('name')['errors'] && projectFg.get('name').touched">
+                        {{ getErrorMessage(projectFg.get('name')['errors']) }}
                         <img src="{{error}}">
                     </p>
-                    <div *ngIf="!project.get('name')['errors'] && project.get('name').touched">
+                    <div *ngIf="!projectFg.get('name')['errors'] && projectFg.get('name').touched">
                         <img class="correctInput" src="{{correct}}">
                     </div>
                 </div>
@@ -29,60 +36,61 @@
             <div class="formGroup">
                 <label>Beschrijving</label>
                 <textarea [ngClass]="{
-                    'invalidInput': project.get('description')['errors']&& project.get('description').touched,
-                    'validInput': !project.get('description')['errors'] && project.get('description').touched
+                    'invalidInput': projectFg.get('description')['errors']&& projectFg.get('description').touched,
+                    'validInput': !projectFg.get('description')['errors'] && projectFg.get('description').touched
                 }" aria-label="description" type="text" formControlName="description" required></textarea>
-                <p class="error" *ngIf="project.get('description')['errors'] && project.get('description').touched">
-                    {{ getErrorMessage(project.get('description')['errors']) }}
+                <p class="error" *ngIf="projectFg.get('description')['errors'] && projectFg.get('description').touched">
+                    {{ getErrorMessage(projectFg.get('description')['errors']) }}
                     <img src="{{error}}">
                 </p>
-                <img *ngIf="!project.get('description')['errors'] && project.get('description').touched" class="correct"
-                    src="{{correct}}">
+                <img *ngIf="!projectFg.get('description')['errors'] && projectFg.get('description').touched"
+                    class="correct" src="{{correct}}">
             </div>
             <div class="formGroup">
                 <label>Afbeelding Url</label>
                 <div>
                     <input [ngClass]="{
-                    'invalidInput': project.get('image')['errors']&& project.get('image').touched,
-                    'validInput': !project.get('image')['errors'] && project.get('image').touched }" aria-label="image"
-                        placeholder="Afbeelding" type="text" formControlName="image" required />
-                    <p class="error" *ngIf="project.get('image')['errors'] && project.get('image').touched">
-                        {{ getErrorMessage(project.get('image')['errors']) }}
+                    'invalidInput': projectFg.get('image')['errors']&& projectFg.get('image').touched,
+                    'validInput': !projectFg.get('image')['errors'] && projectFg.get('image').touched }"
+                        aria-label="image" placeholder="Afbeelding" type="text" formControlName="image" required />
+                    <p class="error" *ngIf="projectFg.get('image')['errors'] && projectFg.get('image').touched">
+                        {{ getErrorMessage(projectFg.get('image')['errors']) }}
                         <img src="{{error}}">
                     </p>
-                    <div *ngIf="!project.get('image')['errors'] && project.get('image').touched">
+                    <div *ngIf="!projectFg.get('image')['errors'] && projectFg.get('image').touched">
                         <img class="correctInput" src="{{correct}}">
                     </div>
                 </div>
             </div>
             <div class="naastElkaar">
-            
+
                 <div class="formGroup">
                     <label>Budget</label>
                     <input [ngClass]="{
-                        'invalidInput': project.get('budget')['errors']&& project.get('budget').touched,
-                        'validInput': !project.get('budget')['errors'] && project.get('budget').touched }"
+                        'invalidInput': projectFg.get('budget')['errors']&& projectFg.get('budget').touched,
+                        'validInput': !projectFg.get('budget')['errors'] && projectFg.get('budget').touched }"
                         class="smallInput" aria-label="budget" placeholder="Maximale budget" type="number"
                         formControlName="budget" required />
-                    <p class="error" *ngIf="project.get('budget')['errors'] && project.get('budget').touched">
-                        {{ getErrorMessage(project.get('budget')['errors']) }}
+                    <p class="error" *ngIf="projectFg.get('budget')['errors'] && projectFg.get('budget').touched">
+                        {{ getErrorMessage(projectFg.get('budget')['errors']) }}
                         <img src="{{error}}">
                     </p>
-                    <img *ngIf="!project.get('budget')['errors'] && project.get('budget').touched" class="correct"
+                    <img *ngIf="!projectFg.get('budget')['errors'] && projectFg.get('budget').touched" class="correct"
                         src="{{correct}}">
                 </div>
                 <div class="formGroup">
                     <label>Schooljaar</label>
                     <input [ngClass]="{
-                        'invalidInput': project.get('schoolYear')['errors']&& project.get('schoolYear').touched,
-                        'validInput': !project.get('schoolYear')['errors'] && project.get('schoolYear').touched }"
+                        'invalidInput': projectFg.get('schoolYear')['errors']&& projectFg.get('schoolYear').touched,
+                        'validInput': !projectFg.get('schoolYear')['errors'] && projectFg.get('schoolYear').touched }"
                         class="smallInput" aria-label="schoolyear" placeholder="Schooljaar" type="number" min="1900"
                         max="2099" value="2019" formControlName="schoolYear" required />
-                    <p class="error" *ngIf="project.get('schoolYear')['errors'] && project.get('schoolYear').touched">
-                        {{ getErrorMessage(project.get('schoolYear')['errors']) }}
+                    <p class="error"
+                        *ngIf="projectFg.get('schoolYear')['errors'] && projectFg.get('schoolYear').touched">
+                        {{ getErrorMessage(projectFg.get('schoolYear')['errors']) }}
                         <img src="{{error}}">
                     </p>
-                    <img *ngIf="!project.get('schoolYear')['errors'] && project.get('schoolYear').touched"
+                    <img *ngIf="!projectFg.get('schoolYear')['errors'] && projectFg.get('schoolYear').touched"
                         class="correct" src="{{correct}}">
                 </div>
             </div>
@@ -90,7 +98,7 @@
                 <label>Onderwerp</label>
                 <select formControlName="applicationDomain">
                     <option value="">Kies het onderwerp</option>
-                    <option *ngFor="let domain of domains" [ngValue]="domain.id">
+                    <option [ngValue]="domain" *ngFor="let domain of domains" >
                         {{domain.name}}
                     </option>
                 </select>
@@ -124,14 +132,15 @@
         </div>
     </div>
     <div class="formSectie">
-        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">evaluatie criterea</span> toe
+        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">evaluatiecriteria</span> toe
         </mat-card-subtitle>
         <div class=producten>
-            <div *ngFor="let p of evaluationCs">
-                <app-evaluation-c (deletedEvaluationC)="deleteEvaluationC($event)" [evaluationC]="p"></app-evaluation-c>
+            <div *ngFor="let e of evaluationCs">
+                <app-evaluation-c (deletedEvaluationC)="deleteEvaluationC($event)" [evaluationC]="e"></app-evaluation-c>
             </div>
             <div>
-                <app-evaluation-c-add-button (newEvaluationC)="addNewEvaluationCToProject($event)"></app-evaluation-c-add-button>
+                <app-evaluation-c-add-button (newEvaluationC)="addNewEvaluationCToProject($event)">
+                </app-evaluation-c-add-button>
             </div>
         </div>
     </div>
@@ -139,9 +148,15 @@
         <button routerLink="/projecten" class="button" mat-raised-button>
             annuleer
         </button>
-        <button (click)="save()" class="button" type="submit" mat-raised-button color='primary'
-            ><!--[disabled]='!project.valid'-->
-            maak project
+        <button *ngIf="isEdit; else new" (click)="submitProject()" class="button" type="submit" mat-raised-button
+            color='primary'>
+            Sla wijzigingen op
         </button>
+        <ng-template #new class="h">
+            <button (click)="submitProject()" class="button" type="submit" mat-raised-button color='primary'>
+                maak project
+            </button>
+        </ng-template>
+
     </mat-dialog-actions>
 </mat-card-content>

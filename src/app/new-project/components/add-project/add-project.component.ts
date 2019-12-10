@@ -10,6 +10,6 @@ export class AddProjectComponent {
   constructor(private _router: Router) {}
 
   gotoForm() {
-    this._router.navigate(['/add-project']);
+    this._router.navigate(['/add-project']); 
   }
 }
