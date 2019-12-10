@@ -143,5 +143,20 @@ textarea {
 }
 
 table {
-  width: 100%;
+  width: 80%;
+  margin: 5%;
 }
+
+td, th {
+  width: 50%;
+  padding-top: 10px !important;
+  margin: 0 !important;
+}
+
+
+th{
+  background-color: #C3004A;
+  color: white;
+  font-size: 1.5em;
+}
+

@@ -26,20 +26,22 @@
                  class="correct" src="{{correct}}"/>
           </div>
         </div>
-        <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
-
-        <div class="formSectie">
+        <div class="formGroup">
+          <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
+        </div>
+      </form>
+        <div>
           <table mat-table [dataSource]="records" *ngIf="records.length > 0">
 
             <!-- Name Column -->
             <ng-container matColumnDef="firstName">
-              <th mat-header-cell *matHeaderCellDef> Voornaam </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Voornaam </th>
               <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="surName">
-              <th mat-header-cell *matHeaderCellDef> Achternaam </th>
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Achternaam </th>
               <td mat-cell *matCellDef="let element"> {{element.surName}} </td>
             </ng-container>
 
@@ -48,7 +50,7 @@
           </table>
 
         </div>
-      </form>
+<div>
       <button routerLink="/klassen" class="button" mat-raised-button>
         annuleer
       </button>
@@ -56,6 +58,7 @@
               [disabled]='!classForm.valid'>
         Maak klas aan
       </button>
+</div>
     </mat-card-content>
   </mat-card>
 </div>
