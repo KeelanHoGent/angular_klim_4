@@ -19,7 +19,6 @@ import { MatInputModule, MatDialogModule, MatSelectModule } from '@angular/mater
 import { MatButtonModule } from '@angular/material/button';
 
 import { NewProjectModule } from './new-project/new-project.module';
-import { EditProjectModule } from './edit-project/edit-project.module';
 import { ProductentemplateOverzichtModule } from './productentemplate-overzicht/productentemplate-overzicht.module';
 import { ProjectProgressDetailsModule } from './project-progress-details/project-progress-details.module';
 import { GroupService } from './services/group.service';
@@ -58,7 +57,6 @@ import { StartScreenModule } from "./start-screen/start-screen.module";
     MatInputModule,
     MatButtonModule,
     NewProjectModule,
-    EditProjectModule,
     ProductentemplateOverzichtModule,
     MatProgressSpinnerModule,
     ClassroomModule,
