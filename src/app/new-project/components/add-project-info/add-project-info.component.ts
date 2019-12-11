@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Project } from '../../../types/project.model';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, Form } from '@angular/forms';
 import { ProjectService } from '../../../services/project.service';
 import { Observable } from 'rxjs';
 import { ApplicationDomain } from '../../../types/applicationDomain.model';
@@ -9,6 +9,9 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Group } from 'src/app/types/group.model';
 import { switchMap } from 'rxjs/operators';
 import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
+import { ProjectTemplate } from 'src/app/types/projectTemplate.model';
+import { TemplateService } from 'src/app/services/template.service';
+import { Template } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-add-project-info',
@@ -18,6 +21,7 @@ import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
 
 export class AddProjectInfoComponent implements OnInit {
   public projectFg: FormGroup;
+  public templateFg: FormGroup;
   private _domainApps: Observable<ApplicationDomain[]>;
   public domains: ApplicationDomain[];
   public products: Product[];
@@ -25,8 +29,8 @@ export class AddProjectInfoComponent implements OnInit {
   public newProject: Project;
   public isEdit: boolean;
   public evaluationCs: EvaluationCriterea[];
-  
-
+  public templates: ProjectTemplate[];
+  public template: ProjectTemplate;
   public error: String = "../../../../assets/images/error.svg";
   public correct: String = "../../../../assets/images/correct.svg";
 
@@ -34,7 +38,8 @@ export class AddProjectInfoComponent implements OnInit {
     private router: Router,
     private _fb: FormBuilder,
     private _projectDataService: ProjectService,
-    private _route: ActivatedRoute) {
+    private _route: ActivatedRoute,
+    private _templateService: TemplateService) {
 
     this.newProject = new Project();
     this.products = this.newProject.products;
@@ -58,7 +63,7 @@ export class AddProjectInfoComponent implements OnInit {
     });
 
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
-
+    this._templateService.getProjectTemplates$().subscribe(t => this.templates = t)
   }
 
 
@@ -86,6 +91,10 @@ export class AddProjectInfoComponent implements OnInit {
 
   // Op basis van het soort pagina, wordt de formgroup geinitializeerd  
   private initFormGroup(isEdit, appDomain: number) {
+    this.templateFg = this._fb.group({
+      template: ['']
+    })
+
     this.projectFg = this._fb.group({
       name: [isEdit ? this.newProject.name : '', Validators.required],
       description: [isEdit ? this.newProject.descr : '', Validators.required],
@@ -95,15 +104,15 @@ export class AddProjectInfoComponent implements OnInit {
       applicationDomain: [isEdit ? this.domains[appDomain] : '', Validators.required]
     });
 
-    // if(isEdit) {
-    //   this.projectFg.controls['applicationDomain'].setValue(this._domainApps[2]); //werkt niet 
-    // }
+     if(!isEdit) {
+        this.newProject.products = [];
+        this.products = [];
+     }
   }
 
 
   // Opslaan van een nieuwe project of een project updaten 
   submitProject() {
-    
     this.newProject.name = this.projectFg.value.name;
     this.newProject.descr = this.projectFg.value.description;
     this.newProject.image = this.projectFg.value.image;
@@ -122,6 +131,41 @@ export class AddProjectInfoComponent implements OnInit {
           this.router.navigateByUrl("/projecten");
         });
     }
+  }
+
+  addTemplate(){
+    if(this.template){
+      this.initFormGroupWithTemplate()
+    } else {
+      this.initFormGroup(false, 0)
+    }
+
+  }
+
+  initFormGroupWithTemplate() {
+    let date = new Date();
+    let index = this.template.applicationDomainId-1
+    this.projectFg = this._fb.group({
+      name: [this.template.name, Validators.required],
+      description: [this.template.descr, Validators.required],
+      image: [this.template.image, Validators.required],
+      budget: [this.template.budget, Validators.required],
+      //schoolYear: [ `${date.getFullYear()} -  ${date.getFullYear()+1}`, Validators.required],
+      schoolYear:[date.getFullYear(), Validators.required ],
+      applicationDomain: this.domains[index]
+    });
+
+    this.template.productTemplates.forEach(pr => {
+      let product = new Product()
+      product.name =  pr.productName;
+      product.categoryId = pr.categoryId;
+      product.description = pr.description;
+      product.image = pr.image;
+
+      this.addNewProductToProject(product);
+    })
+
+    console.log(this.newProject.products)
   }
 
   addNewProductToProject(product: Product) {
