@@ -26,25 +26,32 @@
                  class="correct" src="{{correct}}"/>
           </div>
         </div>
-        <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
-
-        <div class="formSectie">
-          <table *ngIf="records.length > 0">
-            <thead>
-            <tr>
-              <th>Voornaam </th>
-              <th>Achternaam </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let record of records;let i = index;">
-              <td> <span>{{record.firstName}}</span> </td>
-              <td> <span>{{record.surName}}</span> </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
+        <button class="fileContainer" mat-raised-button>
+          Upload file
+          <input type="file" #csvReader name="Upload CSV" id="txtFileUpload" (change)="uploadListener($event)" accept=".csv" />
+        </button>
       </form>
+        <div>
+          <table mat-table [dataSource]="records" *ngIf="records.length > 0">
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="firstName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Voornaam </th>
+              <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="surName">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Achternaam </th>
+              <td mat-cell *matCellDef="let element"> {{element.surName}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+
+        </div>
+<div>
       <button routerLink="/klassen" class="button" mat-raised-button>
         annuleer
       </button>
@@ -52,6 +59,7 @@
               [disabled]='!classForm.valid'>
         Maak klas aan
       </button>
+</div>
     </mat-card-content>
   </mat-card>
 </div>

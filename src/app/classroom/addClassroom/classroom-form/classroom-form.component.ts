@@ -18,6 +18,7 @@ export class ClassroomFormComponent implements OnInit {
   public classForm: FormGroup;
 
   public records: any[] = [];
+  public displayedColumns: String[] = ['firstName', 'surName'];
 
   constructor(
     private fb: FormBuilder,
@@ -73,7 +74,7 @@ export class ClassroomFormComponent implements OnInit {
 
       let currentRecord = (<string>csvRecordsArray[i]).split(';');
       if (currentRecord.length == headerLength) {
-        let pupil: Pupil = new Pupil(currentRecord[0].trim(), currentRecord[1].trim());
+        let pupil: Pupil = new Pupil(currentRecord[1].trim(), currentRecord[0].trim());
         // pupil.surName = currentRecord[0].trim();
         // pupil.firstName = currentRecord[1].trim();
         csvArr.push(pupil);
