@@ -1,0 +1,39 @@
+img {
+  width: 100%;
+}
+
+.action-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 250px;
+  height: 200px;
+  min-width: 250px;
+  background-color: var(--magenta);
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  border-radius: 15px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.action-button:focus {
+  outline: none !important;
+}
+
+.action-button:active {
+  transform: translateY(4px);
+}
+
+.action-button > span {
+  text-align: center;
+}

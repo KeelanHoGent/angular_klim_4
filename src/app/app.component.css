@@ -1,4 +1,5 @@
 .content {
   max-width: 1224px;
   margin: auto;
+  height: calc(100% - 70px);
 }
