@@ -1,11 +1,9 @@
 <div class="body-wrapper">
   <div class="list-title">
     <h1>Project templates</h1>
-
-    <button routerLink="/add-project-template" mat-raised-button type="button" color="default" rounded="true"
-            data-toggle="modal">
-      <mat-icon class="icon">add</mat-icon>Nieuw project template
-    </button>
+    <a routerLink="/add-project-template" class="button">
+      Nieuw project template
+  </a>
   </div>
   <mat-spinner *ngIf="loader"></mat-spinner>
   <div class="list" *ngIf="!loader">
