@@ -13,10 +13,11 @@ import {MatTableModule} from "@angular/material/table";
 import { ClassroomFormComponent } from './addClassroom/classroom-form/classroom-form.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
+import { AddPupilFormComponent } from './classroomDetail/add-pupil-form/add-pupil-form.component';
 
 
 @NgModule({
-  declarations: [HorizontalListClassroomsComponent, ClassroomListComponent, ClassroomComponent, ClassroomDetailComponent, ClassroomFormComponent],
+  declarations: [HorizontalListClassroomsComponent, ClassroomListComponent, ClassroomComponent, ClassroomDetailComponent, ClassroomFormComponent, AddPupilFormComponent],
   imports: [
     CommonModule,
     MatIconModule,
@@ -30,6 +31,7 @@ import {ReactiveFormsModule} from "@angular/forms";
   ],
   exports: [
     ClassroomListComponent
-  ]
+  ],
+  entryComponents: [AddPupilFormComponent]
 })
 export class ClassroomModule { }

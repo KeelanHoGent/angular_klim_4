@@ -7,7 +7,7 @@
       <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
     <mat-card-content>
 
-      <button mat-raised-button>Voeg leerling toe</button>
+      <button mat-raised-button (click)="openDialog()">Voeg leerling toe</button>
       <table mat-table [dataSource]="classroom.pupils" *ngIf="classroom.pupils.length > 0">
 
         <!-- Name Column -->
