@@ -29,6 +29,11 @@ export class Classroom {
     this.pupils.push(pupil);
   }
 
+  removePupil(pupil: Pupil) {
+    const i = this.pupils.indexOf(pupil);
+    this.pupils.splice(i, 1);
+  }
+
 
   get id(): number {
     return this._id;

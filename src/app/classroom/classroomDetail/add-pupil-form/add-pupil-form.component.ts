@@ -1,7 +1,7 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {Pupil} from "../../../types/pupil.model";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {Pupil} from '../../../types/pupil.model';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-add-pupil-form',
@@ -10,19 +10,20 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 })
 export class AddPupilFormComponent implements OnInit {
 
-  public error: String = "assets/images/error.svg";
-  public correct: String = "assets/images/correct.svg";
+  public error: 'assets/images/error.svg';
+  public correct: 'assets/images/correct.svg';
   public pupilForm: FormGroup;
 
-  constructor(private _fb: FormBuilder,
+  constructor(
+    private _fb: FormBuilder,
     public dialogRef: MatDialogRef<AddPupilFormComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Pupil) { }
+    @Inject(MAT_DIALOG_DATA) public data: Pupil) { }
 
   ngOnInit() {
     this.pupilForm = this._fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       surName: ['', [Validators.required, Validators.minLength(2)]]
-    })
+    });
   }
 
   save(valid?: boolean) {
