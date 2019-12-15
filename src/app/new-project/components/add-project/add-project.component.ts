@@ -4,8 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
-  styleUrls: ['./add-project.component.css',
-'../../../shared/button.css']
+  styleUrls: ['./add-project.component.css']
 })
 export class AddProjectComponent {
   constructor(private _router: Router) {}

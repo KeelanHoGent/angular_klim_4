@@ -9,8 +9,7 @@ import {TemplateService} from '../../services/template.service';
 @Component({
   selector: 'app-projecten-template-overzicht',
   templateUrl: './projecten-template-overzicht.component.html',
-  styleUrls: ['./projecten-template-overzicht.component.css',
-  '../../shared/button.css']
+  styleUrls: ['./projecten-template-overzicht.component.css']
 })
 export class ProjectenTemplateOverzichtComponent implements OnInit {
 

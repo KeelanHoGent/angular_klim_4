@@ -7,8 +7,7 @@ import {ClassroomService} from "../../../services/classroom.service";
 @Component({
   selector: 'app-classroom-list',
   templateUrl: './classroom-list.component.html',
-  styleUrls: ['./classroom-list.component.css',
-  '../../../shared/button.css']
+  styleUrls: ['./classroom-list.component.css']
 })
 export class ClassroomListComponent implements OnInit {
 
