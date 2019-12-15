@@ -6,7 +6,7 @@ export class Classroom {
   private _name: string;
   private _schoolId: number;
   private _projects: Project[] = [];
-  private _pupils: Pupil[] = [];
+  private _pupils = new Array<Pupil>();
 
   static fromJSON(json: any): Classroom {
     const c = new Classroom();
@@ -23,6 +23,10 @@ export class Classroom {
       name: this._name,
       pupils: this._pupils.map(p => p.toJson())
     };
+  }
+
+  addPupil(pupil: Pupil) {
+    console.log(pupil);
   }
 
 

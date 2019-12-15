@@ -28,14 +28,17 @@ export class ClassroomDetailComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddPupilFormComponent, {
-      width: '250px',
+      width: '300px',
       data: {firstName: this.newPupil.firstName, surName: this.newPupil.surName}
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
       if(result)
+      {
         this.newPupil = new Pupil(result.firstName, result.surName);
+        this.classroom.addPupil(this.newPupil);
+      }
+
     });
   }
 

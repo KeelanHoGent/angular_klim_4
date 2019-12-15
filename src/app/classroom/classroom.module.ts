@@ -14,6 +14,7 @@ import { ClassroomFormComponent } from './addClassroom/classroom-form/classroom-
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {ReactiveFormsModule} from "@angular/forms";
 import { AddPupilFormComponent } from './classroomDetail/add-pupil-form/add-pupil-form.component';
+import {MatDialogActions, MatDialogModule} from "@angular/material/dialog";
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { AddPupilFormComponent } from './classroomDetail/add-pupil-form/add-pupi
     MatCardModule,
     MatTableModule,
     ReactiveFormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatDialogModule
   ],
   exports: [
     ClassroomListComponent
