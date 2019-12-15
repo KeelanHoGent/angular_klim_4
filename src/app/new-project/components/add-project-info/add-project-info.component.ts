@@ -50,7 +50,12 @@ export class AddProjectInfoComponent implements OnInit {
     this.initFormGroup(false, 0);
     //  Keuze tussen edit project en new project 
     let editPromise = this.initEditPage();
-    editPromise.then(edit => this.initFormGroup(edit, this.newProject.applicationDomain.id-1));
+    let index: number;
+     
+    editPromise.then(edit =>  {
+      if(!edit) index = 0; else index = this.newProject.applicationDomain.id-1;
+      this.initFormGroup(edit, index)
+    });
 
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
 
