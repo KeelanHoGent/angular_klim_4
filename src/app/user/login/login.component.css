@@ -1,0 +1,21 @@
+mat-card {
+  width: 300px;
+  margin: 0 auto;
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.outer {
+  height: 100%;
+}
+
+mat-card-actions {
+  text-align: center;
+}

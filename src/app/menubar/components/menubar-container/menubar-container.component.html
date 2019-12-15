@@ -2,10 +2,13 @@
   <img src="/assets/images/GO-logo-magenta.png" alt="GO logo" routerLink="/projecten">
   <div class="buttons">
     <button mat-button routerLink="/projecten">Projecten</button>
-    <button mat-button routerLink="/projecttemplates">Templates</button>
+    <button mat-button routerLink="/projecttemplates">Project templates</button>
     <button mat-button routerLink="/producten">Product templates</button>
     <button mat-button routerLink="/klassen">Klassen</button>
-    <button mat-button routerLink="/add-project"><mat-icon>add</mat-icon>Project toevoegen</button>
-    <button mat-button>Inloggen</button>
+    <button *ngIf="user | async; else inloggen" mat-button (click)="logout()">Uitloggen</button>
   </div>
 </header>
+
+<ng-template #inloggen>
+  <button mat-button routerLink="/login">Inloggen</button>
+</ng-template>
