@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {Classroom} from "../../../types/classroom.model";
 import {ClassroomService} from "../../../services/classroom.service";
 import {Pupil} from "../../../types/pupil.model";
 import {MatDialog} from "@angular/material/dialog";
 import {AddPupilFormComponent} from "../add-pupil-form/add-pupil-form.component";
+import { MatTable, _MatTabLinkBase } from '@angular/material';
 
 @Component({
   selector: 'app-classroom-detail',
@@ -18,6 +19,7 @@ export class ClassroomDetailComponent implements OnInit {
 
   displayedColumns: String[] = ['firstName', 'surName'];
   dataSource: Pupil[]
+  @ViewChild(MatTable, {static:false}) table: MatTable<any>;
 
   constructor(private route: ActivatedRoute, private classroomService: ClassroomService, private router: Router, public dialog: MatDialog) { }
 
@@ -40,7 +42,12 @@ export class ClassroomDetailComponent implements OnInit {
         this.classroomService.addNewPupil(this.newPupil, this.classroom.id).subscribe(p => {
           this.classroom.addPupil(Pupil.fromJSON(p));
           console.log(this.classroom.pupils);
+          this.table.renderRows();
+          
+
+          
         });
+        
       }
 
     });
