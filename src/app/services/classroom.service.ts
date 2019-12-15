@@ -5,6 +5,7 @@ import {environment} from "../../environments/environment";
 import {map} from "rxjs/operators";
 import {Classroom} from "../types/classroom.model";
 import {ProductTemplate} from "../types/productTemplate.model";
+import {Pupil} from "../types/pupil.model";
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ import {ProductTemplate} from "../types/productTemplate.model";
 export class ClassroomService {
 
   public schoolId = 1;
+  public classRoomId = 1;
 
   constructor(private http: HttpClient) {  }
 
@@ -37,7 +39,12 @@ export class ClassroomService {
   }
 
   addNewClassroom(classroom: Classroom) {
-      return this.http.post(`${environment.apiUrl}/School/addClassroom/1`, classroom.toJson());
+      return this.http.post(`${environment.apiUrl}/School/addClassroom/${this.schoolId}`, classroom.toJson());
+
+  }
+
+  addNewPupil(newPupil: Pupil, classRoomId: number) {
+    return this.http.post(`${environment.apiUrl}/Classroom/addPupil/${classRoomId}`, newPupil.toJson());
 
   }
 }

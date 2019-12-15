@@ -36,7 +36,11 @@ export class ClassroomDetailComponent implements OnInit {
       if(result)
       {
         this.newPupil = new Pupil(result.firstName, result.surName);
-        this.classroom.addPupil(this.newPupil);
+
+        this.classroomService.addNewPupil(this.newPupil, this.classroom.id).subscribe(p => {
+          this.classroom.addPupil(Pupil.fromJSON(p));
+          console.log(this.classroom.pupils);
+        });
       }
 
     });

@@ -26,7 +26,7 @@ export class Classroom {
   }
 
   addPupil(pupil: Pupil) {
-    console.log(pupil);
+    this.pupils.push(pupil);
   }
 
 
