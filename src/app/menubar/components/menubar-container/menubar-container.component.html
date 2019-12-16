@@ -13,7 +13,7 @@
         <li class="item"> <a routerLink="/klassen">Klassen</a></li>
         <li  *ngIf="user | async; else inloggen" class="item"> <a class="loginButton" (click)="logout()">Uitloggen</a></li>
       <ng-template #inloggen>
-         <li class="item"><a (click)="login()" class="loginButton">Inloggen</a></li>
+         <li class="item"><a routerLink="/login" class="loginButton">Inloggen</a></li>
       </ng-template>
     </ul>
   </nav>
