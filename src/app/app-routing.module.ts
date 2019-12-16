@@ -42,7 +42,7 @@ const routes: Routes = [
       resolve: {projectTemp: ProjectTemplateResolver}
     },
     {path: 'add-product-template', canActivate: [AuthGuard], component: AddProductTemplateFormComponent},
-    {path: 'project-progress', canActivate: [AuthGuard], component: ProjectProgressContainerComponent},
+    {path: 'project-progress/:id', canActivate: [AuthGuard], component: ProjectProgressContainerComponent},
     {
       path: 'product-template-details/:id',
       canActivate: [AuthGuard],
