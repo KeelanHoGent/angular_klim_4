@@ -25,10 +25,10 @@ export class AddProjectInfoComponent implements OnInit {
   public newProject: Project;
   public isEdit: boolean;
   public evaluationCs: EvaluationCriterea[];
-  
 
-  public error: String = "../../../../assets/images/error.svg";
-  public correct: String = "../../../../assets/images/correct.svg";
+
+  public error: 'assets/images/error.svg';
+  public correct: 'assets/images/correct.svg';
 
   constructor(
     private router: Router,
@@ -46,15 +46,15 @@ export class AddProjectInfoComponent implements OnInit {
 
   ngOnInit() {
     this.isEdit = false;
-    
+
     this.initFormGroup(false, 0);
-    //  Keuze tussen edit project en new project 
-    let editPromise = this.initEditPage();
+    //  Keuze tussen edit project en new project
+    const editPromise = this.initEditPage();
     let index: number;
-     
+
     editPromise.then(edit =>  {
-      if(!edit) index = 0; else index = this.newProject.applicationDomain.id-1;
-      this.initFormGroup(edit, index)
+      if (!edit) { index = 0; } else { index = this.newProject.applicationDomain.id - 1; }
+      this.initFormGroup(edit, index);
     });
 
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
@@ -62,29 +62,33 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
 
-  // Wanneer de url een id als parameter heeft, wordt de velden ingevuld om een project te editen 
+  // Wanneer de url een id als parameter heeft, wordt de velden ingevuld om een project te editen
   private initEditPage() {
     return new Promise(
       (resolve) => {
-        if (this._route.snapshot.params['id']) {
+        if (this._route.snapshot.params.id) {
           this.isEdit = true;
-          this._route.paramMap.pipe(switchMap((params: ParamMap) => this._projectDataService.getProjectById$(+params.get('id')))).subscribe((p: Project) => {
+          this._route.paramMap.pipe(
+            switchMap((params: ParamMap) =>
+              this._projectDataService.getProjectById$(+params.get('id'))
+            )
+          ).subscribe((p: Project) => {
             this.newProject = p;
 
-            //Frontend lijsten initializeren 
+            // Frontend lijsten initializeren
             this.groups = p.groups;
             this.products = p.products;
             this.evaluationCs = p.evaluationCritereas;
-            resolve(true);    // een edit pagina 
+            resolve(true);    // een edit pagina
           });
         } else {
-          resolve(false);   // een nieuw project pagina 
+          resolve(false);   // een nieuw project pagina
         }
       }
-    )
+    );
   }
 
-  // Op basis van het soort pagina, wordt de formgroup geinitializeerd  
+  // Op basis van het soort pagina, wordt de formgroup geinitializeerd
   private initFormGroup(isEdit, appDomain: number) {
     this.projectFg = this._fb.group({
       name: [isEdit ? this.newProject.name : '', Validators.required],
@@ -96,14 +100,14 @@ export class AddProjectInfoComponent implements OnInit {
     });
 
     // if(isEdit) {
-    //   this.projectFg.controls['applicationDomain'].setValue(this._domainApps[2]); //werkt niet 
+    //   this.projectFg.controls['applicationDomain'].setValue(this._domainApps[2]); //werkt niet
     // }
   }
 
 
-  // Opslaan van een nieuwe project of een project updaten 
+  // Opslaan van een nieuwe project of een project updaten
   submitProject() {
-    
+
     this.newProject.name = this.projectFg.value.name;
     this.newProject.descr = this.projectFg.value.description;
     this.newProject.image = this.projectFg.value.image;
@@ -114,18 +118,18 @@ export class AddProjectInfoComponent implements OnInit {
     if (!this.isEdit) {
       this._projectDataService.addNewProject(this.newProject)
         .subscribe(res => {
-          this.router.navigateByUrl("/projecten");
+          this.router.navigateByUrl('/projecten');
         });
     } else {
       this._projectDataService.updateProject(this.newProject.id, this.newProject)
         .subscribe(res => {
-          this.router.navigateByUrl("/projecten");
+          this.router.navigateByUrl('/projecten');
         });
     }
   }
 
   addNewProductToProject(product: Product) {
-    product.categoryId = 1;                           //TIJDELIJK!!!!
+    product.categoryId = 1;                           // TIJDELIJK!!!!
     this.newProject.addProductToProject(product);
     this.products = this.newProject.products;
   }
