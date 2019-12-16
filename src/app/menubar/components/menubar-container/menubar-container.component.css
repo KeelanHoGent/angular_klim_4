@@ -74,11 +74,12 @@ button:hover {
   color: black;
   padding-bottom: 10px;
   border-bottom: 1px solid transparent;
+  padding-top: 10px;
 }
 
 .item > a:hover {
   color: var(--magenta);
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid var(--magenta);
   transition: all 0.3s;
 }
 
