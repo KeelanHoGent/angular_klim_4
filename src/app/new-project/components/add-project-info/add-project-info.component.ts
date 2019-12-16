@@ -30,9 +30,6 @@ export class AddProjectInfoComponent implements OnInit {
   public evaluationCs: EvaluationCriterea[];
   public templates: ProjectTemplate[];
   public template: ProjectTemplate;
-  //public error: String = "../../../../assets/images/error.svg";
- // public correct: String = "../../../../assets/images/correct.svg";
-
 
   public error: 'assets/images/error.svg';
   public correct: 'assets/images/correct.svg';
@@ -54,20 +51,20 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this._route.data.subscribe(item => this.template = item['projectTemp'])
+    this._route.data.subscribe(item => this.template = item.projectTemp);
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
-    this._templateService.getProjectTemplates$().subscribe(t => this.templates = t)
+    this._templateService.getProjectTemplates$().subscribe(t => this.templates = t);
 
     this.isEdit = false;
 
     this.initFormGroup(false, 0);
 
-    let editPromise = this.initEditPage();
+    const editPromise = this.initEditPage();
     let index: number;
 
     editPromise.then(edit => {
-      if (!edit) index = 0; else index = this.newProject.applicationDomain.id - 1;
-      this.initFormGroup(edit, index)
+      if (!edit) { index = 0; } else { index = this.newProject.applicationDomain.id - 1; }
+      this.initFormGroup(edit, index);
     });
 
 
@@ -78,7 +75,7 @@ export class AddProjectInfoComponent implements OnInit {
   private initEditPage() {
     return new Promise(
       (resolve) => {
-        if (!this.template && this._route.snapshot.params['id']) {
+        if (!this.template && this._route.snapshot.params.id) {
 
           this.isEdit = true;
           this._route.paramMap.pipe(
@@ -106,7 +103,7 @@ export class AddProjectInfoComponent implements OnInit {
 
     this.templateFg = this._fb.group({
       template: ['']
-    })
+    });
 
     this.projectFg = this._fb.group({
       name: [isEdit ? this.newProject.name : '', Validators.required],
@@ -146,54 +143,51 @@ export class AddProjectInfoComponent implements OnInit {
     }
   }
 
-  //wordt aangeroepen bij change van template in frontend
+  // wordt aangeroepen bij change van template in frontend
   addTemplate() {
-    //bij change naar een bepaald template uit de selectbox 
+    // bij change naar een bepaald template uit de selectbox
     if (this.template) {
-      this.initFormGroupWithTemplate()
-    }
-    //bij change naar "Geen template"
-    else {
-      this.initFormGroup(false, 0)
+      this.initFormGroupWithTemplate();
+    } else {
+      this.initFormGroup(false, 0);
     }
 
   }
 
   // initializeren van formgroup met een template
   initFormGroupWithTemplate() {
-    let date = new Date();
+    const date = new Date();
     this._projectDataService.getApplicationDomains$().subscribe(ad => {
-      this.domains = ad
-      let index = this.template.applicationDomainId - 1
+      this.domains = ad;
+      const index = this.template.applicationDomainId - 1;
 
       this._templateService.getProjectTemplates$().subscribe(t => {
-        this.templates = t
+        this.templates = t;
         this.templateFg = this._fb.group({
-          template: [this.templates[this.template.projectTemplateId-1]]
-        })
-      })
+          template: [this.templates[this.template.projectTemplateId - 1]]
+        });
+      });
 
-      
+
 
       this.projectFg = this._fb.group({
         name: [this.template.name, Validators.required],
         description: [this.template.descr, Validators.required],
         image: [this.template.image, Validators.required],
         budget: [this.template.budget, Validators.required],
-        //schoolYear: [ `${date.getFullYear()} -  ${date.getFullYear()+1}`, Validators.required],
         schoolYear: [date.getFullYear(), Validators.required],
         applicationDomain: [this.domains[index]]
       });
 
       this.template.productTemplates.forEach(pr => {
-        let product = new Product()
+        const product = new Product();
         product.name = pr.productName;
         product.categoryId = pr.categoryId;
         product.description = pr.description;
         product.image = pr.image;
 
         this.addNewProductToProject(product);
-      })
+      });
     });
 
 

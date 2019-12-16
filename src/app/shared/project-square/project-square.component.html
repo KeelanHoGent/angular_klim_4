@@ -1,5 +1,4 @@
-<div [routerLink]="['/add-project', project.id]" class="project">
-<!-- <div [routerLink]="['/project-progress', project.id]" class="project"> -->
+<div [routerLink]="['/project-progress', project.id]" class="project">
     <p class="naam">{{project.name}}</p>
     <p class="desc">{{project.descr | slice:0:75}}{{project.descr.length > 75 ? "..." : ""}}</p>
 </div>

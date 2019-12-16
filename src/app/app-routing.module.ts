@@ -31,19 +31,17 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'projecten', canActivate: [AuthGuard], component: ProjectenContainerComponent },
   { path: 'add-project', canActivate: [AuthGuard], component: AddProjectFormComponent },
-  { 
-    path: 'add-project/:id', 
-    canActivate: [AuthGuard], 
-    component: AddProjectFormComponent
-    // resolve: { project: ProjectResolverService}
+  {
+    path: 'add-project/:id',
+    canActivate: [AuthGuard],
+    component: AddProjectFormComponent,
+    resolve: { project: ProjectResolverService}
   },
-
-
-  { 
-    path: 'add-project/template/:id', 
-    canActivate: [AuthGuard], 
-    component: AddProjectFormComponent, 
-    resolve: { projectTemp: ProjectTemplateResolver } 
+  {
+    path: 'add-project/template/:id',
+    canActivate: [AuthGuard],
+    component: AddProjectFormComponent,
+    resolve: { projectTemp: ProjectTemplateResolver }
   },
 
 
@@ -58,7 +56,7 @@ const routes: Routes = [
     resolve: { projectTemp: ProjectTemplateResolver }
   },
   { path: 'add-product-template', canActivate: [AuthGuard], component: AddProductTemplateFormComponent },
-  { path: 'project-progress', canActivate: [AuthGuard], component: ProjectProgressContainerComponent },
+  { path: 'project-progress/:id', canActivate: [AuthGuard], component: ProjectProgressContainerComponent },
   {
     path: 'product-template-details/:id',
     canActivate: [AuthGuard],
