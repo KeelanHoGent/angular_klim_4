@@ -41,7 +41,7 @@ const routes: Routes = [
     path: 'add-project/template/:id',
     canActivate: [AuthGuard],
     component: AddProjectFormComponent,
-    resolve: { projectTemp: ProjectTemplateResolver }
+    // resolve: { projectTemp: ProjectTemplateResolver }
   },
 
 
