@@ -1,18 +1,18 @@
 <div class="projecten-wrapper" *ngIf="project !== undefined">
   <div class="list-title">
-    <h1>{{project.name}}</h1>
-    <h1>max-budget: {{project.budget}}</h1>
+    <div>
+      <h1>{{project.name}}</h1>
+      <h2>max-budget: {{project.budget}}</h2>
+    </div>
+    <button mat-raised-button color="default" class="edit-button" routerLink="/add-project/{{project.id}}" >
+      <mat-icon class="icon">edit</mat-icon>
+      Project aanpassen
+    </button>
   </div>
 </div>
 
 <div class="projecten-wrapper" *ngIf="project !== undefined">
   <div class="list-wrapper">
-    <div class="list-title">
-      <button mat-raised-button type="button" color="default" rounded="true" (click)="showEvaluationConfig()">
-        <mat-icon class="icon">picture_as_pdf</mat-icon>
-        PDF van de evaluaties
-      </button>
-    </div>
     <app-horizontal-list-groups (clickGroup)="detailsGroup($event)" [list]="project.groups">
     </app-horizontal-list-groups>
   </div>
@@ -25,7 +25,7 @@
       <h1>Bestellingsoverzicht - {{selectedGroup.name}}</h1>
       <h1>Gespendeerd: {{selectedGroup.order.totalOrderPrice}}
 
-        <mat-icon *ngIf="!selectedGroup.overBudget()" class="done">done</mat-icon>
+        <mat-icon *ngIf="!selectedGroup.overBudget() else error" class="done">done</mat-icon>
         <ng-template #error>
           <mat-icon *ngIf="selectedGroup.overBudget()" class="error">error_outline</mat-icon>
         </ng-template>
@@ -40,8 +40,13 @@
   <div class="list-wrapper">
     <div class="list-title-smaller">
       <h1>Evaluaties</h1>
-
-      <app-button-add-evaluation (newEvaluation)="addNewEvaluationToProject($event)"></app-button-add-evaluation>
+      <div class="button-list">
+        <button mat-raised-button type="button" color="default" (click)="showEvaluationConfig()" class="pdf-button">
+          <mat-icon class="icon">picture_as_pdf</mat-icon>
+          PDF van de evaluaties
+        </button>
+        <app-button-add-evaluation (newEvaluation)="addNewEvaluationToProject($event)"></app-button-add-evaluation>
+      </div>
     </div>
     <app-horizontal-list-evaluations (deletedEvaluation)="deleteEvaluation($event)"
                                      (clickEvaluation)="detailsEvaluation($event)"
