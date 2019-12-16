@@ -4,7 +4,7 @@
       <h1>{{project.name}}</h1>
       <h2>max-budget: {{project.budget}}</h2>
     </div>
-    <button mat-raised-button color="default" class="edit-button" routerLink="/add-project/{{project.id}}" >
+    <button *ngIf="!project.closed" mat-raised-button color="default" class="edit-button" routerLink="/add-project/{{project.id}}" >
       <mat-icon class="icon">edit</mat-icon>
       Project aanpassen
     </button>
