@@ -1,49 +1,3 @@
-/* mat-card {
-  display: flex;
-  flex-direction: column;
-  max-width: 200px;
-  min-width: 200px;
-  height: calc(100% - 30px);
-  border-color: var(--magenta);
-  max-height: 200px;
-  margin: 0 10px 40px 0;
-}
-
-mat-card-header {
-  display: flex;
-  flex-direction: row;
-  flex-shrink: 0;
-}
-
-mat-card-content {
-  color: var(--donker-grijs);
-  flex-grow: 1;
-  overflow: auto;
-} */
-
-/*code snippit gevonden op internet voor custom scrollbalk*/
-/* .scrollbar::-webkit-scrollbar
-{
-  width: 12px;
-  background-color: #F5F5F5;
-}
-
-.scrollbar::-webkit-scrollbar-thumb
-{
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: #555;
-}
-
-button {
-  color: white !important;
-}
-
-mat-card-footer {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1px;
-} */
 
 
 .project {
@@ -66,6 +20,7 @@ mat-card-footer {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 8px ;
   transition: ease 0.4s;
   border-top: 0.4rem solid transparent;
+  word-wrap: break-word;
 }
 
 
@@ -80,7 +35,6 @@ mat-card-footer {
 .project > .naam {
   font-size: 25px;
   padding-bottom: 10px;
-  font-family: 'Raleway', sans-serif;
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -88,7 +42,6 @@ mat-card-footer {
 .desc{
   margin-top: 10px;
   font-weight: 400;
-  font-family: 'Raleway', sans-serif;
   color: rgb(128,128,128)
 }
 
