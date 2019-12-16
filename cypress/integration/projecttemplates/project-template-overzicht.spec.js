@@ -1,5 +1,6 @@
 context('Actions', () => {
     beforeEach(() => {
+      cy.login();
         cy.visit('/projecttemplates');
     })
     it('testvalidatie_nameTeKort', function(){
