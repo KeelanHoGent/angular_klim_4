@@ -1,4 +1,4 @@
-<div class="project" [routerLink]="['/edit/project/template/', template.projectTemplateId]">
+<div class="project">
   <p class="naam" data-cy="projectemplatesoverzichtname">{{template.name}}</p>
   <img mat-card-image class="projectfoto" src="{{projectFotoSrc}}" alt="{{template.name}}" (error)="showDefaultImage()">
   <span class="buttons">
