@@ -26,8 +26,6 @@ export class MenubarContainerComponent implements OnInit {
     this.router.navigateByUrl('/login');
   }
 
-  public login() {
-    this.router.navigateByUrl('/login');
-  }
+  
 
 }
