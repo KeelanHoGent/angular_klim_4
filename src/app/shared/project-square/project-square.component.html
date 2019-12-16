@@ -1,17 +1,3 @@
-<!-- <mat-card color="primary">
-  <mat-card-title>
-    {{project.name}}
-  </mat-card-title>
-  <mat-card-content class="scrollbar">
-    {{project.descr}}
-  </mat-card-content>
-  <mat-card-footer>
-    <button mat-raised-button color="accent">
-      Details
-    </button>
-  </mat-card-footer>
-</mat-card> -->
-
 <div [routerLink]="['/add-project', project.id]" class="project">
     <p class="naam">{{project.name}}</p>
     <p class="desc">{{project.descr | slice:0:75}} ...</p>

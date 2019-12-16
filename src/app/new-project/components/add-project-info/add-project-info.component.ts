@@ -155,12 +155,16 @@ export class AddProjectInfoComponent implements OnInit {
     let date = new Date();
     this._projectDataService.getApplicationDomains$().subscribe(ad => {
       this.domains = ad
-
       let index = this.template.applicationDomainId - 1
 
-      this.templateFg = this._fb.group({
-        template: [this.templates[this.template.projectTemplateId-1]]
+      this._templateService.getProjectTemplates$().subscribe(t => {
+        this.templates = t
+        this.templateFg = this._fb.group({
+          template: [this.templates[this.template.projectTemplateId-1]]
+        })
       })
+
+      
 
       this.projectFg = this._fb.group({
         name: [this.template.name, Validators.required],
