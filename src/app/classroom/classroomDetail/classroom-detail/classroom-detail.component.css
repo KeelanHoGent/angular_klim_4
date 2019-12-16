@@ -25,4 +25,7 @@ th{
   font-size: 1.5em;
 }
 
+a {
+  cursor: pointer;
+}
 
