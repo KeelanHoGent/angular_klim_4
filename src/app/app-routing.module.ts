@@ -3,7 +3,6 @@ import {Routes, RouterModule} from '@angular/router';
 import { AddProjectFormComponent } from './new-project/components/add-project-form/add-project-form.component';
 import { AddProjectComponent } from './new-project/components/add-project/add-project.component';
 import { ProjectenContainerComponent } from './projecten-overzicht/projecten-container/projecten-container.component';
-import { EditpageComponent } from './edit-project/editpage/editpage.component';
 import { ProductListComponent } from './productentemplate-overzicht/product-list/product-list.component';
 import { AddProductTemplateFormComponent } from './productentemplate-overzicht/add-product-template-form/add-product-template-form.component';
 
@@ -32,7 +31,6 @@ const routes: Routes = [
     {path: 'projecten', canActivate: [AuthGuard], component: ProjectenContainerComponent},
     {path: 'add-project', canActivate: [AuthGuard], component: AddProjectFormComponent},
     {path: 'add-project/:id', canActivate: [AuthGuard], component: AddProjectFormComponent},
-    {path: 'editProject/:id', canActivate: [AuthGuard], component: EditpageComponent},
     {path: 'producten', canActivate: [AuthGuard], component: ProductListComponent},
     {path: 'add-product-template', canActivate: [AuthGuard], component: AddProductTemplateFormComponent},
     {path: 'add-project-template', canActivate: [AuthGuard], component: AddProjectTemplateComponent},

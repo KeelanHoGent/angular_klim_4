@@ -21,9 +21,11 @@ export class MenubarContainerComponent implements OnInit {
     this.user = this.authService.user$;
   }
 
-  logout() {
+  public logout() {
     this.authService.logout();
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/login');
   }
+
+  
 
 }
