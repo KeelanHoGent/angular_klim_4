@@ -21,13 +21,14 @@
   transition: ease 0.4s;
   border-top: 0.4rem solid transparent;
   word-wrap: break-word;
+  border-top: 0.4rem solid var(--donker-grijs);
 }
 
 
 
 .project:hover {
   transform: scale(1.05, 1.05);
-  border-top: 0.4rem solid var(--magenta);
+  
     cursor: pointer;
 
 }

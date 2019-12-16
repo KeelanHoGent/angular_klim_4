@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { delay } from 'q';
 import {TemplateService} from '../../services/template.service';
 import {ProductTemplate} from '../../types/productTemplate.model';
+import { Router } from '@angular/router';
 
 
 
@@ -31,8 +32,9 @@ export class AddProjectTemplateComponent implements OnInit {
 
   constructor(private _fb: FormBuilder,
     private _projecttemplateDataService: TemplateService,
-    private _projectDataService: ProjectService) {
-
+    private _projectDataService: ProjectService,
+    private router: Router) {
+      
 
   }
 
@@ -66,6 +68,8 @@ export class AddProjectTemplateComponent implements OnInit {
     p.budget = this.projecttemplate.value.budget;
     p.maxScore = this.projecttemplate.value.maxScore;
     this._projecttemplateDataService.addNewProjecttemplate(p);
+
+    this.router.navigateByUrl("/projecten");
   }
 
   getErrorMessage(errors: any) {
