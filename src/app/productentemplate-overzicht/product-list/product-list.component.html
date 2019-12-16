@@ -2,10 +2,9 @@
   <div class="list-title">
     <h1>Product templates</h1>
 
-    <button routerLink="/add-product-template" mat-raised-button type="button" color="default" rounded="true"
-      data-toggle="modal">
-      <mat-icon class="icon">add</mat-icon>Nieuw product template
-    </button>
+    <a class="magentaBtn" routerLink="/add-product-template">
+      Nieuw product template
+    </a>
   </div>
   <mat-spinner *ngIf="loader"></mat-spinner>
     <app-horizontal-list-products *ngIf="!loader" [list]="productTemplates" ></app-horizontal-list-products>
