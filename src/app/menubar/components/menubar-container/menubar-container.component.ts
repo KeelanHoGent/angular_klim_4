@@ -23,7 +23,9 @@ export class MenubarContainerComponent implements OnInit {
 
   public logout() {
     this.authService.logout();
-    this.router.navigateByUrl('');
+    this.router.navigateByUrl('/login');
   }
+
+  
 
 }
