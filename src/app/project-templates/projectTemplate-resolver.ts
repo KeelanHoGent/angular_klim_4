@@ -13,6 +13,6 @@ export class ProjectTemplateResolver implements Resolve<ProjectTemplate> {
   constructor(private templateService: TemplateService) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ProjectTemplate> {
-    return this.templateService.getProjectTemplate$(route.params['id']);
+    return this.templateService.getProjectTemplate$(route.params['id']); 
   }
 }

@@ -11,7 +11,6 @@ import { switchMap } from 'rxjs/operators';
 import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
 import { ProjectTemplate } from 'src/app/types/projectTemplate.model';
 import { TemplateService } from 'src/app/services/template.service';
-import { Template } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-add-project-info',
@@ -39,7 +38,8 @@ export class AddProjectInfoComponent implements OnInit {
     private _fb: FormBuilder,
     private _projectDataService: ProjectService,
     private _route: ActivatedRoute,
-    private _templateService: TemplateService) {
+    private _templateService: TemplateService,
+  ) {
 
     this.newProject = new Project();
     this.products = this.newProject.products;
@@ -50,20 +50,23 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._route.data.subscribe(item => this.template = item['projectTemp'])
+    this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
+    this._templateService.getProjectTemplates$().subscribe(t => this.templates = t)
+
     this.isEdit = false;
-    
+
     this.initFormGroup(false, 0);
-    //  Keuze tussen edit project en new project 
+
     let editPromise = this.initEditPage();
     let index: number;
-     
-    editPromise.then(edit =>  {
-      if(!edit) index = 0; else index = this.newProject.applicationDomain.id-1;
+
+    editPromise.then(edit => {
+      if (!edit) index = 0; else index = this.newProject.applicationDomain.id - 1;
       this.initFormGroup(edit, index)
     });
 
-    this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
-    this._templateService.getProjectTemplates$().subscribe(t => this.templates = t)
+
   }
 
 
@@ -71,7 +74,7 @@ export class AddProjectInfoComponent implements OnInit {
   private initEditPage() {
     return new Promise(
       (resolve) => {
-        if (this._route.snapshot.params['id']) {
+        if (!this.template && this._route.snapshot.params['id']) {
           this.isEdit = true;
           this._route.paramMap.pipe(switchMap((params: ParamMap) => this._projectDataService.getProjectById$(+params.get('id')))).subscribe((p: Project) => {
             this.newProject = p;
@@ -91,6 +94,7 @@ export class AddProjectInfoComponent implements OnInit {
 
   // Op basis van het soort pagina, wordt de formgroup geinitializeerd  
   private initFormGroup(isEdit, appDomain: number) {
+
     this.templateFg = this._fb.group({
       template: ['']
     })
@@ -104,10 +108,10 @@ export class AddProjectInfoComponent implements OnInit {
       applicationDomain: [isEdit ? this.domains[appDomain] : '', Validators.required]
     });
 
-     if(!isEdit) {
-        this.newProject.products = [];
-        this.products = [];
-     }
+    if (!isEdit) {
+      this.newProject.products = [];
+      this.products = [];
+    }
   }
 
 
@@ -133,39 +137,55 @@ export class AddProjectInfoComponent implements OnInit {
     }
   }
 
-  addTemplate(){
-    if(this.template){
+  //wordt aangeroepen bij change van template in frontend
+  addTemplate() {
+    //bij change naar een bepaald template uit de selectbox 
+    if (this.template) {
       this.initFormGroupWithTemplate()
-    } else {
+    }
+    //bij change naar "Geen template"
+    else {
       this.initFormGroup(false, 0)
     }
 
   }
 
+  // initializeren van formgroup met een template
   initFormGroupWithTemplate() {
     let date = new Date();
-    let index = this.template.applicationDomainId-1
-    this.projectFg = this._fb.group({
-      name: [this.template.name, Validators.required],
-      description: [this.template.descr, Validators.required],
-      image: [this.template.image, Validators.required],
-      budget: [this.template.budget, Validators.required],
-      //schoolYear: [ `${date.getFullYear()} -  ${date.getFullYear()+1}`, Validators.required],
-      schoolYear:[date.getFullYear(), Validators.required ],
-      applicationDomain: this.domains[index]
+    this._projectDataService.getApplicationDomains$().subscribe(ad => {
+      this.domains = ad
+
+      let index = this.template.applicationDomainId - 1
+
+      this.templateFg = this._fb.group({
+        template: [this.templates[this.template.projectTemplateId-1]]
+      })
+
+      this.projectFg = this._fb.group({
+        name: [this.template.name, Validators.required],
+        description: [this.template.descr, Validators.required],
+        image: [this.template.image, Validators.required],
+        budget: [this.template.budget, Validators.required],
+        //schoolYear: [ `${date.getFullYear()} -  ${date.getFullYear()+1}`, Validators.required],
+        schoolYear: [date.getFullYear(), Validators.required],
+        applicationDomain: [this.domains[index]]
+      });
+
+      this.template.productTemplates.forEach(pr => {
+        let product = new Product()
+        product.name = pr.productName;
+        product.categoryId = pr.categoryId;
+        product.description = pr.description;
+        product.image = pr.image;
+
+        this.addNewProductToProject(product);
+      })
     });
 
-    this.template.productTemplates.forEach(pr => {
-      let product = new Product()
-      product.name =  pr.productName;
-      product.categoryId = pr.categoryId;
-      product.description = pr.description;
-      product.image = pr.image;
 
-      this.addNewProductToProject(product);
-    })
 
-    console.log(this.newProject.products)
+
   }
 
   addNewProductToProject(product: Product) {
