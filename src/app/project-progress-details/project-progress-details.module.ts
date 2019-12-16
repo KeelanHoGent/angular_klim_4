@@ -19,14 +19,15 @@ import { ButtonAddEvaluationComponent } from './button-add-evaluation/button-add
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { ConfigPdfComponent } from './config-pdf/config-pdf.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {RouterModule} from "@angular/router";
 @NgModule({
   declarations: [
   ProjectProgressContainerComponent,
   HorizontalListGroupsComponent,
   GroupSquareComponent,
   GroupDetailsContainerComponent,
-  HorizontalListOrderItemsComponent,  
-  OrderItemSquareComponent, 
+  HorizontalListOrderItemsComponent,
+  OrderItemSquareComponent,
   HorizontalListEvaluationsComponent,
   EvaluationSquareComponent,
   EvaluationFormComponent,
@@ -43,11 +44,12 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     ReactiveFormsModule,
     MatButtonModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    RouterModule
   ],
   entryComponents: [EvaluationFormComponent, ConfigPdfComponent],
   exports: [
-    
+
   ]
 })
 export class ProjectProgressDetailsModule { }

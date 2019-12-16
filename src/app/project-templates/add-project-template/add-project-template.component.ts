@@ -31,18 +31,17 @@ export class AddProjectTemplateComponent implements OnInit {
 
   public productFotoSrc = '';
 
-  constructor(private router: Router,
-              private _fb: FormBuilder,
-              private _projecttemplateDataService: TemplateService,
-              private _projectDataService: ProjectService) {
-
-
-  }
+  constructor(
+    private _fb: FormBuilder,
+    private _projecttemplateDataService: TemplateService,
+    private _projectDataService: ProjectService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
     this._projecttemplateDataService.getProductTemplates$().subscribe(pt => this.productTemplates = pt);
-    console.log(this.domains);
+
     this.setForm();
     this.projecttemplate.get('productTemplates').valueChanges.subscribe(pt => this.geselecteerdeProductTemplates = pt);
   }
@@ -68,13 +67,8 @@ export class AddProjectTemplateComponent implements OnInit {
     p.applicationDomainId = this.projecttemplate.value.applicationDomain.id;
     p.budget = this.projecttemplate.value.budget;
     p.maxScore = this.projecttemplate.value.maxScore;
-    console.log(this.projecttemplate.value);
-
     this._projecttemplateDataService.addNewProjecttemplate(p)
-    .subscribe(res => {
-      console.log(res);
-      this.router.navigateByUrl('/projecttemplates');
-    });
+    .subscribe(res => this.router.navigateByUrl('/projecttemplates'));
   }
 
   getErrorMessage(errors: any) {
