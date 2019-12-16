@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditpageComponent } from './editpage.component';
+import { AddPupilFormComponent } from './add-pupil-form.component';
 
-describe('EditpageComponent', () => {
-  let component: EditpageComponent;
-  let fixture: ComponentFixture<EditpageComponent>;
+describe('AddPupilFormComponent', () => {
+  let component: AddPupilFormComponent;
+  let fixture: ComponentFixture<AddPupilFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditpageComponent ]
+      declarations: [ AddPupilFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditpageComponent);
+    fixture = TestBed.createComponent(AddPupilFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
