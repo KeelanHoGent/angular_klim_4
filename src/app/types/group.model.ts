@@ -4,113 +4,99 @@ import { Evaluation } from './evaluation.model';
 
 export class Group {
 
-  private _id: number = 0;
+  private _id = 0;
   private _name: string;
   private _pupils: Pupil[] = [];
-  private _evaluations : Evaluation[] = [];
+  private _evaluations: Evaluation[] = [];
   private _order: Order;
 
   private _projectBudget: number;
 
-  public showClicked: Boolean;
-  
+  public showClicked: boolean;
 
   static fromJSON(json: any): Group {
     const g = new Group();
-    g.id = json.groupId
+    g.id = json.groupId;
     g.name = json.groupName;
     g._pupils = json.pupils.map(p => Pupil.fromJSON(p));
-    g._order = Order.fromJSON(json.order)
+    g._order = Order.fromJSON(json.order);
     g._evaluations = json.evaluations.map(p => Evaluation.fromJSON(p));
 
     return g;
 
   }
+
   static fromJSONBudget(json: any, budget: number): Group {
-    const g = new Group();
-    g.id = json.groupId
-    g.name = json.groupName;
-    g._pupils = json.pupils.map(pu => Pupil.fromJSON(pu));
-    g._evaluations = json.evaluations.map(g => Evaluation.fromJSON(g));
-    g._order = Order.fromJSON(json.order)
-    g._projectBudget = budget
+    const g = this.fromJSON(json);
+    g._projectBudget = budget;
 
     return g;
-
   }
-
 
   toJson(): any {
     return {
       id: this._id,
       groupName: this._name,
       pupils: this._pupils.map(pu => pu.toJson())
+    };
+  }
+
+  public overBudget(): boolean {
+    if (this.projectBudget) {
+      return this._order.totalOrderPrice > this.projectBudget;
     }
+    return false;
   }
 
-
-  
-
-
-  public overBudget(budget: number) : boolean {
-    return this._order.totalOrderPrice > budget
-  }
-
-  public addEvaluation(e : Evaluation){
+  public addEvaluation(e: Evaluation) {
     this._evaluations.push(e);
   }
 
-  public getEvaluationById(id: number) : Evaluation {
-    return this.evaluations.find(g => g.evaluationId == id);
+  public getEvaluationById(id: number): Evaluation {
+    return this.evaluations.find(g => g.evaluationId === id);
   }
 
-  public  setEvaluationAfterEdit(ev : Evaluation)  {
-     var evFound = this.evaluations.find(g => g.evaluationId == ev.evaluationId);
+  public  setEvaluationAfterEdit(ev: Evaluation)  {
+     const evFound = this.evaluations.find(g => g.evaluationId === ev.evaluationId);
      evFound.title = ev.title;
      evFound.descriptionPupil = ev.descriptionPupil;
      evFound.descriptionPrivate = ev.descriptionPrivate;
   }
 
-  public removeEvaluationById(id : number){
-    var index = this.evaluations.indexOf(this.evaluations.find(g => g.evaluationId == id));
+  public removeEvaluationById(id: number) {
+    const index = this.evaluations.indexOf(this.evaluations.find(g => g.evaluationId === id));
     this.evaluations.splice(index, 1);
-    
+
   }
 
-  
-
-    /**
-     * Getter projectBudget
-     * @return {number}
-     */
-	public get projectBudget(): number {
-		return this._projectBudget;
-	}
+  /**
+   * Getter projectBudget
+   */
+  public get projectBudget(): number {
+    return this._projectBudget;
+  }
 
     /**
      * Setter projectBudget
-     * @param {number} value
      */
-	public set projectBudget(value: number) {
-		this._projectBudget = value;
-	}
+  public set projectBudget(value: number) {
+    this._projectBudget = value;
+  }
 
 
     /**
      * Getter id
-     * @return {number}
      */
-	public get id(): number {
-		return this._id;
-	}
+  public get id(): number {
+    return this._id;
+  }
 
     /**
      * Setter id
-     * @param {number} value
      */
-	public set id(value: number) {
-		this._id = value;
-	}
+  public set id(value: number) {
+    this._id = value;
+  }
 
 
 
@@ -118,68 +104,57 @@ export class Group {
 
     /**
      * Getter name
-     * @return {string}
      */
-	public get name(): string {
-		return this._name;
-	}
+  public get name(): string {
+    return this._name;
+  }
+
+  /**
+   * Setter name
+   */
+  public set name(value: string) {
+    this._name = value;
+  }
 
     /**
      * Getter pupils
-     * @return {Pupil[] }
      */
-	public get pupils(): Pupil[]  {
-		return this._pupils;
-	}
+  public get pupils(): Pupil[]  {
+    return this._pupils;
+  }
 
-    /**
-     * Getter order
-     * @return {Order}
-     */
-	public get order(): Order {
-		return this._order;
-	}
-
-    /**
-     * Setter name
-     * @param {string} value
-     */
-	public set name(value: string) {
-		this._name = value;
-	}
-
-    /**
-     * Setter pupils
-     * @param {Pupil[] } value
-     */
-	public set pupils(value: Pupil[] ) {
-		this._pupils = value;
-	}
+  /**
+   * Setter pupils
+   */
+  public set pupils(value: Pupil[] ) {
+    this._pupils = value;
+  }
 
     /**
      * Setter order
-     * @param {Order} value
      */
-	public set order(value: Order) {
-		this._order = value;
-	}
+  public set order(value: Order) {
+    this._order = value;
+  }
 
+  /**
+   * Getter order
+   */
+  public get order(): Order {
+    return this._order;
+  }
 
-    /**
-     * Getter evaluations
-     * @return {Evaluation[] }
-     */
-	public get evaluations(): Evaluation[]  {
-		return this._evaluations;
-	}
+  /**
+   * Getter evaluations
+   */
+  public get evaluations(): Evaluation[]  {
+    return this._evaluations;
+  }
 
-    /**
-     * Setter evaluations
-     * @param {Evaluation[] } value
-     */
-	public set evaluations(value: Evaluation[] ) {
-		this._evaluations = value;
-	}
-
-
+  /**
+   * Setter evaluations
+   */
+  public set evaluations(value: Evaluation[] ) {
+    this._evaluations = value;
+  }
 }

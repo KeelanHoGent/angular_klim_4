@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Project } from '../../../types/project.model';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, Form } from '@angular/forms';
 import { ProjectService } from '../../../services/project.service';
 import { Observable } from 'rxjs';
 import { ApplicationDomain } from '../../../types/applicationDomain.model';
@@ -9,6 +9,8 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Group } from 'src/app/types/group.model';
 import { switchMap } from 'rxjs/operators';
 import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
+import { ProjectTemplate } from 'src/app/types/projectTemplate.model';
+import { TemplateService } from 'src/app/services/template.service';
 
 @Component({
   selector: 'app-add-project-info',
@@ -18,6 +20,7 @@ import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
 
 export class AddProjectInfoComponent implements OnInit {
   public projectFg: FormGroup;
+  public templateFg: FormGroup;
   private _domainApps: Observable<ApplicationDomain[]>;
   public domains: ApplicationDomain[];
   public products: Product[];
@@ -25,16 +28,19 @@ export class AddProjectInfoComponent implements OnInit {
   public newProject: Project;
   public isEdit: boolean;
   public evaluationCs: EvaluationCriterea[];
-  
+  public templates: ProjectTemplate[];
+  public template: ProjectTemplate;
 
-  public error: String = "../../../../assets/images/error.svg";
-  public correct: String = "../../../../assets/images/correct.svg";
+  public error: 'assets/images/error.svg';
+  public correct: 'assets/images/correct.svg';
 
   constructor(
     private router: Router,
     private _fb: FormBuilder,
     private _projectDataService: ProjectService,
-    private _route: ActivatedRoute) {
+    private _route: ActivatedRoute,
+    private _templateService: TemplateService,
+  ) {
 
     this.newProject = new Project();
     this.products = this.newProject.products;
@@ -45,47 +51,60 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._route.data.subscribe(item => this.template = item.projectTemp);
+    this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
+    this._templateService.getProjectTemplates$().subscribe(t => this.templates = t);
+
     this.isEdit = false;
-    
+
     this.initFormGroup(false, 0);
-    //  Keuze tussen edit project en new project 
-    let editPromise = this.initEditPage();
+
+    const editPromise = this.initEditPage();
     let index: number;
-     
-    editPromise.then(edit =>  {
-      if(!edit) index = 0; else index = this.newProject.applicationDomain.id-1;
-      this.initFormGroup(edit, index)
+
+    editPromise.then(edit => {
+      if (!edit) { index = 0; } else { index = this.newProject.applicationDomain.id - 1; }
+      this.initFormGroup(edit, index);
     });
 
-    this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
 
   }
 
 
-  // Wanneer de url een id als parameter heeft, wordt de velden ingevuld om een project te editen 
+  // Wanneer de url een id als parameter heeft, wordt de velden ingevuld om een project te editen
   private initEditPage() {
     return new Promise(
       (resolve) => {
-        if (this._route.snapshot.params['id']) {
+        if (!this.template && this._route.snapshot.params.id) {
+
           this.isEdit = true;
-          this._route.paramMap.pipe(switchMap((params: ParamMap) => this._projectDataService.getProjectById$(+params.get('id')))).subscribe((p: Project) => {
+          this._route.paramMap.pipe(
+            switchMap((params: ParamMap) =>
+              this._projectDataService.getProjectById$(+params.get('id'))
+            )
+          ).subscribe((p: Project) => {
             this.newProject = p;
 
-            //Frontend lijsten initializeren 
+            // Frontend lijsten initializeren
             this.groups = p.groups;
             this.products = p.products;
             this.evaluationCs = p.evaluationCritereas;
-            resolve(true);    // een edit pagina 
+            resolve(true);    // een edit pagina
           });
         } else {
-          resolve(false);   // een nieuw project pagina 
+          resolve(false);   // een nieuw project pagina
         }
       }
-    )
+    );
   }
 
-  // Op basis van het soort pagina, wordt de formgroup geinitializeerd  
+  // Op basis van het soort pagina, wordt de formgroup geinitializeerd
   private initFormGroup(isEdit, appDomain: number) {
+
+    this.templateFg = this._fb.group({
+      template: ['']
+    });
+
     this.projectFg = this._fb.group({
       name: [isEdit ? this.newProject.name : '', Validators.required],
       description: [isEdit ? this.newProject.descr : '', Validators.required],
@@ -95,15 +114,15 @@ export class AddProjectInfoComponent implements OnInit {
       applicationDomain: [isEdit ? this.domains[appDomain] : '', Validators.required]
     });
 
-    // if(isEdit) {
-    //   this.projectFg.controls['applicationDomain'].setValue(this._domainApps[2]); //werkt niet 
-    // }
+    if (!isEdit) {
+      this.newProject.products = [];
+      this.products = [];
+    }
   }
 
 
-  // Opslaan van een nieuwe project of een project updaten 
+  // Opslaan van een nieuwe project of een project updaten
   submitProject() {
-    
     this.newProject.name = this.projectFg.value.name;
     this.newProject.descr = this.projectFg.value.description;
     this.newProject.image = this.projectFg.value.image;
@@ -114,18 +133,70 @@ export class AddProjectInfoComponent implements OnInit {
     if (!this.isEdit) {
       this._projectDataService.addNewProject(this.newProject)
         .subscribe(res => {
-          this.router.navigateByUrl("/projecten");
+          this.router.navigateByUrl('/projecten');
         });
     } else {
       this._projectDataService.updateProject(this.newProject.id, this.newProject)
         .subscribe(res => {
-          this.router.navigateByUrl("/projecten");
+          this.router.navigateByUrl('/projecten');
         });
     }
   }
 
+  // wordt aangeroepen bij change van template in frontend
+  addTemplate() {
+    // bij change naar een bepaald template uit de selectbox
+    if (this.template) {
+      this.initFormGroupWithTemplate();
+    } else {
+      this.initFormGroup(false, 0);
+    }
+
+  }
+
+  // initializeren van formgroup met een template
+  initFormGroupWithTemplate() {
+    const date = new Date();
+    this._projectDataService.getApplicationDomains$().subscribe(ad => {
+      this.domains = ad;
+      const index = this.template.applicationDomainId - 1;
+
+      this._templateService.getProjectTemplates$().subscribe(t => {
+        this.templates = t;
+        this.templateFg = this._fb.group({
+          template: [this.templates[this.template.projectTemplateId - 1]]
+        });
+      });
+
+
+
+      this.projectFg = this._fb.group({
+        name: [this.template.name, Validators.required],
+        description: [this.template.descr, Validators.required],
+        image: [this.template.image, Validators.required],
+        budget: [this.template.budget, Validators.required],
+        schoolYear: [date.getFullYear(), Validators.required],
+        applicationDomain: [this.domains[index]]
+      });
+
+      this.template.productTemplates.forEach(pr => {
+        const product = new Product();
+        product.name = pr.productName;
+        product.categoryId = pr.categoryId;
+        product.description = pr.description;
+        product.image = pr.image;
+
+        this.addNewProductToProject(product);
+      });
+    });
+
+
+
+
+  }
+
   addNewProductToProject(product: Product) {
-    product.categoryId = 1;                           //TIJDELIJK!!!!
+    product.categoryId = 1;                           // TIJDELIJK!!!!
     this.newProject.addProductToProject(product);
     this.products = this.newProject.products;
   }

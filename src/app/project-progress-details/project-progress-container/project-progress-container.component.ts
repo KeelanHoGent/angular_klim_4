@@ -9,6 +9,7 @@ import { EvaluationFormComponent } from '../evaluation-form/evaluation-form.comp
 import { ConfigPdfComponent } from '../config-pdf/config-pdf.component';
 import { environment } from 'src/environments/environment';
 import { PdfSettings } from 'src/app/types/customDTOs/PdfSettings.model';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-project-progress-container',
@@ -17,31 +18,28 @@ import { PdfSettings } from 'src/app/types/customDTOs/PdfSettings.model';
 })
 export class ProjectProgressContainerComponent implements OnInit {
 
-  public project : Project;
+  public project: Project;
+  selectedGroup: Group;
 
- 
-  selectedGroup : Group;
-
-  constructor(private ps: ProjectService, private gs: GroupService, public dialog: MatDialog) { }
+  constructor(
+    private ps: ProjectService,
+    private gs: GroupService,
+    public dialog: MatDialog,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
-    this.ps.getProjectByIdForProgress$(1).subscribe(p => {
-      this.project = p
-      if(this.project.groups.length > 0){
+    const projectId = this.route.snapshot.params.id;
+    this.ps.getProjectByIdForProgress$(projectId).subscribe(p => {
+      this.project = p;
+      if (this.project.groups.length > 0) {
         this.selectedGroup = this.project.groups[0];
         this.project.groups[0].showClicked = true;
       }
-    })
+    });
   }
 
-
-  /*refreshGroups(){
-    this.ps.getProjectGroupsById(2).subscribe(ps => {    
-      this.project.groups = ps
-    });
-  }*/
-
-  detailsGroup(group: Group){
+  detailsGroup(group: Group) {
     this.project.changeShowClickedAllGroupsFalse();
     group.showClicked = true;
     this.selectedGroup = group;
@@ -51,18 +49,18 @@ export class ProjectProgressContainerComponent implements OnInit {
   addNewEvaluationToProject(g: Evaluation) {
     this.gs.addNewEvaluation(this.selectedGroup.id, g).subscribe(ev => {
       this.selectedGroup.addEvaluation(ev);
-    }) 
+    });
   }
 
-  detailsEvaluation(e : Evaluation){ // edited an evaluation
+  detailsEvaluation(e: Evaluation) { // edited an evaluation
 
 
-  this.gs.editEvaluation(this.selectedGroup.id, e.evaluationId, e).subscribe((ev : Evaluation) => {
+  this.gs.editEvaluation(this.selectedGroup.id, e.evaluationId, e).subscribe((ev: Evaluation) => {
       this.selectedGroup.setEvaluationAfterEdit(ev);
-    }) 
+    });
   }
 
-  deleteEvaluation(e: Evaluation){ // only availiable for extra evaluations
+  deleteEvaluation(e: Evaluation) { // only availiable for extra evaluations
     this.gs.deleteEvaluation(this.selectedGroup.id, e.evaluationId).subscribe(g => {
       console.log(g);
       this.selectedGroup.removeEvaluationById(g.evaluationId);
@@ -70,27 +68,22 @@ export class ProjectProgressContainerComponent implements OnInit {
   }
 
   showEvaluationConfig(): void {
-
-   
-
     const config = new MatDialogConfig();
     config.disableClose = false;
-    config.width = "450px";
+    config.width = '450px';
     config.autoFocus = true;
     config.data = {
       project: this.project
-    }
+    };
 
     const dialogRef = this.dialog.open(ConfigPdfComponent, config);
 
     dialogRef.afterClosed().subscribe(
       data => {
-        if(data){
-          //this.addEvaluation(data)
+        if (data) {
+          // this.addEvaluation(data)
         }
       }
     );
   }
-
-
 }
