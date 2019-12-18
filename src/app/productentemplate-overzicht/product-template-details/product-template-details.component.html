@@ -17,7 +17,7 @@
                         'invalidInput': productTemplate.get('name')['errors'],
                         'validInput': !productTemplate.get('name')['errors']
                     }" aria-label="productTemplatenaam" type="text" formControlName="name" #spy
-                   required />
+                   required data-cy="productTemplateName"/>
             <p class="error" *ngIf="productTemplate.get('name')['errors']">
               {{ getErrorMessage(productTemplate.get('name')['errors']) }}
               <img src="{{error}}">
@@ -31,7 +31,7 @@
             <textarea [ngClass]="{
                             'invalidInput': productTemplate.get('description')['errors'],
                             'validInput': !productTemplate.get('description')['errors']
-                        }" aria-label="description" type="text" formControlName="description" required></textarea>
+                        }" aria-label="description" type="text" formControlName="description" required data-cy="productTemplateDescription"></textarea>
             <p class="error"
                *ngIf="productTemplate.get('description')['errors']">
               {{ getErrorMessage(productTemplate.get('description')['errors']) }}
@@ -46,7 +46,7 @@
               [ngClass]="{
                             'invalidInput': productTemplate.get('image')['errors'],
                             'validInput': !productTemplate.get('image')['errors'] }"
-              aria-label="image" type="text" formControlName="image" required />
+              aria-label="image" type="text" formControlName="image" required data-cy="productTemplateImage"/>
             <p class="error" *ngIf="productTemplate.get('image')['errors']">
               {{ getErrorMessage(productTemplate.get('image')['errors']) }}
               <img src="{{error}}">
@@ -60,7 +60,7 @@
               [ngClass]="{
                                 'invalidInput': productTemplate.get('score')['errors'],
                                 'validInput': !productTemplate.get('score')['errors']}"
-              aria-label="score" type="number" formControlName="score" required />
+              aria-label="score" type="number" formControlName="score" required data-cy="productTemplateScore"/>
             <p class="error" *ngIf="productTemplate.get('score')['errors'] ">
               {{ getErrorMessage(productTemplate.get('score')['errors']) }}
               <img src="{{error}}">
@@ -70,7 +70,7 @@
           </div>
           <mat-form-field class="formGroup">
             <mat-label>Categories</mat-label>
-            <mat-select aria-label="categories" formControlName="categories" >
+            <mat-select aria-label="categories" formControlName="categories" data-cy="productTemplateCategories">
               <mat-option *ngFor="let cat of categories$" [value]="cat" matTooltip="{{cat.categoryDescr}}" matTooltipPosition="right">
                 {{ cat.categoryName }}
               </mat-option>

@@ -1,6 +1,6 @@
 
 <div class="product">
-  <div class=deleteIcon *ngIf="!productTemplate.addedByGo">
+  <div class=deleteIcon *ngIf="!productTemplate.addedByGo" data-cy="deleteProductTemplate">
     <mat-icon (click)="deleteProduct()">clear</mat-icon>
   </div>
   <p class="naam" >{{productTemplate.productName | slice: 0: 9}} </p>
@@ -11,5 +11,5 @@
     alt="{{productTemplate.productName}}"
     (error)="showDefaultImage()"
   >
-  <div class="desc" *ngIf="productTemplate.addedByGo">GO product</div>
+  <div class="desc" *ngIf="productTemplate.addedByGo" data-cy="productAddedByGo">GO product</div>
 </div>

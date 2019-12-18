@@ -21,8 +21,8 @@
 
               <p class="error" *ngIf="projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched">
                 {{ getErrorMessage(projecttemplate.get('name')['errors']) }}
-                <img src="{{error}}">
-                data-cy="newprojecttemplatenameerror"
+                <img src="{{error}}" data-cy="newprojecttemplatenameerror">
+
               </p>
               <div *ngIf="!projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched">
                 <img class="correctInput" src="{{correct}}">
@@ -146,8 +146,8 @@
         <button routerLink="/projecttemplates" class="button" mat-raised-button>
           annuleer
         </button>
-        <button (click)="save()" class="button" type="submit" mat-raised-button color='primary'
-        ><!--[disabled]='!project.valid'-->
+        <button (click)="save()" class="button" type="submit" mat-raised-button color='primary' data-cy="newprojecttemplatesubmit"
+                [disabled]='!projecttemplate.valid'><!---->
           Aanmaken
         </button>
       </mat-dialog-actions>
