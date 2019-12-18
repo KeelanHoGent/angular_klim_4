@@ -31,17 +31,17 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'projecten', canActivate: [AuthGuard], component: ProjectenContainerComponent },
   { path: 'add-project', canActivate: [AuthGuard], component: AddProjectFormComponent },
-  {
-    path: 'add-project/:id',
-    canActivate: [AuthGuard],
-    component: AddProjectFormComponent,
-    resolve: { project: ProjectResolverService}
+  { 
+    path: 'add-project/:id', 
+    canActivate: [AuthGuard], 
+    component: AddProjectFormComponent
+    // resolve: { project: ProjectResolverService}
   },
-  {
-    path: 'add-project/template/:id',
-    canActivate: [AuthGuard],
-    component: AddProjectFormComponent,
-    // resolve: { projectTemp: ProjectTemplateResolver }
+  { 
+    path: 'add-project/template/:id', 
+    canActivate: [AuthGuard], 
+    component: AddProjectFormComponent, 
+    resolve: { projectTemp: ProjectTemplateResolver } 
   },
 
 
