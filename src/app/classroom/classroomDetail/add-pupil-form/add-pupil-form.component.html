@@ -1,0 +1,52 @@
+<mat-card-title>
+  Nieuwe leerling
+</mat-card-title>
+<mat-card-content class="container">
+  <form class='container' [formGroup]="pupilForm">
+    <div class="formGroup">
+      <label>Voornaam</label>
+      <input [ngClass]="{
+                'invalidInput': pupilForm.get('firstName')['errors']&& pupilForm.get('firstName').touched,
+                'validInput': !pupilForm.get('firstName')['errors'] && pupilForm.get('firstName').touched
+            }" aria-label="firstName" placeholder="voornaam" type="text"
+             formControlName="firstName" #spy required />
+
+      <p class="error" *ngIf="pupilForm.get('firstName')['errors'] && pupilForm.get('firstName').touched">
+        {{ getErrorMessage(pupilForm.get('firstName')['errors']) }}
+        <img src="{{error}}">
+      </p>
+      <div *ngIf="!pupilForm.get('firstName')['errors'] && pupilForm.get('firstName').touched">
+        <img class="correct" src="{{correct}}">
+      </div>
+    </div>
+
+    <div class="formGroup">
+      <label>Achternaam</label>
+      <input [ngClass]="{
+                'invalidInput': pupilForm.get('surName')['errors']&& pupilForm.get('surName').touched,
+                'validInput': !pupilForm.get('surName')['errors'] && pupilForm.get('surName').touched
+            }" aria-label="surName" placeholder="achternaam" type="text"
+             formControlName="surName" #spy required />
+
+      <p class="error" *ngIf="pupilForm.get('surName')['errors'] && pupilForm.get('surName').touched">
+        {{ getErrorMessage(pupilForm.get('surName')['errors']) }}
+        <img src="{{error}}">
+      </p>
+      <div *ngIf="!pupilForm.get('surName')['errors'] && pupilForm.get('surName').touched">
+        <img class="correct" src="{{correct}}">
+      </div>
+    </div>
+
+    <mat-dialog-actions class="buttonContainer">
+      <button type="button" class="button" (click)="close()" mat-raised-button>
+        annuleer
+      </button>
+      <button class="button"
+              (click)="save(pupilForm.valid)" type="submit" mat-raised-button type="button" color='primary'
+              [disabled]='!pupilForm.valid'>
+        Voeg leerling toe
+      </button>
+
+    </mat-dialog-actions>
+  </form>
+</mat-card-content>

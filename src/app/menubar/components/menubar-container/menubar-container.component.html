@@ -1,14 +1,21 @@
 <header>
-  <img src="../../../../assets/images/GO-logo-magenta.png" alt="GO logo" routerLink="/">
-  <div class="buttons">
-    <button mat-button routerLink="/projecten">Projecten</button>
-    <button mat-button routerLink="/projecttemplates">Project templates</button>
-    <button mat-button routerLink="/producten">Product templates</button>
-    <button mat-button routerLink="/klassen">Klassen</button>
-    <button *ngIf="user | async; else inloggen" mat-button (click)="logout()">Uitloggen</button>
-  </div>
+  <nav class="bar">
+    <ul class="lists">
+      <li>
+        <a class="logo"  alt="GO logo" routerLink="" title="Visit the homepage"></a>
+      </li>
+    </ul>
+    <ul class="lists buttons">
+        <li class="item"> <a routerLink="/">Home</a></li>
+      <li class="item"> <a routerLink="/projecten">Projecten</a></li>
+        <li class="item"> <a routerLink="/projecttemplates">Templates</a></li>
+        <li class="item"> <a routerLink="/producten">Product templates</a></li>
+        <li class="item"> <a routerLink="/klassen">Klassen</a></li>
+        <li  *ngIf="user | async; else inloggen" class="item"> <a class="loginButton" (click)="logout()">Uitloggen</a></li>
+      <ng-template #inloggen>
+         <li class="item"><a routerLink="/login" class="loginButton">Inloggen</a></li>
+      </ng-template>
+    </ul>
+  </nav>
 </header>
 
-<ng-template #inloggen>
-  <button mat-button routerLink="/login">Inloggen</button>
-</ng-template>

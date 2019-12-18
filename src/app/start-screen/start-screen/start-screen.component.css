@@ -24,7 +24,13 @@ img {
   border-radius: 15px;
   margin: 10px;
   cursor: pointer;
+  transition: ease 0.2s;
+  box-shadow: rgba(0, 0, 0,0.2) 3px 5px 8px ;
 }
+.action-button:hover{
+  transform: scale(1.02,1.03);
+}
+
 
 .action-button:focus {
   outline: none !important;
