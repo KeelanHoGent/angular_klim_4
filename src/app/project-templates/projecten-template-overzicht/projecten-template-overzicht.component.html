@@ -8,7 +8,7 @@
   <mat-spinner *ngIf="loader"></mat-spinner>
   <div class="list" *ngIf="!loader">
     <div *ngFor="let projectTemp of templates">
-      <app-project-template  [template]="projectTemp"></app-project-template>
+      <app-project-template  [template]="projectTemp"  data-cy="projectTemplateListItem"></app-project-template>
     </div>
   </div>
 </div>

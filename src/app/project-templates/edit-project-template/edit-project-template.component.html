@@ -16,13 +16,12 @@
           <input [ngClass]="{
                     'invalidInput': projecttemplate.get('name')['errors']&& projecttemplate.get('name').touched,
                     'validInput': !projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched
-                }" aria-label="projectnaam" placeholder="Project naam" type="text" formControlName="name" data-cy="newprojecttemplatename" #spy
+                }" aria-label="projectnaam" placeholder="Project naam" type="text" formControlName="name" data-cy="newProjectTemplateName" #spy
                  required />
 
-          <p class="error" *ngIf="projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched">
+          <p class="error" *ngIf="projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched" data-cy="newProjectTemplateNameError">
             {{ getErrorMessage(projecttemplate.get('name')['errors']) }}
             <img src="{{error}}">
-            data-cy="newprojecttemplatenameerror"
           </p>
           <div *ngIf="!projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched">
             <img class="correctInput" src="{{correct}}">
@@ -36,8 +35,8 @@
                     'invalidInput': projecttemplate.get('description')['errors']&& projecttemplate.get('description').touched,
                     'validInput': !projecttemplate.get('description')['errors'] && projecttemplate.get('description').touched
                 }" aria-label="description" type="text" formControlName="description" required
-                  data-cy="newprojecttemplatedescription"></textarea>
-        <p class="error" *ngIf="projecttemplate.get('description')['errors'] && projecttemplate.get('description').touched" data-cy="newprojecttemplatedescriptionerror">
+                  data-cy="newProjectTemplateDescription"></textarea>
+        <p class="error" *ngIf="projecttemplate.get('description')['errors'] && projecttemplate.get('description').touched" data-cy="newProjectTemplateDescriptionError">
           {{ getErrorMessage(projecttemplate.get('description')['errors']) }}
           <img src="{{error}}">
         </p>
@@ -50,8 +49,8 @@
           <input [ngClass]="{
                     'invalidInput': projecttemplate.get('image')['errors']&& projecttemplate.get('image').touched,
                     'validInput': !projecttemplate.get('image')['errors'] && projecttemplate.get('image').touched }" aria-label="image"
-                 placeholder="Afbeelding" type="text" formControlName="image" data-cy="newprojecttemplateimage" required />
-          <p class="error" *ngIf="projecttemplate.get('image')['errors'] && projecttemplate.get('image').touched" data-cy="newprojecttemplateimageerror">
+                 placeholder="Afbeelding" type="text" formControlName="image" data-cy="newProjectTemplateImage" required />
+          <p class="error" *ngIf="projecttemplate.get('image')['errors'] && projecttemplate.get('image').touched" data-cy="newProjectTemplateImageError">
             {{ getErrorMessage(projecttemplate.get('image')['errors']) }}
             <img src="{{error}}">
           </p>
@@ -68,8 +67,8 @@
                         'invalidInput': projecttemplate.get('budget')['errors']&& projecttemplate.get('budget').touched,
                         'validInput': !projecttemplate.get('budget')['errors'] && projecttemplate.get('budget').touched }"
                  class="smallInput" aria-label="budget" placeholder="Maximale budget" type="number"
-                 formControlName="budget" data-cy="newprojecttemplatebudget" required />
-          <p class="error" *ngIf="projecttemplate.get('budget')['errors'] && projecttemplate.get('budget').touched" data-cy="newprojecttemplatebudgeterror">
+                 formControlName="budget" data-cy="newProjectTemplateBudget" required />
+          <p class="error" *ngIf="projecttemplate.get('budget')['errors'] && projecttemplate.get('budget').touched" data-cy="newProjectTemplateBudgetError">
             {{ getErrorMessage(projecttemplate.get('budget')['errors']) }}
             <img src="{{error}}">
           </p>
@@ -83,8 +82,8 @@
             <input [ngClass]="{
                     'invalidInput': projecttemplate.get('maxScore')['errors']&& projecttemplate.get('maxScore').touched,
                     'validInput': !projecttemplate.get('maxScore')['errors'] && projecttemplate.get('maxScore').touched }" aria-label="image"
-                   placeholder="Max score" type="text" formControlName="maxScore" data-cy="newprojecttemplatemaxScore" required />
-            <p class="error" *ngIf="projecttemplate.get('maxScore')['errors'] && projecttemplate.get('maxScore').touched" data-cy="newprojecttemplatemaxScoreerror">
+                   placeholder="Max score" type="text" formControlName="maxScore" data-cy="newProjectTemplateMaxScore" required />
+            <p class="error" *ngIf="projecttemplate.get('maxScore')['errors'] && projecttemplate.get('maxScore').touched" data-cy="newProjectTemplateMaxScoreError">
               {{ getErrorMessage(projecttemplate.get('maxScore')['errors']) }}
               <img src="{{error}}">
             </p>
@@ -98,7 +97,7 @@
       <div class="formGroup">
         <mat-form-field>
         <mat-label>Onderwerp</mat-label>
-        <mat-select formControlName="applicationDomain" required>
+        <mat-select formControlName="applicationDomain" required data-cy="newProjectTemplateApplicationDomain">
           <mat-option *ngFor="let domein of domains"  [value]="domein">
             {{domein.name}}
           </mat-option>
@@ -106,6 +105,7 @@
 
         <mat-error
           *ngIf="projecttemplate.get('applicationDomain')?.errors && projecttemplate.get('applicationDomain')?.touched"
+          data-cy="newProjectTemplateApplicationDomainError"
         >
           {{ getErrorMessage(projecttemplate.get('applicationDomain').errors) }}
         </mat-error>
@@ -114,13 +114,14 @@
       <div class="formSectie">
         <mat-form-field>
         <mat-label>Productconcepten</mat-label>
-        <mat-select formControlName="productTemplates" multiple required>
+        <mat-select formControlName="productTemplates" multiple required data-cy="newProjectTemplateProductTemplates">
           <mat-option *ngFor="let group of productTemplatesLijst" [value]="group">
             {{group.productName}}
           </mat-option>
         </mat-select>
         <mat-error
           *ngIf="projecttemplate.get('productTemplates')?.errors && projecttemplate.get('productTemplates')?.touched"
+          data-cy="newProjectTemplateProductTemplatesError"
         >
           {{ getErrorMessage(projecttemplate.get('productTemplates').errors) }}
         </mat-error>
