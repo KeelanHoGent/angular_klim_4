@@ -114,8 +114,9 @@
       <div class="formSectie">
         <mat-form-field>
         <mat-label>Productconcepten</mat-label>
-        <mat-select formControlName="productTemplates" multiple required data-cy="editProjectTemplateProductTemplates">
-          <mat-option *ngFor="let group of productTemplatesLijst" [value]="group">
+
+        <mat-select [formControl]="productTemps" multiple required  data-cy="editProjectTemplateProductTemplates">
+          <mat-option *ngFor="let group of productTemplatesLijst" [value]="group.productTemplateId">
             {{group.productName}}
           </mat-option>
         </mat-select>
