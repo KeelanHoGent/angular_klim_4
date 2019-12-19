@@ -53,8 +53,8 @@ export class AddProjectTemplateComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(6)]],
       applicationDomain: [this.domains, Validators.required],
       productTemplates: [this.productTemplates, Validators.required],
-      budget: [0, Validators.required],
-      maxScore: [0, Validators.required]
+      budget: [, [Validators.required, Validators.min(0)]],
+      maxScore: [,  [Validators.required, Validators.min(0)]]
     });
   }
 
@@ -81,6 +81,9 @@ export class AddProjectTemplateComponent implements OnInit {
       return `moet minstens ${
         errors.minlength.requiredLength
         } karakters bevatten (heeft ${errors.minlength.actualLength})`;
+    } else if (errors.min){
+      return `moet minstens 0 of groter zijn`
+        
     }
   }
 

@@ -1,14 +1,14 @@
 <div class="body-wrapper">
   <div class="list-title">
     <h1>Project templates</h1>
-    <a routerLink="/add-project-template" class="magentaBtn">
+    <a routerLink="/add-project-template" class="magentaBtn" data-cy="addNewProjectTemplate">
       Nieuw project template
   </a>
   </div>
   <mat-spinner *ngIf="loader"></mat-spinner>
   <div class="list" *ngIf="!loader">
     <div *ngFor="let projectTemp of templates">
-      <app-project-template  [template]="projectTemp"></app-project-template>
+      <app-project-template  [template]="projectTemp"  data-cy="projectTemplateListItem"></app-project-template>
     </div>
   </div>
 </div>
