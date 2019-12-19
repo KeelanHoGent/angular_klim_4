@@ -1,3 +1,5 @@
+import { createPartiallyEmittedExpression } from "typescript";
+
 context('Actions', () => {
     beforeEach(() => {
       cy.login();
@@ -131,6 +133,37 @@ it('testvalidatie_ongeldigeMaxScore', function(){
         cy.get('[data-cy=newProjectTemplateApplicationDomainError]').should('not.be.visible');
         cy.get('[data-cy=newProjectTemplateProductTemplatesError]').should('not.be.visible');
         cy.get('[data-cy=newProjectTemplateSubmit]').should('be.disabled');
+
+    });
+
+    it('testvalidatie_allesIngevuld', function(){
+      cy.fillProjectTemplate();
+
+      cy.get('[data-cy=newProjectTemplateNameError]').should('not.be.visible');
+        cy.get('[data-cy=newProjectTemplateDescriptionError]').should('not.be.visible');
+        cy.get('[data-cy=newProjectTemplateImageError]').should('not.be.visible');
+        cy.get('[data-cy=newProjectTemplateDescriptionError]').should('not.be.visible');
+        cy.get('[data-cy=newProjectTemplateImageError]').should('not.be.visible');
+        cy.get('[data-cy=newProjectTemplateBudgetError]').should('not.be.visible');
+        cy.get('[data-cy=newProjectTemplateMaxScoreError]').should('not.be.visible');
+        cy.get('[data-cy=newProjectTemplateApplicationDomainError]').should('not.be.visible');
+        cy.get('[data-cy=newProjectTemplateProductTemplatesError]').should('not.be.visible');
+
+        cy.get('[data-cy=newProjectTemplateSubmit]').should('not.be.disabled');
+    });
+
+    it('testvalicatie_pressCancel', function() {
+      cy.server();
+      cy.route({
+        method: 'GET',
+        url: '/api/ProjectTemplate/projecttemplates/1',
+        status: 200,
+        response: 'fixture:projecttemplates.json'
+    });
+
+      cy.fillProjectTemplate();
+      cy.get('[data-cy=newProjectTemplateCancel]').click({ force: true });
+      cy.get('[data-cy=projectTemplateListItem]').should('have.length', 3);
 
     });
 })

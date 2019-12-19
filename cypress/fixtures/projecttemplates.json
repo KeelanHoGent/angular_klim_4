@@ -132,8 +132,8 @@
       },
       {
         "projectTemplateId": 2,
-        "projectName": "Test Project - No Products",
-        "projectDescr": "Test project with no product templates",
+        "projectName": "Project - No Products",
+        "projectDescr": "Project with no product templates",
         "projectImage": "image",
         "addedByGO": true,
         "applicationDomainId": 2,
@@ -148,8 +148,8 @@
       },
       {
         "projectTemplateId": 3,
-        "projectName": "Test Project - 1 Product",
-        "projectDescr": "Test project with 1 product template",
+        "projectName": "Project - 1 Product",
+        "projectDescr": "Project with 1 product template",
         "projectImage": "image",
         "addedByGO": true,
         "applicationDomainId": 1,
