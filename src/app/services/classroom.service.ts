@@ -50,8 +50,7 @@ export class ClassroomService {
   addNewClassroom(classroom: Classroom) {
       return this.http.post(`${environment.apiUrl}/School/addClassroom/${this.schoolId}`, classroom.toJson())
         .pipe(tap(c => {
-            this.classes.push(classroom);
-            console.log(this.classes);
+            this.classes.push(Classroom.fromJSON(c));
             this._classes$.next(this.classes);
           }
         ));

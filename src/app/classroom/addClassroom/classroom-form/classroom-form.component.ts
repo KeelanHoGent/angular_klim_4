@@ -43,8 +43,9 @@ export class ClassroomFormComponent implements OnInit {
     classroom.name = this.classForm.value.name;
     classroom.pupils = this.records;
 
-    this.classroomService.addNewClassroom(classroom).subscribe();
-    this.router.navigateByUrl('/klassen');
+    this.classroomService.addNewClassroom(classroom).subscribe(r =>
+      this.router.navigateByUrl('/klassen')
+    );
   }
 
   uploadListener($event: any): void {
@@ -82,9 +83,11 @@ export class ClassroomFormComponent implements OnInit {
     }
     return csvArr;
   }
+
   isValidCSVFile(file: any) {
     return file.name.endsWith('.csv');
   }
+
   getHeaderArray(csvRecordsArr: any) {
     const headers = (csvRecordsArr[0] as string).split(';');
     const headerArray = [];

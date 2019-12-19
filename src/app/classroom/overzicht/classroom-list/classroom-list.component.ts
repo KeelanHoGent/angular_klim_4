@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ProductTemplate} from "../../../types/productTemplate.model";
-import {TemplateService} from "../../../services/template.service";
-import {Classroom} from "../../../types/classroom.model";
-import {ClassroomService} from "../../../services/classroom.service";
-import {Observable} from "rxjs";
+import {Classroom} from '../../../types/classroom.model';
+import {ClassroomService} from '../../../services/classroom.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-classroom-list',
@@ -21,5 +19,4 @@ export class ClassroomListComponent implements OnInit {
   ngOnInit() {
     this.classrooms = this.classroomService.classes$;
   }
-
 }
