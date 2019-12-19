@@ -3,6 +3,7 @@ import {ProductTemplate} from "../../../types/productTemplate.model";
 import {TemplateService} from "../../../services/template.service";
 import {Classroom} from "../../../types/classroom.model";
 import {ClassroomService} from "../../../services/classroom.service";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-classroom-list',
@@ -11,18 +12,14 @@ import {ClassroomService} from "../../../services/classroom.service";
 })
 export class ClassroomListComponent implements OnInit {
 
-  public classrooms: Classroom[];
-  public loader = true;
+  public classrooms: Observable<Classroom[]>;
 
   constructor(
-    private _classroomService: ClassroomService
+    private classroomService: ClassroomService
   ) {  }
 
   ngOnInit() {
-    this._classroomService.getClassrooms$().subscribe(pt => {
-      this.classrooms = pt;
-      this.loader = false;
-    });
+    this.classrooms = this.classroomService.classes$;
   }
 
 }

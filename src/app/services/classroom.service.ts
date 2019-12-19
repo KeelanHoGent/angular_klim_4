@@ -1,10 +1,9 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
-import {map} from 'rxjs/operators';
+import {map, tap} from 'rxjs/operators';
 import {Classroom} from '../types/classroom.model';
-import {ProductTemplate} from '../types/productTemplate.model';
 import {Pupil} from '../types/pupil.model';
 
 @Injectable({
@@ -13,16 +12,21 @@ import {Pupil} from '../types/pupil.model';
 export class ClassroomService {
 
   public schoolId = 1;
-  public classRoomId = 1;
+
+  private classes: Classroom[] = [];
+  private _classes$ = new BehaviorSubject([]);
+  classes$: Observable<Classroom[]> = this._classes$;
 
   constructor(private http: HttpClient) {  }
 
   getClassrooms$(): Observable<Classroom[]> {
     return this.http.get<Classroom[]>(`${environment.apiUrl}/School/getClassrooms/${this.schoolId}`)
       .pipe(
-        map((list: any[]): Classroom[] => {
-          return list.map(Classroom.fromJSON);
-        })
+        tap(list => {
+            this.classes = list.map(Classroom.fromJSON);
+            this._classes$.next(this.classes);
+          }
+        )
       );
   }
 
@@ -34,11 +38,23 @@ export class ClassroomService {
   }
 
   deleteClassroom(classroom: Classroom) {
-    return this.http.delete<Classroom>(`${environment.apiUrl}/Classroom/${classroom.id}`);
+    return this.http.delete<any>(`${environment.apiUrl}/Classroom/${classroom.id}`)
+      .pipe(tap(c => {
+          const cIndex = this.classes.findIndex(k => k.id === c.classRoomId);
+          this.classes.splice(cIndex, 1);
+          this._classes$.next(this.classes);
+        }
+      ));
   }
 
   addNewClassroom(classroom: Classroom) {
-      return this.http.post(`${environment.apiUrl}/School/addClassroom/${this.schoolId}`, classroom.toJson());
+      return this.http.post(`${environment.apiUrl}/School/addClassroom/${this.schoolId}`, classroom.toJson())
+        .pipe(tap(c => {
+            this.classes.push(classroom);
+            console.log(this.classes);
+            this._classes$.next(this.classes);
+          }
+        ));
 
   }
 

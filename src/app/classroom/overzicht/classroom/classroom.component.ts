@@ -12,18 +12,17 @@ import {ClassroomService} from "../../../services/classroom.service";
 export class ClassroomComponent implements OnInit {
 
   @Input() public classroom: Classroom;
-  @Output() public deletedClassroom = new EventEmitter<Classroom>();
 
   constructor(private classroomService: ClassroomService) { }
 
   ngOnInit() {
   }
 
-  deleteClassroom(): boolean {
-    this.deletedClassroom.emit(this.classroom);
-    console.log(this.deletedClassroom);
-    this.classroomService.deleteClassroom(this.classroom).subscribe();
-    return false;
+  deleteClassroom(): boolean   {
+    if (confirm("Bent u zeker dat u deze klaslijst wilt verwijderen?")) {
+      this.classroomService.deleteClassroom(this.classroom).subscribe();
+    }
+    return true;
   }
 
 
