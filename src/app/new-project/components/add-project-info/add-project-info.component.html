@@ -1,11 +1,11 @@
 <div class="titleBox">
     <mat-card-title *ngIf="isEdit; else newProject" class="h">
-        <mat-icon class="icon">post_add</mat-icon>Pas een project aan
+        <mat-icon class="icon">post_add</mat-icon>Pas een module aan
     </mat-card-title>
 
     <ng-template #newProject class="h">
         <mat-card-title class="h">
-            <mat-icon class="icon">post_add</mat-icon>Maak een nieuw project
+            <mat-icon class="icon">post_add</mat-icon>Maak een nieuwe module aan
         </mat-card-title>
 
     </ng-template>
@@ -14,9 +14,9 @@
 <mat-card-content class="form">
     <div class=formSectie>
             <div [formGroup]='templateFg' *ngIf="!isEdit" class="formGroup">
-                    <label>Template</label>
+                    <label>Concept</label>
                     <select formControlName="template" [(ngModel)]="template" (ngModelChange)=addTemplate($event)>
-                        <option value="">Geen template</option>
+                        <option value="">Geen concept</option>
                         <option [ngValue]="t" *ngFor="let t of templates">
                             {{t.name}}
                         </option>
@@ -24,12 +24,12 @@
                 </div>
         <form class='container' [formGroup]="projectFg">
             <div class="formGroup">
-                <label>Projectnaam</label>
+                <label>Modulenaam</label>
                 <div>
                     <input [ngClass]="{
                     'invalidInput': projectFg.get('name')['errors']&& projectFg.get('name').touched,
                     'validInput': !projectFg.get('name')['errors'] && projectFg.get('name').touched
-                }" aria-label="projectnaam" placeholder="Project naam" type="text" formControlName="name" #spy
+                }" aria-label="modulenaam" placeholder="module naam" type="text" formControlName="name" #spy
                         required />
 
                     <p class="error" *ngIf="projectFg.get('name')['errors'] && projectFg.get('name').touched">
@@ -115,7 +115,7 @@
         </form>
     </div>
     <div class="formSectie">
-        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">producten</span> aan het project toe
+        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">producten</span> aan de module toe
         </mat-card-subtitle>
         <div class=producten>
             <div *ngFor="let p of products">
@@ -127,7 +127,7 @@
         </div>
     </div>
     <div class="formSectie">
-        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">groepen</span> aan het project toe
+        <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">groepen</span> aan de module toe
 
         </mat-card-subtitle>
         <div class=producten>
