@@ -1,7 +1,6 @@
 <div class="list" >
   <div *ngFor="let classRoom of list">
-    <a [routerLink]="['/klas/', classRoom.id]">
-      <app-classroom  (deletedClassroom)="deleteClassroom($event)" [classroom]="classRoom"></app-classroom>
-    </a>
+<!--    <a [routerLink]="['/klas/', classRoom.id]">-->
+      <app-classroom [classroom]="classRoom"></app-classroom>
   </div>
 </div>
