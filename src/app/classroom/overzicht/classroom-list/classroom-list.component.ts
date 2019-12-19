@@ -11,6 +11,7 @@ import {Observable} from 'rxjs';
 export class ClassroomListComponent implements OnInit {
 
   public classrooms: Observable<Classroom[]>;
+  private loading = true;
 
   constructor(
     private classroomService: ClassroomService
@@ -18,5 +19,6 @@ export class ClassroomListComponent implements OnInit {
 
   ngOnInit() {
     this.classrooms = this.classroomService.classes$;
+    this.classroomService.getClassrooms$().subscribe(c => this.loading = false);
   }
 }

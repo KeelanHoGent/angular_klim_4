@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthenticationService} from "../authentication.service";
 import {Router} from "@angular/router";
-import {ClassroomService} from "../../services/classroom.service";
 
 @Component({
   selector: 'app-login',
@@ -16,8 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthenticationService,
     private builder: FormBuilder,
-    private router: Router,
-    private classroomService: ClassroomService
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -40,8 +38,6 @@ export class LoginComponent implements OnInit {
           } else {
             this.router.navigate(['']);
           }
-          // initialize classrooms
-          this.classroomService.getClassrooms$().subscribe();
         }
       }, err => this.error = "Ongeldige inloggegevens");
     } else {
