@@ -34,7 +34,7 @@ describe('adding a new product template', function () {
    cy.fillProductTemplate();
     cy.get('[data-cy=newProductTemplateCancel]').click();
 
-    cy.get('[data-cy=productTemplateCards]').should('have.length', 4);
+    cy.get('[data-cy=productTemplateCards]').should('have.length', 3);
   });
 
   it('submit adds a product template to list', function() {
