@@ -73,6 +73,7 @@ export class AddProjectInfoComponent implements OnInit {
     editPromise.then(edit => {
       if (!edit) { index = 0; } else { index = this.newProject.applicationDomain.id - 1; }
       this.initFormGroup(edit, index);
+      this.putClassroom(this.chosenClassroom)
     });
 
     
@@ -114,15 +115,10 @@ export class AddProjectInfoComponent implements OnInit {
 
     this.templateFg = this._fb.group({
       template: [''],
-      
     });
 
-    // this.classRoomFg = this._fb.group({
-      
-    // })
-
     this.projectFg = this._fb.group({
-      classroom: [isEdit? this.chosenClassroom: '', Validators.required],
+      classroom: [isEdit? this.chosenClassroom : "", Validators.required],
       name: [isEdit ? this.newProject.name : '', Validators.required],
       description: [isEdit ? this.newProject.descr : '', Validators.required],
       image: [isEdit ? this.newProject.image : '', Validators.required],
@@ -135,6 +131,8 @@ export class AddProjectInfoComponent implements OnInit {
       this.newProject.products = [];
       this.products = [];
     }
+
+    this.putClassroom(this.chosenClassroom)
   }
 
 
@@ -187,11 +185,10 @@ export class AddProjectInfoComponent implements OnInit {
         });
       });
 
-
-
+      
 
       this.projectFg = this._fb.group({
-        classroom: [this.chosenClassroom],
+        classroom: [this.chosenClassroom, Validators.required],
         name: [this.template.name, Validators.required],
         description: [this.template.descr, Validators.required],
         image: [this.template.image, Validators.required],
@@ -199,6 +196,8 @@ export class AddProjectInfoComponent implements OnInit {
         schoolYear: [date.getFullYear(), Validators.required],
         applicationDomain: [this.domains[index]]
       });
+
+      this.putClassroom(this.chosenClassroom)
 
       this.template.productTemplates.forEach(pr => {
         const product = new Product();
@@ -211,7 +210,7 @@ export class AddProjectInfoComponent implements OnInit {
       });
     });
 
-
+    console.log(this.chosenClassroom)
 
 
   }
@@ -255,6 +254,7 @@ export class AddProjectInfoComponent implements OnInit {
   }
 
   putClassroom(classroom: Classroom){
+    console.log(classroom)
     this.chosenClassroom = classroom;
     if(classroom){
     this.klasIngevuld = true;

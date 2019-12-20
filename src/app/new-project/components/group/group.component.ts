@@ -16,7 +16,9 @@ export class GroupComponent {
   @Input() public classroom: Classroom;
   @Output() public deletedgroup = new EventEmitter<Group>();
   constructor(public dialog: MatDialog,
-    private service: ClassroomService) { }
+    private service: ClassroomService) {
+      console.log("verder", this.classroom)
+     }
 
 
   deleteGroup(): boolean {

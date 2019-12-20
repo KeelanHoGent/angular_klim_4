@@ -47,7 +47,7 @@ export class AddPupilsComponent implements OnInit {
   public getPupils() {
     return new Promise(
       (resolve) => {
-        this._classRoomService.getClassroom(this.crId)
+        this._classRoomService.getClassroom(1)
           .toPromise()
           .then(
             cr => {
