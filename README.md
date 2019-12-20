@@ -1,31 +1,58 @@
-# Klimaatmobiel
+# Klimaatmobiel Angular - Projecten III
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.9.
+This angular project is the online platform schools and individual teachers use to keep track of their modules, classes, products and templates, for both modules and products. These items support CRUD operations that the user can use. The organisation (GO) of the schoolgroup can make templates wich all the schools may access and use but not modify in any way.
 
-## Committing
+The mobile application that the students use can be found [here](https://github.com/HoGent-Projecten3/projecten3-1920-android-klim03).
 
-This repo uses commitizen to format commits. To use this plugin first add your files you want to commit with `git add`, then use `npm run commit` to start commitizen.
+The corresponding backend can be found [here](https://github.com/HoGent-Projecten3/projecten3-1920-backend-klim03).
 
-## Development server
+## Getting started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run the application together with the 'backend_klim_4' asp .net backend
 
-## Code scaffolding
+Login credentials
+```
+Username: leraar
+Password: P@ssword1
+```
+### Installing
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Clone the repository
 
-## Build
+```
+git clone git@github.com/KeelanHoGent/angular_klim_4.git
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Open the project in Studio Code and running following command to install the packages
 
-## Running unit tests
+```
+npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+After running this last command build the project.
 
-## Running end-to-end tests
+## Running tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Open 2 terminals and run following commands separately
 
-## Further help
+```
+npm start
+```
+and 
+```
+npx cypress open
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Built with
+
+* [Material Design](https://material.angular.io/) - Design for components
+* [Cypress](https://www.cypress.io/) - Testing framework
+
+## Authors
+
+* **Daan Dedecker**
+* **Robbe Decorte**
+* **Florian Landuyt**
+* **Keelan Savat**
+* **Thomas Schuddinck**
+* **Sofie Seru**
