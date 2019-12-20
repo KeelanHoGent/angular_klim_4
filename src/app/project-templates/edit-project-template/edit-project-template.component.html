@@ -3,7 +3,7 @@
 
 <div class="titleBox">
   <mat-card-title class="h">
-    <mat-icon class="icon">post_add</mat-icon>Aanpassen project template
+    <mat-icon class="icon">post_add</mat-icon>Pas een module template aan
   </mat-card-title>
   <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
 </div>
@@ -11,12 +11,12 @@
   <div class=formSectie>
     <form class='container' [formGroup]="projecttemplate">
       <div class="formGroup">
-        <label>Projectnaam</label>
+        <label>Modulenaam</label>
         <div>
           <input [ngClass]="{
                     'invalidInput': projecttemplate.get('name')['errors']&& projecttemplate.get('name').touched,
                     'validInput': !projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched
-                }" aria-label="projectnaam" placeholder="Project naam" type="text" formControlName="name" data-cy="editProjectTemplateName" #spy
+                }" aria-label="projectnaam" placeholder="Module naam" type="text" formControlName="name" data-cy="editProjectTemplateName" #spy
                  required />
 
           <p class="error" *ngIf="projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched" data-cy="editProjectTemplateNameError">
@@ -113,7 +113,7 @@
       </div>
       <div class="formSectie">
         <mat-form-field>
-        <mat-label>Productconcepten</mat-label>
+        <mat-label>Product templates</mat-label>
 
         <mat-select [formControl]="productTemps" multiple required  data-cy="editProjectTemplateProductTemplates">
           <mat-option *ngFor="let group of productTemplatesLijst" [value]="group.productTemplateId">
@@ -146,11 +146,11 @@
       </div>
   <mat-dialog-actions class="buttonContainer">
     <button routerLink="/projecttemplates" class="button" mat-raised-button>
-      annuleer
+      Annuleer
     </button>
     <button (click)="save()" class="button" type="submit" mat-raised-button color='primary'  data-cy="editProjectTemplateSubmit"
     ><!--[disabled]='!project.valid'-->
-      Pas template aan
+    Wijzigingen opslaan
     </button>
   </mat-dialog-actions>
 </mat-card-content>

@@ -3,7 +3,7 @@
 
     <div class="titleBox">
       <mat-card-title class="h">
-        <mat-icon class="icon">post_add</mat-icon>Aanpassen project template
+        <mat-icon class="icon">post_add</mat-icon>Maak een module template aan
       </mat-card-title>
       <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
     </div>
@@ -11,12 +11,12 @@
       <div class=formSectie>
         <form class='container' [formGroup]="projecttemplate">
           <div class="formGroup">
-            <label>Projectnaam</label>
+            <label>Modulenaam</label>
             <div>
               <input [ngClass]="{
                     'invalidInput': projecttemplate.get('name')['errors']&& projecttemplate.get('name').touched,
                     'validInput': !projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched
-                }" aria-label="projectnaam" placeholder="Project naam" type="text" formControlName="name" data-cy="newProjectTemplateName" #spy
+                }" aria-label="projectnaam" placeholder="Module naam" type="text" formControlName="name" data-cy="newProjectTemplateName" #spy
                      required />
 
               <p class="error" *ngIf="projecttemplate.get('name')['errors'] && projecttemplate.get('name').touched" data-cy="newProjectTemplateNameError">
@@ -114,7 +114,7 @@
           </div>
           <div class="formSectie">
             <mat-form-field>
-              <mat-label>Productconcepten</mat-label>
+              <mat-label>Product templates</mat-label>
               <mat-select formControlName="productTemplates" multiple required data-cy="newProjectTemplateProductTemplates">
                 <mat-option *ngFor="let group of productTemplates" [value]="group">
                   {{group.productName}}
@@ -146,11 +146,11 @@
       </div>
       <mat-dialog-actions class="buttonContainer">
         <button routerLink="/projecttemplates" class="button" mat-raised-button data-cy="newProjectTemplateCancel">
-          annuleer
+          Annuleer
         </button>
         <button (click)="save()" class="button" type="submit" mat-raised-button color='primary' data-cy="newProjectTemplateSubmit"
                 [disabled]='!projecttemplate.valid'><!---->
-          Aanmaken
+          Maak template
         </button>
       </mat-dialog-actions>
     </mat-card-content>
