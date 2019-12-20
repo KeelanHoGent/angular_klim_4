@@ -40,7 +40,6 @@ export class GroupComponent {
       data => {
         
         if(data){
-          console.log("Edit group:", data.pupils);
           this.updateGroup(data);
         } 
       }
@@ -51,7 +50,6 @@ export class GroupComponent {
     this.group.pupils = new Array<Pupil>();
     this.group.name = data.name;
     data.pupils.forEach(p => {
-      console.log("Update pupil:", p.id)
       this.getPupil(p.id);
     });
   }
@@ -59,13 +57,11 @@ export class GroupComponent {
   public getPupil(id: number) {
     return new Promise(
       (resolve) => {
-        console.log(id);
         this.service.getPupil(id)
           .toPromise()
           .then(
             pupil => {
               this.group.pupils.push(pupil)
-              console.log("opgehaalde pupil:", pupil)
               resolve()
             }
           )

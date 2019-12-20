@@ -32,13 +32,14 @@ export class AddPupilsComponent implements OnInit {
 
   ngOnInit() {
     this.getPupils();
+
+    //doet rare dingen als ik dit doe 
     // if(!this.pInList === undefined){
     //   this.pInList.forEach(p => {
     //     this.addPupil(p)
     //   })
     // }
 
-    console.log(this.pInList)
   }
 
   public getPupils() {
