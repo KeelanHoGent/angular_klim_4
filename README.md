@@ -46,9 +46,6 @@ npx cypress open
 
 * [Material Design](https://material.angular.io/) - Design for components
 * [Cypress](https://www.cypress.io/) - Testing framework
-* [Timber](https://github.com/JakeWharton/timber) - Logging tool
-* [Retrofit](https://github.com/square/retrofit) - Http client
-* [Glide](https://github.com/bumptech/glide) - Image loading tool
 
 ## Authors
 
