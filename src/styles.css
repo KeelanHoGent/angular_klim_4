@@ -80,6 +80,7 @@ body { margin: 0; }
   text-decoration: none;
   color: white;
   font-size: 15px;
+  margin: auto 0px;
 }
 
 .magentaBtn:hover {
@@ -87,4 +88,5 @@ body { margin: 0; }
   cursor: pointer;
   background-color: #DE739C;
   transition: all 0.3s; 
+  border: 1px solid #DE739C;
 }

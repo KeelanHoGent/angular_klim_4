@@ -46,10 +46,10 @@ h1 {
 }
 
 h2 {
-  color: var(--magenta);
+  color: #40424C;
   font-size: 1em;
   margin-bottom: 10px;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 
 .edit-button {
@@ -67,10 +67,37 @@ h2 {
 }
 
 .pdf-button {
+  width: 250px;
   margin-right: 10px;
-  margin-bottom: 5px;
 }
 
 .icon {
     margin-right: 3px;
+}
+
+.btn {
+  height: 40px;
+}
+
+.dynamisch {
+  background-color: #F4F3F4;
+  padding: 10px;
+  border-radius: 20px;
+}
+
+.randInfo {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.titel {
+  padding-top: 10px;
+  font-size: 30px;
+  color: var(--magenta);
+  font-weight: 600;
+  margin: 0 auto;
+}
+
+.tussenTitel {
+  color: black;
 }

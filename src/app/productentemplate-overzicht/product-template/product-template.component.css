@@ -16,7 +16,7 @@
   border: 1px solid rgb(118, 114, 110, 0.1);
   box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 8px ;
   transition: ease 0.4s;
-  border-top: 0.4rem solid transparent;
+  border-top: 0.4rem solid var(--licht-grijs);
 }
 
 
