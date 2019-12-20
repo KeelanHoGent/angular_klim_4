@@ -6,12 +6,12 @@
       </li>
     </ul>
     <ul class="lists buttons">
-        <li class="item"> <a routerLink="/">Home</a></li>
-      <li class="item"> <a routerLink="/projecten">Projecten</a></li>
-        <li class="item"> <a routerLink="/projecttemplates">Templates</a></li>
-        <li class="item"> <a routerLink="/producten">Product templates</a></li>
-        <li class="item"> <a routerLink="/klassen">Klassen</a></li>
-        <li  *ngIf="user | async; else inloggen" class="item"> <a class="loginButton" (click)="logout()">Uitloggen</a></li>
+      <li class="item" routerLink="/">Home</li>
+      <li class="item" routerLink="/projecten">Modules</li>
+      <li class="item" routerLink="/projecttemplates">Templates</li>
+      <li class="item" routerLink="/producten">Product template</li>
+      <li class="item" routerLink="/klassen">Klassen</li>
+      <li  *ngIf="user | async; else inloggen" class="item"> <a class="loginButton" (click)="logout()">Uitloggen</a></li>
       <ng-template #inloggen>
          <li class="item"><a routerLink="/login" class="loginButton">Inloggen</a></li>
       </ng-template>

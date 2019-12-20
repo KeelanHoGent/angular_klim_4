@@ -2,7 +2,7 @@
   <mat-card class="info">
     <div class="titleBox">
       <mat-card-title>
-        <mat-icon class="icon">post_add</mat-icon>Product template aanpassen
+        <mat-icon class="icon">post_add</mat-icon>Pas een product template aan
       </mat-card-title>
       <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
     </div>
@@ -123,11 +123,11 @@
         </div>
       </form>
       <button routerLink="/producten" class="button" mat-raised-button>
-        terug
+        Annuleer
       </button>
       <button (click)="save()" class="button" type="submit" mat-raised-button color='primary'
               [disabled]='!productTemplate.valid'>
-        Opslaan
+        Wijzigingen opslaan
       </button>
     </mat-card-content>
   </mat-card>

@@ -1,0 +1,17 @@
+[
+    {
+      "applicationDomainId": 1,
+      "applicationDomainName": "Energie",
+      "applicationDomainDescr": "Alles over energie"
+    },
+    {
+      "applicationDomainId": 2,
+      "applicationDomainName": "Informatie & communicactie",
+      "applicationDomainDescr": "Alles over informatie & communicactie"
+    },
+    {
+      "applicationDomainId": 3,
+      "applicationDomainName": "Constructie",
+      "applicationDomainDescr": "Alles over constructie"
+    }
+  ]
