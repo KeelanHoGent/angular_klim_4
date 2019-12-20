@@ -9,6 +9,7 @@ export class Group {
   private _pupils: Pupil[] = [];
   private _evaluations: Evaluation[] = [];
   private _order: Order;
+  private _code: string;
 
   private _projectBudget: number;
 
@@ -21,6 +22,7 @@ export class Group {
     g._pupils = json.pupils.map(p => Pupil.fromJSON(p));
     g._order = Order.fromJSON(json.order);
     g._evaluations = json.evaluations.map(p => Evaluation.fromJSON(p));
+    g._code = json.uniqueGroupCode;
 
     return g;
 
@@ -98,9 +100,19 @@ export class Group {
     this._id = value;
   }
 
+  /**
+   * Setter id
+   */
+  public get code() {
+    return this._code;
+  }
 
-
-
+  /**
+   * Setter id
+   */
+  public set code(value: string) {
+    this._code = value;
+  }
 
     /**
      * Getter name
