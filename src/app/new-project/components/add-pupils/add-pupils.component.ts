@@ -17,12 +17,13 @@ export class AddPupilsComponent implements OnInit {
   public loaded: boolean;
   public selectedPupils: Pupil[];
   public selectedPupil: Pupil;
-  private classRoomId = 1;
 
   @Output() public pupilsToAdd = new EventEmitter<Pupil[]>()
   @Output() public pupilToAdd = new EventEmitter<Pupil>()
   @Output() public pupilToDelete = new EventEmitter<Pupil>()
   @Input() public pInList: Pupil[];
+  @Input() public classRoom: Classroom;
+  @Input() public crId: number;
 
   constructor(private _classRoomService: ClassroomService,
   ) {
@@ -31,7 +32,8 @@ export class AddPupilsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getPupils();
+    
+     this.getPupils();
 
     //doet rare dingen als ik dit doe 
     // if(!this.pInList === undefined){
@@ -45,11 +47,12 @@ export class AddPupilsComponent implements OnInit {
   public getPupils() {
     return new Promise(
       (resolve) => {
-        this._classRoomService.getClassroom(this.classRoomId)
+        this._classRoomService.getClassroom(this.crId)
           .toPromise()
           .then(
             cr => {
-              this.chosenPupils = cr.pupils
+              this.classRoom = cr;
+              this.chosenPupils = cr.pupils;
               resolve()
             }
           )
@@ -63,7 +66,6 @@ export class AddPupilsComponent implements OnInit {
       this.deletePupil(pupil);
     }
     else { 
-      
       //this.pupilToAdd.emit(this.selectedPupil)
       this.addPupil(pupil);
     }

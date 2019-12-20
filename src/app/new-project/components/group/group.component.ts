@@ -4,6 +4,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material';
 import { GroupFormComponent } from '../group-form/group-form.component';
 import { Pupil } from 'src/app/types/pupil.model';
 import { ClassroomService } from 'src/app/services/classroom.service';
+import { Classroom } from 'src/app/types/classroom.model';
 
 @Component({
   selector: 'app-group',
@@ -12,6 +13,7 @@ import { ClassroomService } from 'src/app/services/classroom.service';
 })
 export class GroupComponent {
   @Input() public group: Group;
+  @Input() public classroom: Classroom;
   @Output() public deletedgroup = new EventEmitter<Group>();
   constructor(public dialog: MatDialog,
     private service: ClassroomService) { }
@@ -31,7 +33,8 @@ export class GroupComponent {
     config.data = {
       soort: true,
       name: g.name,
-      pupils: g.pupils
+      pupils: g.pupils,
+      crId: this.classroom.id
     }
 
     const dialogRef = this.dialog.open(GroupFormComponent, config);

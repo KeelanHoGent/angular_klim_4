@@ -1,17 +1,16 @@
 <!-- <div class="container"> -->
     <!-- <div>
-        <p>Voer leerlingen toe</p>
-        <select class='selectBox' #t [(ngModel)]="chosenClassroom" (ngModelChange)='getPupils()'>
-            <option>Kies een klas</option>
+        <p>Kies een klas uit de lijst</p>
+        <select ng-init="chosenClassroom=classes[0]" class='selectBox' #t [(ngModel)]="chosenClassroom" (ngModelChange)='getPupils()'>
+            <option selected>Kies een klas</option>
             <option [ngValue]='item' *ngFor="let item of classes | async">
                 {{item.name}}
             </option>
 
-        </select> -->
-        <!-- <div *ngFor="let p of chosenPupils ">
-    {{p.firstName}}
+        </select> 
+        
 </div> -->
-<p>Selecteer de juiste leerlingen</p>
+<!-- <p>Kies uit {{classRoom.name}}</p> -->
         <ul class="pupils">
             <li   *ngFor="let pupil of chosenPupils" 
              [class.selected]="isSelected(pupil)"

@@ -13,6 +13,16 @@
 </div>
 <mat-card-content class="form">
     <div class=formSectie>
+        <div [formGroup]='projectFg' class="formGroup">
+            <label>Kies een klas uit de lijst voor verder te gaan.</label>
+            <select formControlName="classroom" [(ngModel)]="chosenClassroom" (ngModelChange)="putClassroom($event)">
+                <option value="">Kies een klas</option>
+                <option [ngValue]='item' *ngFor="let item of classes">
+                    {{item.name}}
+                </option>
+            </select>
+        </div>
+<div *ngIf="klasIngevuld" >
             <div [formGroup]='templateFg' *ngIf="!isEdit" class="formGroup">
                     <label>Template</label>
                     <select formControlName="template" [(ngModel)]="template" (ngModelChange)=addTemplate($event)>
@@ -113,13 +123,13 @@
                 </select>
             </div>
         </form>
-    </div>
+    
     <div class="formSectie">
         <mat-card-subtitle class="subtitle">Voeg de gewenste <span class="accent">producten</span> aan het project toe
         </mat-card-subtitle>
         <div class=producten>
             <div *ngFor="let p of products">
-                <app-product (deletedProduct)="deleteProduct($event)" [product]="p"></app-product>
+                <app-product  (deletedProduct)="deleteProduct($event)" [product]="p"></app-product>
             </div>
             <div>
                 <app-add-product (newProduct)="addNewProductToProject($event)"></app-add-product>
@@ -132,10 +142,10 @@
         </mat-card-subtitle>
         <div class=producten>
             <div *ngFor="let g of groups">
-                <app-group (deletedgroup)="deleteGroup($event)" [group]="g"></app-group>
+                <app-group [classroom]="chosenClassroom" (deletedgroup)="deleteGroup($event)" [group]="g"></app-group>
             </div>
             <div>
-                <app-add-group-button (newGroup)="addNewGroupToProject($event)"></app-add-group-button>
+                <app-add-group-button [classroom]="chosenClassroom" (newGroup)="addNewGroupToProject($event)"></app-add-group-button>
             </div>
 
         </div>
@@ -157,15 +167,17 @@
         <button routerLink="/projecten" class="button" mat-raised-button>
             annuleer
         </button>
-        <button *ngIf="isEdit; else new" (click)="submitProject()" class="button" type="submit" mat-raised-button
+        <button [disabled]='!projectFg.valid' *ngIf="isEdit; else new" (click)="submitProject()" class="button" type="submit" mat-raised-button
             color='primary'>
             Sla wijzigingen op
         </button>
         <ng-template #new class="h">
-            <button (click)="submitProject()" class="button" type="submit" mat-raised-button color='primary'>
+            <button [disabled]='!projectFg.valid' (click)="submitProject()" class="button" type="submit" mat-raised-button color='primary'>
                 maak project
             </button>
         </ng-template>
-
+        
     </mat-dialog-actions>
+</div>
+</div>
 </mat-card-content>

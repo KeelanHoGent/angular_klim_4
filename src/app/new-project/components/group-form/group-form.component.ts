@@ -15,6 +15,7 @@ export class GroupFormComponent implements OnInit {
   public isEdit: boolean;
   public group: FormGroup;
   public pupilsInList: Pupil[];
+  public crId: number;
 
   pupils: FormArray;
 
@@ -23,6 +24,8 @@ export class GroupFormComponent implements OnInit {
     public dialogRef: MatDialogRef<GroupFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data) {
     this.isEdit = data.soort;
+    this.crId = data.crId;
+
   }
 
   ngOnInit() {
