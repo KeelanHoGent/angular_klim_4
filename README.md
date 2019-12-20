@@ -2,8 +2,9 @@
 
 This angular project is the online platform schools and individual teachers use to keep track of their modules, classes, products and templates, for both modules and products. These items support CRUD operations that the user can use. The organisation (GO) of the schoolgroup can make templates wich all the schools may access and use but not modify in any way.
 
-The mobile application that the students use can be found [here](https://github.com/HoGent-Projecten3/projecten3-1920-android-klim03)
-The corresponding backend can be found [here](https://github.com/HoGent-Projecten3/projecten3-1920-backend-klim03)
+The mobile application that the students use can be found [here](https://github.com/HoGent-Projecten3/projecten3-1920-android-klim03).
+
+The corresponding backend can be found [here](https://github.com/HoGent-Projecten3/projecten3-1920-backend-klim03).
 
 ## Getting started
 
