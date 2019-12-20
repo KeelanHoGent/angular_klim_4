@@ -26,17 +26,13 @@
         </div>
 
         <div class="formGroup">
-            <label>Leerlingen</label>
-            <div formArrayName="pupils" *ngFor="let pupil of group.get('pupils').controls; let i = index;">
+            
+            <!-- <div formArrayName="pupils" *ngFor="let pupil of group.get('pupils').controls; let i = index;">
                     <div [formGroupName]="i">
                             <input class="pupilNameInput" formControlName="firstName"  type="text" placeholder="Naam">
                     </div>
-            </div>
-            <button class="addButton" mat-raised-button (click)="addPupil()" type="button" color="default" rounded="true">
-                    <mat-icon class="icon">add</mat-icon>
-            </button>
-        
-
+            </div> -->
+        <app-add-pupils [pInList]="pupilsInList" (pupilToDelete)='deletePupil($event)' (pupilToAdd)='addPupil($event)' (pupilsToAdd)='addPupils($event)' ></app-add-pupils>
         </div>
 
        

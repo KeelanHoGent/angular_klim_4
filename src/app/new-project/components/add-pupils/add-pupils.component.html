@@ -1,0 +1,23 @@
+<!-- <div class="container"> -->
+    <!-- <div>
+        <p>Voer leerlingen toe</p>
+        <select class='selectBox' #t [(ngModel)]="chosenClassroom" (ngModelChange)='getPupils()'>
+            <option>Kies een klas</option>
+            <option [ngValue]='item' *ngFor="let item of classes | async">
+                {{item.name}}
+            </option>
+
+        </select> -->
+        <!-- <div *ngFor="let p of chosenPupils ">
+    {{p.firstName}}
+</div> -->
+<p>Selecteer de juiste leerlingen</p>
+        <ul class="pupils">
+            <li   *ngFor="let pupil of chosenPupils" 
+             [class.selected]="isSelected(pupil)"
+             (click)="onSelect(pupil)">
+                {{pupil.firstName}} {{pupil.surName}}
+            </li>
+        </ul>
+    <!-- </div> -->
+<!-- </div> -->

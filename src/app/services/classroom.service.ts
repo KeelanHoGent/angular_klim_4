@@ -58,4 +58,11 @@ export class ClassroomService {
     };
     return this.http.delete(`${environment.apiUrl}/Classroom/removePupil/${classRoomId}`, options);
   }
+
+  getPupil(id: number){
+    return this.http.get<Pupil>(`${environment.apiUrl}/Pupil/${id}`)
+      .pipe(map(p => {
+        return Pupil.fromJSON(p);
+      }));
+  }
 }

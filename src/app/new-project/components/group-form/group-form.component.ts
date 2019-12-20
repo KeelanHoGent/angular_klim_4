@@ -14,7 +14,7 @@ export class GroupFormComponent implements OnInit {
   public correct: String = "../../../../assets/images/correct.svg";
   public isEdit: boolean;
   public group: FormGroup;
-
+  public pupilsInList: Pupil[];
 
   pupils: FormArray;
 
@@ -33,11 +33,15 @@ export class GroupFormComponent implements OnInit {
       ])
     });
 
-    if (!(this.data.pupils === undefined)) {
-      const control = <FormArray>this.group.controls['pupils'];
-      this.data.pupils.forEach((element: Pupil) => {
-        control.push(this.createPupil(element))
-      });
+    // if (!(this.data.pupils === undefined)) {
+    //   const control = <FormArray>this.group.controls['pupils'];
+    //   this.data.pupils.forEach((element: Pupil) => {
+    //     control.push(this.createPupil(element))
+    //   });
+    // }
+
+    if (!(this.data.pupils === undefined)){
+      this.pupilsInList = this.data.pupils
     }
   }
 
@@ -57,15 +61,34 @@ export class GroupFormComponent implements OnInit {
     }
   }
 
-  addPupil(): void {
-    this.pupils = this.group.get('pupils') as FormArray;
-    this.pupils.push(this.createPupil(new Pupil("", "")));
+  addPupils(pupils: Pupil[]): void {
+
+    const control = <FormArray>this.group.controls['pupils'];
+    pupils.forEach(pu => control.push(this.createPupil(pu)) )
+
+   
+
+    //   this.data.pupils.forEach((element: Pupil) => {
+    //     console.log("el:",element)
+    //     event.forEach(pu => control.push(this.createPupil(pu)))
+    //   })
+  }
+
+  addPupil(pupil: Pupil): void {
+    const control = <FormArray>this.group.controls['pupils'];
+    control.push(this.createPupil(pupil));
+  }
+
+  deletePupil(pupil: Pupil): void {
+    const control = <FormArray>this.group.controls['pupils'];
+    control.removeAt(control.value.findIndex(p => p.id === pupil.id))
+    console.log(control);
   }
 
 
   createPupil(p: Pupil): FormGroup {
     return this._fb.group({
-      firstName: p.firstName
+      id: p.id
     });
   }
 
