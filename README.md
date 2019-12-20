@@ -20,7 +20,7 @@ Password: P@ssword1
 Clone the repository
 
 ```
-git clone git@github.com:HoGent-Projecten3/projecten3-1920-angular-klim03.git
+git clone git@github.com/KeelanHoGent/angular_klim_4.git
 ```
 
 Open the project in Studio Code and running following command to install the packages
