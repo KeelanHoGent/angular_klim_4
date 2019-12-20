@@ -113,11 +113,16 @@ export class AddProjectInfoComponent implements OnInit {
   private initFormGroup(isEdit, appDomain: number) {
 
     this.templateFg = this._fb.group({
-      template: ['']
+      template: [''],
+      
     });
 
+    // this.classRoomFg = this._fb.group({
+      
+    // })
+
     this.projectFg = this._fb.group({
-      classroom: ['', Validators.required],
+      classroom: [isEdit? this.chosenClassroom: '', Validators.required],
       name: [isEdit ? this.newProject.name : '', Validators.required],
       description: [isEdit ? this.newProject.descr : '', Validators.required],
       image: [isEdit ? this.newProject.image : '', Validators.required],
@@ -184,8 +189,9 @@ export class AddProjectInfoComponent implements OnInit {
 
 
 
+
       this.projectFg = this._fb.group({
-        classroom: ["", Validators.required],
+        classroom: [this.chosenClassroom],
         name: [this.template.name, Validators.required],
         description: [this.template.descr, Validators.required],
         image: [this.template.image, Validators.required],
