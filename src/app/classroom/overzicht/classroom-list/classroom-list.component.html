@@ -1,12 +1,10 @@
 <div class="body-wrapper">
   <div class="list-title">
     <h1>Klassen</h1>
-
     <a routerLink="/add/classroom" class="magentaBtn">
       Nieuwe klas
-  </a>
+    </a>
   </div>
-  <mat-spinner *ngIf="loader"></mat-spinner>
-  <app-horizontal-list-classrooms *ngIf="!loader" [list]="classrooms" ></app-horizontal-list-classrooms>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+  <app-horizontal-list-classrooms *ngIf="!loading" [list]="classrooms | async" ></app-horizontal-list-classrooms>
 </div>
-

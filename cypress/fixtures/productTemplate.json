@@ -1,0 +1,38 @@
+{
+  "productTemplateId": 1,
+  "productName": "Karton",
+  "description": "Dit is karton",
+  "productImage": "https://www.manutan.be/img/S/GRP/ST/AIG2166048.jpg",
+  "score": 9,
+  "addedByGO": true,
+  "categoryTemplateId": 1,
+  "categoryTemplate": {
+    "categoryTemplateId": 1,
+    "categoryName": "default categorytemplate",
+    "categoryDescr": "default categorytemplate descr",
+    "addedByGO": true
+  },
+  "productVariationTemplates": [
+    {
+      "productVariationTemplateId": 12,
+      "productDescr": "Derde graad beschrijving karton",
+      "eSchoolGrade": 3
+    },
+    {
+      "productVariationTemplateId": 13,
+      "productDescr": "Tweede graad beschrijving karton",
+      "eSchoolGrade": 2
+    },
+    {
+      "productVariationTemplateId": 14,
+      "productDescr": "Eerste graad beschrijving karton",
+      "eSchoolGrade": 1
+    },
+    {
+      "productVariationTemplateId": 15,
+      "productDescr": "Algemene beschrijving karton",
+      "eSchoolGrade": 0
+    }
+  ],
+  "hasMultipleDisplayVariations": true
+}

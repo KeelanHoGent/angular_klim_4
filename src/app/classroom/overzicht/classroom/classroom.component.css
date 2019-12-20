@@ -19,13 +19,9 @@
   border-top: 0.4rem solid transparent;
 }
 
-
-
 .classroom:hover {
   transform: scale(1.05, 1.05);
   border-top: 0.4rem solid var(--magenta);
-  cursor: pointer;
-
 }
 
 .classroom > .naam {
@@ -53,10 +49,18 @@
   position: absolute;
   top: -20px;
   left: 90%;
-  /* border: red 1px solid; */
-  padding-bottom: 0px;
+  padding-bottom: 0;
   border-radius: 50%;
   background: white;
+  cursor: pointer;
 }
+
+.bottom-border {
+  position: absolute;
+  width: calc(100% - 32px);
+  text-align: center;
+  bottom: 15px;
+}
+
 
 

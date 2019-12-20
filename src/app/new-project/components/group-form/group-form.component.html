@@ -43,7 +43,7 @@
 
         <mat-dialog-actions class="buttonContainer">
             <button type="button" class="button" (click)="close()" mat-raised-button>
-                annuleer
+                Annuleer
             </button>
 
             <button class="button" (keyup.enter)="save(group.valid)" *ngIf="!isEdit; else newP"
@@ -56,7 +56,7 @@
                 <button type="button" class="button" data-dismiss="modal" (keyup.enter)="save(group.valid)"
                     (click)="save(group.valid)" type="submit" mat-raised-button color='primary'
                     [disabled]='!group.valid'>
-                    Sla op
+                    Wijzigingen opslaan
                 </button>
             </ng-template>
 

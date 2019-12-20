@@ -9,6 +9,7 @@ import { delay } from 'q';
 import {TemplateService} from '../../services/template.service';
 import {ProductTemplate} from '../../types/productTemplate.model';
 import { Router } from '@angular/router';
+import { SourceListMap } from 'source-list-map';
 
 
 
@@ -30,13 +31,12 @@ export class AddProjectTemplateComponent implements OnInit {
 
   public productFotoSrc = '';
 
-  constructor(private _fb: FormBuilder,
+  constructor(
+    private _fb: FormBuilder,
     private _projecttemplateDataService: TemplateService,
     private _projectDataService: ProjectService,
-    private router: Router) {
-      
-
-  }
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
@@ -53,8 +53,8 @@ export class AddProjectTemplateComponent implements OnInit {
       description: ['', [Validators.required, Validators.minLength(6)]],
       applicationDomain: [this.domains, Validators.required],
       productTemplates: [this.productTemplates, Validators.required],
-      budget: [0, Validators.required],
-      maxScore: [0, Validators.required]
+      budget: [, [Validators.required, Validators.min(0)]],
+      maxScore: [,  [Validators.required, Validators.min(0)]]
     });
   }
 
@@ -64,12 +64,11 @@ export class AddProjectTemplateComponent implements OnInit {
     p.descr = this.projecttemplate.value.description;
     p.image = this.projecttemplate.value.image;
     this.productTemplates.map(v => p.productTemplates.push(v));
-    p.applicationDomainId = this.projecttemplate.value.applicationDomain;
+    p.applicationDomainId = this.projecttemplate.value.applicationDomain.id;
     p.budget = this.projecttemplate.value.budget;
     p.maxScore = this.projecttemplate.value.maxScore;
-    this._projecttemplateDataService.addNewProjecttemplate(p);
-
-    this.router.navigateByUrl("/projecten");
+    this._projecttemplateDataService.addNewProjecttemplate(p)
+    .subscribe(res => this.router.navigateByUrl('/projecttemplates'));
   }
 
   getErrorMessage(errors: any) {
@@ -82,6 +81,9 @@ export class AddProjectTemplateComponent implements OnInit {
       return `moet minstens ${
         errors.minlength.requiredLength
         } karakters bevatten (heeft ${errors.minlength.actualLength})`;
+    } else if (errors.min){
+      return `moet minstens 0 of groter zijn`
+        
     }
   }
 

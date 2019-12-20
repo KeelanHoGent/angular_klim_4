@@ -1,22 +1,21 @@
 import { OrderItem } from './orderItem.model';
 
-export class Order{
+export class Order {
     private _id : number;
     private _submitted : number; // by pupil
     private _approved : number; // by teacher
     private _totalOrderPrice : number;
-    private _orderItems : OrderItem[] = []
+    private _orderItems : OrderItem[] = [];
     private _avgScore : number;
 
 
+    constructor(submitted: number, approved: number, totalOrderPrice: number, orderItems : OrderItem[] =  []) {
+      this._submitted = submitted;
+      this._approved = approved;
+      this._totalOrderPrice = totalOrderPrice;
+      this._orderItems = orderItems;
+	  }
 
-	constructor(submitted: number, approved: number, totalOrderPrice: number, orderItems : OrderItem[] =  []) {
-		this._submitted = submitted;
-		this._approved = approved;
-        this._totalOrderPrice = totalOrderPrice;
-        this._orderItems = orderItems;
-    }
-    
 
     static fromJSON(json: any): Order {
         const g = new Order(
@@ -26,13 +25,13 @@ export class Order{
             json.orderItems.map(p => OrderItem.fromJSON(p))
         );
         g._avgScore = json.avgScore;
-        
+
         g._id = json.orderId;
-    
+
         return g;
-    
+
       }
-    
+
       toJson(): any {
         return {
 
@@ -46,7 +45,7 @@ export class Order{
      * @return {number}
      */
 	public get avgScore(): number {
-		return this._avgScore;
+		return Number(this._avgScore.toFixed(2));
 	}
 
     /**
@@ -139,7 +138,7 @@ export class Order{
 	}
 
 
-    
+
 
 
 }

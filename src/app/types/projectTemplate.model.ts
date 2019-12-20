@@ -37,7 +37,7 @@ export class ProjectTemplate {
           projectDescr: this._descr,
           projectImage: this._image,
           applicationDomainId: this._applicationDomainId,
-          products: this._productTemplates.map(p => p.toJson()),
+          productTemplates: this._productTemplates.map(p => p.toJson()),
           budget: this._budget,
           maxScore: this._maxScore
         };

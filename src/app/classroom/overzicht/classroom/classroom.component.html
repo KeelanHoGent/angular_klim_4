@@ -6,4 +6,9 @@
   <p class="naam" >{{classroom.name}} </p>
 
   <div class="desc">aantal studenten: {{classroom.pupils.length}}</div>
+
+  <div class="bottom-border">
+    <button mat-raised-button color="default" [routerLink]="['/klas/', classroom.id]">Volledige lijst</button>
+  </div>
+
 </div>

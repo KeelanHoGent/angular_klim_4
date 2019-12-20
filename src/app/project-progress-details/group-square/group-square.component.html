@@ -3,19 +3,19 @@
         <!--[ngClass]="group.id === selectedGroupId ? 'groupSelected' : '' "-->
         <div class="group" [ngClass]="group.showClicked ? 'showSelected' : '' " (click)="detailsGroup()">
                 <p class="naam">{{group.name}}</p>
-                <span class="scoreSpan">Score: {{group.order.avgScore}}  </span> 
-                <p class="naamBudget">Gespendeerd: {{group.order.totalOrderPrice}}  
-
-                        <mat-icon *ngIf="!group.overBudget()" class="done">done</mat-icon>   
-                        <mat-icon *ngIf="group.overBudget()" class="error">error_outline</mat-icon>   
-                </p> 
-
+                <span class="scoreSpan">Score: {{group.order.avgScore}}  </span>
+                <p class="naamBudget">Gespendeerd: {{group.order.totalOrderPrice}}
+                        <mat-icon *ngIf="!group.overBudget()" class="done">done</mat-icon>
+                        <mat-icon *ngIf="group.overBudget()" class="error">error_outline</mat-icon>
+                </p>
+                <p class="code">
+                  Groepscode: {{group.code}}
+                </p>
                 <div *ngIf="group.pupils.length > 0">
-                        <h2>Leerlingen</h2>
-
-                        <p class="desc" *ngFor="let item of group.pupils">
-                                {{item.firstName}}
-                        </p>
+                  <h2>Leerlingen</h2>
+                  <p class="desc" *ngFor="let i of [0,1,2] ">
+                    {{group.pupils[i].firstName}}
+                  </p>
+                  <p *ngIf="group.pupils.length > 3">...</p>
                 </div>
-   
         </div>

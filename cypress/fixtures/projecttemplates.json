@@ -1,33 +1,205 @@
 [
     {
-        "id": 1,
-        "name": "project met vuur",
-        "descr": "Een project met vuurproefjes", 
-        "image": "imagelink"
-    },
-    {
-        "id": 2,
-        "name": "project met water",
-        "descr": "Een project met een waterrad", 
-        "image": "imagelink"
-    },
-    {
-        "id": 3,
-        "name": "project met aarde",
-        "descr": "Een project met soorten gesteentes", 
-        "image": "imagelink"
-    },
-    {
-        "id": 4,
-        "name": "project met plastiek",
-        "descr": "Een project met plastiek speelgoed", 
-        "image": "imagelink"
-    },
-    {
-        "id": 5,
-        "name": "project met zeep",
-        "descr": "Een project met groene zeep", 
-        "image": "imagelink"
-    }
+        "projectTemplateId": 1,
+        "projectName": "Test Project",
+        "projectDescr": "Project for testing purposes",
+        "projectImage": "image",
+        "addedByGO": true,
+        "applicationDomainId": 3,
+        "applicationDomain": {
+            "applicationDomainId": 3,
+            "applicationDomainName": "Constructie",
+            "applicationDomainDescr": "Alles over constructie"
+        },
+        "productTemplates": [
+          {
+            "productTemplateId": 2,
+            "productName": "Lijm",
+            "description": "Dit is lijm",
+            "productImage": "https://www.manutan.be/img/S/GRP/ST/AIG2399133.jpg",
+            "score": 6,
+            "addedByGO": true,
+            "categoryTemplateId": 1,
+            "categoryTemplate": {
+              "categoryTemplateId": 1,
+              "categoryName": "default categorytemplate",
+              "categoryDescr": "default categorytemplate descr",
+              "addedByGO": true
+            },
+            "productVariationTemplates": [
+              {
+                "productVariationTemplateId": 1,
+                "productDescr": "Eerste graad beschrijving Lijm",
+                "eSchoolGrade": 1
+              },
+              {
+                "productVariationTemplateId": 8,
+                "productDescr": "Derde graad beschrijving Lijm",
+                "eSchoolGrade": 3
+              },
+              {
+                "productVariationTemplateId": 9,
+                "productDescr": "Tweede graad beschrijving Lijm",
+                "eSchoolGrade": 2
+              },
+              {
+                "productVariationTemplateId": 11,
+                "productDescr": "Algemene beschrijving Lijm",
+                "eSchoolGrade": 0
+              }
+            ],
+            "hasMultipleDisplayVariations": true
+          },
+          {
+            "productTemplateId": 3,
+            "productName": "Plakband",
+            "description": "Dit is Plakband",
+            "productImage": "https://www.manutan.be/img/S/GRP/ST/AIG2328457.jpg",
+            "score": 5,
+            "addedByGO": true,
+            "categoryTemplateId": 1,
+            "categoryTemplate": {
+              "categoryTemplateId": 1,
+              "categoryName": "default categorytemplate",
+              "categoryDescr": "default categorytemplate descr",
+              "addedByGO": true
+            },
+            "productVariationTemplates": [
+              {
+                "productVariationTemplateId": 4,
+                "productDescr": "Derde graad beschrijving Plakband",
+                "eSchoolGrade": 3
+              },
+              {
+                "productVariationTemplateId": 5,
+                "productDescr": "Tweede graad beschrijving Plakband",
+                "eSchoolGrade": 2
+              },
+              {
+                "productVariationTemplateId": 6,
+                "productDescr": "Eerste graad beschrijving Plakband",
+                "eSchoolGrade": 1
+              },
+              {
+                "productVariationTemplateId": 7,
+                "productDescr": "Algemene beschrijving Plakband",
+                "eSchoolGrade": 0
+              }
+            ],
+            "hasMultipleDisplayVariations": true
+          },
+          {
+            "productTemplateId": 4,
+            "productName": "Hout",
+            "description": "Dit is hout",
+            "productImage": "https://cdn.webshopapp.com/shops/34832/files/96705407/800x600x1/van-gelder-hout-schuttingplanken.jpg",
+            "score": 8,
+            "addedByGO": true,
+            "categoryTemplateId": 1,
+            "categoryTemplate": {
+              "categoryTemplateId": 1,
+              "categoryName": "default categorytemplate",
+              "categoryDescr": "default categorytemplate descr",
+              "addedByGO": true
+            },
+            "productVariationTemplates": [
+              {
+                "productVariationTemplateId": 2,
+                "productDescr": "Eerste graad beschrijving Hout",
+                "eSchoolGrade": 1
+              },
+              {
+                "productVariationTemplateId": 3,
+                "productDescr": "Algemene beschrijving hout",
+                "eSchoolGrade": 0
+              },
+              {
+                "productVariationTemplateId": 10,
+                "productDescr": "Derde graad beschrijving Hout",
+                "eSchoolGrade": 3
+              },
+              {
+                "productVariationTemplateId": 16,
+                "productDescr": "Tweede graad beschrijving Hout",
+                "eSchoolGrade": 2
+              }
+            ],
+            "hasMultipleDisplayVariations": true
+          }
+        ],
+        "maxScore": 25,
+        "budget": 20
+      },
+      {
+        "projectTemplateId": 2,
+        "projectName": "Project - No Products",
+        "projectDescr": "Project with no product templates",
+        "projectImage": "image",
+        "addedByGO": true,
+        "applicationDomainId": 2,
+        "applicationDomain": {
+            "applicationDomainId": 2,
+            "applicationDomainName": "Informatie & communicactie",
+            "applicationDomainDescr": "Alles over informatie & communicactie"
+        },
+        "productTemplates": [],
+        "maxScore": 115,
+        "budget": 150
+      },
+      {
+        "projectTemplateId": 3,
+        "projectName": "Project - 1 Product",
+        "projectDescr": "Project with 1 product template",
+        "projectImage": "image",
+        "addedByGO": true,
+        "applicationDomainId": 1,
+        "applicationDomain": {
+          "applicationDomainId": 1,
+          "applicationDomainName": "Energie",
+          "applicationDomainDescr": "Alles over energie"
+        },
+        "productTemplates": [
+          {
+            "productTemplateId": 4,
+            "productName": "Hout",
+            "description": "Dit is hout",
+            "productImage": "https://cdn.webshopapp.com/shops/34832/files/96705407/800x600x1/van-gelder-hout-schuttingplanken.jpg",
+            "score": 8,
+            "addedByGO": true,
+            "categoryTemplateId": 1,
+            "categoryTemplate": {
+              "categoryTemplateId": 1,
+              "categoryName": "default categorytemplate",
+              "categoryDescr": "default categorytemplate descr",
+              "addedByGO": true
+            },
+            "productVariationTemplates": [
+              {
+                "productVariationTemplateId": 2,
+                "productDescr": "Eerste graad beschrijving Hout",
+                "eSchoolGrade": 1
+              },
+              {
+                "productVariationTemplateId": 3,
+                "productDescr": "Algemene beschrijving hout",
+                "eSchoolGrade": 0
+              },
+              {
+                "productVariationTemplateId": 10,
+                "productDescr": "Derde graad beschrijving Hout",
+                "eSchoolGrade": 3
+              },
+              {
+                "productVariationTemplateId": 16,
+                "productDescr": "Tweede graad beschrijving Hout",
+                "eSchoolGrade": 2
+              }
+            ],
+            "hasMultipleDisplayVariations": true
+          }
+        ],
+        "maxScore": 30,
+        "budget": 60
+      }
     
 ]
