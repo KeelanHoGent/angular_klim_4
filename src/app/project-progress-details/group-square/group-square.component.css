@@ -19,20 +19,24 @@
     transition: ease 0.4s;
     border-top: 0.4rem solid transparent;
   }
-  
-  
+
+.code {
+  margin-bottom: 10px;
+  color: var(--oranje);
+}
+
   .group:hover {
     transform: scale(1.05, 1.05);
     border-top: 0.4rem solid var(--magenta);
       cursor: pointer;
-  
+
   }
 
   .showSelected {
     transform: scale(1.05, 1.05);
     border-top: 0.4rem solid var(--magenta);
       cursor: pointer;
-  
+
   }
 
   .done{
@@ -44,7 +48,7 @@
 
 
 
-  
+
   .group > .naam {
     font-size: 25px;
     margin-bottom: 10px;
@@ -52,19 +56,19 @@
     font-weight: 700;
 
   }
-  
+
   .desc{
     margin-top: 0px;
     font-weight: 400;
     font-family: 'Raleway', sans-serif;
     color: rgb(128,128,128)
   }
-  
+
   .button-footer {
     position: absolute;
     bottom: 0;
   }
-  
+
   .details-button {
     width: 200px !important;
     margin: auto;
@@ -101,5 +105,4 @@
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
   }
-  
-  
+
