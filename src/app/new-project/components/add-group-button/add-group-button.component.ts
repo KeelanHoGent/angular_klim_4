@@ -1,8 +1,10 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Group } from 'src/app/types/group.model';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { GroupFormComponent } from '../group-form/group-form.component';
 import { Pupil } from 'src/app/types/pupil.model';
+import { ClassroomService } from 'src/app/services/classroom.service';
+import { Classroom } from 'src/app/types/classroom.model';
 
 @Component({
   selector: 'app-add-group-button',
@@ -11,29 +13,32 @@ import { Pupil } from 'src/app/types/pupil.model';
 })
 export class AddGroupButtonComponent {
   @Output() public newGroup = new EventEmitter<Group>();
-  public groep: Group;
-  
+  @Input() public classroom: Classroom;
+  public group: Group;
 
-  constructor(public dialog: MatDialog) { }
-  
+
+  constructor(public dialog: MatDialog,
+    private service: ClassroomService) { }
+
   addGroupForm(): void {
     const config = new MatDialogConfig();
-    
 
+    console.log(this.classroom);
     config.disableClose = true;
     config.width = "450px";
     config.autoFocus = true;
     config.data = {
-      name: ""
+      name: "",
+      crId: this.classroom.id
     }
 
     const dialogRef = this.dialog.open(GroupFormComponent, config);
 
-    this.groep = new Group();
+    this.group = new Group();
 
     dialogRef.afterClosed().subscribe(
       data => {
-        if(data){
+        if (data) {
           this.addGroup(data)
         }
       }
@@ -41,13 +46,27 @@ export class AddGroupButtonComponent {
   }
 
   addGroup(data: any): boolean {
-    var group = new Group();
-    group.name = data.name
-    data.pupils.forEach(element => {
-      group.pupils.push(new Pupil(element.firstName, ""))
-    });
+    
+    this.group.name = data.name
+    let promise =  this.getPupil(data)
 
-    this.newGroup.emit(group);
+    promise.then(() => this.newGroup.emit(this.group))
     return false;
+
+  }
+
+  public getPupil(data: any) {
+    return new Promise(
+      (resolve) => {
+        data.pupils.forEach((p: Pupil) => {
+          this.service.getPupil(p.id)
+            .toPromise()
+            .then(
+              pupil => {
+              this.group.pupils.push(pupil)
+              resolve()
+            }
+          )})
+      })
   }
 }

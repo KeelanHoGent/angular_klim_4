@@ -1,0 +1,43 @@
+.container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.pupils {
+    list-style-type: none;
+    padding: 10px 0;
+    width: 15em;
+}
+
+.pupils li {
+    padding: 1em;
+    border-radius: 6px;
+    margin: 5px 0;
+    background-color: rgb(247, 247, 247);
+    font: 15px;
+}
+
+.selected { 
+    background-color: rgb(206, 206, 206) !important;
+}
+
+.selected:hover{
+    background-color: rgb(206, 206, 206) !important;
+}
+
+li:hover {
+    background-color: rgb(231, 231, 231) !important;
+    cursor: pointer;
+}
+
+.selectBox {
+    width: 15em;
+    height: 30px;
+    background-color: #fafbfc;
+    border-color: #d1d5da;
+    padding: 4px 8px;
+    margin-top: 10px;
+    font-size: 12px;
+
+}

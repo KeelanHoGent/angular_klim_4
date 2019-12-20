@@ -24,7 +24,7 @@ import { GroupComponent } from './components/group/group.component';
 import { EvaluationCComponent } from './components/evaluation-c/evaluation-c.component';
 import { EvaluationCFormComponent } from './components/evaluation-c-form/evaluation-c-form.component';
 import { EvaluationCAddButtonComponent } from './components/evaluation-c-add-button/evaluation-c-add-button.component';
-
+import { AddPupilsComponent } from "./components/add-pupils/add-pupils.component";
 
 
 @NgModule({
@@ -40,8 +40,8 @@ import { EvaluationCAddButtonComponent } from './components/evaluation-c-add-but
     GroupComponent,
     EvaluationCComponent,
     EvaluationCFormComponent,
-    EvaluationCAddButtonComponent
-    
+    EvaluationCAddButtonComponent,
+    AddPupilsComponent
   ],
   imports: [
     CommonModule,

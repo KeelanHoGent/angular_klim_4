@@ -3,6 +3,8 @@ import { Group } from 'src/app/types/group.model';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 import { GroupFormComponent } from '../group-form/group-form.component';
 import { Pupil } from 'src/app/types/pupil.model';
+import { ClassroomService } from 'src/app/services/classroom.service';
+import { Classroom } from 'src/app/types/classroom.model';
 
 @Component({
   selector: 'app-group',
@@ -11,8 +13,12 @@ import { Pupil } from 'src/app/types/pupil.model';
 })
 export class GroupComponent {
   @Input() public group: Group;
+  @Input() public classroom: Classroom;
   @Output() public deletedgroup = new EventEmitter<Group>();
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog,
+    private service: ClassroomService) {
+      console.log("verder", this.classroom)
+     }
 
 
   deleteGroup(): boolean {
@@ -29,14 +35,15 @@ export class GroupComponent {
     config.data = {
       soort: true,
       name: g.name,
-      pupils: g.pupils
+      pupils: g.pupils,
+      crId: this.classroom.id
     }
 
     const dialogRef = this.dialog.open(GroupFormComponent, config);
 
     dialogRef.afterClosed().subscribe(
       data => {
-        console.log(g.id);
+        
         if(data){
           this.updateGroup(data);
         } 
@@ -47,9 +54,22 @@ export class GroupComponent {
   updateGroup(data: any){
     this.group.pupils = new Array<Pupil>();
     this.group.name = data.name;
-    data.pupils.forEach((pu: Pupil) => {
-      pu = new Pupil(pu.firstName, "");
-      this.group.pupils.push(pu);
+    data.pupils.forEach(p => {
+      this.getPupil(p.id);
     });
+  }
+
+  public getPupil(id: number) {
+    return new Promise(
+      (resolve) => {
+        this.service.getPupil(id)
+          .toPromise()
+          .then(
+            pupil => {
+              this.group.pupils.push(pupil)
+              resolve()
+            }
+          )
+      })
   }
 }

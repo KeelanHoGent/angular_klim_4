@@ -11,6 +11,8 @@ import { switchMap } from 'rxjs/operators';
 import { EvaluationCriterea } from 'src/app/types/evaluationCriterea.model';
 import { ProjectTemplate } from 'src/app/types/projectTemplate.model';
 import { TemplateService } from 'src/app/services/template.service';
+import { ClassroomService } from 'src/app/services/classroom.service';
+import { Classroom } from 'src/app/types/classroom.model';
 
 @Component({
   selector: 'app-add-project-info',
@@ -30,9 +32,13 @@ export class AddProjectInfoComponent implements OnInit {
   public evaluationCs: EvaluationCriterea[];
   public templates: ProjectTemplate[];
   public template: ProjectTemplate;
+  public chosenClassroom: Classroom;
+  public classes: Classroom[];
 
   public error: 'assets/images/error.svg';
   public correct: 'assets/images/correct.svg';
+
+  public klasIngevuld: boolean;
 
   constructor(
     private router: Router,
@@ -40,13 +46,14 @@ export class AddProjectInfoComponent implements OnInit {
     private _projectDataService: ProjectService,
     private _route: ActivatedRoute,
     private _templateService: TemplateService,
+    private _classRoomService: ClassroomService
   ) {
 
     this.newProject = new Project();
     this.products = this.newProject.products;
     this.groups = this.newProject.groups;
     this.evaluationCs = this.newProject.evaluationCritereas;
-
+    this.klasIngevuld = false;
     this._domainApps = this._projectDataService.getApplicationDomains$();
   }
 
@@ -54,6 +61,7 @@ export class AddProjectInfoComponent implements OnInit {
     this._route.data.subscribe(item => this.template = item.projectTemp);
     this._projectDataService.getApplicationDomains$().subscribe(ad => this.domains = ad);
     this._templateService.getProjectTemplates$().subscribe(t => this.templates = t);
+    this._classRoomService.getClassrooms$().subscribe(cr => this.classes = cr);
 
     this.isEdit = false;
 
@@ -65,10 +73,14 @@ export class AddProjectInfoComponent implements OnInit {
     editPromise.then(edit => {
       if (!edit) { index = 0; } else { index = this.newProject.applicationDomain.id - 1; }
       this.initFormGroup(edit, index);
+      this.putClassroom(this.chosenClassroom)
     });
 
+    
 
   }
+
+
 
 
   // Wanneer de url een id als parameter heeft, wordt de velden ingevuld om een project te editen
@@ -76,7 +88,7 @@ export class AddProjectInfoComponent implements OnInit {
     return new Promise(
       (resolve) => {
         if (!this.template && this._route.snapshot.params.id) {
-
+          
           this.isEdit = true;
           this._route.paramMap.pipe(
             switchMap((params: ParamMap) =>
@@ -102,10 +114,11 @@ export class AddProjectInfoComponent implements OnInit {
   private initFormGroup(isEdit, appDomain: number) {
 
     this.templateFg = this._fb.group({
-      template: ['']
+      template: [''],
     });
 
     this.projectFg = this._fb.group({
+      classroom: [isEdit? this.chosenClassroom : "", Validators.required],
       name: [isEdit ? this.newProject.name : '', Validators.required],
       description: [isEdit ? this.newProject.descr : '', Validators.required],
       image: [isEdit ? this.newProject.image : '', Validators.required],
@@ -118,29 +131,33 @@ export class AddProjectInfoComponent implements OnInit {
       this.newProject.products = [];
       this.products = [];
     }
+
+    this.putClassroom(this.chosenClassroom)
   }
 
 
   // Opslaan van een nieuwe project of een project updaten
   submitProject() {
-    this.newProject.name = this.projectFg.value.name;
-    this.newProject.descr = this.projectFg.value.description;
-    this.newProject.image = this.projectFg.value.image;
-    this.newProject.schoolYear = this.projectFg.value.schoolYear;
-    this.newProject.budget = this.projectFg.value.budget;
-    this.newProject.applicationDomainId = this.projectFg.value.applicationDomain.id;
+    if (this.projectFg.value.applicationDomain.id) {
+      this.newProject.name = this.projectFg.value.name;
+      this.newProject.descr = this.projectFg.value.description;
+      this.newProject.image = this.projectFg.value.image;
+      this.newProject.schoolYear = this.projectFg.value.schoolYear;
+      this.newProject.budget = this.projectFg.value.budget;
+      this.newProject.applicationDomainId = this.projectFg.value.applicationDomain.id;
 
-    if (!this.isEdit) {
-      this._projectDataService.addNewProject(this.newProject)
-        .subscribe(res => {
-          this.router.navigateByUrl('/projecten');
-        });
-    } else {
-      this._projectDataService.updateProject(this.newProject.id, this.newProject)
-        .subscribe(res => {
-          this.router.navigateByUrl('/projecten');
-        });
-    }
+      if (!this.isEdit) {
+        this._projectDataService.addNewProject(this.newProject)
+          .subscribe(res => {
+            this.router.navigateByUrl('/projecten');
+          });
+      } else {
+        this._projectDataService.updateProject(this.newProject.id, this.newProject)
+          .subscribe(res => {
+            this.router.navigateByUrl('/projecten');
+          });
+      }
+    } 
   }
 
   // wordt aangeroepen bij change van template in frontend
@@ -168,9 +185,10 @@ export class AddProjectInfoComponent implements OnInit {
         });
       });
 
-
+      
 
       this.projectFg = this._fb.group({
+        classroom: [this.chosenClassroom, Validators.required],
         name: [this.template.name, Validators.required],
         description: [this.template.descr, Validators.required],
         image: [this.template.image, Validators.required],
@@ -178,6 +196,8 @@ export class AddProjectInfoComponent implements OnInit {
         schoolYear: [date.getFullYear(), Validators.required],
         applicationDomain: [this.domains[index]]
       });
+
+      this.putClassroom(this.chosenClassroom)
 
       this.template.productTemplates.forEach(pr => {
         const product = new Product();
@@ -190,7 +210,7 @@ export class AddProjectInfoComponent implements OnInit {
       });
     });
 
-
+    console.log(this.chosenClassroom)
 
 
   }
@@ -230,6 +250,16 @@ export class AddProjectInfoComponent implements OnInit {
   getErrorMessage(errors: any) {
     if (errors.required) {
       return 'Dit veld is verplicht.';
+    }
+  }
+
+  putClassroom(classroom: Classroom){
+    console.log(classroom)
+    this.chosenClassroom = classroom;
+    if(classroom){
+    this.klasIngevuld = true;
+    } else {
+      this.klasIngevuld = false;
     }
   }
 }
