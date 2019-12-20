@@ -19,7 +19,7 @@
 
 <div class="dynamisch">
   <div>
-    <p class="titel">{{selectedGroup.name}}: Overzicht</p>
+    <p class="titel">{{!!selectedGroup ? selectedGroup.name : ""}}: Overzicht</p>
   </div>
   <div>
     <div class="projecten-wrapper" *ngIf="project !== undefined && selectedGroup !== undefined">
@@ -44,7 +44,7 @@
         <div class="list-title-smaller">
           <h1 class="tussenTitel">Evaluaties</h1>
           <div class="button-list">
-            
+
             <app-button-add-evaluation (newEvaluation)="addNewEvaluationToProject($event)"></app-button-add-evaluation>
           </div>
         </div>
@@ -55,7 +55,7 @@
           PDF van de evaluaties
         </button>
       </div>
-      
+
     </div>
   </div>
 </div>
