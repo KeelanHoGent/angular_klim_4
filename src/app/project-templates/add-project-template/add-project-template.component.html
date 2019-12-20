@@ -3,7 +3,7 @@
 
     <div class="titleBox">
       <mat-card-title class="h">
-        <mat-icon class="icon">post_add</mat-icon>Maak een module concept aan
+        <mat-icon class="icon">post_add</mat-icon>Maak een module template aan
       </mat-card-title>
       <!-- <mat-card-subtitle>Zorg dat alle velden zijn ingevuld</mat-card-subtitle> -->
     </div>
@@ -113,7 +113,7 @@
           </div>
           <div class="formSectie">
             <mat-form-field>
-              <mat-label>Productconcepten</mat-label>
+              <mat-label>Product templates</mat-label>
               <mat-select formControlName="productTemplates" multiple required>
                 <mat-option *ngFor="let group of productTemplates" [value]="group">
                   {{group.productName}}
@@ -148,7 +148,7 @@
         </button>
         <button (click)="save()" class="button" type="submit" mat-raised-button color='primary' data-cy="newprojecttemplatesubmit"
                 [disabled]='!projecttemplate.valid'><!---->
-          Maak concept
+          Maak template
         </button>
       </mat-dialog-actions>
     </mat-card-content>

@@ -14,9 +14,9 @@
 <mat-card-content class="form">
     <div class=formSectie>
             <div [formGroup]='templateFg' *ngIf="!isEdit" class="formGroup">
-                    <label>Concept</label>
+                    <label>Template</label>
                     <select formControlName="template" [(ngModel)]="template" (ngModelChange)=addTemplate($event)>
-                        <option value="">Geen concept</option>
+                        <option value="">Geen template</option>
                         <option [ngValue]="t" *ngFor="let t of templates">
                             {{t.name}}
                         </option>
